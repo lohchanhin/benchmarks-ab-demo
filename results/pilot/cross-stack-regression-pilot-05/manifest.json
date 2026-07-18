@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "protocolVersion": "1.0.0",
+  "id": "cross-stack-regression-pilot-05",
+  "createdAt": "2026-07-18T19:51:13.848Z",
+  "seed": "6ac9efa42497afb9a974df685f77127b",
+  "scenario": "cross-stack-regression",
+  "scenarioTitle": "Cross-stack discounted shipping quote regression",
+  "task": "Fix checkout shipping quotes end to end. Free shipping must use the discounted merchandise subtotal, and the checkout view model must display the shipping amount returned by the quote service. Preserve the public response contract and make the complete test suite pass without changing tests.",
+  "repositoryTree": "eeb78f197aceb5be4294562c7624ee2e68888c83",
+  "baseline": {
+    "expectedToFail": true,
+    "testExitCode": 1,
+    "testDurationMs": 160,
+    "oracleExitCode": 1,
+    "oracleDurationMs": 57
+  },
+  "palaceSeed": {
+    "cli": "vertex-palace@0.1.6",
+    "routeOnly": {
+      "routeId": null,
+      "memorySeeded": false
+    },
+    "fullPalace": {
+      "routeId": null,
+      "memorySeeded": false
+    }
+  },
+  "paths": {
+    "run": ".",
+    "controlWorkspace": "arms/control",
+    "routeOnlyWorkspace": "arms/route-only",
+    "fullPalaceWorkspace": "arms/full-palace",
+    "controlPrompt": "prompts/control.txt",
+    "routeOnlyPrompt": "prompts/route-only.txt",
+    "fullPalacePrompt": "prompts/full-palace.txt"
+  },
+  "arms": {
+    "control": {
+      "commit": "87952e65e00634f65e633ea4eb7c9f8c12cc5059",
+      "tree": "eeb78f197aceb5be4294562c7624ee2e68888c83"
+    },
+    "route-only": {
+      "commit": "87952e65e00634f65e633ea4eb7c9f8c12cc5059",
+      "tree": "eeb78f197aceb5be4294562c7624ee2e68888c83"
+    },
+    "full-palace": {
+      "commit": "87952e65e00634f65e633ea4eb7c9f8c12cc5059",
+      "tree": "eeb78f197aceb5be4294562c7624ee2e68888c83"
+    }
+  },
+  "generatedFileCount": 87,
+  "publishedFrom": ".benchmark-runs/<reviewed-local-run>",
+  "publication": {
+    "rawTranscriptsIncluded": false,
+    "sessionIdentifiersIncluded": false,
+    "localPathsIncluded": false
+  }
+}
