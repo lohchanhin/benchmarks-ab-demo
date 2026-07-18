@@ -56,7 +56,10 @@ test("labels partial pilot output as interim against the preregistered trial cou
   assert.equal(result.attemptedTrials, 1);
   assert.equal(result.loadedTrials, 1);
   assert.match(result.caveats.join("\n"), /interim analysis with 1 of 20/);
-  assert.match(renderAnalysisMarkdown(result), /Interim only: 1\/20 planned trials/);
+  const markdown = renderAnalysisMarkdown(result);
+  assert.match(markdown, /Interim only: 1\/20 planned trials/);
+  assert.match(markdown, /Mutually Successful Pair Efficiency/);
+  assert.match(markdown, /\| demo \| Reported tokens \| 1 \| 1,100 \| 1,100 \| 0 \[0, 0\] \|/);
 });
 
 function entry(trialId, controlSuccess, palaceSuccess, controlDuration, palaceDuration) {

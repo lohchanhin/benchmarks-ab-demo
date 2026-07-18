@@ -23,6 +23,13 @@ const continuousMetrics = Object.freeze([
   "changedFileRecall"
 ]);
 
+const markdownMetrics = Object.freeze([
+  ["reportedTokens", "Reported tokens"],
+  ["uncachedInputTokens", "Uncached input tokens"],
+  ["toolCalls", "Tool calls"],
+  ["durationMs", "Wall time"]
+]);
+
 export async function analyzeManifest(manifestPath, options = {}) {
   const absoluteManifest = path.resolve(manifestPath);
   const manifest = JSON.parse(await readFile(absoluteManifest, "utf8"));
@@ -274,12 +281,39 @@ export function renderAnalysisMarkdown(analysis) {
   }
   lines.push(
     "",
+    "## Mutually Successful Pair Efficiency",
+    "",
+    "Paired differences are Full Palace minus Control. Negative values mean Full Palace used less of the measured resource; wall time remains secondary.",
+    "",
+    "| Scenario | Metric | Pairs | Control median | Full median | Paired median difference (95% bootstrap CI) |",
+    "| --- | --- | ---: | ---: | ---: | --- |"
+  );
+  for (const [scenario, result] of Object.entries(analysis.scenarios)) {
+    for (const [metric, label] of markdownMetrics) {
+      const summary = result.metrics[metric];
+      if (!summary?.pairCount) continue;
+      const difference = summary.fullPalaceMinusControl;
+      lines.push(
+        `| ${scenario} | ${label} | ${summary.pairCount} | ${metricValue(metric, summary.controlMedian)} | `
+        + `${metricValue(metric, summary.fullPalaceMedian)} | ${metricValue(metric, difference.estimate)} `
+        + `[${metricValue(metric, difference.confidenceInterval[0])}, ${metricValue(metric, difference.confidenceInterval[1])}] |`
+      );
+    }
+  }
+  lines.push(
+    "",
     "Efficiency metrics are calculated only for mutually successful pairs. Raw values and bootstrap intervals are available in the JSON report.",
     "",
     "This exploratory pilot does not guarantee that Vertex Palace is faster on every task.",
     ""
   );
   return lines.join("\n");
+}
+
+function metricValue(metric, value) {
+  if (value === null || value === undefined) return "n/a";
+  if (metric === "durationMs") return `${(value / 1000).toFixed(1)}s`;
+  return Number(value).toLocaleString("en-US", { maximumFractionDigits: 1 });
 }
 
 function percent(value) {

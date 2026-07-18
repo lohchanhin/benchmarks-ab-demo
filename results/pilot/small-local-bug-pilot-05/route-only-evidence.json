@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 3,
+  "runId": "small-local-bug-pilot-05",
+  "arm": "route-only",
+  "createdAt": "2026-07-18T19:01:19.398Z",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "codexVersion": "codex-cli 0.145.0-alpha.18",
+  "palaceVersion": "0.1.6",
+  "execution": {
+    "durationMs": 182868,
+    "exitCode": 0,
+    "startedAt": "2026-07-18T18:58:16.231Z",
+    "endedAt": "2026-07-18T19:01:19.099Z",
+    "timedOut": false,
+    "sequence": 1,
+    "order": "route-only,full-palace,control"
+  },
+  "transcript": {
+    "eventCount": 67,
+    "malformedLines": 0,
+    "toolCalls": 27,
+    "commandCalls": 27,
+    "failedCalls": 6,
+    "commandOutputChars": 8146,
+    "agentMessageChars": 1655,
+    "inspectionCommands": 5,
+    "palaceCalls": 1,
+    "successfulPalaceCalls": 1,
+    "inspectedFiles": [
+      "README.md",
+      "package.json",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "referencedFiles": [
+      "README.md",
+      "package.json",
+      "packages/catalog/src/module-001.mjs",
+      "packages/catalog/src/module-002.mjs",
+      "packages/catalog/src/module-003.mjs",
+      "packages/notifications/src/module-001.mjs",
+      "packages/notifications/src/module-002.mjs",
+      "packages/notifications/src/module-003.mjs",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "usage": {
+      "inputTokens": 353422,
+      "cachedInputTokens": 329728,
+      "outputTokens": 5582,
+      "totalTokens": 359004,
+      "uncachedInputTokens": 23694
+    }
+  },
+  "runtimeDiagnostics": {
+    "stderrChars": 4284,
+    "warningLines": 2,
+    "errorLines": 8,
+    "routerErrors": 8
+  },
+  "validity": {
+    "verified": true,
+    "passed": true,
+    "reason": "1/1 successful/total Palace calls; expected 1/1; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; fixture tree matches b668adb9ce1daa0fea7659dd2fc80ec91bc55d4f"
+  },
+  "tests": {
+    "command": "node --test",
+    "passed": true,
+    "publicPassed": true,
+    "oraclePassed": true,
+    "exitCode": 0,
+    "durationMs": 147,
+    "oracleCommand": "node oracle/verify.mjs",
+    "oracleExitCode": 0,
+    "oracleDurationMs": 60
+  },
+  "git": {
+    "status": [
+      "M src/format-currency.mjs"
+    ],
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "untrackedFiles": [],
+    "numstat": [
+      {
+        "file": "src/format-currency.mjs",
+        "added": 1,
+        "deleted": 1
+      }
+    ],
+    "diffCheckPassed": true,
+    "diffCheckOutput": "warning: in the working copy of 'src/format-currency.mjs', LF will be replaced by CRLF the next time Git touches it",
+    "headTree": "b668adb9ce1daa0fea7659dd2fc80ec91bc55d4f"
+  },
+  "score": {
+    "total": 100,
+    "points": {
+      "correctness": 60,
+      "expectedCoverage": 20,
+      "scope": 20
+    },
+    "testsPassed": true,
+    "expectedCoverage": 1,
+    "changedFileRecall": 1,
+    "changedFilePrecision": 1,
+    "forbiddenViolation": false,
+    "expectedMatched": [
+      "src/format-currency.mjs"
+    ],
+    "expectedMissed": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": []
+  },
+  "success": true,
+  "route": {
+    "routeId": "route_63a0143522c508c0",
+    "confidence": 0.53,
+    "k": 4,
+    "recallAtK": 1,
+    "precisionAtK": 0.5,
+    "groundTruthFiles": [
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "matchedFiles": [
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "retrievedFiles": [
+      "test/format-currency.test.mjs",
+      "src/format-currency.mjs",
+      "README.md",
+      "package.json"
+    ]
+  },
+  "memory": {
+    "pitfallViolation": null,
+    "wrongMemoryAdopted": null
+  },
+  "palaceEvaluation": null
+}
