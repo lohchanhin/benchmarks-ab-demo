@@ -306,6 +306,23 @@
       "evidenceDirectory": "pilot/stale-memory-adversarial-pilot-02",
       "rawTranscriptsPublished": false,
       "publishedAt": "2026-07-18T21:22:34.872Z"
+    },
+    {
+      "trialId": "stale-memory-adversarial-pilot-03",
+      "scenario": "stale-memory-adversarial",
+      "seed": "7efe216bfbff920efa45000932bd1a11",
+      "order": [
+        "route-only",
+        "full-palace",
+        "control"
+      ],
+      "status": "completed",
+      "attemptedAt": "2026-07-18T21:32:05.923Z",
+      "report": "pilot/stale-memory-adversarial-pilot-03/comparison.json",
+      "error": null,
+      "evidenceDirectory": "pilot/stale-memory-adversarial-pilot-03",
+      "rawTranscriptsPublished": false,
+      "publishedAt": "2026-07-18T21:32:27.721Z"
     }
   ]
 }

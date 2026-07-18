@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 2,
+  "protocolVersion": "1.0.0",
+  "id": "stale-memory-adversarial-pilot-03",
+  "createdAt": "2026-07-18T21:25:22.490Z",
+  "seed": "7efe216bfbff920efa45000932bd1a11",
+  "scenario": "stale-memory-adversarial",
+  "scenarioTitle": "Stale scheduler-configuration memory",
+  "task": "Fix the v2 batch scheduler returning a limit of 10 instead of the configured limit of 25. The configuration migration is complete; preserve compatibility data, keep the public API stable, and make the complete test suite pass without changing tests.",
+  "repositoryTree": "d8908bb68b95d1676ab68915943d5a02cf094523",
+  "baseline": {
+    "expectedToFail": true,
+    "testExitCode": 1,
+    "testDurationMs": 167,
+    "oracleExitCode": 1,
+    "oracleDurationMs": 60
+  },
+  "palaceSeed": {
+    "cli": "vertex-palace@0.1.6",
+    "routeOnly": {
+      "routeId": null,
+      "memorySeeded": false
+    },
+    "fullPalace": {
+      "routeId": "route_cca2e18d20ffce93",
+      "memorySeeded": true
+    }
+  },
+  "paths": {
+    "run": ".",
+    "controlWorkspace": "arms/control",
+    "routeOnlyWorkspace": "arms/route-only",
+    "fullPalaceWorkspace": "arms/full-palace",
+    "controlPrompt": "prompts/control.txt",
+    "routeOnlyPrompt": "prompts/route-only.txt",
+    "fullPalacePrompt": "prompts/full-palace.txt"
+  },
+  "arms": {
+    "control": {
+      "commit": "58a562f425402221f4aa5771ff2a100958b38dbd",
+      "tree": "d8908bb68b95d1676ab68915943d5a02cf094523"
+    },
+    "route-only": {
+      "commit": "58a562f425402221f4aa5771ff2a100958b38dbd",
+      "tree": "d8908bb68b95d1676ab68915943d5a02cf094523"
+    },
+    "full-palace": {
+      "commit": "58a562f425402221f4aa5771ff2a100958b38dbd",
+      "tree": "d8908bb68b95d1676ab68915943d5a02cf094523"
+    }
+  },
+  "generatedFileCount": 93,
+  "publishedFrom": ".benchmark-runs/<reviewed-local-run>",
+  "publication": {
+    "rawTranscriptsIncluded": false,
+    "sessionIdentifiersIncluded": false,
+    "localPathsIncluded": false
+  }
+}
