@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 3,
+  "runId": "cross-stack-regression-pilot-01",
+  "arm": "full-palace",
+  "createdAt": "2026-07-18T19:17:08.418Z",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "codexVersion": "codex-cli 0.145.0-alpha.18",
+  "palaceVersion": "0.1.6",
+  "execution": {
+    "durationMs": 135889,
+    "exitCode": 0,
+    "startedAt": "2026-07-18T19:14:52.215Z",
+    "endedAt": "2026-07-18T19:17:08.105Z",
+    "timedOut": false,
+    "sequence": 1,
+    "order": "full-palace,route-only,control"
+  },
+  "transcript": {
+    "eventCount": 63,
+    "malformedLines": 0,
+    "toolCalls": 28,
+    "commandCalls": 28,
+    "failedCalls": 5,
+    "commandOutputChars": 9751,
+    "agentMessageChars": 1769,
+    "inspectionCommands": 6,
+    "palaceCalls": 1,
+    "successfulPalaceCalls": 1,
+    "inspectedFiles": [
+      "README.md",
+      "client/src/checkout/quote-view-model.mjs",
+      "package.json",
+      "server/src/pricing/create-quote.mjs",
+      "shared/src/money.mjs",
+      "test/checkout-quote.test.mjs"
+    ],
+    "referencedFiles": [
+      "README.md",
+      "client/src/checkout/quote-view-model.mjs",
+      "package.json",
+      "server/src/pricing/create-quote.mjs",
+      "shared/src/money.mjs",
+      "test/checkout-quote.test.mjs"
+    ],
+    "usage": {
+      "inputTokens": 281172,
+      "cachedInputTokens": 235008,
+      "outputTokens": 4467,
+      "totalTokens": 285639,
+      "uncachedInputTokens": 46164
+    }
+  },
+  "runtimeDiagnostics": {
+    "stderrChars": 3020,
+    "warningLines": 2,
+    "errorLines": 7,
+    "routerErrors": 7
+  },
+  "validity": {
+    "verified": true,
+    "passed": true,
+    "reason": "1/1 successful/total Palace calls; expected 1/1; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; fixture tree matches 7ce47ce9aa221d7f970723d8ba4d2396d9f2d034"
+  },
+  "tests": {
+    "command": "node --test",
+    "passed": true,
+    "publicPassed": true,
+    "oraclePassed": true,
+    "exitCode": 0,
+    "durationMs": 151,
+    "oracleCommand": "node oracle/verify.mjs",
+    "oracleExitCode": 0,
+    "oracleDurationMs": 63
+  },
+  "git": {
+    "status": [
+      "M client/src/checkout/quote-view-model.mjs",
+      "M server/src/pricing/create-quote.mjs"
+    ],
+    "changedFiles": [
+      "client/src/checkout/quote-view-model.mjs",
+      "server/src/pricing/create-quote.mjs"
+    ],
+    "untrackedFiles": [],
+    "numstat": [
+      {
+        "file": "client/src/checkout/quote-view-model.mjs",
+        "added": 1,
+        "deleted": 1
+      },
+      {
+        "file": "server/src/pricing/create-quote.mjs",
+        "added": 1,
+        "deleted": 1
+      }
+    ],
+    "diffCheckPassed": true,
+    "diffCheckOutput": "warning: in the working copy of 'client/src/checkout/quote-view-model.mjs', LF will be replaced by CRLF the next time Git touches it",
+    "headTree": "7ce47ce9aa221d7f970723d8ba4d2396d9f2d034"
+  },
+  "score": {
+    "total": 100,
+    "points": {
+      "correctness": 60,
+      "expectedCoverage": 20,
+      "scope": 20
+    },
+    "testsPassed": true,
+    "expectedCoverage": 1,
+    "changedFileRecall": 1,
+    "changedFilePrecision": 1,
+    "forbiddenViolation": false,
+    "expectedMatched": [
+      "client/src/checkout/quote-view-model.mjs",
+      "server/src/pricing/create-quote.mjs"
+    ],
+    "expectedMissed": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": []
+  },
+  "success": true,
+  "route": {
+    "routeId": "route_7c456528ed45b057",
+    "confidence": 0.59,
+    "k": 5,
+    "recallAtK": 1,
+    "precisionAtK": 0.8,
+    "groundTruthFiles": [
+      "client/src/checkout/quote-view-model.mjs",
+      "server/src/pricing/create-quote.mjs",
+      "shared/src/money.mjs",
+      "test/checkout-quote.test.mjs"
+    ],
+    "matchedFiles": [
+      "client/src/checkout/quote-view-model.mjs",
+      "server/src/pricing/create-quote.mjs",
+      "shared/src/money.mjs",
+      "test/checkout-quote.test.mjs"
+    ],
+    "retrievedFiles": [
+      "test/checkout-quote.test.mjs",
+      "client/src/checkout/quote-view-model.mjs",
+      "server/src/pricing/create-quote.mjs",
+      "README.md",
+      "shared/src/money.mjs"
+    ]
+  },
+  "memory": {
+    "pitfallViolation": null,
+    "wrongMemoryAdopted": null
+  },
+  "palaceEvaluation": null
+}

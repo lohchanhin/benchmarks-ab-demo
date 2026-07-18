@@ -41,12 +41,12 @@ ephemeral Codex sessions. Use `--limit 1` for a one-trial demonstration.
 ## Correctness-First Evidence
 
 The preregistered four-scenario pilot is in progress and is not yet a
-statistical result. Five of 20 planned trials are published; no interim value is
+statistical result. Six of 20 planned trials are published; no interim value is
 being presented as evidence for or against a hypothesis.
 
 | Dataset | Correctness | Efficiency result | Status |
 | --- | --- | --- | --- |
-| New four-scenario, three-arm pilot | 15/15 arms passed public tests and the hidden oracle in 5/20 trials | Full vs Control paired median: +29,423 reported tokens, -130 uncached input, +6 tool calls | Small-task block 5/5; overall 5/20 |
+| New four-scenario, three-arm pilot | 18/18 arms passed public tests and the hidden oracle in 6/20 trials | Small-task Full vs Control paired median: +29,423 reported tokens, -130 uncached input, +6 calls; first cross-stack pair: +23,648, +16,808, +11 | Small-task 5/5; cross-stack 1/5; overall 6/20 |
 | Legacy `v0.1.6` three paired runs | 6/6 arms passed, 100/100 scope | Palace lower cumulative tokens in 3/3; faster in 2/3 | Exploratory pilot |
 | Legacy `live-05` | Both arms passed | Palace was 105.4s slower and used more reported tokens | Published negative case |
 
@@ -68,6 +68,15 @@ and six more tool calls (CI 3 to 7), while uncached input differed by -130
 (CI -24,212 to 11,814). Wall time ranged from 25.5 seconds faster to 62.0
 seconds slower. This completed negative-control block descriptively supports
 fixed call overhead on tiny tasks, not a universal performance conclusion.
+
+The first preregistered cross-stack result is also public as
+[cross-stack trial 01](results/pilot/cross-stack-regression-pilot-01/comparison.md).
+All three arms found the two required changes and passed the hidden oracle.
+Full Palace retrieved all four route ground-truth files (Recall@K 100%,
+Precision@K 80%) and reduced transcript-observed repository path strings from
+87 to 6, but used 23,648 more reported tokens, 16,808 more uncached input
+tokens, 11 more tool calls, and 12.5 more seconds than Control. One pair is a
+published observation, not evidence of a cross-stack effect.
 
 Vertex Palace does **not** guarantee that every task will be faster or cheaper.
 Wall time is secondary because hosted-model latency varies.

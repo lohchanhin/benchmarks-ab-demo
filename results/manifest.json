@@ -102,6 +102,23 @@
       "evidenceDirectory": "pilot/small-local-bug-pilot-05",
       "rawTranscriptsPublished": false,
       "publishedAt": "2026-07-18T19:07:20.918Z"
+    },
+    {
+      "trialId": "cross-stack-regression-pilot-01",
+      "scenario": "cross-stack-regression",
+      "seed": "90beec414dc0112726a6c0622d40d8d8",
+      "order": [
+        "full-palace",
+        "route-only",
+        "control"
+      ],
+      "status": "completed",
+      "attemptedAt": "2026-07-18T19:21:36.312Z",
+      "report": "pilot/cross-stack-regression-pilot-01/comparison.json",
+      "error": null,
+      "evidenceDirectory": "pilot/cross-stack-regression-pilot-01",
+      "rawTranscriptsPublished": false,
+      "publishedAt": "2026-07-18T19:21:51.019Z"
     }
   ]
 }
