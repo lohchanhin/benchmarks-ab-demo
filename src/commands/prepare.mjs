@@ -96,7 +96,7 @@ export async function prepareCommand(flags) {
   console.log(`Fixture files: ${controlFiles.length}`);
   console.log(`Git tree: ${controlGit.tree}`);
   console.log(`Palace memory seeded: ${skipPalaceSeed ? "no" : "yes"}`);
-  console.log(`Next: npm run benchmark -- run --run-dir "${runDirectory}" --arm both`);
+  console.log(`Next: npm run benchmark -- run --run-dir "${runDirectory}" --arm both --order control-first`);
   return { runDirectory, manifest };
 }
 
@@ -112,7 +112,7 @@ function renderInstructions(manifest, runDirectory) {
     "## Automated run",
     "",
     "```sh",
-    `npm run benchmark -- run --run-dir "${toPosix(runDirectory)}" --arm both`,
+    `npm run benchmark -- run --run-dir "${toPosix(runDirectory)}" --arm both --order control-first`,
     "```",
     "",
     "## Manual run",

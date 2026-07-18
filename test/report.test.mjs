@@ -24,6 +24,10 @@ test("builds transparent control-minus-palace deltas", () => {
   assert.equal(report.delta.toolCallsSaved, 4);
   assert.equal(report.delta.referencedFilesSaved, 2);
   assert.equal(report.delta.reportedTokensSaved, 1500);
+  assert.equal(report.delta.failedCallsSaved, 0);
+  assert.equal(report.delta.commandOutputCharsSaved, 0);
+  assert.equal(report.delta.uncachedInputTokensSaved, 1500);
+  assert.deepEqual(report.execution.order, ["control", "palace"]);
 });
 
 test("withholds efficiency deltas when either arm is invalid", () => {
@@ -49,19 +53,31 @@ function armEvidence({ arm, durationMs, toolCalls, palaceCalls, tokens }) {
   return {
     arm,
     model: "gpt-5.6-sol",
-    execution: { durationMs },
+    execution: {
+      durationMs,
+      startedAt: arm === "control" ? "2026-01-01T00:00:00.000Z" : "2026-01-01T00:01:00.000Z"
+    },
     validity: { verified: true, passed: true, reason: "valid" },
     tests: { passed: true },
     score: { total: 100, forbiddenChanged: [], unexpectedChanged: [], expectedCoverage: 1 },
     transcript: {
       toolCalls,
+      failedCalls: 0,
+      commandOutputChars: 1000,
       inspectionCommands: toolCalls - 2,
       palaceCalls,
       successfulPalaceCalls: palaceCalls,
       inspectedFiles: ["a.mjs"],
       referencedFiles: ["a.mjs"],
-      usage: { totalTokens: tokens }
+      usage: {
+        inputTokens: tokens - 500,
+        cachedInputTokens: 0,
+        uncachedInputTokens: tokens - 500,
+        outputTokens: 500,
+        totalTokens: tokens
+      }
     },
+    runtimeDiagnostics: { routerErrors: 0 },
     git: { changedFiles: ["a.mjs"] },
     palaceEvaluation: null
   };

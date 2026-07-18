@@ -20,6 +20,8 @@ Commands:
 Common options:
   --run-dir <path>      Use a prepared run (defaults to the newest run)
   --arm <value>         control, palace, or both
+  --order <value>       control-first or palace-first (paired runs only)
+  --cooldown-ms <ms>    Sequential pause between arms (default: 5000)
   --model <model>       Codex CLI model id (default: gpt-5.6-sol)
   --codex-bin <path>    Codex CLI executable or command
   --palace-bin <path>   Vertex Palace CLI executable or command
@@ -27,7 +29,7 @@ Common options:
 Examples:
   npm run benchmark -- doctor
   npm run benchmark -- prepare --run-id build-week-demo
-  npm run benchmark -- run --run-dir .benchmark-runs/build-week-demo --arm both
+  npm run benchmark -- run --run-dir .benchmark-runs/build-week-demo --arm both --order control-first
   npm run benchmark -- report --run-dir .benchmark-runs/build-week-demo
 `;
 

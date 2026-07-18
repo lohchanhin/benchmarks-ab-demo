@@ -12,6 +12,7 @@ export function parseCodexTranscript(source, workspaceFiles = []) {
   const searchable = normalizeSearch(events.flatMap(collectStrings).join("\n"));
   const commandItems = new Map();
   const toolItems = new Map();
+  const agentMessages = new Map();
   const usageCandidates = [];
   let sessionId;
 
@@ -23,10 +24,23 @@ export function parseCodexTranscript(source, workspaceFiles = []) {
     if (item) {
       const id = String(item.id ?? `${event.type}:${commandItems.size + toolItems.size}`);
       if (item.type === "command_execution" && typeof item.command === "string") {
-        commandItems.set(id, { command: item.command, status: item.status ?? event.type });
+        commandItems.set(id, {
+          command: item.command,
+          status: item.status ?? event.type,
+          exitCode: Number.isFinite(item.exit_code) ? Number(item.exit_code) : undefined,
+          outputChars: commandOutput(item).length
+        });
       } else if (String(item.type).includes("tool_call") || String(item.type).includes("mcp")) {
         const name = item.name ?? item.tool ?? item.tool_name;
-        if (typeof name === "string") toolItems.set(id, { name, status: item.status ?? event.type });
+        if (typeof name === "string") {
+          toolItems.set(id, {
+            name,
+            status: item.status ?? event.type,
+            error: item.error ?? event.error
+          });
+        }
+      } else if (item.type === "agent_message" && typeof item.text === "string") {
+        agentMessages.set(id, item.text);
       }
     }
 
@@ -55,6 +69,9 @@ export function parseCodexTranscript(source, workspaceFiles = []) {
     sessionId,
     toolCalls: commandItems.size + toolItems.size,
     commandCalls: commandItems.size,
+    failedCalls: commands.filter(failedCommand).length + tools.filter(failedTool).length,
+    commandOutputChars: commands.reduce((total, item) => total + item.outputChars, 0),
+    agentMessageChars: [...agentMessages.values()].reduce((total, value) => total + value.length, 0),
     inspectionCommands: inspectionCommands.length,
     palaceCalls,
     successfulPalaceCalls,
@@ -65,12 +82,26 @@ export function parseCodexTranscript(source, workspaceFiles = []) {
 }
 
 function isPalaceCommand(command) {
-  return /(?:^|[;&|]\s*|-command\s+['"]?)&?\s*(?:palace|vertex-palace)(?:\.(?:cmd|ps1))?\s+(?:status|init|index|route|pack|evaluate|eval|memory)\b/i.test(command)
-    || /palace\.cjs['"]?\s+(?:status|init|index|route|pack|evaluate|eval|memory)\b/i.test(command);
+  return /(?:^|[;&|]\s*|-command\s+['"]?)&?\s*(?:palace|vertex-palace)(?:\.(?:cmd|ps1))?\s+(?:context|task|status|init|index|route|pack|evaluate|eval|memory)\b/i.test(command)
+    || /palace\.cjs['"]?\s+(?:context|task|status|init|index|route|pack|evaluate|eval|memory)\b/i.test(command);
 }
 
 function completed(status) {
   return status === "completed" || status === "success" || status === "item.completed";
+}
+
+function failedCommand(item) {
+  return item.status === "failed" || (item.exitCode !== undefined && item.exitCode !== 0);
+}
+
+function failedTool(item) {
+  return item.status === "failed" || item.status === "error" || item.error !== undefined;
+}
+
+function commandOutput(item) {
+  if (typeof item.aggregated_output === "string") return item.aggregated_output;
+  if (typeof item.output === "string") return item.output;
+  return "";
 }
 
 function normalizeSearch(value) {
@@ -113,6 +144,7 @@ function combineUsage(candidates) {
     result.totalTokens = Math.max(result.totalTokens, number(candidate.total_tokens));
   }
   if (!result.totalTokens) result.totalTokens = result.inputTokens + result.outputTokens;
+  result.uncachedInputTokens = Math.max(0, result.inputTokens - result.cachedInputTokens);
   return result;
 }
 

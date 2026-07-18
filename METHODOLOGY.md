@@ -9,8 +9,9 @@ correctness and implementation scope?
 ## Independent variable
 
 - Control: Vertex Palace use is explicitly prohibited.
-- Treatment: Vertex Palace status, pitfall board, route, and context pack are
-  required before ordinary exploration.
+- Treatment: one `palace context` call is required before ordinary exploration.
+  It performs stale-index refresh, task routing, compact packing, and relevant
+  pitfall retrieval behind one measured interface.
 
 Tool installation by itself is not the treatment. The JSONL transcript must
 show zero Palace calls in Control and at least one Palace call in Treatment.
@@ -61,19 +62,25 @@ literal final patch.
 
 - Codex execution duration
 - Command and tool-call counts
+- Failed recorded calls and Codex router errors from stderr
 - Inspection-command count
 - Repository paths explicitly named in command invocations
-- Repository paths referenced anywhere in JSONL events
+- Distinct repository path strings observed anywhere in JSONL events
+- Command-output characters captured in completed tool events
 - Palace-call count
-- Codex-reported token usage
+- Codex-reported cumulative input, cached input, uncached input, and output usage
 
-Command-named and referenced files are not an operating-system access audit. A command can read
-a directory or stream content without naming every file in the transcript.
-This field is useful for a repeatable comparison, but it must be labeled as a
-transcript-derived lower bound.
+Command-named files and observed path strings are not an operating-system
+access audit. An inventory command such as `rg --files` can print every path
+without reading every file's contents, while a directory or stream operation
+can read content without naming each file in the transcript. These fields are
+repeatable transcript-derived proxies and must not be labeled "files read."
 
 Codex-reported tokens are not an API invoice. The parser takes the largest
-usage values reported in a run to avoid double-counting nested events.
+usage values reported in a run to avoid double-counting nested events. Input
+usage is cumulative across turns, so a workflow that sends repeated context
+can have high input usage even when its final pack is small. Cached and
+uncached input are therefore reported separately.
 
 ### Palace evaluation
 
@@ -95,9 +102,11 @@ whitespace errors also reduce scope points.
 
 ## Recommended experiment
 
-Run at least three paired trials. Alternate which arm runs first to reduce
-warm-cache and service-load effects. Report each trial and the median; do not
-publish only the best Palace run or worst Control run.
+Each pair runs sequentially; the harness never launches both arms concurrently.
+Run at least three paired trials with fresh workspaces. Alternate which arm
+runs first to reduce warm-cache, queue, and service-load effects. Report each
+trial and the median; do not publish only the best Palace run or worst Control
+run. The default five-second cooldown is recorded in `artifacts/run-plan.json`.
 
 ## Claims this benchmark cannot support
 

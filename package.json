@@ -18,7 +18,7 @@
     "node": ">=20"
   },
   "dependencies": {
-    "vertex-palace": "0.1.4"
+    "vertex-palace": "0.1.6"
   },
   "license": "MIT"
 }

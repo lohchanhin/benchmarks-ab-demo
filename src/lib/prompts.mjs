@@ -1,5 +1,6 @@
 export function buildPrompts(scenario) {
   const task = scenario.task.trim();
+  const quotedTask = JSON.stringify(task);
   const shared = [
     "Work directly in the repository and complete the task end to end.",
     "Run the complete test suite before finishing.",
@@ -20,10 +21,11 @@ export function buildPrompts(scenario) {
 
   const palace = [
     "BENCHMARK ARM: VERTEX PALACE",
-    "Use Vertex Palace before ordinary repository exploration.",
-    "Start with palace status, read the entrance pitfall board, refresh the index if stale, route the exact task, and build a minimal context pack.",
-    "Inspect routed files first. After testing, write task memory. If the installed CLI supports route evaluation, evaluate the route against the files actually changed.",
-    "If MCP tools are unavailable, use the palace CLI.",
+    "This run isolates Vertex Palace task-context routing from post-task maintenance.",
+    `Before ordinary repository exploration, run exactly one Vertex Palace preparation command: palace context ${quotedTask} --budget 6000 --route-limit 8 --max-drawers 4`,
+    "The context command automatically initializes, refreshes a stale index, routes the task, and includes relevant pitfalls in a compact pack.",
+    "Do not call palace status, init, index, route, pack, help, open, evaluate, or memory separately during this benchmark arm.",
+    "Inspect routed files first. Post-task evaluation, memory writing, and index maintenance are intentionally outside this timed routing comparison.",
     "",
     shared
   ].join("\n");

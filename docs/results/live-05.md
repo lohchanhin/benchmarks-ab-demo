@@ -32,11 +32,18 @@ suite must pass. Tests may not be weakened or rewritten.
 | Correctness/scope score | 100/100 | 100/100 | - |
 | Arm valid | yes | yes | - |
 | Elapsed time | 61.2s | 166.6s | -105.3s |
-| Tool calls | 5 | 18 | -13 |
+| Recorded command/tool calls | 5 | 18 | -13 |
+| Failed recorded calls | 1 | 5 | -4 |
+| Codex router errors in stderr | 3 | 7 | -4 |
 | Inspection commands | 3 | 3 | 0 |
 | Files named in commands | 9 | 9 | 0 |
-| Repository paths in transcript | 240 | 13 | +227 |
-| Codex-reported tokens | 156,290 | 444,174 | -287,884 |
+| Distinct repository path strings observed | 240 | 13 | +227 |
+| Command output characters | 27,180 | 29,276 | -2,096 |
+| Cumulative input tokens | 154,623 | 440,133 | -285,510 |
+| Cached input tokens | 126,976 | 377,088 | -250,112 |
+| Uncached input tokens | 27,647 | 63,045 | -35,398 |
+| Output tokens | 1,667 | 4,041 | -2,374 |
+| Cumulative reported tokens | 156,290 | 444,174 | -287,884 |
 | Successful Palace calls | 0 | 7 | - |
 
 Both arms changed exactly:
@@ -48,10 +55,29 @@ Neither arm changed shared theme defaults or tests.
 
 ## Interpretation
 
-For this run, Vertex Palace narrowed the repository paths appearing in the
-transcript from 240 to 13. It did not reduce files explicitly named in commands,
-and it added 105.3 seconds, 13 tool calls, and 287,884 Codex-reported tokens.
-Both arms still reached the same correct, narrowly scoped implementation.
+For this run, Vertex Palace did not improve measured efficiency. It added 105.3
+seconds, 13 recorded calls, four failed calls, 2,096 command-output characters,
+35,398 uncached input tokens, and 287,884 cumulative reported tokens. Both arms
+still reached the same correct, narrowly scoped implementation.
+
+The `240` and `13` values are distinct path strings observed in transcript
+events. They are not files read. Control used an inventory command that printed
+the generated repository paths, which made this number large without proving
+that Codex loaded all 240 file contents.
+
+## Postmortem and corrective action
+
+The Palace arm ran second; both arms were sequential, not concurrent. Its
+transcript shows the old multi-step startup flow plus retries: 18 recorded
+calls with five failed calls, versus 5 and one for Control. Repeated lifecycle
+output was then carried through later model turns, explaining why a narrow
+route could coexist with higher cumulative input usage and longer elapsed time.
+
+Vertex Palace 0.1.6 replaces routine `status -> index -> route -> pack` startup
+with one `palace context` call. The benchmark now records execution order,
+failed calls, stderr router errors, command-output characters, and cached versus
+uncached input tokens. Follow-up pairs must use fresh workspaces, alternate arm
+order, and publish medians before making a performance claim.
 
 This result supports a narrow claim about one paired run on one generated
 scenario. It does not establish universal savings. Follow-up experiments
@@ -65,6 +91,7 @@ the median as described in [METHODOLOGY.md](../../METHODOLOGY.md).
 - Both workspaces started from the same recorded Git tree.
 - The harness verifier, outside the agent sandbox, ran the same complete test
   command against both final worktrees.
-- Token values came from Codex JSONL usage events and are not billing totals.
-- File counts came from command invocations and are not an operating-system
-  file-access audit.
+- Token values came from Codex JSONL usage events and are cumulative usage, not
+  billing totals.
+- Named files and observed path strings are transcript-derived proxies, not an
+  operating-system file-access audit.

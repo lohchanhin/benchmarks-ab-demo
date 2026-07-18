@@ -25,11 +25,17 @@ test("prepares identical arms, verifies repairs, and writes comparison reports",
   await mkdir(artifacts, { recursive: true });
   for (const arm of ["control", "palace"]) {
     await applyCanonicalRepair(run.workspace(arm));
-    const palaceCommand = arm === "palace" ? "palace status && palace route task" : "rg Aurora src clients";
+    const palaceCommand = arm === "palace" ? "palace context task" : "rg Aurora src clients";
     const transcript = [
       JSON.stringify({ type: "thread.started", thread_id: `${arm}-thread` }),
-      JSON.stringify({ type: "item.completed", item: { type: "command_execution", command: palaceCommand } }),
-      JSON.stringify({ type: "turn.completed", usage: { input_tokens: arm === "control" ? 3000 : 1800, output_tokens: 500 } })
+      JSON.stringify({
+        type: "item.completed",
+        item: { type: "command_execution", command: palaceCommand, status: "completed", exit_code: 0, aggregated_output: "ok" }
+      }),
+      JSON.stringify({
+        type: "turn.completed",
+        usage: { input_tokens: arm === "control" ? 3000 : 1800, cached_input_tokens: 600, output_tokens: 500 }
+      })
     ].join("\n");
     await writeFile(path.join(artifacts, `${arm}-transcript.jsonl`), `${transcript}\n`, "utf8");
     await writeJson(path.join(artifacts, `${arm}-execution.json`), {

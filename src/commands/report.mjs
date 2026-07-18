@@ -37,7 +37,7 @@ export function buildComparison(run, evidence) {
   const palace = summarize(evidence.palace);
   const comparable = control.valid === true && palace.valid === true && control.testsPassed && palace.testsPassed;
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     runId: run.manifest.id,
     createdAt: new Date().toISOString(),
     scenario: run.manifest.scenario,
@@ -48,17 +48,30 @@ export function buildComparison(run, evidence) {
     control,
     palace,
     comparable,
+    execution: {
+      mode: "sequential",
+      order: executionOrder(control, palace)
+    },
     delta: {
       durationMsSaved: comparable ? subtract(control.durationMs, palace.durationMs) : null,
       toolCallsSaved: comparable ? subtract(control.toolCalls, palace.toolCalls) : null,
+      failedCallsSaved: comparable ? subtract(control.failedCalls, palace.failedCalls) : null,
+      routerErrorsSaved: comparable ? subtract(control.routerErrors, palace.routerErrors) : null,
       inspectionCommandsSaved: comparable ? subtract(control.inspectionCommands, palace.inspectionCommands) : null,
       inspectedFilesSaved: comparable ? subtract(control.inspectedFiles, palace.inspectedFiles) : null,
       referencedFilesSaved: comparable ? subtract(control.referencedFiles, palace.referencedFiles) : null,
+      commandOutputCharsSaved: comparable ? subtract(control.commandOutputChars, palace.commandOutputChars) : null,
+      inputTokensSaved: comparable ? subtract(control.inputTokens, palace.inputTokens) : null,
+      cachedInputTokensSaved: comparable ? subtract(control.cachedInputTokens, palace.cachedInputTokens) : null,
+      uncachedInputTokensSaved: comparable ? subtract(control.uncachedInputTokens, palace.uncachedInputTokens) : null,
+      outputTokensSaved: comparable ? subtract(control.outputTokens, palace.outputTokens) : null,
       reportedTokensSaved: comparable ? subtract(control.reportedTokens, palace.reportedTokens) : null
     },
     caveats: [
-      "Command-named and transcript-referenced file counts are transcript-derived, not an operating-system file-access audit.",
-      "Reported token counts come from Codex events when available; they are not an API billing statement.",
+      "Distinct repository path strings are matched anywhere in the transcript. An inventory command can list every path without reading every file's contents.",
+      "Command-named files and command-output characters are transcript-derived context proxies, not an operating-system file-access audit.",
+      "Codex input tokens are cumulative across model turns. Cached and uncached input are shown separately and are not an API billing statement.",
+      "Paired arms run sequentially, never concurrently. Repeat pairs with alternating order and report medians to reduce order and service-load effects.",
       "A result is comparable only when both arms start from the recorded Git tree and pass their arm-validity checks.",
       "Correctness and scope determine the score. Speed and token metrics are reported, not rewarded."
     ]
@@ -74,14 +87,26 @@ function summarize(evidence) {
     testsPassed: evidence.tests.passed,
     score: evidence.score.total,
     durationMs: evidence.execution?.durationMs ?? null,
+    startedAt: evidence.execution?.startedAt ?? null,
+    sequence: evidence.execution?.sequence ?? null,
     toolCalls: evidence.transcript.toolCalls,
+    failedCalls: evidence.transcript.failedCalls ?? null,
+    commandOutputChars: evidence.transcript.commandOutputChars ?? null,
     inspectionCommands: evidence.transcript.inspectionCommands,
     palaceCalls: evidence.transcript.palaceCalls,
     successfulPalaceCalls: evidence.transcript.successfulPalaceCalls ?? 0,
     inspectedFiles: evidence.transcript.inspectedFiles?.length ?? 0,
     referencedFiles: evidence.transcript.referencedFiles.length,
     referencedFilePaths: evidence.transcript.referencedFiles,
-    reportedTokens: evidence.transcript.usage.totalTokens || null,
+    inputTokens: tokenValue(evidence.transcript.usage.inputTokens),
+    cachedInputTokens: tokenValue(evidence.transcript.usage.cachedInputTokens),
+    uncachedInputTokens: tokenValue(
+      evidence.transcript.usage.uncachedInputTokens
+        ?? Math.max(0, (evidence.transcript.usage.inputTokens ?? 0) - (evidence.transcript.usage.cachedInputTokens ?? 0))
+    ),
+    outputTokens: tokenValue(evidence.transcript.usage.outputTokens),
+    reportedTokens: tokenValue(evidence.transcript.usage.totalTokens),
+    routerErrors: evidence.runtimeDiagnostics?.routerErrors ?? null,
     changedFiles: evidence.git.changedFiles,
     forbiddenChanged: evidence.score.forbiddenChanged,
     unexpectedChanged: evidence.score.unexpectedChanged,
@@ -96,11 +121,18 @@ function renderMarkdown(report) {
     ["Scope score", `${report.control.score}/100`, `${report.palace.score}/100`, "-"],
     ["Arm valid", validity(report.control), validity(report.palace), "-"],
     ["Elapsed time", duration(report.control.durationMs), duration(report.palace.durationMs), signedDuration(report.delta.durationMsSaved)],
-    ["Tool calls", number(report.control.toolCalls), number(report.palace.toolCalls), signed(report.delta.toolCallsSaved)],
+    ["Recorded command/tool calls", number(report.control.toolCalls), number(report.palace.toolCalls), signed(report.delta.toolCallsSaved)],
+    ["Failed recorded calls", number(report.control.failedCalls), number(report.palace.failedCalls), signed(report.delta.failedCallsSaved)],
+    ["Codex router errors in stderr", number(report.control.routerErrors), number(report.palace.routerErrors), signed(report.delta.routerErrorsSaved)],
     ["Inspection commands", number(report.control.inspectionCommands), number(report.palace.inspectionCommands), signed(report.delta.inspectionCommandsSaved)],
     ["Files named in commands", number(report.control.inspectedFiles), number(report.palace.inspectedFiles), signed(report.delta.inspectedFilesSaved)],
-    ["Repository paths in transcript", number(report.control.referencedFiles), number(report.palace.referencedFiles), signed(report.delta.referencedFilesSaved)],
-    ["Reported tokens", number(report.control.reportedTokens), number(report.palace.reportedTokens), signed(report.delta.reportedTokensSaved)],
+    ["Distinct repository path strings observed", number(report.control.referencedFiles), number(report.palace.referencedFiles), signed(report.delta.referencedFilesSaved)],
+    ["Command output characters", number(report.control.commandOutputChars), number(report.palace.commandOutputChars), signed(report.delta.commandOutputCharsSaved)],
+    ["Cumulative input tokens", number(report.control.inputTokens), number(report.palace.inputTokens), signed(report.delta.inputTokensSaved)],
+    ["Cached input tokens", number(report.control.cachedInputTokens), number(report.palace.cachedInputTokens), signed(report.delta.cachedInputTokensSaved)],
+    ["Uncached input tokens", number(report.control.uncachedInputTokens), number(report.palace.uncachedInputTokens), signed(report.delta.uncachedInputTokensSaved)],
+    ["Output tokens", number(report.control.outputTokens), number(report.palace.outputTokens), signed(report.delta.outputTokensSaved)],
+    ["Cumulative reported tokens", number(report.control.reportedTokens), number(report.palace.reportedTokens), signed(report.delta.reportedTokensSaved)],
     ["Palace calls", number(report.control.palaceCalls), number(report.palace.palaceCalls), "-"]
   ];
   const lines = [
@@ -111,6 +143,7 @@ function renderMarkdown(report) {
     `Shared Git tree: \`${report.repositoryTree}\``,
     `Generated fixture files: ${report.generatedFileCount}`,
     `Comparable result: ${report.comparable ? "yes" : "no"}`,
+    `Execution: sequential (${report.execution.order.map(armLabel).join(" -> ")})`,
     "",
     "## Task",
     "",
@@ -167,6 +200,27 @@ function fileLines(files) {
 
 function subtract(first, second) {
   return first === null || second === null ? null : first - second;
+}
+
+function executionOrder(control, palace) {
+  const arms = [
+    { name: "control", sequence: control.sequence, startedAt: control.startedAt },
+    { name: "palace", sequence: palace.sequence, startedAt: palace.startedAt }
+  ];
+  return arms
+    .sort((first, second) => {
+      if (first.sequence !== null && second.sequence !== null) return first.sequence - second.sequence;
+      return String(first.startedAt ?? "").localeCompare(String(second.startedAt ?? ""));
+    })
+    .map((item) => item.name);
+}
+
+function armLabel(value) {
+  return value === "palace" ? "Vertex Palace" : "Control";
+}
+
+function tokenValue(value) {
+  return Number.isFinite(value) ? Number(value) : null;
 }
 
 function number(value) {

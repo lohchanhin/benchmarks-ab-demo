@@ -3,6 +3,7 @@ import path from "node:path";
 import { enumFlag } from "../lib/args.mjs";
 import { listFiles, pathExists, readJson, writeJson } from "../lib/files.mjs";
 import { collectGitEvidence } from "../lib/git.mjs";
+import { parseCodexStderr } from "../lib/diagnostics.mjs";
 import { runProcess } from "../lib/process.mjs";
 import { armsFor, loadRun, resolveRunDirectory } from "../lib/run-state.mjs";
 import { scoreArm } from "../lib/score.mjs";
@@ -25,6 +26,10 @@ export async function verifyArm(run, arm) {
   const transcriptPath = path.join(artifacts, `${arm}-transcript.jsonl`);
   const execution = (await pathExists(executionPath)) ? await readJson(executionPath) : null;
   const transcriptSource = (await pathExists(transcriptPath)) ? await readFile(transcriptPath, "utf8") : "";
+  const stderrPath = execution?.stderrPath
+    ? path.resolve(run.runDirectory, execution.stderrPath)
+    : path.join(artifacts, `${arm}-stderr.log`);
+  const stderrSource = (await pathExists(stderrPath)) ? await readFile(stderrPath, "utf8") : "";
   const workspaceFiles = await listFiles(workspace);
   const transcript = parseCodexTranscript(transcriptSource, workspaceFiles);
   const git = await collectGitEvidence(workspace);
@@ -57,15 +62,23 @@ export async function verifyArm(run, arm) {
     : { verified: false, passed: null, reason: "No Codex JSONL transcript was available" };
 
   const evidence = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     runId: run.manifest.id,
     arm,
     createdAt: new Date().toISOString(),
     model: execution?.model ?? null,
     execution: execution
-      ? { durationMs: execution.durationMs, exitCode: execution.exitCode, startedAt: execution.startedAt, endedAt: execution.endedAt }
+      ? {
+          durationMs: execution.durationMs,
+          exitCode: execution.exitCode,
+          startedAt: execution.startedAt,
+          endedAt: execution.endedAt,
+          sequence: execution.sequence,
+          order: execution.order
+        }
       : null,
     transcript,
+    runtimeDiagnostics: parseCodexStderr(stderrSource),
     validity,
     tests: {
       command: run.scenario.testCommand.join(" "),

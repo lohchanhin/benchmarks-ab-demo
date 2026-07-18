@@ -25,13 +25,11 @@ condition: Palace use.
 
 ### 0:45-1:35 - Split-screen execution
 
-On the left, show normal Codex inspection. On the right, show:
+On the left, show normal Codex inspection. On the right, show one command:
 
 ```text
-palace status
-pitfall board
-palace route
-palace pack
+palace context "fix the Aurora article hero contrast regression" \
+  --budget 6000 --route-limit 8 --max-drawers 4
 ```
 
 Pause briefly on the warning about the previous shared-theme regression, then
@@ -47,10 +45,15 @@ only after correctness and scope are visible.
 Show the generated comparison report. Clearly distinguish:
 
 - Codex-reported tokens
-- Transcript-referenced files
+- Cached and uncached input tokens
+- Failed calls and Codex router errors
+- Distinct path strings observed in the transcript
+- Command-output characters
 - Palace context estimates
 
-Do not replace missing values with invented numbers.
+Do not call path strings "files read," and do not replace missing values with
+invented numbers. When showing performance claims, use all paired trials and
+their median rather than a selected single run.
 
 ### 2:40-3:00 - Reproduction
 

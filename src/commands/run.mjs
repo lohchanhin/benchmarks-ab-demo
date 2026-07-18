@@ -14,13 +14,24 @@ export async function runCommand(flags) {
   const runDirectory = await resolveRunDirectory(flags);
   const run = await loadRun(runDirectory);
   const armValue = enumFlag(flags, "arm", ["control", "palace", "both"], "both");
+  const order = enumFlag(flags, "order", ["control-first", "palace-first"], "control-first");
+  const cooldownMs = nonNegativeInteger(stringFlag(flags, "cooldown-ms", "5000"), "--cooldown-ms");
   const model = stringFlag(flags, "model", "gpt-5.6-sol");
   const codexBin = await resolveCodexBin(stringFlag(flags, "codex-bin", undefined));
   const artifacts = path.join(runDirectory, "artifacts");
   await mkdir(artifacts, { recursive: true });
+  const runArms = orderedArms(armValue, order);
+  await writeJson(path.join(artifacts, "run-plan.json"), {
+    schemaVersion: 1,
+    mode: "sequential",
+    order,
+    arms: runArms,
+    cooldownMs,
+    createdAt: new Date().toISOString()
+  });
 
   const failedArms = [];
-  for (const arm of armsFor(armValue)) {
+  for (const [armIndex, arm] of runArms.entries()) {
     const executionPath = path.join(artifacts, `${arm}-execution.json`);
     if (await pathExists(executionPath)) {
       throw new Error(`${arm} already has execution evidence. Prepare a new run for a clean comparison.`);
@@ -49,6 +60,8 @@ export async function runCommand(flags) {
       endedAt: result.endedAt,
       durationMs: result.durationMs,
       exitCode: result.exitCode,
+      sequence: armIndex + 1,
+      order,
       transcriptPath: path.relative(runDirectory, transcriptPath).replaceAll("\\", "/"),
       stderrPath: path.relative(runDirectory, stderrPath).replaceAll("\\", "/"),
       lastMessagePath: path.relative(runDirectory, lastMessagePath).replaceAll("\\", "/")
@@ -57,6 +70,10 @@ export async function runCommand(flags) {
     await verifyArm(run, arm);
     if (result.exitCode !== 0) failedArms.push(arm);
     console.log(`${arm} finished with Codex exit code ${result.exitCode}`);
+    if (armIndex < runArms.length - 1 && cooldownMs > 0) {
+      console.log(`Cooling down for ${cooldownMs}ms before the next arm...`);
+      await new Promise((resolve) => setTimeout(resolve, cooldownMs));
+    }
   }
 
   const evidenceReady = await Promise.all(
@@ -64,6 +81,17 @@ export async function runCommand(flags) {
   );
   if (evidenceReady.every(Boolean)) await writeComparisonReport(run);
   if (failedArms.length) throw new Error(`Codex execution failed for: ${failedArms.join(", ")}`);
+}
+
+export function orderedArms(armValue, order) {
+  const arms = armsFor(armValue);
+  return arms.length === 2 && order === "palace-first" ? [...arms].reverse() : arms;
+}
+
+function nonNegativeInteger(value, name) {
+  const parsed = Number(value);
+  if (!Number.isInteger(parsed) || parsed < 0) throw new Error(`${name} must be a non-negative integer`);
+  return parsed;
 }
 
 function palaceEnvironment() {

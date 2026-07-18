@@ -7,7 +7,14 @@ test("extracts session, commands, Palace calls, files, and usage from Codex JSON
     JSON.stringify({ type: "thread.started", thread_id: "thread-123" }),
     JSON.stringify({
       type: "item.completed",
-      item: { id: "command-1", type: "command_execution", status: "completed", command: "palace route task && Get-Content clients/aurora/theme.mjs" }
+      item: {
+        id: "command-1",
+        type: "command_execution",
+        status: "completed",
+        exit_code: 0,
+        command: "palace context task && Get-Content clients/aurora/theme.mjs",
+        aggregated_output: "routed output"
+      }
     }),
     JSON.stringify({
       type: "turn.completed",
@@ -22,6 +29,9 @@ test("extracts session, commands, Palace calls, files, and usage from Codex JSON
   assert.deepEqual(result.inspectedFiles, ["clients/aurora/theme.mjs"]);
   assert.deepEqual(result.referencedFiles, ["clients/aurora/theme.mjs"]);
   assert.equal(result.usage.totalTokens, 1500);
+  assert.equal(result.usage.uncachedInputTokens, 1000);
+  assert.equal(result.commandOutputChars, 13);
+  assert.equal(result.failedCalls, 0);
 });
 
 test("tolerates non-JSON lines without inventing metrics", () => {
@@ -43,6 +53,31 @@ test("counts one command item once across lifecycle events", () => {
   const result = parseCodexTranscript(`${started}\n${completed}\n`);
   assert.equal(result.commandCalls, 1);
   assert.equal(result.inspectionCommands, 1);
+});
+
+test("counts failed commands and keeps only the completed output", () => {
+  const source = [
+    JSON.stringify({
+      type: "item.started",
+      item: { id: "command-1", type: "command_execution", status: "in_progress", command: "apply_patch patch" }
+    }),
+    JSON.stringify({
+      type: "item.completed",
+      item: {
+        id: "command-1",
+        type: "command_execution",
+        status: "failed",
+        exit_code: 1,
+        command: "apply_patch patch",
+        aggregated_output: "patch failed"
+      }
+    })
+  ].join("\n");
+  const result = parseCodexTranscript(source);
+
+  assert.equal(result.commandCalls, 1);
+  assert.equal(result.failedCalls, 1);
+  assert.equal(result.commandOutputChars, 12);
 });
 
 test("does not mistake a .palace exclusion path for a Palace call", () => {

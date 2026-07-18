@@ -8,13 +8,18 @@ without [Vertex Palace](https://github.com/lohchanhin/vertex-palace).
 
 [Simplified Chinese](README.zh-CN.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
 
-## Verified paired run
+## Verified multi-run result
 
-The reproducible GPT-5.6-sol paired run is available at
-[docs/results/live-05.md](docs/results/live-05.md). Both arms passed the full
-suite with a 100/100 scope score. Palace reduced repository paths appearing in
-the transcript from 240 to 13, but it was slower and Codex reported more tokens.
-This honest mixed result is one measured sample, not a universal claim.
+The complete three-pair GPT-5.6-sol result is available at
+[docs/results/v0.1.6-three-pairs.md](docs/results/v0.1.6-three-pairs.md). All six
+arms passed with a 100/100 scope score. Palace used lower cumulative reported
+tokens in all three pairs and was faster in two, but its median uncached input
+was higher. Every pair, execution order, and the conservative median paired
+delta are reported.
+
+The earlier [live-05 postmortem](docs/results/live-05.md) records a real losing
+Palace run. Its repeated lifecycle commands directly motivated the one-call
+workflow in Vertex Palace 0.1.6; it remains public rather than being hidden.
 
 ## Why this exists
 
@@ -24,17 +29,20 @@ same engineering task, and records evidence from Codex JSONL, Git diff, and a
 real test suite.
 
 The Control arm uses normal repository exploration. The Palace arm starts with
-status, route, context pack, and a seeded project pitfall. Both arms must solve
-the same task and pass the same tests.
+one `palace context` call, which refreshes the index when needed, routes the
+task, and returns a compact pack containing relevant pitfalls. Both arms must
+solve the same task and pass the same tests.
 
 ## What is measured
 
 - Test result and changed-file scope
 - Elapsed Codex execution time
-- Tool and inspection command counts
+- Tool, failed-call, and inspection command counts
+- Codex router errors captured from stderr
 - Repository files explicitly named in Codex command invocations
-- Repository paths referenced anywhere in the transcript as a lower-bound audit
-- Token usage reported by Codex events, when available
+- Distinct repository path strings observed anywhere in the transcript
+- Command-output character counts as a context-volume proxy
+- Cumulative input, cached input, uncached input, and output tokens reported by Codex
 - Control-arm absence and Palace-arm presence of Palace calls
 - Optional Vertex Palace route evaluation
 
@@ -59,7 +67,7 @@ changed unrelated tenants.
 - Git
 - An authenticated Codex CLI
 
-Vertex Palace `0.1.4` is installed locally by `npm ci`; a global Palace install
+Vertex Palace `0.1.6` is installed locally by `npm ci`; a global Palace install
 is not required for the harness.
 
 ## Quick start
@@ -70,9 +78,13 @@ cd benchmarks-ab-demo
 npm ci
 npm run benchmark -- doctor
 npm run benchmark -- prepare --run-id demo-01
-npm run benchmark -- run --run-dir .benchmark-runs/demo-01 --arm both --model gpt-5.6-sol
+npm run benchmark -- run --run-dir .benchmark-runs/demo-01 --arm both --order control-first --model gpt-5.6-sol
 npm run benchmark -- report --run-dir .benchmark-runs/demo-01
 ```
+
+Arms run sequentially, never concurrently. For evidence intended for public
+claims, run at least three fresh pairs, alternate `--order control-first` and
+`--order palace-first`, publish every pair, and compare medians.
 
 On Windows, when the Store alias for `codex.exe` cannot be launched from a
 child process, pass the real CLI path:
