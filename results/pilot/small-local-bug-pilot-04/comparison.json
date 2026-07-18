@@ -1,0 +1,502 @@
+{
+  "schemaVersion": 3,
+  "runId": "small-local-bug-pilot-04",
+  "createdAt": "2026-07-18T18:56:20.655Z",
+  "scenario": "small-local-bug",
+  "scenarioTitle": "Small single-file negative-zero formatting bug",
+  "task": "Fix currency formatting so negative zero is rendered as $0.00 while genuinely negative cent values keep their minus sign. Keep the public API stable and make the complete test suite pass without changing tests.",
+  "repositoryTree": "01f922b5020464cf939cb42ea72696c11290c367",
+  "generatedFileCount": 11,
+  "seed": "2a30247e0828b916c1eb8fb8466bde99",
+  "protocolVersion": "1.0.0",
+  "control": {
+    "model": "gpt-5.6-sol",
+    "valid": true,
+    "validityVerified": true,
+    "validityReason": "0 Palace calls detected; expected 0; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; fixture tree matches 01f922b5020464cf939cb42ea72696c11290c367",
+    "testsPassed": true,
+    "publicTestsPassed": true,
+    "oraclePassed": true,
+    "success": true,
+    "score": 100,
+    "durationMs": 179401,
+    "startedAt": "2026-07-18T18:50:46.311Z",
+    "sequence": 2,
+    "toolCalls": 15,
+    "failedCalls": 4,
+    "commandOutputChars": 7539,
+    "inspectionCommands": 3,
+    "palaceCalls": 0,
+    "successfulPalaceCalls": 0,
+    "inspectedFiles": 4,
+    "referencedFiles": 11,
+    "referencedFilePaths": [
+      ".gitignore",
+      "README.md",
+      "package.json",
+      "packages/catalog/src/module-001.mjs",
+      "packages/catalog/src/module-002.mjs",
+      "packages/catalog/src/module-003.mjs",
+      "packages/notifications/src/module-001.mjs",
+      "packages/notifications/src/module-002.mjs",
+      "packages/notifications/src/module-003.mjs",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "inputTokens": 307134,
+    "cachedInputTokens": 275200,
+    "uncachedInputTokens": 31934,
+    "outputTokens": 5787,
+    "reportedTokens": 312921,
+    "routerErrors": 6,
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "forbiddenChanged": [],
+    "unexpectedChanged": [],
+    "expectedCoverage": 1,
+    "changedFilePrecision": 1,
+    "changedFileRecall": 1,
+    "forbiddenViolation": false,
+    "timedOut": false,
+    "route": null,
+    "memory": {
+      "pitfallViolation": null,
+      "wrongMemoryAdopted": null
+    },
+    "palaceEvaluation": null
+  },
+  "routeOnly": {
+    "model": "gpt-5.6-sol",
+    "valid": true,
+    "validityVerified": true,
+    "validityReason": "1/1 successful/total Palace calls; expected 1/1; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; fixture tree matches 01f922b5020464cf939cb42ea72696c11290c367",
+    "testsPassed": true,
+    "publicTestsPassed": true,
+    "oraclePassed": true,
+    "success": true,
+    "score": 100,
+    "durationMs": 139400,
+    "startedAt": "2026-07-18T18:54:00.973Z",
+    "sequence": 3,
+    "toolCalls": 12,
+    "failedCalls": 3,
+    "commandOutputChars": 7206,
+    "inspectionCommands": 2,
+    "palaceCalls": 1,
+    "successfulPalaceCalls": 1,
+    "inspectedFiles": 4,
+    "referencedFiles": 10,
+    "referencedFilePaths": [
+      "README.md",
+      "package.json",
+      "packages/catalog/src/module-001.mjs",
+      "packages/catalog/src/module-002.mjs",
+      "packages/catalog/src/module-003.mjs",
+      "packages/notifications/src/module-001.mjs",
+      "packages/notifications/src/module-002.mjs",
+      "packages/notifications/src/module-003.mjs",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "inputTokens": 284310,
+    "cachedInputTokens": 254720,
+    "uncachedInputTokens": 29590,
+    "outputTokens": 4016,
+    "reportedTokens": 288326,
+    "routerErrors": 5,
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "forbiddenChanged": [],
+    "unexpectedChanged": [],
+    "expectedCoverage": 1,
+    "changedFilePrecision": 1,
+    "changedFileRecall": 1,
+    "forbiddenViolation": false,
+    "timedOut": false,
+    "route": {
+      "routeId": "route_bb0f87c6a3c33d80",
+      "confidence": 0.53,
+      "k": 4,
+      "recallAtK": 1,
+      "precisionAtK": 0.5,
+      "groundTruthFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "matchedFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "retrievedFiles": [
+        "test/format-currency.test.mjs",
+        "src/format-currency.mjs",
+        "README.md",
+        "package.json"
+      ]
+    },
+    "memory": {
+      "pitfallViolation": null,
+      "wrongMemoryAdopted": null
+    },
+    "palaceEvaluation": null
+  },
+  "palace": {
+    "model": "gpt-5.6-sol",
+    "valid": true,
+    "validityVerified": true,
+    "validityReason": "1/1 successful/total Palace calls; expected 1/1; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; fixture tree matches 01f922b5020464cf939cb42ea72696c11290c367",
+    "testsPassed": true,
+    "publicTestsPassed": true,
+    "oraclePassed": true,
+    "success": true,
+    "score": 100,
+    "durationMs": 153880,
+    "startedAt": "2026-07-18T18:47:57.097Z",
+    "sequence": 1,
+    "toolCalls": 19,
+    "failedCalls": 9,
+    "commandOutputChars": 8590,
+    "inspectionCommands": 2,
+    "palaceCalls": 1,
+    "successfulPalaceCalls": 1,
+    "inspectedFiles": 4,
+    "referencedFiles": 10,
+    "referencedFilePaths": [
+      "README.md",
+      "package.json",
+      "packages/catalog/src/module-001.mjs",
+      "packages/catalog/src/module-002.mjs",
+      "packages/catalog/src/module-003.mjs",
+      "packages/notifications/src/module-001.mjs",
+      "packages/notifications/src/module-002.mjs",
+      "packages/notifications/src/module-003.mjs",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "inputTokens": 377840,
+    "cachedInputTokens": 338688,
+    "uncachedInputTokens": 39152,
+    "outputTokens": 5796,
+    "reportedTokens": 383636,
+    "routerErrors": 10,
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "forbiddenChanged": [],
+    "unexpectedChanged": [],
+    "expectedCoverage": 1,
+    "changedFilePrecision": 1,
+    "changedFileRecall": 1,
+    "forbiddenViolation": false,
+    "timedOut": false,
+    "route": {
+      "routeId": "route_6bb72f550b8c1ed6",
+      "confidence": 0.53,
+      "k": 4,
+      "recallAtK": 1,
+      "precisionAtK": 0.5,
+      "groundTruthFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "matchedFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "retrievedFiles": [
+        "test/format-currency.test.mjs",
+        "src/format-currency.mjs",
+        "README.md",
+        "package.json"
+      ]
+    },
+    "memory": {
+      "pitfallViolation": null,
+      "wrongMemoryAdopted": null
+    },
+    "palaceEvaluation": null
+  },
+  "arms": {
+    "control": {
+      "model": "gpt-5.6-sol",
+      "valid": true,
+      "validityVerified": true,
+      "validityReason": "0 Palace calls detected; expected 0; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; fixture tree matches 01f922b5020464cf939cb42ea72696c11290c367",
+      "testsPassed": true,
+      "publicTestsPassed": true,
+      "oraclePassed": true,
+      "success": true,
+      "score": 100,
+      "durationMs": 179401,
+      "startedAt": "2026-07-18T18:50:46.311Z",
+      "sequence": 2,
+      "toolCalls": 15,
+      "failedCalls": 4,
+      "commandOutputChars": 7539,
+      "inspectionCommands": 3,
+      "palaceCalls": 0,
+      "successfulPalaceCalls": 0,
+      "inspectedFiles": 4,
+      "referencedFiles": 11,
+      "referencedFilePaths": [
+        ".gitignore",
+        "README.md",
+        "package.json",
+        "packages/catalog/src/module-001.mjs",
+        "packages/catalog/src/module-002.mjs",
+        "packages/catalog/src/module-003.mjs",
+        "packages/notifications/src/module-001.mjs",
+        "packages/notifications/src/module-002.mjs",
+        "packages/notifications/src/module-003.mjs",
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "inputTokens": 307134,
+      "cachedInputTokens": 275200,
+      "uncachedInputTokens": 31934,
+      "outputTokens": 5787,
+      "reportedTokens": 312921,
+      "routerErrors": 6,
+      "changedFiles": [
+        "src/format-currency.mjs"
+      ],
+      "forbiddenChanged": [],
+      "unexpectedChanged": [],
+      "expectedCoverage": 1,
+      "changedFilePrecision": 1,
+      "changedFileRecall": 1,
+      "forbiddenViolation": false,
+      "timedOut": false,
+      "route": null,
+      "memory": {
+        "pitfallViolation": null,
+        "wrongMemoryAdopted": null
+      },
+      "palaceEvaluation": null
+    },
+    "route-only": {
+      "model": "gpt-5.6-sol",
+      "valid": true,
+      "validityVerified": true,
+      "validityReason": "1/1 successful/total Palace calls; expected 1/1; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; fixture tree matches 01f922b5020464cf939cb42ea72696c11290c367",
+      "testsPassed": true,
+      "publicTestsPassed": true,
+      "oraclePassed": true,
+      "success": true,
+      "score": 100,
+      "durationMs": 139400,
+      "startedAt": "2026-07-18T18:54:00.973Z",
+      "sequence": 3,
+      "toolCalls": 12,
+      "failedCalls": 3,
+      "commandOutputChars": 7206,
+      "inspectionCommands": 2,
+      "palaceCalls": 1,
+      "successfulPalaceCalls": 1,
+      "inspectedFiles": 4,
+      "referencedFiles": 10,
+      "referencedFilePaths": [
+        "README.md",
+        "package.json",
+        "packages/catalog/src/module-001.mjs",
+        "packages/catalog/src/module-002.mjs",
+        "packages/catalog/src/module-003.mjs",
+        "packages/notifications/src/module-001.mjs",
+        "packages/notifications/src/module-002.mjs",
+        "packages/notifications/src/module-003.mjs",
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "inputTokens": 284310,
+      "cachedInputTokens": 254720,
+      "uncachedInputTokens": 29590,
+      "outputTokens": 4016,
+      "reportedTokens": 288326,
+      "routerErrors": 5,
+      "changedFiles": [
+        "src/format-currency.mjs"
+      ],
+      "forbiddenChanged": [],
+      "unexpectedChanged": [],
+      "expectedCoverage": 1,
+      "changedFilePrecision": 1,
+      "changedFileRecall": 1,
+      "forbiddenViolation": false,
+      "timedOut": false,
+      "route": {
+        "routeId": "route_bb0f87c6a3c33d80",
+        "confidence": 0.53,
+        "k": 4,
+        "recallAtK": 1,
+        "precisionAtK": 0.5,
+        "groundTruthFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs"
+        ],
+        "matchedFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs"
+        ],
+        "retrievedFiles": [
+          "test/format-currency.test.mjs",
+          "src/format-currency.mjs",
+          "README.md",
+          "package.json"
+        ]
+      },
+      "memory": {
+        "pitfallViolation": null,
+        "wrongMemoryAdopted": null
+      },
+      "palaceEvaluation": null
+    },
+    "full-palace": {
+      "model": "gpt-5.6-sol",
+      "valid": true,
+      "validityVerified": true,
+      "validityReason": "1/1 successful/total Palace calls; expected 1/1; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; fixture tree matches 01f922b5020464cf939cb42ea72696c11290c367",
+      "testsPassed": true,
+      "publicTestsPassed": true,
+      "oraclePassed": true,
+      "success": true,
+      "score": 100,
+      "durationMs": 153880,
+      "startedAt": "2026-07-18T18:47:57.097Z",
+      "sequence": 1,
+      "toolCalls": 19,
+      "failedCalls": 9,
+      "commandOutputChars": 8590,
+      "inspectionCommands": 2,
+      "palaceCalls": 1,
+      "successfulPalaceCalls": 1,
+      "inspectedFiles": 4,
+      "referencedFiles": 10,
+      "referencedFilePaths": [
+        "README.md",
+        "package.json",
+        "packages/catalog/src/module-001.mjs",
+        "packages/catalog/src/module-002.mjs",
+        "packages/catalog/src/module-003.mjs",
+        "packages/notifications/src/module-001.mjs",
+        "packages/notifications/src/module-002.mjs",
+        "packages/notifications/src/module-003.mjs",
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "inputTokens": 377840,
+      "cachedInputTokens": 338688,
+      "uncachedInputTokens": 39152,
+      "outputTokens": 5796,
+      "reportedTokens": 383636,
+      "routerErrors": 10,
+      "changedFiles": [
+        "src/format-currency.mjs"
+      ],
+      "forbiddenChanged": [],
+      "unexpectedChanged": [],
+      "expectedCoverage": 1,
+      "changedFilePrecision": 1,
+      "changedFileRecall": 1,
+      "forbiddenViolation": false,
+      "timedOut": false,
+      "route": {
+        "routeId": "route_6bb72f550b8c1ed6",
+        "confidence": 0.53,
+        "k": 4,
+        "recallAtK": 1,
+        "precisionAtK": 0.5,
+        "groundTruthFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs"
+        ],
+        "matchedFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs"
+        ],
+        "retrievedFiles": [
+          "test/format-currency.test.mjs",
+          "src/format-currency.mjs",
+          "README.md",
+          "package.json"
+        ]
+      },
+      "memory": {
+        "pitfallViolation": null,
+        "wrongMemoryAdopted": null
+      },
+      "palaceEvaluation": null
+    }
+  },
+  "comparable": true,
+  "execution": {
+    "mode": "sequential",
+    "order": [
+      "full-palace",
+      "control",
+      "route-only"
+    ]
+  },
+  "delta": {
+    "durationMsSaved": 25521,
+    "toolCallsSaved": -4,
+    "failedCallsSaved": -5,
+    "routerErrorsSaved": -4,
+    "inspectionCommandsSaved": 1,
+    "inspectedFilesSaved": 0,
+    "referencedFilesSaved": 1,
+    "commandOutputCharsSaved": -1051,
+    "inputTokensSaved": -70706,
+    "cachedInputTokensSaved": -63488,
+    "uncachedInputTokensSaved": -7218,
+    "outputTokensSaved": -9,
+    "reportedTokensSaved": -70715
+  },
+  "pairwise": {
+    "controlVsFullPalace": {
+      "comparable": true,
+      "delta": {
+        "durationMsSaved": 25521,
+        "toolCallsSaved": -4,
+        "failedCallsSaved": -5,
+        "routerErrorsSaved": -4,
+        "inspectionCommandsSaved": 1,
+        "inspectedFilesSaved": 0,
+        "referencedFilesSaved": 1,
+        "commandOutputCharsSaved": -1051,
+        "inputTokensSaved": -70706,
+        "cachedInputTokensSaved": -63488,
+        "uncachedInputTokensSaved": -7218,
+        "outputTokensSaved": -9,
+        "reportedTokensSaved": -70715
+      }
+    },
+    "routeOnlyVsFullPalace": {
+      "comparable": true,
+      "delta": {
+        "durationMsSaved": -14480,
+        "toolCallsSaved": -7,
+        "failedCallsSaved": -6,
+        "routerErrorsSaved": -5,
+        "inspectionCommandsSaved": 0,
+        "inspectedFilesSaved": 0,
+        "referencedFilesSaved": 0,
+        "commandOutputCharsSaved": -1384,
+        "inputTokensSaved": -93530,
+        "cachedInputTokensSaved": -83968,
+        "uncachedInputTokensSaved": -9562,
+        "outputTokensSaved": -1780,
+        "reportedTokensSaved": -95310
+      }
+    }
+  },
+  "caveats": [
+    "Distinct repository path strings are matched anywhere in the transcript. An inventory command can list every path without reading every file's contents.",
+    "Command-named files and command-output characters are transcript-derived context proxies, not an operating-system file-access audit.",
+    "Codex input tokens are cumulative across model turns. Cached and uncached input are shown separately and are not an API billing statement.",
+    "Paired arms run sequentially, never concurrently. Repeat pairs with alternating order and report medians to reduce order and service-load effects.",
+    "A result is comparable only when both arms start from the recorded Git tree and pass their arm-validity checks.",
+    "Correctness and scope determine the score. Speed and token metrics are reported, not rewarded."
+  ]
+}
