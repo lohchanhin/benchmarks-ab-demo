@@ -3,7 +3,8 @@ import test from "node:test";
 import {
   analyzeReports,
   exactMcNemar,
-  holmAdjust
+  holmAdjust,
+  renderAnalysisMarkdown
 } from "../analysis/paired-analysis.mjs";
 import {
   median,
@@ -39,6 +40,23 @@ test("keeps failures in success analysis and efficiency to mutual successes", ()
   assert.equal(scenario.metrics.durationMs.pairCount, 1);
   assert.deepEqual(scenario.metrics.durationMs.controlRaw, [100]);
   assert.deepEqual(scenario.metrics.durationMs.fullPalaceRaw, [70]);
+});
+
+test("labels partial pilot output as interim against the preregistered trial count", () => {
+  const result = analyzeReports([entry("trial-1", true, true, 100, 70)], {
+    iterations: 100,
+    bootstrapSeed: "interim-test",
+    manifest: {
+      plannedScenarios: ["one", "two", "three", "four"],
+      plannedSeedsPerScenario: 5,
+      trials: [{ trialId: "trial-1" }]
+    }
+  });
+  assert.equal(result.plannedTrials, 20);
+  assert.equal(result.attemptedTrials, 1);
+  assert.equal(result.loadedTrials, 1);
+  assert.match(result.caveats.join("\n"), /interim analysis with 1 of 20/);
+  assert.match(renderAnalysisMarkdown(result), /Interim only: 1\/20 planned trials/);
 });
 
 function entry(trialId, controlSuccess, palaceSuccess, controlDuration, palaceDuration) {

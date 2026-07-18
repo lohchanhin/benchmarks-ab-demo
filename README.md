@@ -40,12 +40,13 @@ ephemeral Codex sessions. Use `--limit 1` for a one-trial demonstration.
 
 ## Correctness-First Evidence
 
-The preregistered four-scenario pilot is planned but not yet complete. No empty
-cell below is being presented as a positive result.
+The preregistered four-scenario pilot is in progress and is not yet a
+statistical result. One of 20 planned trials is published; no interim value is
+being presented as evidence for or against a hypothesis.
 
 | Dataset | Correctness | Efficiency result | Status |
 | --- | --- | --- | --- |
-| New four-scenario, three-arm pilot | Hidden oracle + public tests required | Pending | Plan frozen; runs pending |
+| New four-scenario, three-arm pilot | 3/3 arms passed public tests and the hidden oracle in 1/20 trials | Full vs Control: -2,445 reported tokens, +6 tool calls; n=1 | Interim 1/20; no inference |
 | Legacy `v0.1.6` three paired runs | 6/6 arms passed, 100/100 scope | Palace lower cumulative tokens in 3/3; faster in 2/3 | Exploratory pilot |
 | Legacy `live-05` | Both arms passed | Palace was 105.4s slower and used more reported tokens | Published negative case |
 
@@ -54,6 +55,12 @@ The complete legacy values are in
 run and its diagnosis remain public in [`live-05.md`](docs/results/live-05.md).
 The older result also found **higher median uncached input for Palace by 6,101
 tokens**. That counter-result is not hidden.
+
+The first preregistered negative-control trial is available as
+[reviewed arm evidence](results/pilot/small-local-bug-pilot-01/comparison.md)
+and in the [interim analysis](results/pilot/analysis.md). Full Palace finished
+16.8 seconds sooner in that one sequential trial but made six more tool calls;
+neither observation is a conclusion at `n=1`.
 
 Vertex Palace does **not** guarantee that every task will be faster or cheaper.
 Wall time is secondary because hosted-model latency varies.

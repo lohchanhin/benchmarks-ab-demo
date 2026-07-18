@@ -44,6 +44,8 @@ export async function analyzeManifest(manifestPath, options = {}) {
 }
 
 export function analyzeReports(entries, options = {}) {
+  const attemptedTrials = options.manifest?.trials?.length ?? entries.length;
+  const plannedTrials = inferPlannedTrials(options.manifest, attemptedTrials);
   const byScenario = new Map();
   for (const entry of entries) {
     const scenario = entry.report.scenario ?? entry.trial?.scenario ?? "unknown";
@@ -69,7 +71,8 @@ export function analyzeReports(entries, options = {}) {
     protocolVersion: options.manifest?.protocolVersion ?? null,
     generatedAt: new Date().toISOString(),
     exploratory: true,
-    attemptedTrials: options.manifest?.trials?.length ?? entries.length,
+    plannedTrials,
+    attemptedTrials,
     loadedTrials: entries.length,
     missingTrials: options.missing ?? [],
     scenarios,
@@ -82,10 +85,20 @@ export function analyzeReports(entries, options = {}) {
     },
     caveats: [
       "This is an exploratory pilot and is not powered to establish non-inferiority.",
+      ...(entries.length < plannedTrials
+        ? [`This is an interim analysis with ${entries.length} of ${plannedTrials} planned trials loaded; intervals and p-values are not final.`]
+        : []),
       "Efficiency metrics include only pairs where both compared arms achieved protocol-defined success.",
       "Invalid infrastructure or treatment runs are retained but excluded from paired estimates; agent failures and timeouts remain outcomes."
     ]
   };
+}
+
+function inferPlannedTrials(manifest, fallback) {
+  if (Number.isInteger(manifest?.plannedTrials) && manifest.plannedTrials >= 0) return manifest.plannedTrials;
+  const scenarios = manifest?.plannedScenarios?.length;
+  const seeds = manifest?.plannedSeedsPerScenario;
+  return Number.isInteger(scenarios) && Number.isInteger(seeds) ? scenarios * seeds : fallback;
 }
 
 export function analyzeGroup(entries, options = {}) {
@@ -241,7 +254,12 @@ export function renderAnalysisMarkdown(analysis) {
   const lines = [
     "# Vertex Palace Exploratory Pilot Analysis",
     "",
-    `Loaded trials: ${analysis.loadedTrials}/${analysis.attemptedTrials}`,
+    `Planned pilot trials: ${analysis.plannedTrials}`,
+    `Attempted trials: ${analysis.attemptedTrials}`,
+    `Loaded reports: ${analysis.loadedTrials}`,
+    ...(analysis.loadedTrials < analysis.plannedTrials
+      ? ["", `Interim only: ${analysis.loadedTrials}/${analysis.plannedTrials} planned trials are represented. Do not interpret these intervals or p-values as final evidence.`]
+      : []),
     "",
     "| Scenario | Valid pairs | Control success | Full Palace success | Paired difference (95% bootstrap CI) | Exact p | Holm p |",
     "| --- | ---: | ---: | ---: | --- | ---: | ---: |"
