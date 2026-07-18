@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "protocolVersion": "1.0.0",
-  "generatedAt": "2026-07-18T20:13:21.360Z",
+  "generatedAt": "2026-07-18T20:25:39.853Z",
   "exploratory": true,
   "plannedTrials": 20,
-  "attemptedTrials": 11,
-  "loadedTrials": 11,
+  "attemptedTrials": 12,
+  "loadedTrials": 12,
   "missingTrials": [],
   "scenarios": {
     "small-local-bug": {
@@ -945,14 +945,16 @@
       }
     },
     "tenant-memory-pitfall": {
-      "attemptedPairs": 1,
-      "validPairs": 1,
+      "attemptedPairs": 2,
+      "validPairs": 2,
       "invalidPairIds": [],
       "success": {
         "controlRaw": [
+          1,
           1
         ],
         "fullPalaceRaw": [
+          1,
           1
         ],
         "controlRate": 1,
@@ -979,20 +981,22 @@
       },
       "metrics": {
         "durationMs": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
-            173939
+            173939,
+            149668
           ],
           "fullPalaceRaw": [
-            139191
+            139191,
+            218189
           ],
-          "controlMedian": 173939,
-          "fullPalaceMedian": 139191,
+          "controlMedian": 161803.5,
+          "fullPalaceMedian": 178690,
           "fullPalaceMinusControl": {
-            "estimate": -34748,
+            "estimate": 16886.5,
             "confidenceInterval": [
               -34748,
-              -34748
+              68521
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -1000,20 +1004,22 @@
           }
         },
         "toolCalls": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
-            17
+            17,
+            15
           ],
           "fullPalaceRaw": [
-            16
+            16,
+            35
           ],
-          "controlMedian": 17,
-          "fullPalaceMedian": 16,
+          "controlMedian": 16,
+          "fullPalaceMedian": 25.5,
           "fullPalaceMinusControl": {
-            "estimate": -1,
+            "estimate": 9.5,
             "confidenceInterval": [
               -1,
-              -1
+              20
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -1021,20 +1027,22 @@
           }
         },
         "failedCalls": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
+            6,
             6
           ],
           "fullPalaceRaw": [
-            4
+            4,
+            9
           ],
           "controlMedian": 6,
-          "fullPalaceMedian": 4,
+          "fullPalaceMedian": 6.5,
           "fullPalaceMinusControl": {
-            "estimate": -2,
+            "estimate": 0.5,
             "confidenceInterval": [
               -2,
-              -2
+              3
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -1042,20 +1050,22 @@
           }
         },
         "routerErrors": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
+            8,
             8
           ],
           "fullPalaceRaw": [
-            6
+            6,
+            11
           ],
           "controlMedian": 8,
-          "fullPalaceMedian": 6,
+          "fullPalaceMedian": 8.5,
           "fullPalaceMinusControl": {
-            "estimate": -2,
+            "estimate": 0.5,
             "confidenceInterval": [
               -2,
-              -2
+              3
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -1063,20 +1073,22 @@
           }
         },
         "inspectionCommands": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
-            6
-          ],
-          "fullPalaceRaw": [
+            6,
             4
           ],
-          "controlMedian": 6,
-          "fullPalaceMedian": 4,
+          "fullPalaceRaw": [
+            4,
+            14
+          ],
+          "controlMedian": 5,
+          "fullPalaceMedian": 9,
           "fullPalaceMinusControl": {
-            "estimate": -2,
+            "estimate": 4,
             "confidenceInterval": [
               -2,
-              -2
+              10
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -1084,20 +1096,22 @@
           }
         },
         "commandOutputChars": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
-            20889
+            20889,
+            21863
           ],
           "fullPalaceRaw": [
-            16949
+            16949,
+            20211
           ],
-          "controlMedian": 20889,
-          "fullPalaceMedian": 16949,
+          "controlMedian": 21376,
+          "fullPalaceMedian": 18580,
           "fullPalaceMinusControl": {
-            "estimate": -3940,
+            "estimate": -2796,
             "confidenceInterval": [
               -3940,
-              -3940
+              -1652
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -1105,20 +1119,22 @@
           }
         },
         "inputTokens": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
-            412129
+            412129,
+            371210
           ],
           "fullPalaceRaw": [
-            347472
+            347472,
+            520600
           ],
-          "controlMedian": 412129,
-          "fullPalaceMedian": 347472,
+          "controlMedian": 391669.5,
+          "fullPalaceMedian": 434036,
           "fullPalaceMinusControl": {
-            "estimate": -64657,
+            "estimate": 42366.5,
             "confidenceInterval": [
               -64657,
-              -64657
+              149390
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -1126,20 +1142,22 @@
           }
         },
         "cachedInputTokens": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
-            385024
+            385024,
+            342528
           ],
           "fullPalaceRaw": [
-            310784
+            310784,
+            488448
           ],
-          "controlMedian": 385024,
-          "fullPalaceMedian": 310784,
+          "controlMedian": 363776,
+          "fullPalaceMedian": 399616,
           "fullPalaceMinusControl": {
-            "estimate": -74240,
+            "estimate": 35840,
             "confidenceInterval": [
               -74240,
-              -74240
+              145920
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -1147,19 +1165,21 @@
           }
         },
         "uncachedInputTokens": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
-            27105
+            27105,
+            28682
           ],
           "fullPalaceRaw": [
-            36688
+            36688,
+            32152
           ],
-          "controlMedian": 27105,
-          "fullPalaceMedian": 36688,
+          "controlMedian": 27893.5,
+          "fullPalaceMedian": 34420,
           "fullPalaceMinusControl": {
-            "estimate": 9583,
+            "estimate": 6526.5,
             "confidenceInterval": [
-              9583,
+              3470,
               9583
             ],
             "iterations": 10000,
@@ -1168,20 +1188,22 @@
           }
         },
         "outputTokens": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
-            5383
+            5383,
+            5091
           ],
           "fullPalaceRaw": [
-            5330
+            5330,
+            7564
           ],
-          "controlMedian": 5383,
-          "fullPalaceMedian": 5330,
+          "controlMedian": 5237,
+          "fullPalaceMedian": 6447,
           "fullPalaceMinusControl": {
-            "estimate": -53,
+            "estimate": 1210,
             "confidenceInterval": [
               -53,
-              -53
+              2473
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -1189,20 +1211,22 @@
           }
         },
         "reportedTokens": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
-            417512
+            417512,
+            376301
           ],
           "fullPalaceRaw": [
-            352802
+            352802,
+            528164
           ],
-          "controlMedian": 417512,
-          "fullPalaceMedian": 352802,
+          "controlMedian": 396906.5,
+          "fullPalaceMedian": 440483,
           "fullPalaceMinusControl": {
-            "estimate": -64710,
+            "estimate": 43576.5,
             "confidenceInterval": [
               -64710,
-              -64710
+              151863
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -1210,11 +1234,13 @@
           }
         },
         "changedFilePrecision": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
+            1,
             1
           ],
           "fullPalaceRaw": [
+            1,
             1
           ],
           "controlMedian": 1,
@@ -1231,11 +1257,13 @@
           }
         },
         "changedFileRecall": {
-          "pairCount": 1,
+          "pairCount": 2,
           "controlRaw": [
+            1,
             1
           ],
           "fullPalaceRaw": [
+            1,
             1
           ],
           "controlMedian": 1,
@@ -1253,28 +1281,34 @@
         }
       },
       "mechanisms": {
-        "routeOnlyPairs": 1,
+        "routeOnlyPairs": 2,
         "routeRecallAtK": {
           "routeOnly": [
+            1,
             1
           ],
           "fullPalace": [
+            1,
             1
           ]
         },
         "routePrecisionAtK": {
           "routeOnly": [
+            0.5,
             0.5
           ],
           "fullPalace": [
+            0.5,
             0.5
           ]
         },
         "pitfallViolationRate": {
           "routeOnlyRaw": [
+            false,
             false
           ],
           "fullPalaceRaw": [
+            false,
             false
           ],
           "routeOnlyRate": 0,
@@ -1290,8 +1324,8 @@
     }
   },
   "overall": {
-    "attemptedPairs": 11,
-    "validPairs": 11,
+    "attemptedPairs": 12,
+    "validPairs": 12,
     "invalidPairIds": [],
     "success": {
       "controlRaw": [
@@ -1305,9 +1339,11 @@
         1,
         1,
         1,
+        1,
         1
       ],
       "fullPalaceRaw": [
+        1,
         1,
         1,
         1,
@@ -1343,7 +1379,7 @@
     },
     "metrics": {
       "durationMs": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           147741,
           192460,
@@ -1355,7 +1391,8 @@
           108627,
           97296,
           71186,
-          173939
+          173939,
+          149668
         ],
         "fullPalaceRaw": [
           130949,
@@ -1368,15 +1405,16 @@
           101077,
           117755,
           108706,
-          139191
+          139191,
+          218189
         ],
-        "controlMedian": 128812,
-        "fullPalaceMedian": 135889,
+        "controlMedian": 129225,
+        "fullPalaceMedian": 137540,
         "fullPalaceMinusControl": {
-          "estimate": 12546,
+          "estimate": 16502.5,
           "confidenceInterval": [
-            -22723,
-            37520
+            -19757.5,
+            42986.5
           ],
           "iterations": 10000,
           "confidence": 0.95,
@@ -1384,7 +1422,7 @@
         }
       },
       "toolCalls": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           15,
           14,
@@ -1396,7 +1434,8 @@
           13,
           11,
           7,
-          17
+          17,
+          15
         ],
         "fullPalaceRaw": [
           21,
@@ -1409,15 +1448,16 @@
           20,
           25,
           24,
-          16
+          16,
+          35
         ],
         "controlMedian": 14,
-        "fullPalaceMedian": 20,
+        "fullPalaceMedian": 20.5,
         "fullPalaceMinusControl": {
           "estimate": 7,
           "confidenceInterval": [
-            4,
-            11
+            5,
+            12.5
           ],
           "iterations": 10000,
           "confidence": 0.95,
@@ -1425,7 +1465,7 @@
         }
       },
       "failedCalls": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           7,
           5,
@@ -1437,6 +1477,7 @@
           7,
           3,
           1,
+          6,
           6
         ],
         "fullPalaceRaw": [
@@ -1450,14 +1491,15 @@
           2,
           5,
           5,
-          4
+          4,
+          9
         ],
         "controlMedian": 5,
         "fullPalaceMedian": 5,
         "fullPalaceMinusControl": {
           "estimate": 0,
           "confidenceInterval": [
-            -2,
+            -1.5,
             3
           ],
           "iterations": 10000,
@@ -1466,7 +1508,7 @@
         }
       },
       "routerErrors": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           9,
           7,
@@ -1478,6 +1520,7 @@
           9,
           5,
           3,
+          8,
           8
         ],
         "fullPalaceRaw": [
@@ -1491,14 +1534,15 @@
           3,
           7,
           6,
-          6
+          6,
+          11
         ],
         "controlMedian": 7,
         "fullPalaceMedian": 7,
         "fullPalaceMinusControl": {
           "estimate": 0,
           "confidenceInterval": [
-            -2,
+            -1.5,
             3
           ],
           "iterations": 10000,
@@ -1507,7 +1551,7 @@
         }
       },
       "inspectionCommands": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           3,
           3,
@@ -1519,7 +1563,8 @@
           4,
           3,
           2,
-          6
+          6,
+          4
         ],
         "fullPalaceRaw": [
           5,
@@ -1532,15 +1577,16 @@
           7,
           8,
           8,
-          4
+          4,
+          14
         ],
         "controlMedian": 3,
-        "fullPalaceMedian": 5,
+        "fullPalaceMedian": 5.5,
         "fullPalaceMinusControl": {
           "estimate": 2,
           "confidenceInterval": [
-            -2,
-            3
+            -1.5,
+            4
           ],
           "iterations": 10000,
           "confidence": 0.95,
@@ -1548,7 +1594,7 @@
         }
       },
       "commandOutputChars": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           7413,
           8971,
@@ -1560,7 +1606,8 @@
           11021,
           12495,
           13866,
-          20889
+          20889,
+          21863
         ],
         "fullPalaceRaw": [
           6257,
@@ -1573,15 +1620,16 @@
           12921,
           11054,
           17122,
-          16949
+          16949,
+          20211
         ],
-        "controlMedian": 11202,
-        "fullPalaceMedian": 9751,
+        "controlMedian": 11409,
+        "fullPalaceMedian": 10402.5,
         "fullPalaceMinusControl": {
-          "estimate": -1156,
+          "estimate": -1298.5,
           "confidenceInterval": [
-            -1914,
-            1051
+            -1889.5,
+            870
           ],
           "iterations": 10000,
           "confidence": 0.95,
@@ -1589,7 +1637,7 @@
         }
       },
       "inputTokens": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           307235,
           291817,
@@ -1601,7 +1649,8 @@
           274300,
           242037,
           152474,
-          412129
+          412129,
+          371210
         ],
         "fullPalaceRaw": [
           306081,
@@ -1614,15 +1663,16 @@
           231605,
           288639,
           236906,
-          347472
+          347472,
+          520600
         ],
-        "controlMedian": 281648,
-        "fullPalaceMedian": 306081,
+        "controlMedian": 286732.5,
+        "fullPalaceMedian": 313723,
         "fullPalaceMinusControl": {
-          "estimate": 24870,
+          "estimate": 27209,
           "confidenceInterval": [
-            -5367,
-            70706
+            -3260.5,
+            77569
           ],
           "iterations": 10000,
           "confidence": 0.95,
@@ -1630,7 +1680,7 @@
         }
       },
       "cachedInputTokens": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           258048,
           243712,
@@ -1642,7 +1692,8 @@
           250880,
           223744,
           137984,
-          385024
+          385024,
+          342528
         ],
         "fullPalaceRaw": [
           257024,
@@ -1655,15 +1706,16 @@
           213760,
           260096,
           216832,
-          310784
+          310784,
+          488448
         ],
-        "controlMedian": 250880,
-        "fullPalaceMedian": 260096,
+        "controlMedian": 252288,
+        "fullPalaceMedian": 278784,
         "fullPalaceMinusControl": {
-          "estimate": 13056,
+          "estimate": 24704,
           "confidenceInterval": [
-            -26880,
-            63488
+            -13952,
+            71168
           ],
           "iterations": 10000,
           "confidence": 0.95,
@@ -1671,7 +1723,7 @@
         }
       },
       "uncachedInputTokens": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           49187,
           48105,
@@ -1683,7 +1735,8 @@
           23420,
           18293,
           14490,
-          27105
+          27105,
+          28682
         ],
         "fullPalaceRaw": [
           49057,
@@ -1696,15 +1749,16 @@
           17845,
           28543,
           20074,
-          36688
+          36688,
+          32152
         ],
-        "controlMedian": 27105,
-        "fullPalaceMedian": 33287,
+        "controlMedian": 27528.5,
+        "fullPalaceMedian": 32719.5,
         "fullPalaceMinusControl": {
-          "estimate": 7218,
+          "estimate": 6401,
           "confidenceInterval": [
-            -2011,
-            11814
+            -1070.5,
+            11032
           ],
           "iterations": 10000,
           "confidence": 0.95,
@@ -1712,7 +1766,7 @@
         }
       },
       "outputTokens": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           5797,
           6066,
@@ -1724,7 +1778,8 @@
           3712,
           3263,
           2610,
-          5383
+          5383,
+          5091
         ],
         "fullPalaceRaw": [
           4506,
@@ -1737,15 +1792,16 @@
           3366,
           4278,
           4032,
-          5330
+          5330,
+          7564
         ],
-        "controlMedian": 4097,
-        "fullPalaceMedian": 4506,
+        "controlMedian": 4222.5,
+        "fullPalaceMedian": 4918,
         "fullPalaceMinusControl": {
-          "estimate": 543,
+          "estimate": 619.5,
           "confidenceInterval": [
-            -125,
-            1417
+            -89,
+            1419.5
           ],
           "iterations": 10000,
           "confidence": 0.95,
@@ -1753,7 +1809,7 @@
         }
       },
       "reportedTokens": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
           313032,
           297883,
@@ -1765,7 +1821,8 @@
           278012,
           245300,
           155084,
-          417512
+          417512,
+          376301
         ],
         "fullPalaceRaw": [
           310587,
@@ -1778,15 +1835,16 @@
           234971,
           292917,
           240938,
-          352802
+          352802,
+          528164
         ],
-        "controlMedian": 285996,
-        "fullPalaceMedian": 310587,
+        "controlMedian": 291939.5,
+        "fullPalaceMedian": 318946.5,
         "fullPalaceMinusControl": {
-          "estimate": 27077,
+          "estimate": 28250,
           "confidenceInterval": [
-            -4824,
-            70715
+            -3634.5,
+            78284.5
           ],
           "iterations": 10000,
           "confidence": 0.95,
@@ -1794,8 +1852,9 @@
         }
       },
       "changedFilePrecision": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
+          1,
           1,
           1,
           1,
@@ -1809,6 +1868,7 @@
           1
         ],
         "fullPalaceRaw": [
+          1,
           1,
           1,
           1,
@@ -1835,8 +1895,9 @@
         }
       },
       "changedFileRecall": {
-        "pairCount": 11,
+        "pairCount": 12,
         "controlRaw": [
+          1,
           1,
           1,
           1,
@@ -1850,6 +1911,7 @@
           1
         ],
         "fullPalaceRaw": [
+          1,
           1,
           1,
           1,
@@ -1877,9 +1939,10 @@
       }
     },
     "mechanisms": {
-      "routeOnlyPairs": 11,
+      "routeOnlyPairs": 12,
       "routeRecallAtK": {
         "routeOnly": [
+          1,
           1,
           1,
           1,
@@ -1893,6 +1956,7 @@
           1
         ],
         "fullPalace": [
+          1,
           1,
           1,
           1,
@@ -1918,6 +1982,7 @@
           0.8,
           0.8,
           0.8,
+          0.5,
           0.5
         ],
         "fullPalace": [
@@ -1931,14 +1996,17 @@
           0.8,
           0.8,
           0.8,
+          0.5,
           0.5
         ]
       },
       "pitfallViolationRate": {
         "routeOnlyRaw": [
+          false,
           false
         ],
         "fullPalaceRaw": [
+          false,
           false
         ],
         "routeOnlyRate": 0,
@@ -1968,7 +2036,7 @@
   },
   "caveats": [
     "This is an exploratory pilot and is not powered to establish non-inferiority.",
-    "This is an interim analysis with 11 of 20 planned trials loaded; intervals and p-values are not final.",
+    "This is an interim analysis with 12 of 20 planned trials loaded; intervals and p-values are not final.",
     "Efficiency metrics include only pairs where both compared arms achieved protocol-defined success.",
     "Invalid infrastructure or treatment runs are retained but excluded from paired estimates; agent failures and timeouts remain outcomes."
   ]
