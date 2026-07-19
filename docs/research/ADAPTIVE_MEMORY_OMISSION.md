@@ -1,9 +1,9 @@
 # Adaptive Memory Omission Observation
 
 Status: observed after all four outcomes of the first v2.2 useful-memory trial
-were available and independently repeated in the second trial after the first
-finding was committed. This is a treatment finding, not a protocol validity
-failure.
+were available and independently repeated in the second and third trials after
+the first finding was committed. This is a treatment finding, not a protocol
+validity failure.
 
 ## Context
 
@@ -59,6 +59,14 @@ The complete Full hash is
 The Adaptive hash exactly matched trial 01, confirming identical Adaptive
 context output despite a fresh seed and cold rebuild.
 
+The third trial used another fresh seed, a warm index, and Adaptive in the third
+sequence position. Full again contained both notices in 5,465 bytes; its output
+hash was
+`60b110bc9d6ae80a81d7455527e7a8825370567d0ab518e2c02807bd76861c62`.
+Adaptive again emitted the identical 2,450-byte output hash
+`b0e3ade5eae88dedef50e2bc566e018c68dfc4ad21c09cf5bb650813be8d0b5e`
+with zero memory items and guardrails and neither notice.
+
 ## Outcome
 
 All four arms independently produced the correct two-file repair, avoided
@@ -84,7 +92,7 @@ win.
 - Do not infer root cause from this observation alone; inspect the selector and
   memory retrieval implementation during the product-fix phase.
 
-Machine-readable evidence is in
-[`adaptive-memory-omission-v2.2-trial01.json`](./evidence/adaptive-memory-omission-v2.2-trial01.json)
-and
-[`adaptive-memory-omission-v2.2-trial02.json`](./evidence/adaptive-memory-omission-v2.2-trial02.json).
+Machine-readable evidence is available for
+[`trial 01`](./evidence/adaptive-memory-omission-v2.2-trial01.json),
+[`trial 02`](./evidence/adaptive-memory-omission-v2.2-trial02.json), and
+[`trial 03`](./evidence/adaptive-memory-omission-v2.2-trial03.json).

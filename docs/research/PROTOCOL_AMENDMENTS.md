@@ -155,9 +155,10 @@ manifest is frozen at `protocol-v2.2.0` before any v2.2 agent execution.
   testing.
 - Evidence: see [`ADAPTIVE_MEMORY_OMISSION.md`](./ADAPTIVE_MEMORY_OMISSION.md)
   and the sanitized machine-readable record in `docs/research/evidence/`.
-- Follow-up: the second useful-memory trial, executed after A-005 was publicly
-  committed, independently repeated the omission under a cold local index.
-  This repetition does not change the frozen treatment or validity rules.
+- Follow-up: the second and third useful-memory trials, executed after A-005
+  was publicly committed, independently repeated the omission under cold and
+  warm local indexes and different sequence positions. These repetitions do
+  not change the frozen treatment or validity rules.
 
 ## Amendment Template
 

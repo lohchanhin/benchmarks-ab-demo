@@ -1,16 +1,16 @@
 # Vertex Palace Exploratory Pilot Analysis
 
 Planned pilot trials: 16
-Attempted trials: 10
-Loaded reports: 10
+Attempted trials: 11
+Loaded reports: 11
 
-Interim only: 10/16 planned trials are represented. Do not interpret these intervals or p-values as final evidence.
+Interim only: 11/16 planned trials are represented. Do not interpret these intervals or p-values as final evidence.
 
 | Scenario | Primary comparison | Valid pairs | Baseline success | Treatment success | Treatment minus baseline (95% bootstrap CI) | Exact p | Holm p |
 | --- | --- | ---: | ---: | ---: | --- | ---: | ---: |
 | small-local-bug | Adaptive Palace - Full Palace | 4 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
 | cross-stack-regression | Adaptive Palace - Full Palace | 4 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
-| tenant-memory-pitfall | Adaptive Palace - Full Palace | 2 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
+| tenant-memory-pitfall | Adaptive Palace - Full Palace | 3 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
 
 ## Mutually Successful Pair Efficiency
 
@@ -30,12 +30,12 @@ Paired differences are primary treatment minus primary baseline. Negative values
 | cross-stack-regression | Palace context estimated tokens | 4 | 777 | 545 | -232 [-232, -232] |
 | cross-stack-regression | Tool calls | 4 | 14 | 11.5 | -2 [-8, 4] |
 | cross-stack-regression | Wall time | 4 | 91.8s | 75.3s | -16.5s [-55.1s, 17.9s] |
-| tenant-memory-pitfall | Reported tokens | 2 | 265,590 | 164,946.5 | -100,643.5 [-185,297, -15,990] |
-| tenant-memory-pitfall | Uncached input tokens | 2 | 38,245.5 | 13,260 | -24,985.5 [-40,807, -9,164] |
-| tenant-memory-pitfall | Palace context output bytes | 2 | 5,465 | 2,450 | -3,015 [-3,015, -3,015] |
-| tenant-memory-pitfall | Palace context estimated tokens | 2 | 1,367 | 613 | -754 [-754, -754] |
-| tenant-memory-pitfall | Tool calls | 2 | 20 | 10.5 | -9.5 [-15, -4] |
-| tenant-memory-pitfall | Wall time | 2 | 122.9s | 94.3s | -28.6s [-51.3s, -6.0s] |
+| tenant-memory-pitfall | Reported tokens | 3 | 178,229 | 162,239 | -27,372 [-185,297, -15,990] |
+| tenant-memory-pitfall | Uncached input tokens | 3 | 25,833 | 12,920 | -15,425 [-40,807, -9,164] |
+| tenant-memory-pitfall | Palace context output bytes | 3 | 5,465 | 2,450 | -3,015 [-3,015, -3,015] |
+| tenant-memory-pitfall | Palace context estimated tokens | 3 | 1,367 | 613 | -754 [-754, -754] |
+| tenant-memory-pitfall | Tool calls | 3 | 12 | 8 | -4 [-15, -1] |
+| tenant-memory-pitfall | Wall time | 3 | 96.7s | 90.7s | -6.0s [-51.3s, 5.3s] |
 
 ## Four-Arm Adaptive Contrasts
 
@@ -83,26 +83,26 @@ Each contrast is treatment minus baseline. Negative efficiency values favor the 
 | cross-stack-regression | Adaptive Palace - Full Palace | Palace context estimated tokens | 4 | 777 | 545 | -232 [-232, -232] |
 | cross-stack-regression | Adaptive Palace - Full Palace | Tool calls | 4 | 14 | 11.5 | -2 [-8, 4] |
 | cross-stack-regression | Adaptive Palace - Full Palace | Wall time | 4 | 91.8s | 75.3s | -16.5s [-55.1s, 17.9s] |
-| tenant-memory-pitfall | Route-only - Control | Reported tokens | 2 | 129,096 | 171,744.5 | 42,648.5 [31,841, 53,456] |
-| tenant-memory-pitfall | Route-only - Control | Uncached input tokens | 2 | 19,713.5 | 16,445.5 | -3,268 [-9,160, 2,624] |
-| tenant-memory-pitfall | Route-only - Control | Tool calls | 2 | 5 | 23.5 | 18.5 [18, 19] |
-| tenant-memory-pitfall | Route-only - Control | Wall time | 2 | 68.5s | 113.8s | 45.3s [21.5s, 69.1s] |
-| tenant-memory-pitfall | Full Palace - Route-only | Reported tokens | 2 | 171,744.5 | 265,590 | 93,845.5 [17,766, 169,925] |
-| tenant-memory-pitfall | Full Palace - Route-only | Uncached input tokens | 2 | 16,445.5 | 38,245.5 | 21,800 [6,562, 37,038] |
-| tenant-memory-pitfall | Full Palace - Route-only | Palace context output bytes | 2 | 4,545 | 5,465 | 920 [920, 920] |
-| tenant-memory-pitfall | Full Palace - Route-only | Palace context estimated tokens | 2 | 1,137 | 1,367 | 230 [230, 230] |
-| tenant-memory-pitfall | Full Palace - Route-only | Tool calls | 2 | 23.5 | 20 | -3.5 [-12, 5] |
-| tenant-memory-pitfall | Full Palace - Route-only | Wall time | 2 | 113.8s | 122.9s | 9.2s [-0.3s, 18.6s] |
-| tenant-memory-pitfall | Adaptive Palace - Control | Reported tokens | 2 | 129,096 | 164,946.5 | 35,850.5 [33,617, 38,084] |
-| tenant-memory-pitfall | Adaptive Palace - Control | Uncached input tokens | 2 | 19,713.5 | 13,260 | -6,453.5 [-11,762, -1,145] |
-| tenant-memory-pitfall | Adaptive Palace - Control | Tool calls | 2 | 5 | 10.5 | 5.5 [3, 8] |
-| tenant-memory-pitfall | Adaptive Palace - Control | Wall time | 2 | 68.5s | 94.3s | 25.8s [15.2s, 36.4s] |
-| tenant-memory-pitfall | Adaptive Palace - Full Palace | Reported tokens | 2 | 265,590 | 164,946.5 | -100,643.5 [-185,297, -15,990] |
-| tenant-memory-pitfall | Adaptive Palace - Full Palace | Uncached input tokens | 2 | 38,245.5 | 13,260 | -24,985.5 [-40,807, -9,164] |
-| tenant-memory-pitfall | Adaptive Palace - Full Palace | Palace context output bytes | 2 | 5,465 | 2,450 | -3,015 [-3,015, -3,015] |
-| tenant-memory-pitfall | Adaptive Palace - Full Palace | Palace context estimated tokens | 2 | 1,367 | 613 | -754 [-754, -754] |
-| tenant-memory-pitfall | Adaptive Palace - Full Palace | Tool calls | 2 | 20 | 10.5 | -9.5 [-15, -4] |
-| tenant-memory-pitfall | Adaptive Palace - Full Palace | Wall time | 2 | 122.9s | 94.3s | -28.6s [-51.3s, -6.0s] |
+| tenant-memory-pitfall | Route-only - Control | Reported tokens | 3 | 129,570 | 183,026 | 31,841 [-38,134, 53,456] |
+| tenant-memory-pitfall | Route-only - Control | Uncached input tokens | 3 | 24,682 | 17,369 | -9,160 [-11,155, 2,624] |
+| tenant-memory-pitfall | Route-only - Control | Tool calls | 3 | 5 | 23 | 18 [1, 19] |
+| tenant-memory-pitfall | Route-only - Control | Wall time | 3 | 75.4s | 130.6s | 69.1s [21.5s, 73.1s] |
+| tenant-memory-pitfall | Full Palace - Route-only | Reported tokens | 3 | 183,026 | 178,229 | 17,766 [-56,936, 169,925] |
+| tenant-memory-pitfall | Full Palace - Route-only | Uncached input tokens | 3 | 17,369 | 25,833 | 7,374 [6,562, 37,038] |
+| tenant-memory-pitfall | Full Palace - Route-only | Palace context output bytes | 3 | 4,545 | 5,465 | 920 [920, 920] |
+| tenant-memory-pitfall | Full Palace - Route-only | Palace context estimated tokens | 3 | 1,137 | 1,367 | 230 [230, 230] |
+| tenant-memory-pitfall | Full Palace - Route-only | Tool calls | 3 | 23 | 12 | -2 [-12, 5] |
+| tenant-memory-pitfall | Full Palace - Route-only | Wall time | 3 | 130.6s | 96.7s | -0.3s [-145.3s, 18.6s] |
+| tenant-memory-pitfall | Adaptive Palace - Control | Reported tokens | 3 | 129,570 | 162,239 | 33,617 [-122,442, 38,084] |
+| tenant-memory-pitfall | Adaptive Palace - Control | Uncached input tokens | 3 | 24,682 | 12,920 | -11,762 [-19,206, -1,145] |
+| tenant-memory-pitfall | Adaptive Palace - Control | Tool calls | 3 | 5 | 8 | 3 [-2, 8] |
+| tenant-memory-pitfall | Adaptive Palace - Control | Wall time | 3 | 75.4s | 90.7s | 15.2s [-66.9s, 36.4s] |
+| tenant-memory-pitfall | Adaptive Palace - Full Palace | Reported tokens | 3 | 178,229 | 162,239 | -27,372 [-185,297, -15,990] |
+| tenant-memory-pitfall | Adaptive Palace - Full Palace | Uncached input tokens | 3 | 25,833 | 12,920 | -15,425 [-40,807, -9,164] |
+| tenant-memory-pitfall | Adaptive Palace - Full Palace | Palace context output bytes | 3 | 5,465 | 2,450 | -3,015 [-3,015, -3,015] |
+| tenant-memory-pitfall | Adaptive Palace - Full Palace | Palace context estimated tokens | 3 | 1,367 | 613 | -754 [-754, -754] |
+| tenant-memory-pitfall | Adaptive Palace - Full Palace | Tool calls | 3 | 12 | 8 | -4 [-15, -1] |
+| tenant-memory-pitfall | Adaptive Palace - Full Palace | Wall time | 3 | 96.7s | 90.7s | -6.0s [-51.3s, 5.3s] |
 
 Efficiency metrics are calculated only for mutually successful pairs. Raw values and bootstrap intervals are available in the JSON report.
 
