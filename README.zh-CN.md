@@ -7,13 +7,14 @@
 - **Full Palace**：路线、Context Pack、Pitfall Board 与历史记忆全部启用。
 - **Adaptive Palace（v2）**：协议设计为与 Full 使用相同记忆，但只调用一次 `palace context --auto`，由工具选择最小安全模式；v0.2.1 的实际记忆一致性也被本研究检验。
 
-[English](README.md) | [中文辅助文档](docs/zh-CN/README.md) | [快速验证指南](docs/zh-CN/QUICKSTART.md) | [结果阅读指南](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 中文协议](docs/zh-CN/PROTOCOL_V3.md) | [v2.2 最终报告](docs/research/ADAPTIVE_V2_2_FINAL.md) | [v1 研究协议](docs/research/PROTOCOL.md) | [Adaptive v2.2 协议](docs/research/PROTOCOL_V2_2.md) | [协议修订](docs/research/PROTOCOL_AMENDMENTS.md) | [测试方法](METHODOLOGY.md) | [影片指南](DEMO.md)
+[English](README.md) | [验证覆盖矩阵](docs/zh-CN/VALIDATION_COVERAGE_MATRIX.md) | [中文辅助文档](docs/zh-CN/README.md) | [快速验证指南](docs/zh-CN/QUICKSTART.md) | [结果阅读指南](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 中文协议](docs/zh-CN/PROTOCOL_V3.md) | [v2.2 最终报告](docs/research/ADAPTIVE_V2_2_FINAL.md) | [v1 研究协议](docs/research/PROTOCOL.md) | [Adaptive v2.2 协议](docs/research/PROTOCOL_V2_2.md) | [协议修订](docs/research/PROTOCOL_AMENDMENTS.md) | [测试方法](METHODOLOGY.md) | [影片指南](DEMO.md)
 
 ## 第一次来这里
 
 | 你的目标 | 建议入口 |
 | --- | --- |
 | 先看客观结论 | [结果阅读指南](docs/zh-CN/RESULTS_GUIDE.md) |
+| 区分已证明、工程预跑与尚未证明 | [验证覆盖矩阵](docs/zh-CN/VALIDATION_COVERAGE_MATRIX.md) |
 | 不调用 Agent，只验证代码、计划与公开证据 | [快速验证指南](docs/zh-CN/QUICKSTART.md#快速验证不执行-agent) |
 | 了解完整实验设计 | [测试方法](METHODOLOGY.md)与[冻结 v2.2 协议](docs/research/PROTOCOL_V2_2.md) |
 | 审核最终数字与限制 | [Adaptive v2.2 最终报告](docs/research/ADAPTIVE_V2_2_FINAL.md) |

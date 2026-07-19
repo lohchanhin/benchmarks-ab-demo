@@ -4,13 +4,14 @@
 `benchmarks-ab-demo`。它们是导航与解释层，不是新的研究协议，也不会改变已
 冻结的任务、版本、随机 seed、分析方法或结果。
 
-[项目中文首页](../../README.zh-CN.md) | [快速验证指南](./QUICKSTART.md) | [结果阅读指南](./RESULTS_GUIDE.md) | [Control-first v3 协议](./PROTOCOL_V3.md) | [v3 Agent 预跑](./CONTROL_FIRST_V3_AGENT_PREFLIGHT.md) | [英文最终报告](../research/ADAPTIVE_V2_2_FINAL.md)
+[项目中文首页](../../README.zh-CN.md) | [验证覆盖矩阵](./VALIDATION_COVERAGE_MATRIX.md) | [快速验证指南](./QUICKSTART.md) | [结果阅读指南](./RESULTS_GUIDE.md) | [Control-first v3 协议](./PROTOCOL_V3.md) | [v3 Agent 预跑](./CONTROL_FIRST_V3_AGENT_PREFLIGHT.md) | [英文最终报告](../research/ADAPTIVE_V2_2_FINAL.md)
 
 ## 按目的阅读
 
 | 目的 | 从这里开始 | 是否启动 Codex Agent |
 | --- | --- | --- |
 | 快速判断研究结论 | [结果阅读指南](./RESULTS_GUIDE.md) | 否 |
+| 区分已验证、预跑、旧版证据与空白 | [验证覆盖矩阵](./VALIDATION_COVERAGE_MATRIX.md) | 否 |
 | 验证代码、fixture、冻结计划和公开 evidence | [快速验证指南](./QUICKSTART.md#快速验证不执行-agent) | 否 |
 | 重算已发表的聚合分析 | [快速验证指南](./QUICKSTART.md#重新生成聚合分析) | 否 |
 | 查看实验方法 | [英文方法说明](../../METHODOLOGY.md) | 否 |

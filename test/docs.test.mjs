@@ -11,7 +11,9 @@ const documentationFiles = [
   "docs/zh-CN/README.md",
   "docs/zh-CN/QUICKSTART.md",
   "docs/zh-CN/RESULTS_GUIDE.md",
-  "docs/zh-CN/PROTOCOL_V3.md"
+  "docs/zh-CN/PROTOCOL_V3.md",
+  "docs/zh-CN/VALIDATION_COVERAGE_MATRIX.md",
+  "docs/research/VALIDATION_COVERAGE_MATRIX.md"
 ];
 
 test("publishes discoverable Simplified Chinese judge guidance", async () => {
@@ -21,6 +23,7 @@ test("publishes discoverable Simplified Chinese judge guidance", async () => {
   const quickstart = await read("docs/zh-CN/QUICKSTART.md");
   const results = await read("docs/zh-CN/RESULTS_GUIDE.md");
   const protocolV3 = await read("docs/zh-CN/PROTOCOL_V3.md");
+  const coverageMatrix = await read("docs/zh-CN/VALIDATION_COVERAGE_MATRIX.md");
 
   for (const content of [english, chinese]) {
     assert.match(content, /docs\/zh-CN\/README\.md/);
@@ -44,6 +47,9 @@ test("publishes discoverable Simplified Chinese judge guidance", async () => {
   assert.match(protocolV3, /hidden oracle 失败/);
   assert.match(protocolV3, /浏览器／设备验证码/);
   assert.match(protocolV3, /CONTROL_FIRST_V3_PREFLIGHT\.md/);
+  assert.match(coverageMatrix, /独立 small-OSS 分层/);
+  assert.match(coverageMatrix, /尚未单独测试/);
+  assert.match(coverageMatrix, /Vertex Palace 普遍节省 Agent Token、时间或工具调用/);
 });
 
 test("keeps local links in the Chinese documentation surface resolvable", async () => {
@@ -81,6 +87,52 @@ test("pins real-repository evidence to the preregistered Palace package", async 
     assert.equal(repository.trackedWorktreeClean, true);
     assert.deepEqual(repository.observedFiles, repository.expectedFiles);
   }
+});
+
+test("keeps the validation coverage matrix synchronized with published evidence", async () => {
+  const matrix = JSON.parse(
+    await read("docs/research/evidence/validation-coverage-matrix-2026-07-20.json")
+  );
+  const plan = JSON.parse(await read("results/control-first-v3/plan.json"));
+  const manifest = JSON.parse(await read("results/control-first-v3/manifest.json"));
+  const firstAnalysis = JSON.parse(await read("results/pilot/analysis.json"));
+  const analysis = JSON.parse(await read("results/adaptive-pilot-v2.2/analysis.json"));
+  const rows = new Map(matrix.coverage.map((row) => [row.id, row]));
+
+  const v3 = rows.get("control-first-v3-formal");
+  assert.equal(v3.observed.frozen, plan.frozen);
+  assert.equal(v3.observed.plannedTrials, plan.trials.length);
+  assert.equal(v3.observed.attemptedTrials, manifest.trials.length);
+  assert.equal(v3.observed.attemptedArms, 0);
+
+  const comparison = analysis.overall.comparisons.adaptiveMinusControl;
+  const retained = rows.get("adaptive-versus-control-v2-2").observed;
+  assert.equal(retained.validPairs, comparison.validPairs);
+  assert.deepEqual(
+    retained.adaptiveMinusControl.reportedTokens.confidenceInterval,
+    comparison.metrics.reportedTokens.treatmentMinusBaseline.confidenceInterval
+  );
+  assert.deepEqual(
+    retained.adaptiveMinusControl.toolCalls.confidenceInterval,
+    comparison.metrics.toolCalls.treatmentMinusBaseline.confidenceInterval
+  );
+
+  assert.equal(rows.get("independent-small-oss-stratum").status, "not-tested");
+  assert.equal(rows.get("real-repository-history-dependent-agent").status, "not-tested");
+  assert.equal(rows.get("npm-publication-0-3-0").status, "blocked");
+
+  const studies = new Map(matrix.studyEvolution.map((study) => [study.id, study]));
+  const first = studies.get("fixed-treatments-v1");
+  assert.equal(first.design.trials, firstAnalysis.loadedTrials);
+  assert.deepEqual(
+    first.fullPalaceMinusControl.reportedTokens.confidenceInterval,
+    firstAnalysis.overall.metrics.reportedTokens.fullPalaceMinusControl.confidenceInterval
+  );
+  assert.deepEqual(
+    first.fullPalaceMinusControl.durationMs.confidenceInterval,
+    firstAnalysis.overall.metrics.durationMs.fullPalaceMinusControl.confidenceInterval
+  );
+  assert.equal(studies.get("control-first-v3").status.attemptedTrials, manifest.trials.length);
 });
 
 async function read(relativeFile) {
