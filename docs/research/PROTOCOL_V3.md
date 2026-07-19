@@ -119,7 +119,7 @@ powered as a confirmatory non-inferiority or superiority study.
 - Codex: `codex-cli 0.145.0-alpha.18`
 - Vertex Palace candidate: `0.3.0`
 - Vertex Palace source commit:
-  `c835860d0d63f4c3ddd83b01c5cbb182b216bc9e`
+  `cb93369c642135d3d924166bff62b0eaf0cacde1`
 - Platform: `win32`
 - Sandbox: `workspace-write/windows-elevated`
 - Timeout: 600 seconds per arm
@@ -128,6 +128,11 @@ powered as a confirmatory non-inferiority or superiority study.
 The benchmark repository still installs the previously published Palace while
 this plan is in design review. That mismatch is intentional and prevents an
 accidental formal run.
+
+Engineering evidence at the pinned source commit reports exact two-file routes
+for both pinned Zod and Requests tasks (recall 1.000, strict precision 1.000)
+and clean-install JSON/Markdown output below the selected ceiling with 50
+memory candidates. These are release gates, not Agent outcomes.
 
 ## Release And Freeze Gates
 

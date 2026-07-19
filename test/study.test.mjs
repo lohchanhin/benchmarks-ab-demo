@@ -135,7 +135,7 @@ test("control-first v3 makes Adaptive versus Control primary with a fresh scenar
     "full-vs-route-only"
   ]);
   assert.equal(plan.execution.palaceVersion, "0.3.0");
-  assert.equal(plan.execution.palaceSourceCommit, "c835860d0d63f4c3ddd83b01c5cbb182b216bc9e");
+  assert.equal(plan.execution.palaceSourceCommit, "cb93369c642135d3d924166bff62b0eaf0cacde1");
   assert.equal(plan.trials.length, 16);
   assert.deepEqual(
     [...new Set(plan.trials.map((trial) => trial.scenario))],

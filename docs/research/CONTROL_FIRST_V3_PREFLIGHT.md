@@ -66,24 +66,30 @@ existing relevant-memory Full Palace contract.
 ## Product Evidence
 
 - Vertex Palace candidate source commit:
-  [`c835860d0d63f4c3ddd83b01c5cbb182b216bc9e`](https://github.com/lohchanhin/vertex-palace/commit/c835860d0d63f4c3ddd83b01c5cbb182b216bc9e)
+  [`cb93369c642135d3d924166bff62b0eaf0cacde1`](https://github.com/lohchanhin/vertex-palace/commit/cb93369c642135d3d924166bff62b0eaf0cacde1)
 - Machine-evidence commit:
-  [`fd39421333414f615c6c47044898a538f8b41ee3`](https://github.com/lohchanhin/vertex-palace/commit/fd39421333414f615c6c47044898a538f8b41ee3)
+  [`bcc43801af5acb25b53c5dad909aa200c95c4d91`](https://github.com/lohchanhin/vertex-palace/commit/bcc43801af5acb25b53c5dad909aa200c95c4d91)
 - Candidate and evidence CI runs:
-  [29696299788](https://github.com/lohchanhin/vertex-palace/actions/runs/29696299788),
-  [29696392001](https://github.com/lohchanhin/vertex-palace/actions/runs/29696392001)
-- [Machine-readable real-repository evidence](https://github.com/lohchanhin/vertex-palace/blob/fd39421333414f615c6c47044898a538f8b41ee3/docs/research/evidence/real-repository-validation-0.3.0.json)
-- Core: 70/70 tests
+  [29697901796](https://github.com/lohchanhin/vertex-palace/actions/runs/29697901796),
+  [29697990804](https://github.com/lohchanhin/vertex-palace/actions/runs/29697990804)
+- [Machine-readable real-repository evidence](https://github.com/lohchanhin/vertex-palace/blob/bcc43801af5acb25b53c5dad909aa200c95c4d91/docs/research/evidence/real-repository-validation-0.3.0.json)
+- [Machine-readable clean-install evidence](https://github.com/lohchanhin/vertex-palace/blob/bcc43801af5acb25b53c5dad909aa200c95c4d91/docs/research/evidence/release-candidate-0.3.0.json)
+- [Bilingual context-ceiling incident record](https://github.com/lohchanhin/vertex-palace/blob/bcc43801af5acb25b53c5dad909aa200c95c4d91/docs/research/ADAPTIVE_CONTEXT_CEILING_0_3_0.md)
+- Core: 72/72 tests
 - CLI: 2/2 tests
 - MCP: 2/2 tests
 - TypeScript, build, clean tarball install, package CLI, and MCP smoke: pass
 
 Pinned Zod and Requests validation retrieved both known targets in both
 repetitions, with deterministic boundaries and clean tracked worktrees. Each
-repository had target recall 1.000 but strict target precision 0.333, with four
-extra files. Product self-evaluation on the broad implementation task covered
-only 5/25 changed files and was overconfident by 0.51. These are routing and
-packaging findings, not evidence of lower Agent tokens or wall time.
+repository had target recall 1.000 and strict target precision 1.000, with no
+extra boundary files. The clean installed package also kept 50 memory
+candidates auditable while delivering JSON at 4,038 / 5,000 estimated tokens
+and Markdown at 4,473 / 5,000. Product self-evaluation still exposes a broader
+limitation: the earlier 25-file task matched only 5 files and was overconfident
+by 0.51; the latest six-file revision matched 4/6 at confidence 0.35 but missed
+the regression test and generated MCP bundle. These are routing and packaging
+findings, not evidence of lower Agent tokens or wall time.
 
 ## Benchmark Evidence
 
@@ -93,10 +99,11 @@ packaging findings, not evidence of lower Agent tokens or wall time.
 - v3 strict-scope regression: a correct result with 50% changed-file precision
   is not protocol success
 - old v2.2 analysis: exactly reproducible after ignoring only `generatedAt`
-- Palace evaluation of this evidence-pin update matched 2/6 changed files:
-  33% coverage, 20% route focus, confidence 0.58, and overconfidence error
-  0.25. Exact-reference inspection was still required to find the protocol,
-  plan generator, and matching test.
+- Palace evaluation of this final evidence-pin update matched 3/8 changed
+  files: 38% coverage, 30% route focus, confidence 0.78, and overconfidence
+  error 0.40. It found the plan, generator, and preflight record, but missed the
+  matching study test, both protocol documents, and both README surfaces.
+  Exact-reference inspection was still required.
 
 ## Remaining Freeze Gates
 
@@ -115,14 +122,16 @@ packaging findings, not evidence of lower Agent tokens or wall time.
 Support bucket 里的 shared step 仍显示 `tier: primary`。最终修复让 Aurora 成为
 唯一 Primary、shared 成为 Support；两个 client 证据平手时仍全部拒绝。
 
-真实 Zod 与 Requests 仓库各重复两次，已知实现和测试目标均稳定命中，目标召回率
-为 1.000；但严格目标精度只有 0.333，各多带 4 个文件。产品对自身宽任务的改动
-覆盖率也只有 20%，且置信度偏高。这些都是冻结前工程验证，不是比赛结果，也不能
-证明节省 Agent Token 或时间。
+真实 Zod 与 Requests 仓库各重复两次，都只返回已知实现和测试，目标召回率与严格
+精度均为 1.000，没有额外边界文件。干净安装包在 50 条记忆候选下，JSON 为
+4,038 / 5,000 estimated tokens，Markdown 为 4,473 / 5,000，并保留所有候选的
+纳入或排除原因。产品对宽任务的自评仍不完整：旧任务只覆盖 5/25；最新六文件修正
+覆盖 4/6，仍漏掉回归测试与生成后的 MCP bundle。这些都是冻结前工程验证，不是
+比赛结果，也不能证明节省 Agent Token 或时间。
 
-本 benchmark 更新证据 pin 时也出现同类问题：Palace 只覆盖 2/6 个实际改动文件，
-覆盖率 33%、路线聚焦度 20%、过度自信误差 0.25；协议、计划生成器与对应测试仍靠
-精确引用检索补齐。
+本 benchmark 最终更新证据 pin 时也出现同类问题：Palace 只覆盖 3/8 个实际改动文件，
+覆盖率 38%、路线聚焦度 30%，却给出 0.78 置信度，过度自信误差 0.40。它命中计划、
+生成器与 preflight，但漏掉对应测试、两份协议和两份 README，仍需精确引用补齐。
 
 v3 计划仍为 `frozen:false`，manifest 仍是 0/16；真实仓库门槛已经完成，但在 npm
 0.3.0 发布与协议 tag 完成前不会启动正式 Arm。
