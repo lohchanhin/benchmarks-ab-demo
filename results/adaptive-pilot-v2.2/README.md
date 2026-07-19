@@ -1,7 +1,7 @@
 # Adaptive Pilot v2.2
 
-Status: in progress, 9 of 16 planned trials published. The preregistered
-small-local and cross-stack blocks are complete; useful-memory is 1/4. No agent outcome
+Status: in progress, 10 of 16 planned trials published. The preregistered
+small-local and cross-stack blocks are complete; useful-memory is 2/4. No agent outcome
 existed at protocol freeze.
 
 Protocol v2.2 repeats the four-arm Adaptive study with fresh trial ids and
@@ -93,7 +93,7 @@ uncached input tokens, +5.5 tool calls, and +20.228 seconds. See the
 [block report](../../docs/research/CROSS_STACK_V2_2_BLOCK.md) and updated
 [interim analysis](analysis.md).
 
-## Useful-Memory Block (1/4)
+## Useful-Memory Block (2/4)
 
 The first warm-index tenant-memory trial had four valid, successful, and
 correctly scoped arms. Every arm changed only the Aurora theme and renderer,
@@ -112,3 +112,19 @@ memory items and zero guardrails and omitted both notices. See the
 [finding](../../docs/research/ADAPTIVE_MEMORY_OMISSION.md), its
 [sanitized evidence](../../docs/research/evidence/adaptive-memory-omission-v2.2-trial01.json),
 and [trial 01](tenant-memory-pitfall-adaptive-v2-2-pilot-01/comparison.md).
+
+The second cold-index trial repeated every correctness and scope result and
+also repeated the memory omission. Adaptive again selected `full-palace` with
+zero memory items and zero guardrails.
+
+| Trial | Adaptive vs Full reported tokens | Uncached input | Tool calls | Wall time |
+| --- | ---: | ---: | ---: | ---: |
+| [01](tenant-memory-pitfall-adaptive-v2-2-pilot-01/comparison.md) | -15,990 | -9,164 | -4 | -5.992s |
+| [02](tenant-memory-pitfall-adaptive-v2-2-pilot-02/comparison.md) | -185,297 | -40,807 | -15 | -51.258s |
+
+Across these two pairs, Adaptive-minus-Full medians are -100,643.5 reported
+tokens, -24,985.5 uncached input tokens, -9.5 tool calls, and -28.625 seconds.
+Those differences compare Full memory delivery with Adaptive memory omission,
+not two equally memory-aware treatments. Adaptive-minus-Control medians are
++35,850.5 reported tokens, -6,453.5 uncached input tokens, +5.5 tool calls, and
++25.848 seconds. See the updated [interim analysis](analysis.md).

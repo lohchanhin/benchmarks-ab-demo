@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "observationId": "adaptive-memory-omission-v2.2-trial02",
+  "observedAfterOutcomes": true,
+  "protocolVersion": "2.2.0",
+  "vertexPalaceVersion": "0.2.1",
+  "trialId": "tenant-memory-pitfall-adaptive-v2-2-pilot-02",
+  "fixture": {
+    "cacheState": "cold",
+    "fullPalaceHistorySeeded": true,
+    "adaptivePalaceHistorySeeded": true
+  },
+  "fullPalace": {
+    "contextBytes": 5465,
+    "contextOutputSha256": "092bd5e2ec3ff5f4ef3d5b872be4dc2f7c6abed6a25cc25e691b1f2cf3f0253a",
+    "sharedThemePitfallPresent": true,
+    "rendererFailedAttemptPresent": true
+  },
+  "adaptivePalace": {
+    "mode": "full-palace",
+    "contextBytes": 2450,
+    "contextEstimatedTokens": 613,
+    "contextOutputSha256": "b0e3ade5eae88dedef50e2bc566e018c68dfc4ad21c09cf5bb650813be8d0b5e",
+    "memoryItemCount": 0,
+    "memoryEstimatedTokens": 0,
+    "guardrailCount": 0,
+    "sharedThemePitfallPresent": false,
+    "rendererFailedAttemptPresent": false
+  },
+  "outcome": {
+    "validArms": 4,
+    "successfulArms": 4,
+    "pitfallViolations": 0,
+    "allPublicTestsPassed": true,
+    "allHiddenOraclesPassed": true
+  },
+  "classification": "independent repetition of valid frozen treatment behavior",
+  "protocolHandling": "retain v2.2 unchanged; fix only in a new release and fresh protocol",
+  "publicEvidence": [
+    "results/adaptive-pilot-v2.2/tenant-memory-pitfall-adaptive-v2-2-pilot-02/adaptive-palace-evidence.json",
+    "results/adaptive-pilot-v2.2/tenant-memory-pitfall-adaptive-v2-2-pilot-02/full-palace-evidence.json",
+    "results/adaptive-pilot-v2.2/tenant-memory-pitfall-adaptive-v2-2-pilot-02/comparison.json"
+  ]
+}

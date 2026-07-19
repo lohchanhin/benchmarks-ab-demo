@@ -1,7 +1,9 @@
 # Adaptive Memory Omission Observation
 
 Status: observed after all four outcomes of the first v2.2 useful-memory trial
-were available. This is a treatment finding, not a protocol validity failure.
+were available and independently repeated in the second trial after the first
+finding was committed. This is a treatment finding, not a protocol validity
+failure.
 
 ## Context
 
@@ -37,6 +39,26 @@ These hashes cover the captured UTF-8 Palace command outputs; raw transcripts
 remain intentionally unpublished because they contain local paths and session
 metadata.
 
+## Independent Repetition
+
+The second trial used a fresh fixture seed, a cold local index, and Adaptive in
+the first sequence position. Fixture preparation again reported history seeded
+for both Full and Adaptive.
+
+| Field | Full Palace | Adaptive Palace |
+| --- | ---: | ---: |
+| Context bytes | 5,465 | 2,450 |
+| Context output SHA-256 | `092bd5e2...f0253a` | `b0e3ade5...d0b5e` |
+| Shared-theme pitfall present | yes | no |
+| Renderer failed-attempt notice present | yes | no |
+| Adaptive memory items | n/a | 0 |
+| Adaptive guardrails | n/a | 0 |
+
+The complete Full hash is
+`092bd5e2ec3ff5f4ef3d5b872be4dc2f7c6abed6a25cc25e691b1f2cf3f0253a`.
+The Adaptive hash exactly matched trial 01, confirming identical Adaptive
+context output despite a fresh seed and cold rebuild.
+
 ## Outcome
 
 All four arms independently produced the correct two-file repair, avoided
@@ -63,4 +85,6 @@ win.
   memory retrieval implementation during the product-fix phase.
 
 Machine-readable evidence is in
-[`adaptive-memory-omission-v2.2-trial01.json`](./evidence/adaptive-memory-omission-v2.2-trial01.json).
+[`adaptive-memory-omission-v2.2-trial01.json`](./evidence/adaptive-memory-omission-v2.2-trial01.json)
+and
+[`adaptive-memory-omission-v2.2-trial02.json`](./evidence/adaptive-memory-omission-v2.2-trial02.json).
