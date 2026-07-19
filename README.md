@@ -70,6 +70,14 @@ native `apply_patch`, public tests, and the hidden oracle with zero router
 errors. The [sanitized diagnostic record](docs/research/HARNESS_DIAGNOSTICS.md)
 is public; no v2.2 treatment outcome existed at freeze.
 
+After the tag was pushed, the first v2.2 trial completed with all four arms
+valid, correctly scoped, and passing both public tests and the hidden oracle;
+all recorded zero patch-verification and sandbox-preparation errors. Adaptive
+selected `route-lite`. Versus Full it used 868 fewer Palace bytes, 17,055 fewer
+reported tokens, and 13,145 fewer uncached input tokens, while making two more
+tool calls and taking 0.336 seconds longer. This [1/16 interim result](results/adaptive-pilot-v2.2/README.md)
+is descriptive only and does not establish a general efficiency advantage.
+
 Validate the frozen plan without running an agent:
 
 ```sh
