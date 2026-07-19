@@ -15,6 +15,23 @@ export const adaptiveWilliamsOrders = Object.freeze([
   ["adaptive-palace", "control", "full-palace", "route-only"]
 ]);
 
+const adaptiveProtocols = Object.freeze({
+  "2.0.0": {
+    tag: "protocol-v2.0.0",
+    palaceVersion: "0.2.0",
+    resultDirectory: "adaptive-pilot",
+    studyId: "vertex-palace-adaptive-four-scenario-pilot-v2",
+    trialLabel: "adaptive-pilot"
+  },
+  "2.1.0": {
+    tag: "protocol-v2.1.0",
+    palaceVersion: "0.2.1",
+    resultDirectory: "adaptive-pilot-v2.1",
+    studyId: "vertex-palace-adaptive-four-scenario-pilot-v2-1",
+    trialLabel: "adaptive-v2-1-pilot"
+  }
+});
+
 export async function studyCommand(flags) {
   const planPath = path.resolve(stringFlag(flags, "plan", path.join(repositoryRoot, "results", "pilot", "plan.json")));
   const execute = booleanFlag(flags, "execute");
@@ -30,8 +47,9 @@ export async function studyCommand(flags) {
     return { plan, executed: false };
   }
 
-  const defaultManifest = plan.protocolVersion === "2.0.0"
-    ? path.join(repositoryRoot, "results", "adaptive-pilot", "manifest.json")
+  const adaptiveProtocol = adaptiveProtocols[plan.protocolVersion];
+  const defaultManifest = adaptiveProtocol
+    ? path.join(repositoryRoot, "results", adaptiveProtocol.resultDirectory, "manifest.json")
     : path.join(repositoryRoot, "results", "manifest.json");
   const resultsManifestPath = path.resolve(stringFlag(flags, "manifest", defaultManifest));
   const runsRoot = path.resolve(stringFlag(flags, "runs-root", path.join(repositoryRoot, ".benchmark-runs")));
@@ -153,13 +171,16 @@ export function buildPilotPlan(options = {}) {
 }
 
 export function buildAdaptivePilotPlan(options = {}) {
+  const protocolVersion = options.protocolVersion ?? "2.1.0";
+  const protocol = adaptiveProtocols[protocolVersion];
+  if (!protocol) throw new Error(`Unsupported adaptive protocol: ${protocolVersion}`);
   const trials = [];
   const scenarios = options.scenarios ?? pilotScenarioIds;
   for (const [scenarioIndex, scenario] of scenarios.entries()) {
     for (let index = 0; index < adaptiveWilliamsOrders.length; index += 1) {
       const orderIndex = (index + scenarioIndex) % adaptiveWilliamsOrders.length;
       trials.push({
-        trialId: `${scenario}-adaptive-pilot-${String(index + 1).padStart(2, "0")}`,
+        trialId: `${scenario}-${protocol.trialLabel}-${String(index + 1).padStart(2, "0")}`,
         scenario,
         seed: randomBytes(16).toString("hex"),
         order: [...adaptiveWilliamsOrders[orderIndex]],
@@ -169,9 +190,9 @@ export function buildAdaptivePilotPlan(options = {}) {
   }
   return {
     schemaVersion: 2,
-    protocolVersion: "2.0.0",
-    protocolTag: "protocol-v2.0.0",
-    id: "vertex-palace-adaptive-four-scenario-pilot-v2",
+    protocolVersion,
+    protocolTag: protocol.tag,
+    id: protocol.studyId,
     createdAt: new Date().toISOString(),
     frozen: false,
     execution: {
@@ -180,14 +201,16 @@ export function buildAdaptivePilotPlan(options = {}) {
       codexVersion: options.codexVersion ?? "codex-cli 0.145.0-alpha.18",
       timeoutMs: 600000,
       cooldownMs: 15000,
-      palaceVersion: "0.2.0"
+      palaceVersion: protocol.palaceVersion
     },
     trials
   };
 }
 
 export function validateStudyPlan(plan) {
-  if (plan.protocolVersion === "2.0.0") return validateAdaptiveStudyPlan(plan);
+  if (adaptiveProtocols[plan.protocolVersion]) {
+    return validateAdaptiveStudyPlan(plan, adaptiveProtocols[plan.protocolVersion]);
+  }
   return validateLegacyStudyPlan(plan);
 }
 
@@ -232,9 +255,9 @@ function validateLegacyStudyPlan(plan) {
   return true;
 }
 
-function validateAdaptiveStudyPlan(plan) {
-  if (plan.protocolTag !== "protocol-v2.0.0") {
-    throw new Error("Adaptive study plan does not match frozen protocol 2.0.0");
+function validateAdaptiveStudyPlan(plan, protocol) {
+  if (plan.protocolTag !== protocol.tag) {
+    throw new Error(`Adaptive study plan does not match frozen protocol ${plan.protocolVersion}`);
   }
   if (!Array.isArray(plan.trials) || !plan.trials.length) throw new Error("Study plan has no trials");
   if (plan.frozen !== true) throw new Error("Study plan must be frozen before execution");
@@ -247,8 +270,8 @@ function validateAdaptiveStudyPlan(plan) {
       || !plan.execution.codexVersion
       || plan.execution?.timeoutMs !== 600000
       || plan.execution?.cooldownMs !== 15000
-      || plan.execution?.palaceVersion !== "0.2.0") {
-    throw new Error("Study execution settings do not match protocol 2.0.0");
+      || plan.execution?.palaceVersion !== protocol.palaceVersion) {
+    throw new Error(`Study execution settings do not match protocol ${plan.protocolVersion}`);
   }
 
   const ids = new Set();
@@ -260,6 +283,9 @@ function validateAdaptiveStudyPlan(plan) {
     if (ids.has(trial.trialId)) throw new Error(`Duplicate trial id: ${trial.trialId}`);
     ids.add(trial.trialId);
     if (!pilotScenarioIds.includes(trial.scenario)) throw new Error(`Unregistered scenario: ${trial.scenario}`);
+    if (!trial.trialId.startsWith(`${trial.scenario}-${protocol.trialLabel}-`)) {
+      throw new Error(`Trial id does not match protocol ${plan.protocolVersion}: ${trial.trialId}`);
+    }
     if (typeof trial.seed !== "string" || !trial.seed) throw new Error(`Missing seed: ${trial.trialId}`);
     if (seeds.has(trial.seed)) throw new Error(`Duplicate adaptive fixture seed: ${trial.seed}`);
     seeds.add(trial.seed);

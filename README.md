@@ -7,7 +7,7 @@ A public, preregistered, reproducible experiment comparing Codex repository
 work with no Palace, structural routing only, always-on Full Palace, and
 Adaptive Palace.
 
-[Simplified Chinese](README.zh-CN.md) | [v1 protocol](docs/research/PROTOCOL.md) | [Adaptive v2 protocol](docs/research/PROTOCOL_V2.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
+[Simplified Chinese](README.zh-CN.md) | [v1 protocol](docs/research/PROTOCOL.md) | [Adaptive v2.1 protocol](docs/research/PROTOCOL_V2_1.md) | [Amendments](docs/research/PROTOCOL_AMENDMENTS.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
 
 ## Falsifiable Claims
 
@@ -24,7 +24,7 @@ The exact outcomes, -10 percentage-point pilot non-inferiority margin,
 exclusions, and statistics were committed before the new trials at tag
 [`protocol-v1.0.0`](https://github.com/lohchanhin/benchmarks-ab-demo/tree/protocol-v1.0.0).
 
-## Adaptive v2 Study
+## Adaptive v2.1 Successor Study
 
 The published v1 pilot found no end-to-end efficiency win for always-on Full
 Palace. That negative result motivated a new treatment rather than a rewritten
@@ -32,9 +32,17 @@ interpretation. Protocol v2 adds `adaptive-palace`, which runs exactly one
 `palace context --auto` command and may bypass, use a Primary-only route, load
 bounded support context, or add guarded memory.
 
-The [v2 protocol](docs/research/PROTOCOL_V2.md) and
-[frozen plan](results/adaptive-pilot/plan.json) were committed before v2 agent
-outcomes. The exploratory design contains 4 scenarios x 4 seeds x 4 arms = 64
+The first frozen v2.0 attempt exposed a task-transport defect after its outcome
+was inspected: PowerShell changed `$0.00` to `.00` in all Palace arms. The raw
+attempt is retained as a [public incomparable result](results/adaptive-pilot/small-local-bug-adaptive-pilot-01/comparison.md): Control is individually valid,
+the three Palace arms fail exact task fidelity, `comparable` is `false`, and all
+efficiency deltas are `null`.
+
+The corrected [v2.1 protocol](docs/research/PROTOCOL_V2_1.md) and
+[fresh frozen plan](results/adaptive-pilot-v2.1/plan.json) use Vertex Palace
+0.2.1, new trial ids, new seeds, PowerShell-safe task transport, and exact
+comparison of Palace's rendered `## Task` against the manifest. The exploratory
+design contains 4 scenarios x 4 seeds x 4 arms = 64
 fresh sessions. Within every scenario it uses all four Williams sequences, so
 each arm appears once in each execution position. Two trials use a warm local
 Palace index and two force an index rebuild; assignments rotate across
@@ -43,20 +51,21 @@ Provider-side model caches cannot be controlled and remain an explicit limitatio
 
 The v2 primary comparison is Adaptive Palace versus Full Palace correctness.
 Payload, cumulative Token, tool calls, and wall time are secondary and are
-compared only for mutually successful valid pairs. The v2 study is currently
-**preregistered, not completed**; no result should be inferred from the plan.
+compared only for mutually successful valid pairs. The v2.1 study is currently
+**preregistered with zero executed trials**; no performance result should be
+inferred from its plan.
 
 Validate the frozen plan without running an agent:
 
 ```sh
 npm ci
-npm run benchmark -- study --plan results/adaptive-pilot/plan.json
+npm run benchmark -- study --plan results/adaptive-pilot-v2.1/plan.json
 ```
 
 Execute or resume the preregistered pilot only with the frozen model and CLI:
 
 ```sh
-npm run benchmark -- study --plan results/adaptive-pilot/plan.json --execute
+npm run benchmark -- study --plan results/adaptive-pilot-v2.1/plan.json --execute
 npm run analysis:adaptive
 ```
 
@@ -284,6 +293,8 @@ npm run benchmark -- study --plan results/pilot/plan.json --execute --codex-bin 
 docs/research/
   PROTOCOL.md
   PROTOCOL_V2.md
+  PROTOCOL_V2_1.md
+  PROTOCOL_AMENDMENTS.md
   HYPOTHESES.md
   DATA_DICTIONARY.md
   THREATS_TO_VALIDITY.md
@@ -298,6 +309,8 @@ results/
   pilot/
   adaptive-pilot/plan.json
   adaptive-pilot/manifest.json
+  adaptive-pilot-v2.1/plan.json
+  adaptive-pilot-v2.1/manifest.json
   confirmatory/
 ```
 
@@ -311,11 +324,11 @@ remain in `results/manifest.json`.
 - Node.js 20 or newer
 - Git
 - Authenticated `codex-cli 0.145.0-alpha.18` for the frozen pilot
-- `vertex-palace@0.2.0`, installed by `npm ci` on the v2 branch
+- `vertex-palace@0.2.1`, installed by `npm ci` for protocol v2.1
 
 ```sh
 npm run check
-npm run benchmark -- study --plan results/adaptive-pilot/plan.json
+npm run benchmark -- study --plan results/adaptive-pilot-v2.1/plan.json
 ```
 
 The repository is licensed under the [MIT License](LICENSE).

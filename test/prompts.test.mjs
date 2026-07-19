@@ -6,7 +6,7 @@ test("all Palace arms use one context command and Adaptive alone enables auto mo
   const { routeOnly, fullPalace, adaptivePalace } = buildPrompts({ task: "Fix the Aurora contrast regression." });
 
   for (const prompt of [routeOnly, fullPalace, adaptivePalace]) {
-    assert.match(prompt, /palace context "Fix the Aurora contrast regression\."/);
+    assert.match(prompt, /palace context 'Fix the Aurora contrast regression\.'/);
     assert.match(prompt, /exactly one Vertex Palace preparation command/);
     assert.match(prompt, /Do not call palace status, init, index, route, pack, help, open, evaluate, or memory separately/);
     assert.match(prompt, /outside this timed routing comparison/);
@@ -15,6 +15,15 @@ test("all Palace arms use one context command and Adaptive alone enables auto mo
   assert.match(fullPalace, /Historical memory may be incomplete or stale/);
   assert.doesNotMatch(routeOnly, /--auto/);
   assert.doesNotMatch(fullPalace, /--auto/);
-  assert.match(adaptivePalace, /palace context "Fix the Aurora contrast regression\." --auto/);
+  assert.match(adaptivePalace, /palace context 'Fix the Aurora contrast regression\.' --auto/);
   assert.match(adaptivePalace, /same project history as Full Palace/);
+});
+
+test("Palace task quoting preserves PowerShell dollar literals", () => {
+  const task = "Render negative zero as $0.00.";
+  const prompts = buildPrompts({ task });
+
+  assert.match(prompts.routeOnly, /palace context 'Render negative zero as \$0\.00\.'/);
+  assert.match(prompts.fullPalace, /palace context 'Render negative zero as \$0\.00\.'/);
+  assert.match(prompts.adaptivePalace, /palace context 'Render negative zero as \$0\.00\.' --auto/);
 });

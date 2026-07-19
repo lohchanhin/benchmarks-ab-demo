@@ -45,6 +45,10 @@ test("parses Adaptive Palace mode and measured payload from command output", () 
     "",
     "Mode: route-lite",
     "",
+    "## Task",
+    "",
+    "Fix the exact task.",
+    "",
     "## Payload",
     "",
     "Calls: 1 | Bytes: 0 | Estimated tokens: 726",
@@ -67,6 +71,7 @@ test("parses Adaptive Palace mode and measured payload from command output", () 
   assert.equal(result.adaptiveRequested, true);
   assert.equal(result.palaceContextOutputBytes, Buffer.byteLength(output, "utf8"));
   assert.equal(result.adaptivePayloadMatchesOutput, true);
+  assert.equal(result.palaceReceivedTask, "Fix the exact task.");
   assert.deepEqual(result.adaptivePayload, {
     mode: "route-lite",
     calls: 1,

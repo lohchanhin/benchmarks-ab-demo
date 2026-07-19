@@ -27,6 +27,8 @@ test("adaptive pilot balances four arms, positions, and Palace index state", () 
   const plan = buildAdaptivePilotPlan({ codexVersion: "codex-cli test" });
   plan.frozen = true;
   assert.equal(validateStudyPlan(plan), true);
+  assert.equal(plan.protocolVersion, "2.1.0");
+  assert.equal(plan.execution.palaceVersion, "0.2.1");
   assert.equal(plan.trials.length, 16);
 
   for (const scenario of [
@@ -57,4 +59,22 @@ test("committed adaptive pilot plan validates against protocol v2", async () => 
   assert.equal(validateStudyPlan(plan), true);
   assert.equal(plan.frozen, true);
   assert.equal(plan.trials.length, 16);
+});
+
+test("committed successor plan uses fresh v2.1 ids and seeds", async () => {
+  const [v2, successor] = await Promise.all([
+    readFile(`${repositoryRoot}/results/adaptive-pilot/plan.json`, "utf8").then(JSON.parse),
+    readFile(`${repositoryRoot}/results/adaptive-pilot-v2.1/plan.json`, "utf8").then(JSON.parse)
+  ]);
+
+  assert.equal(validateStudyPlan(successor), true);
+  assert.equal(successor.protocolVersion, "2.1.0");
+  assert.equal(successor.execution.palaceVersion, "0.2.1");
+  assert.equal(successor.trials.length, 16);
+  assert.equal(
+    successor.trials.every((trial) => trial.trialId.includes("-adaptive-v2-1-pilot-")),
+    true
+  );
+  const oldSeeds = new Set(v2.trials.map((trial) => trial.seed));
+  assert.equal(successor.trials.some((trial) => oldSeeds.has(trial.seed)), false);
 });

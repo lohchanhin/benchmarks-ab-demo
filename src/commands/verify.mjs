@@ -69,11 +69,12 @@ export async function verifyArm(run, arm) {
       && transcript.adaptivePayload.calls === 1
       && transcript.adaptivePayloadMatchesOutput === true
   );
+  const taskFidelityPassed = arm === "control" || transcript.palaceReceivedTask === run.manifest.task;
   const modePassed = arm === "control"
     ? transcript.palaceCalls === 0
     : arm === "adaptive-palace"
-      ? palaceCallPassed && transcript.adaptiveRequested === true && adaptivePayloadPassed
-      : palaceCallPassed && transcript.adaptiveRequested === false;
+      ? palaceCallPassed && transcript.adaptiveRequested === true && adaptivePayloadPassed && taskFidelityPassed
+      : palaceCallPassed && transcript.adaptiveRequested === false && taskFidelityPassed;
   const executionPassed = execution ? execution.exitCode === 0 && !execution.timedOut : false;
   const treePassed = git.headTree === run.manifest.repositoryTree;
   const settingsPassed = Boolean(
@@ -93,7 +94,8 @@ export async function verifyArm(run, arm) {
             ? `${transcript.palaceCalls} Palace calls detected; expected 0`
             : `${transcript.successfulPalaceCalls}/${transcript.palaceCalls} successful/total Palace calls; `
               + `adaptiveRequested=${transcript.adaptiveRequested}; expected ${arm === "adaptive-palace"}; `
-              + `adaptivePayloadMatchesOutput=${transcript.adaptivePayloadMatchesOutput}`,
+              + `adaptivePayloadMatchesOutput=${transcript.adaptivePayloadMatchesOutput}; `
+              + `taskFidelity=${taskFidelityPassed}`,
           execution ? `Codex exit code ${execution.exitCode}; timedOut=${Boolean(execution.timedOut)}` : "Codex exit code unavailable",
           `fixed execution settings ${settingsPassed ? "match" : "do not match"} the run plan`,
           `fixture tree ${treePassed ? "matches" : "does not match"} ${run.manifest.repositoryTree}`
@@ -123,6 +125,7 @@ export async function verifyArm(run, arm) {
         }
       : null,
     transcript,
+    taskFidelityPassed: arm === "control" ? null : taskFidelityPassed,
     runtimeDiagnostics: parseCodexStderr(stderrSource),
     validity,
     tests: {

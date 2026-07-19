@@ -1,6 +1,6 @@
 export function buildPrompts(scenario) {
   const task = scenario.task.trim();
-  const quotedTask = JSON.stringify(task);
+  const quotedTask = `'${task.replaceAll("'", "''")}'`;
   const shared = [
     "Work directly in the repository and complete the task end to end.",
     "Run the complete test suite before finishing.",

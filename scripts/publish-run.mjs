@@ -8,8 +8,9 @@ import { repositoryRoot } from "../src/lib/root.mjs";
 export async function publishRun(runDirectory, options = {}) {
   const sourceRoot = path.resolve(runDirectory);
   const manifest = await readJson(path.join(sourceRoot, "manifest.json"));
+  const resultDirectory = resultDirectoryForProtocol(manifest.protocolVersion);
   const outputRoot = path.resolve(
-    options.outputRoot ?? path.join(repositoryRoot, "results", "pilot", manifest.id)
+    options.outputRoot ?? path.join(repositoryRoot, "results", resultDirectory, manifest.id)
   );
   if (await pathExists(outputRoot)) throw new Error(`Published result already exists: ${outputRoot}`);
   await mkdir(outputRoot, { recursive: true });
@@ -24,28 +25,35 @@ export async function publishRun(runDirectory, options = {}) {
   await writeJson(path.join(outputRoot, "manifest.json"), publishedManifest);
 
   const artifacts = path.join(sourceRoot, "artifacts");
-  await writeJson(
-    path.join(outputRoot, "run-plan.json"),
-    sanitizeForPublication(await readJson(path.join(artifacts, "run-plan.json")))
-  );
+  await writeJson(path.join(outputRoot, "run-plan.json"), sanitizeForPublication(
+    await readJson(path.join(artifacts, "run-plan.json"))
+  ));
+  const evidenceFiles = [];
   for (const arm of Object.keys(manifest.arms)) {
     const evidence = await readJson(path.join(artifacts, `${arm}-evidence.json`));
-    await writeJson(path.join(outputRoot, `${arm}-evidence.json`), sanitizeForPublication(evidence));
+    const evidenceFile = `${arm}-evidence.json`;
+    evidenceFiles.push(evidenceFile);
+    await writeJson(path.join(outputRoot, evidenceFile), sanitizeForPublication(evidence));
   }
 
   const reports = path.join(sourceRoot, "reports");
-  await writeJson(
-    path.join(outputRoot, "comparison.json"),
-    sanitizeForPublication(await readJson(path.join(reports, "comparison.json")))
-  );
+  const comparison = sanitizeForPublication(await readJson(path.join(reports, "comparison.json")));
+  await writeJson(path.join(outputRoot, "comparison.json"), comparison);
   await writeFile(
     path.join(outputRoot, "comparison.md"),
     sanitizeForPublication(await readFile(path.join(reports, "comparison.md"), "utf8")),
     "utf8"
   );
 
-  await assertNoPrivateMaterial(outputRoot);
-  const hashes = await hashPublishedFiles(outputRoot);
+  const publicFiles = [
+    "manifest.json",
+    "run-plan.json",
+    ...evidenceFiles,
+    "comparison.json",
+    "comparison.md"
+  ];
+  await assertNoPrivateMaterial(outputRoot, publicFiles);
+  const hashes = await hashPublishedFiles(outputRoot, publicFiles);
   await writeFile(
     path.join(outputRoot, "SHA256SUMS"),
     `${hashes.map(({ hash, file }) => `${hash}  ${file}`).join("\n")}\n`,
@@ -55,7 +63,8 @@ export async function publishRun(runDirectory, options = {}) {
     await updateResultsManifest(
       manifest.id,
       outputRoot,
-      options.resultsManifestPath ?? path.join(repositoryRoot, "results", "manifest.json")
+      options.resultsManifestPath ?? path.join(repositoryRoot, "results", resultDirectory, "manifest.json"),
+      comparison
     );
   }
   return { outputRoot, manifest: publishedManifest, hashes };
@@ -70,7 +79,7 @@ export function sanitizeForPublication(value, key = "") {
         .map(([childKey, childValue]) => [childKey, sanitizeForPublication(childValue, childKey)])
     );
   }
-  if (key === "cli" && typeof value === "string") return "vertex-palace@0.1.6";
+  if (key === "cli" && typeof value === "string") return "vertex-palace (local package)";
   if (typeof value === "string") {
     return value
       .replace(/[A-Za-z]:\\[^\r\n"']+/g, "<local-path>")
@@ -79,16 +88,7 @@ export function sanitizeForPublication(value, key = "") {
   return value;
 }
 
-async function assertNoPrivateMaterial(outputRoot) {
-  const files = [
-    "manifest.json",
-    "run-plan.json",
-    "control-evidence.json",
-    "route-only-evidence.json",
-    "full-palace-evidence.json",
-    "comparison.json",
-    "comparison.md"
-  ];
+async function assertNoPrivateMaterial(outputRoot, files) {
   for (const file of files) {
     const source = await readFile(path.join(outputRoot, file), "utf8");
     if (/"(?:session_?id|thread_?id)"/i.test(source)) throw new Error(`${file} contains a session identifier`);
@@ -98,16 +98,7 @@ async function assertNoPrivateMaterial(outputRoot) {
   }
 }
 
-async function hashPublishedFiles(outputRoot) {
-  const files = [
-    "manifest.json",
-    "run-plan.json",
-    "control-evidence.json",
-    "route-only-evidence.json",
-    "full-palace-evidence.json",
-    "comparison.json",
-    "comparison.md"
-  ];
+async function hashPublishedFiles(outputRoot, files) {
   const hashes = [];
   for (const file of files) {
     const source = await readFile(path.join(outputRoot, file));
@@ -116,7 +107,7 @@ async function hashPublishedFiles(outputRoot) {
   return hashes;
 }
 
-async function updateResultsManifest(trialId, outputRoot, manifestPath) {
+async function updateResultsManifest(trialId, outputRoot, manifestPath, comparison) {
   const manifest = await readJson(manifestPath);
   const trial = manifest.trials?.find((entry) => entry.trialId === trialId);
   if (!trial) throw new Error(`Trial ${trialId} is not registered in results/manifest.json`);
@@ -124,8 +115,18 @@ async function updateResultsManifest(trialId, outputRoot, manifestPath) {
   trial.report = path.relative(path.dirname(manifestPath), path.join(outputRoot, "comparison.json")).replaceAll("\\", "/");
   trial.evidenceDirectory = path.relative(path.dirname(manifestPath), outputRoot).replaceAll("\\", "/");
   trial.rawTranscriptsPublished = false;
+  trial.comparisonEligible = comparison.comparable === true;
+  trial.armValidity = Object.fromEntries(
+    Object.entries(comparison.arms ?? {}).map(([arm, evidence]) => [arm, evidence.valid === true])
+  );
   trial.publishedAt = new Date().toISOString();
   await writeJson(manifestPath, manifest);
+}
+
+function resultDirectoryForProtocol(protocolVersion) {
+  if (protocolVersion === "2.0.0") return "adaptive-pilot";
+  if (protocolVersion === "2.1.0") return "adaptive-pilot-v2.1";
+  return "pilot";
 }
 
 async function main() {

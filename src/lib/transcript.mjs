@@ -72,6 +72,7 @@ export function parseCodexTranscript(source, workspaceFiles = []) {
   const adaptivePayloads = palaceCommands.map((item) => parseAdaptivePayload(item.output)).filter(Boolean);
   const adaptivePayload = adaptivePayloads.at(-1) ?? null;
   const adaptiveOutput = palaceCommands.at(-1)?.output ?? "";
+  const palaceReceivedTask = parsePackedTask(adaptiveOutput);
   const adaptiveRequested = palaceCommands.some((item) => /\bcontext\b[^\r\n]*\s--auto(?:\s|$)/i.test(item.command));
 
   return {
@@ -93,11 +94,16 @@ export function parseCodexTranscript(source, workspaceFiles = []) {
     adaptivePayloadMatchesOutput: adaptivePayload
       ? adaptivePayload.contextBytes === Buffer.byteLength(adaptiveOutput, "utf8")
       : null,
+    palaceReceivedTask,
     adaptiveRequested,
     inspectedFiles,
     referencedFiles,
     usage: combineUsage(usageCandidates)
   };
+}
+
+function parsePackedTask(output) {
+  return /^## Task\s*\r?\n(?:\r?\n)?([^\r\n]+)$/m.exec(output)?.[1]?.trim() ?? null;
 }
 
 function parseAdaptivePayload(output) {

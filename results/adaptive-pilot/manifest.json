@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "protocolVersion": "2.0.0",
-  "status": "planned",
+  "status": "pilot-in-progress",
   "plannedTrials": 16,
   "plannedScenarios": [
     "small-local-bug",
@@ -10,5 +10,31 @@
     "stale-memory-adversarial"
   ],
   "plannedSeedsPerScenario": 4,
-  "trials": []
+  "trials": [
+    {
+      "trialId": "small-local-bug-adaptive-pilot-01",
+      "scenario": "small-local-bug",
+      "seed": "2764339101deab86d9eb250e9b3ea20a",
+      "order": [
+        "route-only",
+        "full-palace",
+        "control",
+        "adaptive-palace"
+      ],
+      "status": "completed",
+      "attemptedAt": "2026-07-19T03:11:03.721Z",
+      "report": "small-local-bug-adaptive-pilot-01/comparison.json",
+      "error": null,
+      "evidenceDirectory": "small-local-bug-adaptive-pilot-01",
+      "rawTranscriptsPublished": false,
+      "comparisonEligible": false,
+      "armValidity": {
+        "control": true,
+        "route-only": false,
+        "full-palace": false,
+        "adaptive-palace": false
+      },
+      "publishedAt": "2026-07-19T03:30:34.945Z"
+    }
+  ]
 }

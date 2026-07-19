@@ -34,8 +34,10 @@ test("prepares identical arms, verifies repairs, and writes comparison reports",
         ? "palace context task --auto"
         : "palace context task";
     const palaceOutput = arm === "adaptive-palace"
-      ? measuredAdaptiveOutput("# Vertex Palace Adaptive Context\n\nMode: route-lite\n\n## Payload\n\nCalls: 1 | Bytes: 0 | Estimated tokens: 100\nRoute: 4 (2 primary, 2 support, 0 deferred)\nMemory: 0 items / ~0 tokens | Guardrails: 0")
-      : "ok";
+      ? measuredAdaptiveOutput(`# Vertex Palace Adaptive Context\n\nMode: route-lite\n\n## Task\n\n${manifest.task}\n\n## Payload\n\nCalls: 1 | Bytes: 0 | Estimated tokens: 100\nRoute: 4 (2 primary, 2 support, 0 deferred)\nMemory: 0 items / ~0 tokens | Guardrails: 0`)
+      : arm === "control"
+        ? "ok"
+        : `# Vertex Palace Pack\n\n## Task\n${manifest.task}\n\n## Palace Route\nTask type: bugfix`;
     const transcript = [
       JSON.stringify({ type: "thread.started", thread_id: `${arm}-thread` }),
       JSON.stringify({
@@ -82,6 +84,13 @@ test("prepares identical arms, verifies repairs, and writes comparison reports",
   assert.match(markdown, /\| Elapsed time \| 12\.0s \| 9\.0s \| 8\.0s \| 8\.0s \| 0\.0s \|/);
   assert.equal(report.comparison.delta.durationMsSaved, 0);
   assert.equal(report.comparison.pairwise.controlVsAdaptivePalace.delta.durationMsSaved, 4000);
+
+  const routeTranscriptPath = path.join(artifacts, "route-only-transcript.jsonl");
+  const mismatchedTranscript = (await readFile(routeTranscriptPath, "utf8")).replace(manifest.task, "mutated task");
+  await writeFile(routeTranscriptPath, mismatchedTranscript, "utf8");
+  const taskMismatch = await verifyArm(run, "route-only");
+  assert.equal(taskMismatch.taskFidelityPassed, false);
+  assert.equal(taskMismatch.validity.passed, false);
 });
 
 test("Palace preparation records history truthfully and stays outside tracked fixture changes", async (context) => {

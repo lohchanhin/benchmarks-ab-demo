@@ -3,7 +3,7 @@
 ## Prepare before recording
 
 1. Run `npm ci` and `npm run benchmark -- doctor`.
-2. Validate the frozen study plan and choose one completed trial for display.
+2. Validate the v2.1 frozen study plan and choose only a completed, valid trial for display.
 3. Execute all four v2 arms with the same model and settings.
 4. Review transcripts for secrets and local customer data.
 5. Open `reports/comparison.md` and the reviewed four-arm evidence.
@@ -66,7 +66,7 @@ their median rather than a selected single run.
 Show the public repository, MIT license, frozen protocol tag, and one command:
 
 ```text
-study --plan results/adaptive-pilot/plan.json --execute
+study --plan results/adaptive-pilot-v2.1/plan.json --execute
 ```
 
 End with the Vertex Palace repository and npm installation path.

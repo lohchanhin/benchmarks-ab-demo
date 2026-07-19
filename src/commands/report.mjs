@@ -135,6 +135,8 @@ function summarize(evidence) {
     palaceContextEstimatedTokens: evidence.transcript.palaceContextEstimatedTokens ?? null,
     adaptivePayload: evidence.transcript.adaptivePayload ?? null,
     adaptivePayloadMatchesOutput: evidence.transcript.adaptivePayloadMatchesOutput ?? null,
+    palaceReceivedTask: evidence.transcript.palaceReceivedTask ?? null,
+    taskFidelity: evidence.taskFidelityPassed ?? null,
     inspectionCommands: evidence.transcript.inspectionCommands,
     palaceCalls: evidence.transcript.palaceCalls,
     successfulPalaceCalls: evidence.transcript.successfulPalaceCalls ?? 0,

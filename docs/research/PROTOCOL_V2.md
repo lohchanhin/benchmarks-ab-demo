@@ -1,5 +1,11 @@
 # Vertex Palace Adaptive Benchmark Protocol
 
+> Historical protocol notice: one v2.0.0 trial was attempted, then retained as
+> treatment-fidelity invalid after the outcome had been inspected. Do not run
+> the remaining v2.0.0 plan. Future execution is governed by
+> [`PROTOCOL_V2_1.md`](./PROTOCOL_V2_1.md) and amendment A-002. The original
+> frozen text remains independently available at tag `protocol-v2.0.0`.
+
 Protocol version: 2.0.0
 
 Status: preregistered exploratory adaptive pilot

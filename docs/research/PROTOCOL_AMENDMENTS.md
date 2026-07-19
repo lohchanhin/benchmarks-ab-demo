@@ -25,6 +25,35 @@ four-scenario pilot data were collected.
   to upgrade an H1-H5 conclusion.
 - Commit and tag: the completion commit tagged `pilot-v1-complete`.
 
+## A-002: Post-Outcome Task-Transport Fidelity Check
+
+- Date: 2026-07-19
+- Author: project maintainer with Codex
+- Timing disclosure: the command output and all four outcomes from
+  `small-local-bug-adaptive-pilot-01` had already been inspected when this
+  defect was discovered.
+- Reason: the benchmark embedded the task in a PowerShell double-quoted
+  command. PowerShell expanded `$0` in the required `$0.00` output, so the
+  three Palace arms received `.00` while Control received the frozen task.
+- Old task transport: `palace context "<task>"`, with no exact comparison
+  between the frozen task and the task rendered by Palace.
+- New task transport: `palace context '<task>'`, with embedded single quotes
+  escaped as `''`. Verification extracts the `## Task` value from captured
+  Palace output and requires exact equality with the frozen manifest task.
+- Affected run: `small-local-bug-adaptive-pilot-01`. Its raw transcripts and
+  generated evidence are retained. Control remains individually valid;
+  Route-only, Full Palace, and Adaptive Palace are reclassified invalid for
+  treatment fidelity, and the run is not eligible for any cross-arm
+  efficiency comparison.
+- Outcome handling: no duration, token, tool-call, correctness, or scope value
+  was edited or removed. The regenerated report sets `comparable` to `false`
+  and all comparative deltas to `null`.
+- Applicability: the correction applies only to a fresh successor protocol
+  with new trial ids and seeds. The frozen `protocol-v2.0.0` tag and its plan
+  are not rewritten, and the invalid run will not be silently rerun.
+- Commit and tag: task-fidelity correction frozen at `protocol-v2.1.0`
+  before any successor agent execution.
+
 ## Successor Protocol Disclosure
 
 Protocol v2.0.0 is a new preregistered treatment study, not an amendment that
@@ -32,6 +61,10 @@ changes v1 outcomes. It adds Adaptive Palace, a fourth arm, payload metrics,
 Williams order balance, and warm/cold local-index strata. The v1 protocol,
 plans, evidence, and published analyses remain unchanged. See
 [`PROTOCOL_V2.md`](./PROTOCOL_V2.md).
+
+Protocol v2.1.0 supersedes v2.0.0 for future execution because A-002 changes
+task transport and validity checks after one v2.0.0 outcome was seen. It must
+use fresh trial ids and seeds and be frozen under a new tag before execution.
 
 ## Amendment Template
 

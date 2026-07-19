@@ -2,13 +2,14 @@
 
 The published v1 preregistration is
 [`docs/research/PROTOCOL.md`](docs/research/PROTOCOL.md), frozen at
-`protocol-v1.0.0`. The successor Adaptive study is defined separately in
-[`docs/research/PROTOCOL_V2.md`](docs/research/PROTOCOL_V2.md), frozen at
-`protocol-v2.0.0`. This page summarizes both without changing v1 outcomes.
+`protocol-v1.0.0`. The current Adaptive successor is defined in
+[`docs/research/PROTOCOL_V2_1.md`](docs/research/PROTOCOL_V2_1.md), frozen at
+`protocol-v2.1.0`. Its post-outcome correction is disclosed in the amendment
+log. This page summarizes both without changing v1 or the invalid v2.0 attempt.
 
 ## Independent Variable
 
-The benchmark uses three arms:
+The published v1 benchmark uses three arms:
 
 1. Control prohibits Vertex Palace.
 2. Route-only begins with exactly one `palace context` call and has no history.
@@ -70,13 +71,18 @@ all languages or repositories, or replacement of tests and engineering review.
 The small negative control is expected to show Palace overhead, and all such
 results are retained.
 
-## Adaptive v2 Extension
+## Adaptive v2.1 Extension
 
 Protocol v2 adds a fourth `adaptive-palace` arm. Full and Adaptive receive the
 same independently seeded history; their only treatment difference is legacy
 `palace context` versus `palace context --auto`. Adaptive validity requires a
 parseable mode and payload whose byte count matches captured stdout, while Full
 and Route-only must not use `--auto`.
+
+Protocol v2.1 additionally exact-compares the `## Task` rendered by Palace with
+the frozen manifest task for every Palace arm. A shell-transport mismatch makes
+the arm invalid even if its code and tests pass. The successor uses Vertex
+Palace 0.2.1, new trial ids, and new seeds; it does not overwrite v2.0 evidence.
 
 Each scenario uses four Williams sequences so every arm appears once in every
 execution position. Two trials begin with a warm local Palace index and two

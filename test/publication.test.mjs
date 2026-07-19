@@ -3,6 +3,7 @@ import { mkdtemp, readFile, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
+import { auditPublishedResults } from "../scripts/audit-results.mjs";
 import { publishRun, sanitizeForPublication } from "../scripts/publish-run.mjs";
 import { writeJson } from "../src/lib/files.mjs";
 
@@ -17,7 +18,7 @@ test("publication sanitizer removes session identifiers and local paths", () => 
   });
   assert.equal("sessionId" in sanitized, false);
   assert.equal("threadId" in sanitized.nested, false);
-  assert.equal(sanitized.nested.cli, "vertex-palace@0.1.6");
+  assert.equal(sanitized.nested.cli, "vertex-palace (local package)");
   assert.equal(sanitized.nested.message, "opened <local-path>");
 });
 
@@ -26,7 +27,7 @@ test("publishes a complete sanitized evidence bundle and updates the public mani
   const runRoot = path.join(root, "run");
   const outputRoot = path.join(root, "results", "pilot", "trial-01");
   const resultsManifestPath = path.join(root, "results", "manifest.json");
-  const arms = { control: {}, "route-only": {}, "full-palace": {} };
+  const arms = { control: {}, "route-only": {}, "full-palace": {}, "adaptive-palace": {} };
 
   await writeJson(path.join(runRoot, "manifest.json"), {
     id: "trial-01",
@@ -46,6 +47,13 @@ test("publishes a complete sanitized evidence bundle and updates the public mani
   }
   await writeJson(path.join(runRoot, "reports", "comparison.json"), {
     runId: "trial-01",
+    comparable: false,
+    arms: {
+      control: { valid: true },
+      "route-only": { valid: false },
+      "full-palace": { valid: false },
+      "adaptive-palace": { valid: false }
+    },
     localPath: "D:\\private\\comparison.json"
   });
   await writeFile(
@@ -58,7 +66,7 @@ test("publishes a complete sanitized evidence bundle and updates the public mani
   });
 
   const published = await publishRun(runRoot, { outputRoot, resultsManifestPath });
-  assert.equal(published.hashes.length, 7);
+  assert.equal(published.hashes.length, 8);
   const markdown = await readFile(path.join(outputRoot, "comparison.md"), "utf8");
   assert.equal(markdown, "Session report from <local-path>\n");
   const evidence = JSON.parse(await readFile(path.join(outputRoot, "control-evidence.json"), "utf8"));
@@ -69,5 +77,25 @@ test("publishes a complete sanitized evidence bundle and updates the public mani
   assert.equal(publicManifest.trials[0].report, "pilot/trial-01/comparison.json");
   assert.equal(publicManifest.trials[0].evidenceDirectory, "pilot/trial-01");
   assert.equal(publicManifest.trials[0].rawTranscriptsPublished, false);
+  assert.equal(publicManifest.trials[0].comparisonEligible, false);
+  assert.deepEqual(publicManifest.trials[0].armValidity, {
+    control: true,
+    "route-only": false,
+    "full-palace": false,
+    "adaptive-palace": false
+  });
+  assert.match(await readFile(path.join(outputRoot, "SHA256SUMS"), "utf8"), /adaptive-palace-evidence\.json/);
   assert.match(await readFile(path.join(outputRoot, "SHA256SUMS"), "utf8"), /comparison\.md/);
+});
+
+test("audits the retained four-arm v2 invalid attempt without requiring pilot completion", async () => {
+  const summary = await auditPublishedResults("results/adaptive-pilot/manifest.json", {
+    requireComplete: false
+  });
+
+  assert.deepEqual(summary.errors, []);
+  assert.equal(summary.trialCount, 1);
+  assert.equal(summary.armCount, 4);
+  assert.equal(summary.validArmCount, 1);
+  assert.equal(summary.verifiedFileCount, 8);
 });

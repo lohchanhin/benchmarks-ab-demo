@@ -25,6 +25,7 @@ counts, and all paths are repository-relative POSIX strings.
 | Field | Type | Meaning |
 | --- | --- | --- |
 | `validity.passed` | boolean/null | Arm followed fixed execution and treatment protocol |
+| `taskFidelityPassed` | boolean/null | Palace-rendered `## Task` exactly equals the frozen manifest task |
 | `execution.timedOut` | boolean | Agent exceeded the fixed time budget |
 | `tests.publicPassed` | boolean | Visible complete test command passed |
 | `tests.oraclePassed` | boolean | External hidden oracle passed |
@@ -49,6 +50,7 @@ counts, and all paths are repository-relative POSIX strings.
 | `transcript.palaceContextEstimatedTokens` | number/null | Common byte-based estimate used across Palace arms |
 | `transcript.adaptivePayload` | object/null | Parsed Adaptive mode, self-reported bytes, route tiers, memory, and guardrails |
 | `transcript.adaptivePayloadMatchesOutput` | boolean/null | Self-reported Adaptive `contextBytes` exactly equals captured UTF-8 stdout bytes |
+| `transcript.palaceReceivedTask` | string/null | Exact task rendered by the Palace command after shell parsing |
 | `transcript.referencedFiles` | string[] | Distinct repository path strings observed in JSONL |
 | `usage.inputTokens` | number/null | Cumulative input tokens |
 | `usage.cachedInputTokens` | number/null | Cumulative cached input tokens |

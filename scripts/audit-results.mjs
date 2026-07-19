@@ -3,10 +3,11 @@ import { readdir, readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const EXPECTED_ARMS = Object.freeze(["control", "route-only", "full-palace"]);
+const LEGACY_ARMS = Object.freeze(["control", "route-only", "full-palace"]);
+const ADAPTIVE_ARMS = Object.freeze([...LEGACY_ARMS, "adaptive-palace"]);
 const PRIVATE_MATERIAL = /"(?:session_?id|thread_?id)"|[A-Za-z]:\\|\/(?:home|Users)\//i;
 
-export async function auditPublishedResults(manifestFile = "results/manifest.json") {
+export async function auditPublishedResults(manifestFile = "results/manifest.json", options = {}) {
   const manifestPath = path.resolve(manifestFile);
   const resultsRoot = path.dirname(manifestPath);
   const manifest = JSON.parse(await readFile(manifestPath, "utf8"));
@@ -15,12 +16,16 @@ export async function auditPublishedResults(manifestFile = "results/manifest.jso
   let validArmCount = 0;
   let successfulArmCount = 0;
   let verifiedFileCount = 0;
+  const expectedArms = manifest.protocolVersion?.startsWith("2.") ? ADAPTIVE_ARMS : LEGACY_ARMS;
 
   const plannedTrials = Number.isInteger(manifest.plannedTrials)
     ? manifest.plannedTrials
     : (manifest.plannedScenarios?.length ?? 0) * (manifest.plannedSeedsPerScenario ?? 0);
-  if (manifest.trials?.length !== plannedTrials) {
+  const trialCount = manifest.trials?.length ?? 0;
+  if (options.requireComplete !== false && trialCount !== plannedTrials) {
     errors.push(`Manifest contains ${manifest.trials?.length ?? 0} trials; expected ${plannedTrials}.`);
+  } else if (trialCount > plannedTrials) {
+    errors.push(`Manifest contains ${trialCount} trials; planned maximum is ${plannedTrials}.`);
   }
 
   for (const trial of manifest.trials ?? []) {
@@ -47,15 +52,25 @@ export async function auditPublishedResults(manifestFile = "results/manifest.jso
     if (report.scenario !== trial.scenario) errors.push(`${trial.trialId}: report scenario mismatch.`);
 
     const armNames = Object.keys(report.arms ?? {}).sort();
-    if (JSON.stringify(armNames) !== JSON.stringify([...EXPECTED_ARMS].sort())) {
+    if (JSON.stringify(armNames) !== JSON.stringify([...expectedArms].sort())) {
       errors.push(`${trial.trialId}: report arms are ${armNames.join(", ") || "missing"}.`);
     }
-    for (const armName of EXPECTED_ARMS) {
+    for (const armName of expectedArms) {
       const arm = report.arms?.[armName];
       if (!arm) continue;
       armCount += 1;
       if (arm.valid === true) validArmCount += 1;
       if (arm.success === true) successfulArmCount += 1;
+    }
+    if (manifest.protocolVersion?.startsWith("2.")) {
+      if (trial.comparisonEligible !== (report.comparable === true)) {
+        errors.push(`${trial.trialId}: comparisonEligible does not match the published report.`);
+      }
+      for (const armName of expectedArms) {
+        if (trial.armValidity?.[armName] !== (report.arms?.[armName]?.valid === true)) {
+          errors.push(`${trial.trialId}: armValidity mismatch for ${armName}.`);
+        }
+      }
     }
 
     const audit = await auditEvidenceDirectory(evidenceDirectory, trial.trialId);
@@ -66,7 +81,7 @@ export async function auditPublishedResults(manifestFile = "results/manifest.jso
   return {
     manifestPath,
     plannedTrials,
-    trialCount: manifest.trials?.length ?? 0,
+    trialCount,
     armCount,
     validArmCount,
     successfulArmCount,
@@ -138,7 +153,11 @@ function resolveInside(root, relativePath, errors, label) {
 }
 
 async function main() {
-  const summary = await auditPublishedResults(process.argv[2] ?? "results/manifest.json");
+  const args = process.argv.slice(2);
+  const manifestFile = args.find((arg) => !arg.startsWith("--")) ?? "results/manifest.json";
+  const summary = await auditPublishedResults(manifestFile, {
+    requireComplete: !args.includes("--allow-incomplete")
+  });
   console.log(`Trials: ${summary.trialCount}/${summary.plannedTrials}`);
   console.log(`Arms: ${summary.armCount}; valid: ${summary.validArmCount}; successful: ${summary.successfulArmCount}`);
   console.log(`Checksum-verified public evidence files: ${summary.verifiedFileCount}`);

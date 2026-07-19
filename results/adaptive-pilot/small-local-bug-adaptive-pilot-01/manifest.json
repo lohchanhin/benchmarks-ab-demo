@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 3,
+  "protocolVersion": "2.0.0",
+  "id": "small-local-bug-adaptive-pilot-01",
+  "createdAt": "2026-07-19T03:00:37.119Z",
+  "seed": "2764339101deab86d9eb250e9b3ea20a",
+  "scenario": "small-local-bug",
+  "scenarioTitle": "Small single-file negative-zero formatting bug",
+  "task": "Fix currency formatting so negative zero is rendered as $0.00 while genuinely negative cent values keep their minus sign. Keep the public API stable and make the complete test suite pass without changing tests.",
+  "cacheState": "warm",
+  "repositoryTree": "78ddc8cb526ac7135821798df2b57b283d15c079",
+  "baseline": {
+    "expectedToFail": true,
+    "testExitCode": 1,
+    "testDurationMs": 219,
+    "oracleExitCode": 1,
+    "oracleDurationMs": 91
+  },
+  "palaceSeed": {
+    "cli": "vertex-palace (local package)",
+    "routeOnly": {
+      "routeId": null,
+      "memorySeeded": false
+    },
+    "fullPalace": {
+      "routeId": null,
+      "memorySeeded": false
+    },
+    "adaptivePalace": {
+      "routeId": null,
+      "memorySeeded": false
+    }
+  },
+  "paths": {
+    "run": ".",
+    "controlWorkspace": "arms/control",
+    "routeOnlyWorkspace": "arms/route-only",
+    "fullPalaceWorkspace": "arms/full-palace",
+    "controlPrompt": "prompts/control.txt",
+    "routeOnlyPrompt": "prompts/route-only.txt",
+    "fullPalacePrompt": "prompts/full-palace.txt",
+    "adaptivePalaceWorkspace": "arms/adaptive-palace",
+    "adaptivePalacePrompt": "prompts/adaptive-palace.txt"
+  },
+  "arms": {
+    "control": {
+      "commit": "a3a8a85cae08776a74a1917d6e9de0b432b2832a",
+      "tree": "78ddc8cb526ac7135821798df2b57b283d15c079"
+    },
+    "route-only": {
+      "commit": "a3a8a85cae08776a74a1917d6e9de0b432b2832a",
+      "tree": "78ddc8cb526ac7135821798df2b57b283d15c079"
+    },
+    "full-palace": {
+      "commit": "a3a8a85cae08776a74a1917d6e9de0b432b2832a",
+      "tree": "78ddc8cb526ac7135821798df2b57b283d15c079"
+    },
+    "adaptive-palace": {
+      "commit": "a3a8a85cae08776a74a1917d6e9de0b432b2832a",
+      "tree": "78ddc8cb526ac7135821798df2b57b283d15c079"
+    }
+  },
+  "generatedFileCount": 11,
+  "publishedFrom": ".benchmark-runs/<reviewed-local-run>",
+  "publication": {
+    "rawTranscriptsIncluded": false,
+    "sessionIdentifiersIncluded": false,
+    "localPathsIncluded": false
+  }
+}

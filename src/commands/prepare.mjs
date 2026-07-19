@@ -19,7 +19,8 @@ export async function prepareCommand(flags) {
   const runsRoot = path.resolve(stringFlag(flags, "runs-root", path.join(repositoryRoot, ".benchmark-runs")));
   const runDirectory = path.join(runsRoot, runId);
   const skipPalaceSeed = booleanFlag(flags, "skip-palace-seed");
-  const protocolVersion = enumFlag(flags, "protocol-version", ["1.0.0", "2.0.0"], "2.0.0");
+  const protocolVersion = enumFlag(flags, "protocol-version", ["1.0.0", "2.0.0", "2.1.0"], "2.1.0");
+  const adaptiveProtocol = protocolVersion !== "1.0.0";
   const cacheState = enumFlag(flags, "cache-state", ["warm", "cold"], "warm");
   const palaceInvocation = await resolvePalaceInvocation(stringFlag(flags, "palace-bin", undefined));
 
@@ -31,7 +32,7 @@ export async function prepareCommand(flags) {
     control: path.join(runDirectory, "arms", "control"),
     "route-only": path.join(runDirectory, "arms", "route-only"),
     "full-palace": path.join(runDirectory, "arms", "full-palace"),
-    ...(protocolVersion === "2.0.0"
+    ...(adaptiveProtocol
       ? { "adaptive-palace": path.join(runDirectory, "arms", "adaptive-palace") }
       : {})
   };
@@ -94,7 +95,7 @@ export async function prepareCommand(flags) {
   await Promise.all(promptWrites);
 
   const manifest = {
-    schemaVersion: protocolVersion === "2.0.0" ? 3 : 2,
+    schemaVersion: adaptiveProtocol ? 3 : 2,
     protocolVersion,
     id: runId,
     createdAt: new Date().toISOString(),
