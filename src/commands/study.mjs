@@ -3,6 +3,7 @@ import { mkdir } from "node:fs/promises";
 import path from "node:path";
 import { booleanFlag, stringFlag } from "../lib/args.mjs";
 import { pathExists, readJson, writeJson } from "../lib/files.mjs";
+import { assertFrozenProtocolGitState } from "../lib/git.mjs";
 import { repositoryRoot } from "../lib/root.mjs";
 import {
   controlFirstScenarioIds,
@@ -105,9 +106,6 @@ export async function studyCommand(flags) {
     console.log("Plan validated. Pass --execute to begin or resume the preregistered runs.");
     return { plan, executed: false };
   }
-  await validatePalacePackageLock(plan);
-  validateScenarioVariantKey(plan);
-
   const adaptiveProtocol = adaptiveProtocols[plan.protocolVersion];
   if (adaptiveProtocol?.retired) {
     throw new Error(
@@ -121,6 +119,11 @@ export async function studyCommand(flags) {
   const runsRoot = path.resolve(stringFlag(flags, "runs-root", path.join(repositoryRoot, ".benchmark-runs")));
   const limit = positiveIntegerOrInfinity(stringFlag(flags, "limit", undefined), "--limit");
   const results = await readJson(resultsManifestPath);
+  await validatePalacePackageLock(plan);
+  await assertFrozenProtocolGitState(plan, repositoryRoot, {
+    resume: Array.isArray(results.trials) && results.trials.length > 0
+  });
+  validateScenarioVariantKey(plan);
   const fixedExecution = {
     model: fixedFlag(flags, "model", plan.execution.model),
     reasoningEffort: fixedFlag(flags, "reasoning-effort", plan.execution.reasoningEffort),

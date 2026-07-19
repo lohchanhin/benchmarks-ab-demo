@@ -85,3 +85,33 @@ published shasum and integrity from the registry, install exact 0.3.0 into this
 repository, run a clean `npm ci` and the complete check, and only then prepare
 the private key commitment and protocol freeze commit. No formal arm may run
 before that freeze commit is tagged.
+
+## Freeze And Tag Execution Gate
+
+The harness now enforces the final sequencing rule instead of leaving it to the
+operator. `npm run freeze:control-first:v3` first requires a clean worktree and
+the complete release-ready command. Only after every subprocess has finished
+does it read the 32-byte key. Its default is a non-writing preview; `-- --write`
+stores only the commitment and sets the plan to frozen. The private key is not
+included in the returned object, output, plan, or child environment.
+
+Before any v3 Agent arm, `study --execute` verifies the Git state. A first run
+must use the exact clean commit pointed to by `protocol-v3.0.0`. A resume may use
+that commit or a descendant only when every committed path is under
+`results/control-first-v3/` except `plan.json`, and the only worktree change is
+the v3 manifest. This permits interruption recovery without allowing source or
+protocol drift.
+
+The first resume test exposed a real parser defect: the shared line helper
+trimmed Git porcelain prefixes before slicing the path, turning `results/...`
+into `esults/...`. A dedicated prefix-preserving parser fixed it. The focused
+suite then passed 17/17, including missing-tag, dirty-tree, wrong-HEAD,
+result-only resume, private-key non-persistence, and malformed-freeze cases.
+The complete benchmark check passed 70/70 with every prior fixture and evidence
+audit unchanged and the formal v3 manifest still at 0/16.
+
+Palace self-evaluation found 5/14 changed files (coverage 0.36, focus 0.50,
+confidence 0.35, well calibrated). It recovered the three core implementation
+files but missed the wrapper script, both direct regression tests, and most
+bilingual evidence. The result remains `needs-review` and is retained as another
+source-to-test-to-script sibling-routing gap, not an efficiency result.

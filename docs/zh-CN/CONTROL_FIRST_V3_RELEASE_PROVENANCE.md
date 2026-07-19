@@ -69,3 +69,25 @@ Agent 总 Token 或执行时间下降的证据。
 等使用者在场时重新完成 npm 官方浏览器授权，再从 registry 核对 shasum 与 integrity，
 把本仓库升级到精确 0.3.0，以干净 `npm ci` 重跑完整检查。之后才生成私密盲测密钥、
 提交 commitment、冻结计划并打协议 tag；冻结 tag 之前不能执行任何正式 Arm。
+
+## 冻结与 Git tag 执行闸门
+
+Harness 现在会强制执行最后顺序，而不是依赖人工记忆。`npm run freeze:control-first:v3`
+先要求干净工作区并通过完整 release-ready；所有子进程结束后才读取 32-byte 私钥。
+默认只预览，追加 `-- --write` 才把 commitment 写入计划并设为 frozen。返回对象、终端
+输出、计划和子进程环境都不会包含私钥。
+
+任何 v3 Agent Arm 前，`study --execute` 都会检查 Git。首次执行必须是
+`protocol-v3.0.0` 精确指向的干净 commit。续跑可以位于该 commit 或其后代，但已提交
+文件只能是 `results/control-first-v3/` 下且不能是 `plan.json`，工作区也只能修改 v3
+manifest；这样既能恢复中断，也不能偷偷改源码或协议。
+
+第一次续跑测试确实抓到解析缺陷：共用 line helper 在切路径前移除了 Git porcelain
+前缀，导致 `results/...` 变成 `esults/...`。改用保留前缀的专用解析器后，聚焦套件
+17/17 通过，覆盖缺失 tag、脏工作区、错误 HEAD、仅结果续跑、私钥不落盘与错误冻结输入。
+完整 benchmark check 为 70/70，既有 fixture 与证据审计保持通过，正式 v3 manifest
+仍是 0/16。
+
+Palace 自评命中 5/14，coverage 0.36、focus 0.50、confidence 0.35，属于校准合理但
+`needs-review`。它找到了三个核心实现文件，却漏掉 wrapper script、两项直接回归测试和
+多数双语证据；这继续证明源码到测试／脚本的 sibling 路由仍需加强，不是效率结果。

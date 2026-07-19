@@ -197,6 +197,14 @@ empty-study checks without invoking Codex. `npm run check:release-ready` runs
 the complete local suite before that network-backed gate. The command must fail
 until npm publication and the exact dependency update are both complete.
 
+Once it passes, `npm run freeze:control-first:v3` is dry-run-only by default.
+It reads `VERTEX_PALACE_BENCHMARK_VARIANT_KEY` only after every child process has
+finished, emits only the SHA-256 commitment, and requires `-- --write` to change
+the plan. The first `study --execute` invocation requires a clean HEAD exactly
+at `protocol-v3.0.0`. A resumed invocation permits only the v3 manifest in the
+worktree and result-only commits descended from that tag; source, protocol, or
+plan changes terminate before an Agent arm starts.
+
 ## Evidence And Privacy
 
 Attempted, failed, invalid, and timed-out trials remain outcomes. Reviewed JSON,

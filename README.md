@@ -154,6 +154,12 @@ audit, or `npm run check:release-ready` to run the complete benchmark checks
 first. Both intentionally fail until public registry metadata, `package.json`,
 `package-lock.json`, and the installed package all identify the same 0.3.0
 tarball while the public v3 manifest remains empty.
+After those checks pass, `npm run freeze:control-first:v3` performs a dry run
+using the private key from `VERTEX_PALACE_BENCHMARK_VARIANT_KEY`; append
+`-- --write` only after reviewing the public commitment. The key is never
+printed, written, or inherited by a child process. Initial formal execution
+requires a clean HEAD exactly at `protocol-v3.0.0`; an interrupted study may
+resume only from that tag or a descendant containing result-only changes.
 The current product gate also records exact Zod and Requests routes at recall
 1.000 / strict precision 1.000 and a clean-install 50-memory ceiling test; these
 remain engineering evidence until the independent Agent arms are frozen and run.
