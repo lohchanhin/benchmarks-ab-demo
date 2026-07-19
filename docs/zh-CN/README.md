@@ -4,7 +4,7 @@
 `benchmarks-ab-demo`。它们是导航与解释层，不是新的研究协议，也不会改变已
 冻结的任务、版本、随机 seed、分析方法或结果。
 
-[项目中文首页](../../README.zh-CN.md) | [快速验证指南](./QUICKSTART.md) | [结果阅读指南](./RESULTS_GUIDE.md) | [英文最终报告](../research/ADAPTIVE_V2_2_FINAL.md)
+[项目中文首页](../../README.zh-CN.md) | [快速验证指南](./QUICKSTART.md) | [结果阅读指南](./RESULTS_GUIDE.md) | [Control-first v3 协议](./PROTOCOL_V3.md) | [英文最终报告](../research/ADAPTIVE_V2_2_FINAL.md)
 
 ## 按目的阅读
 
@@ -15,6 +15,7 @@
 | 重算已发表的聚合分析 | [快速验证指南](./QUICKSTART.md#重新生成聚合分析) | 否 |
 | 查看实验方法 | [英文方法说明](../../METHODOLOGY.md) | 否 |
 | 审核预注册内容 | [v2.2 冻结协议](../research/PROTOCOL_V2_2.md) | 否 |
+| 查看下一轮尚未执行的设计 | [Control-first v3 中文协议](./PROTOCOL_V3.md) | 否 |
 | 复现一个真实 Agent trial | [完整复现说明](./QUICKSTART.md#完整-agent-复现高成本) | 是，成本较高 |
 | 准备比赛展示 | [三分钟影片辅助流程](./QUICKSTART.md#三分钟影片辅助流程) | 建议播放已录制证据 |
 
@@ -42,6 +43,9 @@
 v2.2 研究固定使用 `vertex-palace@0.2.1`。后续产品版本修复了研究发现的问题，
 但不能把新版本行为倒填进旧 trial，也不能用新版本重跑后继续称为同一个 v2.2
 数据集。任何修复后比较都必须使用新的协议版本、trial id、seed 与冻结 tag。
+
+Control-first v3 正是这样的独立新协议，但目前仍处于设计审核：草案计划为
+`frozen:false`，公开 manifest 为 0 个 trial，不可用于宣称任何修复后结果。
 
 ## 引用边界
 

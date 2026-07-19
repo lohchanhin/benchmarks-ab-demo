@@ -4,7 +4,7 @@ import path from "node:path";
 import { booleanFlag, stringFlag } from "../lib/args.mjs";
 import { pathExists, readJson, writeJson } from "../lib/files.mjs";
 import { repositoryRoot } from "../lib/root.mjs";
-import { pilotScenarioIds } from "../lib/scenario.mjs";
+import { controlFirstScenarioIds, pilotScenarioIds } from "../lib/scenario.mjs";
 import { prepareCommand } from "./prepare.mjs";
 import { benchmarkExecutionEnvironment, orderedArms, runCommand } from "./run.mjs";
 
@@ -38,6 +38,29 @@ const adaptiveProtocols = Object.freeze({
     resultDirectory: "adaptive-pilot-v2.2",
     studyId: "vertex-palace-adaptive-four-scenario-pilot-v2-2",
     trialLabel: "adaptive-v2-2-pilot",
+    executionEnvironment: {
+      platform: "win32",
+      sandboxProfile: "workspace-write/windows-elevated",
+      lastMessageTransport: "workspace-local-then-artifacts-v1"
+    }
+  },
+  "3.0.0": {
+    tag: "protocol-v3.0.0",
+    palaceVersion: "0.3.0",
+    palaceSourceCommit: "75be54a3e4570fb50f1a9f0304d017cb56e9a36b",
+    resultDirectory: "control-first-v3",
+    studyId: "vertex-palace-control-first-four-scenario-pilot-v3",
+    trialLabel: "control-first-v3-pilot",
+    scenarioIds: controlFirstScenarioIds,
+    primaryComparison: "adaptive-vs-control",
+    primaryEfficiencyMetric: "reportedTokens",
+    comparisonOrder: [
+      "adaptive-vs-control",
+      "adaptive-vs-full",
+      "route-only-vs-control",
+      "full-vs-route-only"
+    ],
+    planSchemaVersion: 4,
     executionEnvironment: {
       platform: "win32",
       sandboxProfile: "workspace-write/windows-elevated",
@@ -195,7 +218,7 @@ export function buildAdaptivePilotPlan(options = {}) {
   const protocol = adaptiveProtocols[protocolVersion];
   if (!protocol) throw new Error(`Unsupported adaptive protocol: ${protocolVersion}`);
   const trials = [];
-  const scenarios = options.scenarios ?? pilotScenarioIds;
+  const scenarios = options.scenarios ?? protocol.scenarioIds ?? pilotScenarioIds;
   for (const [scenarioIndex, scenario] of scenarios.entries()) {
     for (let index = 0; index < adaptiveWilliamsOrders.length; index += 1) {
       const orderIndex = (index + scenarioIndex) % adaptiveWilliamsOrders.length;
@@ -209,12 +232,19 @@ export function buildAdaptivePilotPlan(options = {}) {
     }
   }
   return {
-    schemaVersion: protocol.executionEnvironment ? 3 : 2,
+    schemaVersion: protocol.planSchemaVersion ?? (protocol.executionEnvironment ? 3 : 2),
     protocolVersion,
     protocolTag: protocol.tag,
     id: protocol.studyId,
     createdAt: new Date().toISOString(),
     frozen: false,
+    ...(protocol.primaryComparison
+      ? {
+          primaryComparison: protocol.primaryComparison,
+          primaryEfficiencyMetric: protocol.primaryEfficiencyMetric,
+          comparisonOrder: protocol.comparisonOrder
+        }
+      : {}),
     execution: {
       model: "gpt-5.6-sol",
       reasoningEffort: "xhigh",
@@ -222,6 +252,7 @@ export function buildAdaptivePilotPlan(options = {}) {
       timeoutMs: 600000,
       cooldownMs: 15000,
       palaceVersion: protocol.palaceVersion,
+      ...(protocol.palaceSourceCommit ? { palaceSourceCommit: protocol.palaceSourceCommit } : {}),
       ...(protocol.executionEnvironment ?? {})
     },
     trials
@@ -282,7 +313,8 @@ function validateAdaptiveStudyPlan(plan, protocol) {
   }
   if (!Array.isArray(plan.trials) || !plan.trials.length) throw new Error("Study plan has no trials");
   if (plan.frozen !== true) throw new Error("Study plan must be frozen before execution");
-  if (plan.trials.length !== pilotScenarioIds.length * adaptiveWilliamsOrders.length) {
+  const scenarioIds = protocol.scenarioIds ?? pilotScenarioIds;
+  if (plan.trials.length !== scenarioIds.length * adaptiveWilliamsOrders.length) {
     throw new Error("Adaptive pilot must contain four trials per preregistered scenario");
   }
   if (plan.execution?.model !== "gpt-5.6-sol"
@@ -293,6 +325,16 @@ function validateAdaptiveStudyPlan(plan, protocol) {
       || plan.execution?.cooldownMs !== 15000
       || plan.execution?.palaceVersion !== protocol.palaceVersion) {
     throw new Error(`Study execution settings do not match protocol ${plan.protocolVersion}`);
+  }
+  if (protocol.palaceSourceCommit && plan.execution?.palaceSourceCommit !== protocol.palaceSourceCommit) {
+    throw new Error(`Study Palace source commit does not match protocol ${plan.protocolVersion}`);
+  }
+  if (protocol.primaryComparison && (
+    plan.primaryComparison !== protocol.primaryComparison
+    || plan.primaryEfficiencyMetric !== protocol.primaryEfficiencyMetric
+    || JSON.stringify(plan.comparisonOrder) !== JSON.stringify(protocol.comparisonOrder)
+  )) {
+    throw new Error(`Study comparison hierarchy does not match protocol ${plan.protocolVersion}`);
   }
   if (protocol.executionEnvironment) {
     for (const [key, expected] of Object.entries(protocol.executionEnvironment)) {
@@ -310,7 +352,7 @@ function validateAdaptiveStudyPlan(plan, protocol) {
   for (const trial of plan.trials) {
     if (ids.has(trial.trialId)) throw new Error(`Duplicate trial id: ${trial.trialId}`);
     ids.add(trial.trialId);
-    if (!pilotScenarioIds.includes(trial.scenario)) throw new Error(`Unregistered scenario: ${trial.scenario}`);
+    if (!scenarioIds.includes(trial.scenario)) throw new Error(`Unregistered scenario: ${trial.scenario}`);
     if (!trial.trialId.startsWith(`${trial.scenario}-${protocol.trialLabel}-`)) {
       throw new Error(`Trial id does not match protocol ${plan.protocolVersion}: ${trial.trialId}`);
     }
@@ -329,7 +371,7 @@ function validateAdaptiveStudyPlan(plan, protocol) {
     cacheByOrder.get(orderKey)[trial.cacheState] += 1;
   }
 
-  for (const scenario of pilotScenarioIds) {
+  for (const scenario of scenarioIds) {
     const trials = plan.trials.filter((trial) => trial.scenario === scenario);
     if (trials.length !== 4) throw new Error(`Scenario ${scenario} must have four adaptive trials`);
     if (new Set(trials.map((trial) => trial.order.join(","))).size !== 4) {

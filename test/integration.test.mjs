@@ -4,11 +4,12 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { prepareCommand } from "../src/commands/prepare.mjs";
-import { writeComparisonReport } from "../src/commands/report.mjs";
+import { buildComparison, writeComparisonReport } from "../src/commands/report.mjs";
 import { verifyArm } from "../src/commands/verify.mjs";
 import { pathExists, writeJson } from "../src/lib/files.mjs";
 import { collectGitEvidence } from "../src/lib/git.mjs";
 import { loadRun } from "../src/lib/run-state.mjs";
+import { applyCanonicalRepair as applyScenarioRepair } from "../src/lib/scenario.mjs";
 
 test("prepares identical arms, verifies repairs, and writes comparison reports", async (context) => {
   const root = await mkdtemp(path.join(os.tmpdir(), "benchmark-integration-"));
@@ -27,7 +28,7 @@ test("prepares identical arms, verifies repairs, and writes comparison reports",
   const artifacts = path.join(runDirectory, "artifacts");
   await mkdir(artifacts, { recursive: true });
   for (const arm of ["control", "route-only", "full-palace", "adaptive-palace"]) {
-    await applyCanonicalRepair(run.workspace(arm));
+    await applyTenantThemeRepair(run.workspace(arm));
     const palaceCommand = arm === "control"
       ? "rg Aurora src clients"
       : arm === "adaptive-palace"
@@ -102,6 +103,84 @@ test("prepares identical arms, verifies repairs, and writes comparison reports",
   assert.equal(sandboxMismatch.validity.passed, false);
 });
 
+test("control-first v3 rejects correct output with an over-broad changed-file scope", async (context) => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "benchmark-control-first-scope-"));
+  context.after(() => rm(root, { recursive: true, force: true }));
+  const { runDirectory } = await prepareCommand(new Map([
+    ["scenario", "decision-memory-dependent"],
+    ["run-id", "control-first-scope"],
+    ["seed", "control-first-scope-seed"],
+    ["runs-root", root],
+    ["protocol-version", "3.0.0"],
+    ["skip-palace-seed", true]
+  ]));
+  const run = await loadRun(runDirectory);
+  const workspace = run.workspace("control");
+  const repair = await applyScenarioRepair(run.scenario, workspace);
+  assert.equal(repair.exitCode, 0);
+  await writeFile(path.join(workspace, "README.md"), "# Unrelated rewrite\n", "utf8");
+
+  const artifacts = path.join(runDirectory, "artifacts");
+  await mkdir(artifacts, { recursive: true });
+  await writeFile(path.join(artifacts, "control-transcript.jsonl"), [
+    JSON.stringify({ type: "thread.started", thread_id: "control-first-scope" }),
+    JSON.stringify({
+      type: "item.completed",
+      item: {
+        type: "command_execution",
+        command: "node --test",
+        status: "completed",
+        exit_code: 0,
+        aggregated_output: "tests passed"
+      }
+    }),
+    JSON.stringify({
+      type: "turn.completed",
+      usage: { input_tokens: 1000, cached_input_tokens: 100, output_tokens: 100 }
+    })
+  ].join("\n") + "\n", "utf8");
+  await writeJson(path.join(artifacts, "control-execution.json"), {
+    model: "gpt-5.6-sol",
+    reasoningEffort: "xhigh",
+    durationMs: 1000,
+    exitCode: 0,
+    timedOut: false,
+    startedAt: "2026-01-01T00:00:00.000Z",
+    endedAt: "2026-01-01T00:00:01.000Z"
+  });
+
+  const evidence = await verifyArm(run, "control");
+  assert.equal(evidence.validity.passed, true);
+  assert.equal(evidence.tests.passed, true);
+  assert.equal(evidence.score.forbiddenViolation, false);
+  assert.equal(evidence.score.changedFilePrecision, 0.5);
+  assert.equal(evidence.score.changedFileRecall, 1);
+  assert.equal(evidence.scopeRequirement.strict, true);
+  assert.equal(evidence.scopeRequirement.passed, false);
+  assert.equal(evidence.success, false);
+
+  const armEvidence = {
+    control: evidence,
+    "route-only": evidence,
+    "full-palace": evidence,
+    "adaptive-palace": {
+      ...evidence,
+      success: true,
+      score: { ...evidence.score, total: 100, changedFilePrecision: 1 },
+      execution: { ...evidence.execution, durationMs: 800 },
+      transcript: {
+        ...evidence.transcript,
+        usage: { ...evidence.transcript.usage, totalTokens: 900 }
+      }
+    }
+  };
+  const comparison = buildComparison(run, armEvidence);
+  assert.equal(comparison.schemaVersion, 5);
+  assert.equal(comparison.primaryComparison, "adaptive-vs-control");
+  assert.equal(comparison.comparable, false);
+  assert.equal(comparison.delta.reportedTokensSaved, null);
+});
+
 test("Palace preparation records history truthfully and stays outside tracked fixture changes", async (context) => {
   const root = await mkdtemp(path.join(os.tmpdir(), "benchmark-palace-scope-"));
   context.after(() => rm(root, { recursive: true, force: true }));
@@ -127,7 +206,7 @@ test("Palace preparation records history truthfully and stays outside tracked fi
   }
 });
 
-async function applyCanonicalRepair(workspace) {
+async function applyTenantThemeRepair(workspace) {
   const rendererPath = path.join(workspace, "src", "rendering", "article-page.mjs");
   const auroraPath = path.join(workspace, "clients", "aurora", "theme.mjs");
   const renderer = (await readFile(rendererPath, "utf8")).replace(

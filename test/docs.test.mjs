@@ -10,7 +10,8 @@ const documentationFiles = [
   "README.zh-CN.md",
   "docs/zh-CN/README.md",
   "docs/zh-CN/QUICKSTART.md",
-  "docs/zh-CN/RESULTS_GUIDE.md"
+  "docs/zh-CN/RESULTS_GUIDE.md",
+  "docs/zh-CN/PROTOCOL_V3.md"
 ];
 
 test("publishes discoverable Simplified Chinese judge guidance", async () => {
@@ -19,6 +20,7 @@ test("publishes discoverable Simplified Chinese judge guidance", async () => {
   const index = await read("docs/zh-CN/README.md");
   const quickstart = await read("docs/zh-CN/QUICKSTART.md");
   const results = await read("docs/zh-CN/RESULTS_GUIDE.md");
+  const protocolV3 = await read("docs/zh-CN/PROTOCOL_V3.md");
 
   for (const content of [english, chinese]) {
     assert.match(content, /docs\/zh-CN\/README\.md/);
@@ -36,6 +38,12 @@ test("publishes discoverable Simplified Chinese judge guidance", async () => {
   assert.match(results, /Adaptive - Control/);
   assert.match(results, /不能说 Vertex Palace.*普遍省 Token/);
   assert.match(results, /不能改写冻结结果/);
+  assert.match(protocolV3, /Adaptive Palace 对 Control/);
+  assert.match(protocolV3, /frozen:false/);
+  assert.match(protocolV3, /公开测试通过/);
+  assert.match(protocolV3, /hidden oracle 失败/);
+  assert.match(protocolV3, /浏览器／设备验证码/);
+  assert.match(protocolV3, /CONTROL_FIRST_V3_PREFLIGHT\.md/);
 });
 
 test("keeps local links in the Chinese documentation surface resolvable", async () => {

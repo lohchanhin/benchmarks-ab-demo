@@ -117,3 +117,50 @@ test("committed v2.2 plan freezes the corrected harness with fresh ids and seeds
   const oldSeeds = new Set([...v2.trials, ...v21.trials].map((trial) => trial.seed));
   assert.equal(successor.trials.some((trial) => oldSeeds.has(trial.seed)), false);
 });
+
+test("control-first v3 makes Adaptive versus Control primary with a fresh scenario set", async () => {
+  const plan = buildAdaptivePilotPlan({
+    protocolVersion: "3.0.0",
+    codexVersion: "codex-cli 0.145.0-alpha.18"
+  });
+  plan.frozen = true;
+  assert.equal(validateStudyPlan(plan), true);
+  assert.equal(plan.schemaVersion, 4);
+  assert.equal(plan.primaryComparison, "adaptive-vs-control");
+  assert.equal(plan.primaryEfficiencyMetric, "reportedTokens");
+  assert.deepEqual(plan.comparisonOrder, [
+    "adaptive-vs-control",
+    "adaptive-vs-full",
+    "route-only-vs-control",
+    "full-vs-route-only"
+  ]);
+  assert.equal(plan.execution.palaceVersion, "0.3.0");
+  assert.equal(plan.execution.palaceSourceCommit, "75be54a3e4570fb50f1a9f0304d017cb56e9a36b");
+  assert.equal(plan.trials.length, 16);
+  assert.deepEqual(
+    [...new Set(plan.trials.map((trial) => trial.scenario))],
+    ["small-local-bug", "cross-stack-regression", "decision-memory-dependent", "stale-memory-adversarial"]
+  );
+  assert.equal(plan.trials.some((trial) => trial.scenario === "tenant-memory-pitfall"), false);
+});
+
+test("committed v3 draft is structurally valid, fresh, and intentionally not executable", async () => {
+  const draft = JSON.parse(await readFile(`${repositoryRoot}/results/control-first-v3/plan.json`, "utf8"));
+  assert.equal(draft.frozen, false);
+  assert.equal(draft.trials.length, 16);
+  const reviewCopy = structuredClone(draft);
+  reviewCopy.frozen = true;
+  assert.equal(validateStudyPlan(reviewCopy), true);
+
+  const oldPlans = await Promise.all([
+    "results/adaptive-pilot/plan.json",
+    "results/adaptive-pilot-v2.1/plan.json",
+    "results/adaptive-pilot-v2.2/plan.json"
+  ].map((relative) => readFile(`${repositoryRoot}/${relative}`, "utf8").then(JSON.parse)));
+  const oldSeeds = new Set(oldPlans.flatMap((plan) => plan.trials.map((trial) => trial.seed)));
+  assert.equal(draft.trials.some((trial) => oldSeeds.has(trial.seed)), false);
+  await assert.rejects(
+    studyCommand(new Map([["plan", `${repositoryRoot}/results/control-first-v3/plan.json`]])),
+    /must be frozen/
+  );
+});

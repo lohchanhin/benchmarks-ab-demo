@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 3,
+  "id": "decision-memory-dependent",
+  "title": "Launch-tenant ownership decision hidden from public tests",
+  "description": "A deliberately underdetermined tenant contrast task where current code admits several plausible fixes and project memory identifies the correct owner.",
+  "task": "Fix the article body text contrast regression for the independently governed launch tenant. Historical project decisions define which tenant owns this token. Keep the shared token, every other tenant, the resolver, and the public API unchanged. The launch tenant must meet WCAG AA, and the complete test suite must pass. Do not rewrite tests.",
+  "baselineExpectedToFail": true,
+  "baselinePublicExpectedToFail": false,
+  "baselineOracleExpectedToFail": true,
+  "testCommand": ["node", "--test"],
+  "oracleCommand": ["node", "oracle/verify.mjs"],
+  "repairCommand": ["node", "oracle/repair.mjs"],
+  "expectedChangedFiles": [
+    "clients/aurora/article-tokens.mjs"
+  ],
+  "forbiddenChangedFiles": [
+    "clients/borealis/article-tokens.mjs",
+    "clients/cedar/article-tokens.mjs",
+    "src/clients/tenant-registry.mjs",
+    "src/rendering/article-page.mjs",
+    "src/rendering/article-tokens.mjs",
+    "src/themes/shared-article-tokens.mjs",
+    "test/article-tokens.test.mjs"
+  ],
+  "routeGroundTruthFiles": [
+    "clients/aurora/article-tokens.mjs",
+    "clients/borealis/article-tokens.mjs",
+    "clients/cedar/article-tokens.mjs",
+    "src/clients/tenant-registry.mjs",
+    "src/rendering/article-page.mjs",
+    "src/rendering/article-tokens.mjs",
+    "src/themes/shared-article-tokens.mjs",
+    "test/article-tokens.test.mjs"
+  ],
+  "history": {
+    "task": "Record the independently governed launch tenant article-token ownership decision",
+    "client": "aurora",
+    "decision": "Aurora is the independently governed launch tenant. Its article text token is client-owned; Borealis, Cedar, and the shared fallback remain under shared governance.",
+    "pitfall": "A prior launch contrast fix changed the shared article token and altered every tenant. Resolve launch-only contrast in Aurora's client-owned token without changing shared or sibling tenant behavior.",
+    "failedAttempt": "Changing the shared fallback made the launch page readable but expanded the change to tenants outside the approved scope.",
+    "changedFiles": ["clients/aurora/article-tokens.mjs"],
+    "notes": "This decision identifies ownership and scope, but it does not prescribe a replacement color or source patch.",
+    "tags": ["benchmark", "launch-tenant", "article-token", "tenant-ownership", "accessibility"]
+  },
+  "memorySignals": {
+    "pitfallViolationFiles": [
+      "clients/borealis/article-tokens.mjs",
+      "clients/cedar/article-tokens.mjs",
+      "src/themes/shared-article-tokens.mjs"
+    ]
+  },
+  "memoryDependency": {
+    "publicTestsDiscriminateCorrectScope": false,
+    "hiddenOracleDiscriminatesCorrectScope": true,
+    "eligibleDiscordance": [
+      "control-failure/adaptive-success",
+      "control-scope-violation/adaptive-no-violation"
+    ]
+  },
+  "noise": {
+    "domains": ["analytics", "catalog", "checkout", "inventory", "notifications", "payments"],
+    "modulesPerDomain": 18,
+    "tenantCount": 24
+  }
+}

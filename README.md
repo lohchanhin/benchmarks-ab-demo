@@ -7,7 +7,7 @@ A public, preregistered, reproducible experiment comparing Codex repository
 work with no Palace, structural routing only, always-on Full Palace, and
 Adaptive Palace.
 
-[Simplified Chinese](README.zh-CN.md) | [中文辅助文档](docs/zh-CN/README.md) | [中文快速验证](docs/zh-CN/QUICKSTART.md) | [中文结果解读](docs/zh-CN/RESULTS_GUIDE.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [v1 protocol](docs/research/PROTOCOL.md) | [Adaptive v2.2 protocol](docs/research/PROTOCOL_V2_2.md) | [Amendments](docs/research/PROTOCOL_AMENDMENTS.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
+[Simplified Chinese](README.zh-CN.md) | [中文辅助文档](docs/zh-CN/README.md) | [中文快速验证](docs/zh-CN/QUICKSTART.md) | [中文结果解读](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 draft](docs/research/PROTOCOL_V3.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [v1 protocol](docs/research/PROTOCOL.md) | [Adaptive v2.2 protocol](docs/research/PROTOCOL_V2_2.md) | [Amendments](docs/research/PROTOCOL_AMENDMENTS.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
 
 ## Falsifiable Claims
 
@@ -116,6 +116,26 @@ the tool-call interval is entirely positive. The
 [final report](docs/research/ADAPTIVE_V2_2_FINAL.md) concludes that routing and
 guarded context are useful, while universal Token or speed savings are not
 established.
+
+## Control-First v3 Design Review
+
+The next independent protocol now asks the product-facing question directly:
+Adaptive Palace versus normal Codex. Its primary efficiency metric is paired
+cumulative `reportedTokens`, but correctness and exact changed-file scope are
+evaluated first. The old useful-memory fixture is replaced by a deliberately
+underdetermined ownership task whose public tests pass at baseline while an
+external oracle requires the historically designated Aurora scope.
+
+The [v3 protocol draft](docs/research/PROTOCOL_V3.md), [16-trial candidate
+plan](results/control-first-v3/plan.json), and empty [result
+manifest](results/control-first-v3/manifest.json) are public. The plan remains
+`frozen:false`, has zero Agent outcomes, and cannot execute. It will be frozen
+and tagged only after the immutable Palace 0.3.0 package, clean-install checks,
+memory smoke, and full benchmark gates pass.
+
+The [preflight record](docs/research/CONTROL_FIRST_V3_PREFLIGHT.md) publishes the
+failed and passing memory smokes, the product fix commit, CI evidence, and the
+remaining freeze gates without presenting engineering checks as Agent outcomes.
 
 Validate the frozen plan without running an agent:
 

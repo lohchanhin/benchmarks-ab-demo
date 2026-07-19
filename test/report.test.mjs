@@ -78,6 +78,38 @@ test("uses Full Palace minus Adaptive as the v2 top-level comparison", () => {
   assert.equal(report.pairwise.controlVsAdaptivePalace.delta.durationMsSaved, 5000);
 });
 
+test("uses Control minus Adaptive as the v3 top-level comparison", () => {
+  const run = {
+    manifest: {
+      id: "control-first-demo",
+      scenario: "decision-memory-dependent",
+      scenarioTitle: "Decision memory",
+      task: "Fix the launch tenant",
+      repositoryTree: "abc123",
+      generatedFileCount: 142,
+      cacheState: "warm",
+      protocolVersion: "3.0.0",
+      primaryComparison: "adaptive-vs-control",
+      primaryEfficiencyMetric: "reportedTokens"
+    }
+  };
+  const evidence = {
+    control: armEvidence({ arm: "control", durationMs: 10000, toolCalls: 10, palaceCalls: 0, tokens: 4000 }),
+    "route-only": armEvidence({ arm: "route-only", durationMs: 9000, toolCalls: 8, palaceCalls: 1, tokens: 3500 }),
+    "full-palace": armEvidence({ arm: "full-palace", durationMs: 6000, toolCalls: 6, palaceCalls: 1, tokens: 2000 }),
+    "adaptive-palace": armEvidence({ arm: "adaptive-palace", durationMs: 8000, toolCalls: 7, palaceCalls: 1, tokens: 3000 })
+  };
+
+  const report = buildComparison(run, evidence);
+  assert.equal(report.schemaVersion, 5);
+  assert.equal(report.primaryComparison, "adaptive-vs-control");
+  assert.equal(report.primaryEfficiencyMetric, "reportedTokens");
+  assert.equal(report.delta.durationMsSaved, 2000);
+  assert.equal(report.delta.reportedTokensSaved, 1000);
+  assert.equal(report.pairwise.controlVsAdaptivePalace.delta.reportedTokensSaved, 1000);
+  assert.equal(report.pairwise.fullPalaceVsAdaptivePalace.delta.reportedTokensSaved, -1000);
+});
+
 function armEvidence({ arm, durationMs, toolCalls, palaceCalls, tokens }) {
   return {
     arm,

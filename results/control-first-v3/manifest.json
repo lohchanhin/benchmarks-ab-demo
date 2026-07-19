@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 4,
+  "protocolVersion": "3.0.0",
+  "status": "design-review",
+  "primaryComparison": "adaptive-vs-control",
+  "primaryEfficiencyMetric": "reportedTokens",
+  "plannedTrials": 16,
+  "plannedScenarios": [
+    "small-local-bug",
+    "cross-stack-regression",
+    "decision-memory-dependent",
+    "stale-memory-adversarial"
+  ],
+  "plannedSeedsPerScenario": 4,
+  "trials": []
+}

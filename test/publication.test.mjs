@@ -30,6 +30,7 @@ test("maps every frozen adaptive protocol to an explicit publication directory",
   assert.equal(resultDirectoryForProtocol("2.0.0"), "adaptive-pilot");
   assert.equal(resultDirectoryForProtocol("2.1.0"), "adaptive-pilot-v2.1");
   assert.equal(resultDirectoryForProtocol("2.2.0"), "adaptive-pilot-v2.2");
+  assert.equal(resultDirectoryForProtocol("3.0.0"), "control-first-v3");
   assert.throws(() => resultDirectoryForProtocol("2.3.0"), /No publication directory/);
 });
 

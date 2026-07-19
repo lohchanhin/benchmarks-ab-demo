@@ -63,6 +63,8 @@ export async function verifyArm(run, arm) {
     forbiddenFiles: run.scenario.forbiddenChangedFiles,
     diffCheckPassed: git.diffCheckPassed
   });
+  const strictScopeRequired = run.manifest.protocolVersion === "3.0.0";
+  const strictScopePassed = score.changedFilePrecision === 1 && score.changedFileRecall === 1;
   const palaceCallPassed = transcript.palaceCalls === 1 && transcript.successfulPalaceCalls === 1;
   const adaptivePayloadPassed = Boolean(
     transcript.adaptivePayload
@@ -89,7 +91,8 @@ export async function verifyArm(run, arm) {
       && execution.lastMessageTransport === runPlan.lastMessageTransport
     ))
   );
-  const harnessConformancePassed = run.manifest.protocolVersion !== "2.2.0"
+  const frozenWindowsHarness = ["2.2.0", "3.0.0"].includes(run.manifest.protocolVersion);
+  const harnessConformancePassed = !frozenWindowsHarness
     || runtimeDiagnostics.sandboxPreparationErrors === 0;
   const validity = transcriptSource
     ? {
@@ -105,14 +108,14 @@ export async function verifyArm(run, arm) {
           execution ? `Codex exit code ${execution.exitCode}; timedOut=${Boolean(execution.timedOut)}` : "Codex exit code unavailable",
           `fixed execution settings ${settingsPassed ? "match" : "do not match"} the run plan`,
           `sandbox preparation errors=${runtimeDiagnostics.sandboxPreparationErrors}; `
-            + `expected ${run.manifest.protocolVersion === "2.2.0" ? 0 : "not frozen"}`,
+            + `expected ${frozenWindowsHarness ? 0 : "not frozen"}`,
           `fixture tree ${treePassed ? "matches" : "does not match"} ${run.manifest.repositoryTree}`
         ].join("; ")
       }
     : { verified: false, passed: null, reason: "No Codex JSONL transcript was available" };
 
   const evidence = {
-    schemaVersion: 3,
+    schemaVersion: strictScopeRequired ? 4 : 3,
     runId: run.manifest.id,
     arm,
     createdAt: new Date().toISOString(),
@@ -152,10 +155,21 @@ export async function verifyArm(run, arm) {
     },
     git,
     score,
+    ...(strictScopeRequired
+      ? {
+          scopeRequirement: {
+            strict: true,
+            passed: strictScopePassed,
+            requiredChangedFilePrecision: 1,
+            requiredChangedFileRecall: 1
+          }
+        }
+      : {}),
     success: Boolean(
       validity.passed
       && testsPassed
       && !score.forbiddenViolation
+      && (!strictScopeRequired || strictScopePassed)
       && executionPassed
     ),
     route: arm === "control" ? null : await readRouteMetrics(workspace, run.scenario),

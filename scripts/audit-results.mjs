@@ -16,7 +16,8 @@ export async function auditPublishedResults(manifestFile = "results/manifest.jso
   let validArmCount = 0;
   let successfulArmCount = 0;
   let verifiedFileCount = 0;
-  const expectedArms = manifest.protocolVersion?.startsWith("2.") ? ADAPTIVE_ARMS : LEGACY_ARMS;
+  const adaptiveProtocol = /^[23]\./.test(String(manifest.protocolVersion));
+  const expectedArms = adaptiveProtocol ? ADAPTIVE_ARMS : LEGACY_ARMS;
 
   const plannedTrials = Number.isInteger(manifest.plannedTrials)
     ? manifest.plannedTrials
@@ -62,7 +63,7 @@ export async function auditPublishedResults(manifestFile = "results/manifest.jso
       if (arm.valid === true) validArmCount += 1;
       if (arm.success === true) successfulArmCount += 1;
     }
-    if (manifest.protocolVersion?.startsWith("2.")) {
+    if (adaptiveProtocol) {
       if (trial.comparisonEligible !== (report.comparable === true)) {
         errors.push(`${trial.trialId}: comparisonEligible does not match the published report.`);
       }

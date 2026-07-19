@@ -7,7 +7,7 @@
 - **Full Palace**：路线、Context Pack、Pitfall Board 与历史记忆全部启用。
 - **Adaptive Palace（v2）**：协议设计为与 Full 使用相同记忆，但只调用一次 `palace context --auto`，由工具选择最小安全模式；v0.2.1 的实际记忆一致性也被本研究检验。
 
-[English](README.md) | [中文辅助文档](docs/zh-CN/README.md) | [快速验证指南](docs/zh-CN/QUICKSTART.md) | [结果阅读指南](docs/zh-CN/RESULTS_GUIDE.md) | [v2.2 最终报告](docs/research/ADAPTIVE_V2_2_FINAL.md) | [v1 研究协议](docs/research/PROTOCOL.md) | [Adaptive v2.2 协议](docs/research/PROTOCOL_V2_2.md) | [协议修订](docs/research/PROTOCOL_AMENDMENTS.md) | [测试方法](METHODOLOGY.md) | [影片指南](DEMO.md)
+[English](README.md) | [中文辅助文档](docs/zh-CN/README.md) | [快速验证指南](docs/zh-CN/QUICKSTART.md) | [结果阅读指南](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 中文协议](docs/zh-CN/PROTOCOL_V3.md) | [v2.2 最终报告](docs/research/ADAPTIVE_V2_2_FINAL.md) | [v1 研究协议](docs/research/PROTOCOL.md) | [Adaptive v2.2 协议](docs/research/PROTOCOL_V2_2.md) | [协议修订](docs/research/PROTOCOL_AMENDMENTS.md) | [测试方法](METHODOLOGY.md) | [影片指南](DEMO.md)
 
 ## 第一次来这里
 
@@ -17,6 +17,7 @@
 | 不调用 Agent，只验证代码、计划与公开证据 | [快速验证指南](docs/zh-CN/QUICKSTART.md#快速验证不执行-agent) |
 | 了解完整实验设计 | [测试方法](METHODOLOGY.md)与[冻结 v2.2 协议](docs/research/PROTOCOL_V2_2.md) |
 | 审核最终数字与限制 | [Adaptive v2.2 最终报告](docs/research/ADAPTIVE_V2_2_FINAL.md) |
+| 查看修复后但尚未执行的 Control-first 设计 | [v3 中文协议](docs/zh-CN/PROTOCOL_V3.md) |
 | 准备三分钟比赛影片 | [快速验证指南的影片段落](docs/zh-CN/QUICKSTART.md#三分钟影片辅助流程)与[英文影片指南](DEMO.md) |
 
 中文文档是阅读与复现辅助，不会改写英文冻结协议、原始 JSON、checksum 或
@@ -56,6 +57,22 @@ useful-memory 四组 trial 全部完成后，整体进度为 12/16。十六个 A
 stale-memory 对抗场景四组 trial 全部完成后，整体进度达到 16/16。Adaptive 四次选择 `guarded-memory-palace`，送入两条过期 v1 记录，并加入两条明确 guardrail，要求以当前代码与测试为准。十六个 Arm 都拒绝错误旧建议并通过检查，因此正确性仍相同。四组 Adaptive 减 Full 的配对中位差为 -16,381 reported tokens、+458 uncached input tokens、+4 次工具调用与 -6.377 秒，而 Palace payload 小 233 bytes。完整[场景区块报告](docs/research/STALE_MEMORY_V2_2_BLOCK.md)与四份脱敏机制证据均已公开。
 
 完整研究共有 64/64 个有效、成功且范围正确的 Arm。Adaptive 相对 Full 的整体中位差为 -898.5 Palace bytes、-16,522.5 reported tokens、-2.5 次工具调用与 -6.553 秒，但只有 Palace payload 的区间没有跨越 0。相对 Control，Adaptive 的中位差为 +30,147 reported tokens、+4.5 次工具调用与 +10.919 秒，其中工具调用区间完全高于 0。[最终报告](docs/research/ADAPTIVE_V2_2_FINAL.md)的客观结论是：路由与防护上下文有价值，但尚未证明普遍省 Token 或更快。
+
+## Control-first v3 设计审核
+
+下一轮独立协议把主比较改为 Adaptive Palace 对普通 Codex，主要效率指标固定为
+配对累计 `reportedTokens`，但仍先判断正确性与严格修改范围。新
+`decision-memory-dependent` 情境在 baseline 会通过公开测试，却会被 hidden
+oracle 拒绝；只有历史决策能明确指出 Aurora 才是独立治理的 launch tenant。
+
+[英文 v3 协议草案](docs/research/PROTOCOL_V3.md)、[简体中文辅助说明](docs/zh-CN/PROTOCOL_V3.md)、
+[16-trial 草案计划](results/control-first-v3/plan.json)与[空结果 manifest](results/control-first-v3/manifest.json)
+已经公开。目前计划仍是 `frozen:false`、0 个 Agent 结果，不能执行。产品 0.3.0、
+clean install、记忆 smoke 与完整 benchmark 闸门通过后，才会冻结并打协议 tag。
+
+[v3 preflight 研发记录](docs/research/CONTROL_FIRST_V3_PREFLIGHT.md)保留了三次
+memory smoke 的失败与修复、产品 commit、CI 证据和剩余闸门，不会把工程 smoke
+包装成正式 Agent 结果。
 
 ```sh
 npm ci

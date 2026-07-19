@@ -13,6 +13,13 @@ export const pilotScenarioIds = Object.freeze([
   "stale-memory-adversarial"
 ]);
 
+export const controlFirstScenarioIds = Object.freeze([
+  "small-local-bug",
+  "cross-stack-regression",
+  "decision-memory-dependent",
+  "stale-memory-adversarial"
+]);
+
 export async function loadScenario(id = defaultScenarioId) {
   const directory = path.join(repositoryRoot, "scenarios", id);
   const scenario = await readJson(path.join(directory, "scenario.json"));
@@ -58,6 +65,11 @@ function validateScenario(scenario) {
   for (const key of ["oracleCommand", "repairCommand"]) {
     if (scenario[key] !== undefined && (!Array.isArray(scenario[key]) || scenario[key].length === 0)) {
       throw new Error(`Scenario ${key} must be a non-empty command array`);
+    }
+  }
+  for (const key of ["baselineExpectedToFail", "baselinePublicExpectedToFail", "baselineOracleExpectedToFail"]) {
+    if (scenario[key] !== undefined && typeof scenario[key] !== "boolean") {
+      throw new Error(`Scenario ${key} must be a boolean`);
     }
   }
 }

@@ -127,10 +127,11 @@ export function resultDirectoryForProtocol(protocolVersion) {
   const adaptiveDirectories = {
     "2.0.0": "adaptive-pilot",
     "2.1.0": "adaptive-pilot-v2.1",
-    "2.2.0": "adaptive-pilot-v2.2"
+    "2.2.0": "adaptive-pilot-v2.2",
+    "3.0.0": "control-first-v3"
   };
   if (protocolVersion in adaptiveDirectories) return adaptiveDirectories[protocolVersion];
-  if (String(protocolVersion).startsWith("2.")) {
+  if (/^[23]\./.test(String(protocolVersion))) {
     throw new Error(`No publication directory is registered for protocol ${protocolVersion}`);
   }
   return "pilot";

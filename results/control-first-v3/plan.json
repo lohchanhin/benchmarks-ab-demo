@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 4,
+  "protocolVersion": "3.0.0",
+  "protocolTag": "protocol-v3.0.0",
+  "id": "vertex-palace-control-first-four-scenario-pilot-v3",
+  "createdAt": "2026-07-19T16:22:42.105Z",
+  "frozen": false,
+  "primaryComparison": "adaptive-vs-control",
+  "primaryEfficiencyMetric": "reportedTokens",
+  "comparisonOrder": [
+    "adaptive-vs-control",
+    "adaptive-vs-full",
+    "route-only-vs-control",
+    "full-vs-route-only"
+  ],
+  "execution": {
+    "model": "gpt-5.6-sol",
+    "reasoningEffort": "xhigh",
+    "codexVersion": "codex-cli 0.145.0-alpha.18",
+    "timeoutMs": 600000,
+    "cooldownMs": 15000,
+    "palaceVersion": "0.3.0",
+    "palaceSourceCommit": "75be54a3e4570fb50f1a9f0304d017cb56e9a36b",
+    "platform": "win32",
+    "sandboxProfile": "workspace-write/windows-elevated",
+    "lastMessageTransport": "workspace-local-then-artifacts-v1"
+  },
+  "trials": [
+    {
+      "trialId": "small-local-bug-control-first-v3-pilot-01",
+      "scenario": "small-local-bug",
+      "seed": "79711b534b15afe141abbe405320f7e3",
+      "order": ["control", "route-only", "adaptive-palace", "full-palace"],
+      "cacheState": "warm"
+    },
+    {
+      "trialId": "small-local-bug-control-first-v3-pilot-02",
+      "scenario": "small-local-bug",
+      "seed": "50631072c2f39cc98d729f7033c4a5e3",
+      "order": ["route-only", "full-palace", "control", "adaptive-palace"],
+      "cacheState": "cold"
+    },
+    {
+      "trialId": "small-local-bug-control-first-v3-pilot-03",
+      "scenario": "small-local-bug",
+      "seed": "dd3f627d22686503d6b78a3217f9169b",
+      "order": ["full-palace", "adaptive-palace", "route-only", "control"],
+      "cacheState": "warm"
+    },
+    {
+      "trialId": "small-local-bug-control-first-v3-pilot-04",
+      "scenario": "small-local-bug",
+      "seed": "b9cc6e0864c39e70b5b28d8058eefffe",
+      "order": ["adaptive-palace", "control", "full-palace", "route-only"],
+      "cacheState": "cold"
+    },
+    {
+      "trialId": "cross-stack-regression-control-first-v3-pilot-01",
+      "scenario": "cross-stack-regression",
+      "seed": "7584c744bb7e44ffa311e5e0c7751348",
+      "order": ["route-only", "full-palace", "control", "adaptive-palace"],
+      "cacheState": "warm"
+    },
+    {
+      "trialId": "cross-stack-regression-control-first-v3-pilot-02",
+      "scenario": "cross-stack-regression",
+      "seed": "558fab1450d9e23edbf72a204743c6e3",
+      "order": ["full-palace", "adaptive-palace", "route-only", "control"],
+      "cacheState": "cold"
+    },
+    {
+      "trialId": "cross-stack-regression-control-first-v3-pilot-03",
+      "scenario": "cross-stack-regression",
+      "seed": "e2f24a98e993f50efe9f29a9ada0b8db",
+      "order": ["adaptive-palace", "control", "full-palace", "route-only"],
+      "cacheState": "warm"
+    },
+    {
+      "trialId": "cross-stack-regression-control-first-v3-pilot-04",
+      "scenario": "cross-stack-regression",
+      "seed": "80c8b2585cb2bde3184a762aeee821c6",
+      "order": ["control", "route-only", "adaptive-palace", "full-palace"],
+      "cacheState": "cold"
+    },
+    {
+      "trialId": "decision-memory-dependent-control-first-v3-pilot-01",
+      "scenario": "decision-memory-dependent",
+      "seed": "6da403bb44e960343999637114711d77",
+      "order": ["full-palace", "adaptive-palace", "route-only", "control"],
+      "cacheState": "warm"
+    },
+    {
+      "trialId": "decision-memory-dependent-control-first-v3-pilot-02",
+      "scenario": "decision-memory-dependent",
+      "seed": "8467a1fd15ca2b856c2264fdc90f5faa",
+      "order": ["adaptive-palace", "control", "full-palace", "route-only"],
+      "cacheState": "cold"
+    },
+    {
+      "trialId": "decision-memory-dependent-control-first-v3-pilot-03",
+      "scenario": "decision-memory-dependent",
+      "seed": "d8922b7f4b88d338f8c8efba3fbc416a",
+      "order": ["control", "route-only", "adaptive-palace", "full-palace"],
+      "cacheState": "warm"
+    },
+    {
+      "trialId": "decision-memory-dependent-control-first-v3-pilot-04",
+      "scenario": "decision-memory-dependent",
+      "seed": "11395795da3624d59145a6abca39f16e",
+      "order": ["route-only", "full-palace", "control", "adaptive-palace"],
+      "cacheState": "cold"
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-pilot-01",
+      "scenario": "stale-memory-adversarial",
+      "seed": "c51fb35316b03cf5b474d87968c3b7d9",
+      "order": ["adaptive-palace", "control", "full-palace", "route-only"],
+      "cacheState": "warm"
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-pilot-02",
+      "scenario": "stale-memory-adversarial",
+      "seed": "badc249514481419c59610f03f9c6dd4",
+      "order": ["control", "route-only", "adaptive-palace", "full-palace"],
+      "cacheState": "cold"
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-pilot-03",
+      "scenario": "stale-memory-adversarial",
+      "seed": "f02f172ba7e300171d094d40acd67d75",
+      "order": ["route-only", "full-palace", "control", "adaptive-palace"],
+      "cacheState": "warm"
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-pilot-04",
+      "scenario": "stale-memory-adversarial",
+      "seed": "ded18e89eb0ea64f35628eb36b164fc9",
+      "order": ["full-palace", "adaptive-palace", "route-only", "control"],
+      "cacheState": "cold"
+    }
+  ]
+}

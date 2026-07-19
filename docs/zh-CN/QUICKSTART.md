@@ -17,7 +17,7 @@
 
 ## 快速验证：不执行 Agent
 
-下面的流程会安装锁定依赖、运行 harness 单元测试、验证四个 fixture、审核已
+下面的流程会安装锁定依赖、运行 harness 单元测试、验证五个 fixture、审核已
 发布结果与 checksum，并检查 v2.2 冻结计划；不会启动 Codex Agent：
 
 ```bash
@@ -35,11 +35,16 @@ npm run benchmark -- study --plan results/adaptive-pilot-v2.2/plan.json
 
 ```bash
 npm run audit:adaptive:v2.2
+npm run audit:control-first:v3
 ```
 
 审核器会检查 manifest、每个 trial 的文件集合与 `SHA256SUMS`。公开 evidence
 经过脱敏；raw transcript 不在 Git 中，因为它可能包含本机路径与 Session
 metadata。
+
+`audit:control-first:v3` 目前应显示 `0/16`。这是设计审核闸门，不是缺少结果：
+v3 草案明确为 `frozen:false`，在 Palace 0.3.0 发布、clean install 与协议 tag
+完成前，任何正式 Agent trial 都不得启动。
 
 ## 重新生成聚合分析
 

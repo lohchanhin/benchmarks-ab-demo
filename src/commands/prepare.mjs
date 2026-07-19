@@ -22,10 +22,11 @@ export async function prepareCommand(flags) {
   const protocolVersion = enumFlag(
     flags,
     "protocol-version",
-    ["1.0.0", "2.0.0", "2.1.0", "2.2.0"],
+    ["1.0.0", "2.0.0", "2.1.0", "2.2.0", "3.0.0"],
     "2.2.0"
   );
   const adaptiveProtocol = protocolVersion !== "1.0.0";
+  const controlFirstProtocol = protocolVersion === "3.0.0";
   const cacheState = enumFlag(flags, "cache-state", ["warm", "cold"], "warm");
   const palaceInvocation = await resolvePalaceInvocation(stringFlag(flags, "palace-bin", undefined));
 
@@ -62,12 +63,24 @@ export async function prepareCommand(flags) {
     cwd: arms.control,
     unsetEnv: ["NODE_TEST_CONTEXT"]
   });
-  if (scenario.baselineExpectedToFail && baseline.exitCode === 0) {
+  const baselinePublicExpectedToFail = scenario.baselinePublicExpectedToFail
+    ?? scenario.baselineExpectedToFail
+    ?? false;
+  const baselineOracleExpectedToFail = scenario.baselineOracleExpectedToFail
+    ?? scenario.baselineExpectedToFail
+    ?? false;
+  if (baselinePublicExpectedToFail && baseline.exitCode === 0) {
     throw new Error("Scenario baseline unexpectedly passes; the benchmark task is no longer reproducible");
   }
+  if (!baselinePublicExpectedToFail && baseline.exitCode !== 0) {
+    throw new Error("Scenario public baseline unexpectedly fails; the intended ambiguity is no longer reproducible");
+  }
   const oracleBaseline = await runScenarioOracle(scenario, arms.control);
-  if (scenario.baselineExpectedToFail && oracleBaseline && oracleBaseline.exitCode === 0) {
+  if (baselineOracleExpectedToFail && oracleBaseline && oracleBaseline.exitCode === 0) {
     throw new Error("Scenario hidden oracle unexpectedly passes on the baseline");
+  }
+  if (!baselineOracleExpectedToFail && oracleBaseline && oracleBaseline.exitCode !== 0) {
+    throw new Error("Scenario hidden oracle unexpectedly fails on the baseline");
   }
 
   const palaceSeed = skipPalaceSeed
@@ -100,7 +113,7 @@ export async function prepareCommand(flags) {
   await Promise.all(promptWrites);
 
   const manifest = {
-    schemaVersion: adaptiveProtocol ? 3 : 2,
+    schemaVersion: controlFirstProtocol ? 4 : adaptiveProtocol ? 3 : 2,
     protocolVersion,
     id: runId,
     createdAt: new Date().toISOString(),
@@ -108,10 +121,21 @@ export async function prepareCommand(flags) {
     scenario: scenario.id,
     scenarioTitle: scenario.title,
     task: scenario.task,
+    ...(controlFirstProtocol
+      ? {
+          primaryComparison: "adaptive-vs-control",
+          primaryEfficiencyMetric: "reportedTokens"
+        }
+      : {}),
     cacheState,
     repositoryTree: gitStates.control.tree,
     baseline: {
-      expectedToFail: Boolean(scenario.baselineExpectedToFail),
+      ...(protocolVersion === "3.0.0"
+        ? {
+            publicExpectedToFail: baselinePublicExpectedToFail,
+            oracleExpectedToFail: baselineOracleExpectedToFail
+          }
+        : { expectedToFail: Boolean(scenario.baselineExpectedToFail) }),
       testExitCode: baseline.exitCode,
       testDurationMs: baseline.durationMs,
       oracleExitCode: oracleBaseline?.exitCode ?? null,

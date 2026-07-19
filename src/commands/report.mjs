@@ -38,7 +38,12 @@ export function buildComparison(run, evidence) {
   const routeOnly = evidence["route-only"] ? summarize(evidence["route-only"]) : null;
   const palace = summarize(evidence["full-palace"] ?? evidence.palace);
   const adaptive = evidence["adaptive-palace"] ? summarize(evidence["adaptive-palace"]) : null;
-  const primaryBaseline = adaptive ? palace : control;
+  const controlFirst = Boolean(
+    adaptive
+    && (run.manifest.primaryComparison === "adaptive-vs-control"
+      || String(run.manifest.protocolVersion).startsWith("3."))
+  );
+  const primaryBaseline = controlFirst ? control : adaptive ? palace : control;
   const primaryTreatment = adaptive ?? palace;
   const comparable = mutuallySuccessful(primaryBaseline, primaryTreatment);
   const primaryDelta = efficiencyDelta(primaryBaseline, primaryTreatment, comparable);
@@ -47,7 +52,7 @@ export function buildComparison(run, evidence) {
   const routeOnlyComparable = routeOnly ? mutuallySuccessful(routeOnly, palace) : false;
   const fullAdaptiveComparable = adaptive ? mutuallySuccessful(palace, adaptive) : false;
   return {
-    schemaVersion: adaptive ? 4 : 3,
+    schemaVersion: controlFirst ? 5 : adaptive ? 4 : 3,
     runId: run.manifest.id,
     createdAt: new Date().toISOString(),
     scenario: run.manifest.scenario,
@@ -58,6 +63,12 @@ export function buildComparison(run, evidence) {
     cacheState: run.manifest.cacheState ?? "unrecorded",
     seed: run.manifest.seed ?? null,
     protocolVersion: run.manifest.protocolVersion ?? null,
+    ...(controlFirst
+      ? {
+          primaryComparison: "adaptive-vs-control",
+          primaryEfficiencyMetric: run.manifest.primaryEfficiencyMetric ?? "reportedTokens"
+        }
+      : {}),
     control,
     routeOnly,
     palace,
@@ -200,8 +211,14 @@ function renderMarkdown(report) {
     metricRow("Cumulative reported tokens", report, "reportedTokens", number, signed, "reportedTokensSaved"),
     resultRow("Palace calls", report, (arm) => number(arm.palaceCalls))
   ];
+  const controlFirst = report.primaryComparison === "adaptive-vs-control";
+  const primaryDeltaLabel = controlFirst
+    ? "Control minus Adaptive"
+    : report.adaptive ? "Full Palace minus Adaptive" : "Control minus Full Palace";
   const lines = [
-    report.adaptive ? "# Vertex Palace Four-Arm Adaptive Benchmark" : "# Vertex Palace Three-Arm Benchmark",
+    controlFirst
+      ? "# Vertex Palace Control-First Four-Arm Benchmark"
+      : report.adaptive ? "# Vertex Palace Four-Arm Adaptive Benchmark" : "# Vertex Palace Three-Arm Benchmark",
     "",
     `Run: \`${report.runId}\``,
     `Scenario: ${report.scenarioTitle}`,
@@ -217,12 +234,12 @@ function renderMarkdown(report) {
     "",
     "## Results",
     "",
-    `| Metric | Control | Route-only | Full Palace | Adaptive Palace | ${report.adaptive ? "Full Palace minus Adaptive" : "Control minus Full Palace"} |`,
+    `| Metric | Control | Route-only | Full Palace | Adaptive Palace | ${primaryDeltaLabel} |`,
     "| --- | ---: | ---: | ---: | ---: | ---: |",
     ...rows.map((row) => `| ${row.join(" | ")} |`),
     "",
     report.comparable
-      ? `Positive values in the final column mean ${report.adaptive ? "Adaptive Palace used less than Full Palace" : "Full Palace used less than Control"} for that measured resource.`
+      ? `Positive values in the final column mean ${controlFirst ? "Adaptive Palace used less than Control" : report.adaptive ? "Adaptive Palace used less than Full Palace" : "Full Palace used less than Control"} for that measured resource.`
       : "Efficiency deltas are withheld because the primary baseline and treatment did not both complete as valid, passing runs.",
     "",
     "## Changed Files",

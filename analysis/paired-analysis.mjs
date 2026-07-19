@@ -80,10 +80,17 @@ export function analyzeReports(entries, options = {}) {
     scenarios[name].primaryComparison.success.holmAdjustedPValue = adjusted[index];
   });
 
+  const controlFirstStudy = isControlFirstStudy(options);
   const adaptiveStudy = Object.values(scenarios).some((result) => result.primaryComparison.treatmentArm === "adaptivePalace");
   return {
-    schemaVersion: adaptiveStudy ? 2 : 1,
+    schemaVersion: controlFirstStudy ? 3 : adaptiveStudy ? 2 : 1,
     protocolVersion: options.manifest?.protocolVersion ?? null,
+    ...(controlFirstStudy
+      ? {
+          primaryComparison: "adaptive-vs-control",
+          primaryEfficiencyMetric: options.manifest?.primaryEfficiencyMetric ?? "reportedTokens"
+        }
+      : {}),
     generatedAt: new Date().toISOString(),
     exploratory: true,
     plannedTrials,
@@ -94,7 +101,9 @@ export function analyzeReports(entries, options = {}) {
     overall: analyzeGroup(entries, { ...options, bootstrapSeed: `${options.bootstrapSeed ?? "pilot-v1"}:overall` }),
     multiplicity: {
       method: "Holm step-down",
-      family: adaptiveStudy
+      family: controlFirstStudy
+        ? "scenario-level exact Adaptive Palace versus Control paired success tests"
+        : adaptiveStudy
         ? "scenario-level exact Adaptive Palace versus Full Palace paired success tests"
         : "scenario-level exact Full Palace versus Control paired success tests",
       rawPValues,
@@ -170,7 +179,10 @@ export function analyzeGroup(entries, options = {}) {
     })
   };
   const hasAdaptive = pairs.some((pair) => pair.adaptivePalace !== null);
-  const primaryComparison = hasAdaptive
+  const controlFirst = isControlFirstStudy(options);
+  const primaryComparison = controlFirst
+    ? comparisons.adaptiveMinusControl
+    : hasAdaptive
     ? comparisons.adaptiveMinusFullPalace
     : analyzeArmComparison(pairs, "control", "fullPalace", {
         ...options,
@@ -179,22 +191,26 @@ export function analyzeGroup(entries, options = {}) {
 
   return {
     attemptedPairs: pairs.length,
-    validPairs: validPairs.length,
-    invalidPairIds: invalidPairs,
-    success: {
-      controlRaw: controlSuccess,
-      fullPalaceRaw: palaceSuccess,
-      controlRate: rate(controlSuccess),
-      fullPalaceRate: rate(palaceSuccess),
-      fullPalaceMinusControl: successEstimate,
-      nonInferiorityMargin: -0.1,
-      pilotIntervalAboveMargin: successEstimate.confidenceInterval[0] !== null
-        ? successEstimate.confidenceInterval[0] > -0.1
-        : null,
-      discordant: discordance,
-      mcnemarExactPValue: exactMcNemar(discordance.controlOnly, discordance.palaceOnly)
-    },
-    metrics,
+    validPairs: controlFirst ? primaryComparison.validPairs : validPairs.length,
+    invalidPairIds: controlFirst ? primaryComparison.invalidPairIds : invalidPairs,
+    ...(controlFirst
+      ? {}
+      : {
+          success: {
+            controlRaw: controlSuccess,
+            fullPalaceRaw: palaceSuccess,
+            controlRate: rate(controlSuccess),
+            fullPalaceRate: rate(palaceSuccess),
+            fullPalaceMinusControl: successEstimate,
+            nonInferiorityMargin: -0.1,
+            pilotIntervalAboveMargin: successEstimate.confidenceInterval[0] !== null
+              ? successEstimate.confidenceInterval[0] > -0.1
+              : null,
+            discordant: discordance,
+            mcnemarExactPValue: exactMcNemar(discordance.controlOnly, discordance.palaceOnly)
+          },
+          metrics
+        }),
     comparisons,
     primaryComparison,
     mechanisms: mechanismSummary(validPairs)
@@ -233,7 +249,7 @@ export function analyzeArmComparison(pairs, baselineArm, treatmentArm, options =
     };
   }
 
-  return {
+  const result = {
     baselineArm,
     treatmentArm,
     validPairs: validPairs.length,
@@ -259,6 +275,20 @@ export function analyzeArmComparison(pairs, baselineArm, treatmentArm, options =
     },
     metrics
   };
+  if (isControlFirstStudy(options)) {
+    result.success.discordant.baselineOnlyIds = validPairs
+      .filter((pair) => pair[baselineArm].success === true && pair[treatmentArm].success !== true)
+      .map((pair) => pair.trialId);
+    result.success.discordant.treatmentOnlyIds = validPairs
+      .filter((pair) => pair[baselineArm].success !== true && pair[treatmentArm].success === true)
+      .map((pair) => pair.trialId);
+    result.scope = {
+      pairCount: validPairs.length,
+      baseline: scopeSummary(validPairs, baselineArm),
+      treatment: scopeSummary(validPairs, treatmentArm)
+    };
+  }
+  return result;
 }
 
 export function exactMcNemar(controlOnly, palaceOnly) {
@@ -340,6 +370,23 @@ function booleanMechanism(pairs, field) {
   };
 }
 
+function scopeSummary(pairs, arm) {
+  const precision = pairs.map((pair) => pair[arm].changedFilePrecision).filter(Number.isFinite);
+  const recall = pairs.map((pair) => pair[arm].changedFileRecall).filter(Number.isFinite);
+  const forbidden = pairs
+    .map((pair) => pair[arm].forbiddenViolation)
+    .filter((value) => typeof value === "boolean");
+  return {
+    changedFilePrecisionRaw: precision,
+    changedFileRecallRaw: recall,
+    changedFilePrecisionMedian: median(precision),
+    changedFileRecallMedian: median(recall),
+    forbiddenViolationRaw: forbidden,
+    forbiddenViolationCount: forbidden.filter(Boolean).length,
+    forbiddenViolationRate: rate(forbidden.map(Number))
+  };
+}
+
 function combination(total, selected) {
   let value = 1;
   for (let index = 1; index <= selected; index += 1) {
@@ -361,14 +408,20 @@ function bootstrapOptions(options) {
 }
 
 export function renderAnalysisMarkdown(analysis) {
+  const controlFirst = analysis.schemaVersion >= 3 && analysis.primaryComparison === "adaptive-vs-control";
   const lines = [
-    "# Vertex Palace Exploratory Pilot Analysis",
+    controlFirst
+      ? "# Vertex Palace Control-First Exploratory Analysis"
+      : "# Vertex Palace Exploratory Pilot Analysis",
     "",
     `Planned pilot trials: ${analysis.plannedTrials}`,
     `Attempted trials: ${analysis.attemptedTrials}`,
     `Loaded reports: ${analysis.loadedTrials}`,
     ...(analysis.loadedTrials < analysis.plannedTrials
       ? ["", `Interim only: ${analysis.loadedTrials}/${analysis.plannedTrials} planned trials are represented. Do not interpret these intervals or p-values as final evidence.`]
+      : []),
+    ...(controlFirst
+      ? ["", "Primary comparison: Adaptive Palace versus Control", "Primary efficiency metric: cumulative reported tokens"]
       : []),
     "",
     "| Scenario | Primary comparison | Valid pairs | Baseline success | Treatment success | Treatment minus baseline (95% bootstrap CI) | Exact p | Holm p |",
@@ -407,7 +460,9 @@ export function renderAnalysisMarkdown(analysis) {
   }
   lines.push(
     "",
-    analysis.schemaVersion === 2 ? "## Four-Arm Adaptive Contrasts" : "## Three-Arm Ablation",
+    controlFirst
+      ? "## Four-Arm Control-First Contrasts"
+      : analysis.schemaVersion === 2 ? "## Four-Arm Adaptive Contrasts" : "## Three-Arm Ablation",
     "",
     "Each contrast is treatment minus baseline. Negative efficiency values favor the treatment. These secondary mechanism contrasts are exploratory and are not multiplicity-adjusted.",
     "",
@@ -415,12 +470,19 @@ export function renderAnalysisMarkdown(analysis) {
     "| --- | --- | --- | ---: | ---: | ---: | --- |"
   );
   for (const [scenario, result] of Object.entries(analysis.scenarios)) {
-    const comparisons = [
-      ["Route-only - Control", result.comparisons?.routeOnlyMinusControl],
-      ["Full Palace - Route-only", result.comparisons?.fullPalaceMinusRouteOnly],
-      ["Adaptive Palace - Control", result.comparisons?.adaptiveMinusControl],
-      ["Adaptive Palace - Full Palace", result.comparisons?.adaptiveMinusFullPalace]
-    ];
+    const comparisons = controlFirst
+      ? [
+          ["Adaptive Palace - Control", result.comparisons?.adaptiveMinusControl],
+          ["Adaptive Palace - Full Palace", result.comparisons?.adaptiveMinusFullPalace],
+          ["Route-only - Control", result.comparisons?.routeOnlyMinusControl],
+          ["Full Palace - Route-only", result.comparisons?.fullPalaceMinusRouteOnly]
+        ]
+      : [
+          ["Route-only - Control", result.comparisons?.routeOnlyMinusControl],
+          ["Full Palace - Route-only", result.comparisons?.fullPalaceMinusRouteOnly],
+          ["Adaptive Palace - Control", result.comparisons?.adaptiveMinusControl],
+          ["Adaptive Palace - Full Palace", result.comparisons?.adaptiveMinusFullPalace]
+        ];
     for (const [contrast, comparison] of comparisons) {
       for (const [metric, label] of markdownMetrics) {
         const summary = comparison?.metrics?.[metric];
@@ -434,6 +496,25 @@ export function renderAnalysisMarkdown(analysis) {
       }
     }
   }
+  if (controlFirst) {
+    lines.push(
+      "",
+      "## Scope Outcomes Across Valid Primary Pairs",
+      "",
+      "Scope is summarized for every valid Adaptive-Control pair, including runs that did not achieve protocol success.",
+      "",
+      "| Scenario | Arm | Median changed-file precision | Median changed-file recall | Forbidden violations | Discordant success trial IDs |",
+      "| --- | --- | ---: | ---: | ---: | --- |"
+    );
+    for (const [scenario, result] of Object.entries(analysis.scenarios)) {
+      const primary = result.primaryComparison;
+      const discordant = primary.success.discordant;
+      lines.push(
+        scopeMarkdownRow(scenario, analysisArmLabel(primary.baselineArm), primary.scope?.baseline, discordant.baselineOnlyIds),
+        scopeMarkdownRow(scenario, analysisArmLabel(primary.treatmentArm), primary.scope?.treatment, discordant.treatmentOnlyIds)
+      );
+    }
+  }
   lines.push(
     "",
     "Efficiency metrics are calculated only for mutually successful pairs. Raw values and bootstrap intervals are available in the JSON report.",
@@ -442,6 +523,17 @@ export function renderAnalysisMarkdown(analysis) {
     ""
   );
   return lines.join("\n");
+}
+
+function scopeMarkdownRow(scenario, arm, scope, discordantIds = []) {
+  return `| ${scenario} | ${arm} | ${percent(scope?.changedFilePrecisionMedian)} | `
+    + `${percent(scope?.changedFileRecallMedian)} | ${scope?.forbiddenViolationCount ?? "n/a"} | `
+    + `${discordantIds.length ? discordantIds.map((id) => `\`${id}\``).join(", ") : "none"} |`;
+}
+
+function isControlFirstStudy(options) {
+  return options.manifest?.primaryComparison === "adaptive-vs-control"
+    || String(options.manifest?.protocolVersion ?? "").startsWith("3.");
 }
 
 function metricValue(metric, value) {

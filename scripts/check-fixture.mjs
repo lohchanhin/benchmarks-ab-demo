@@ -4,21 +4,31 @@ import path from "node:path";
 import { runProcess } from "../src/lib/process.mjs";
 import {
   applyCanonicalRepair,
+  controlFirstScenarioIds,
   loadScenario,
   materializeScenario,
   pilotScenarioIds,
   runScenarioOracle
 } from "../src/lib/scenario.mjs";
 
-for (const scenarioId of pilotScenarioIds) {
+const scenarioIds = [...new Set([...pilotScenarioIds, ...controlFirstScenarioIds])];
+
+for (const scenarioId of scenarioIds) {
   const root = await mkdtemp(path.join(os.tmpdir(), `vertex-palace-${scenarioId}-`));
   try {
     const scenario = await loadScenario(scenarioId);
     const files = await materializeScenario(scenario, root, { seed: "fixture-check-seed" });
     const baseline = await runProcess(scenario.testCommand[0], scenario.testCommand.slice(1), { cwd: root });
     const baselineOracle = await runScenarioOracle(scenario, root);
-    if (baseline.exitCode === 0 || baselineOracle?.exitCode === 0) {
-      throw new Error(`${scenarioId} baseline should fail public tests and hidden oracle`);
+    const publicExpectedToFail = scenario.baselinePublicExpectedToFail
+      ?? scenario.baselineExpectedToFail
+      ?? false;
+    const oracleExpectedToFail = scenario.baselineOracleExpectedToFail
+      ?? scenario.baselineExpectedToFail
+      ?? false;
+    assertExpectedExit(`${scenarioId} public baseline`, baseline.exitCode, publicExpectedToFail);
+    if (baselineOracle) {
+      assertExpectedExit(`${scenarioId} hidden-oracle baseline`, baselineOracle.exitCode, oracleExpectedToFail);
     }
 
     const repair = await applyCanonicalRepair(scenario, root);
@@ -30,8 +40,23 @@ for (const scenarioId of pilotScenarioIds) {
         `${scenarioId} canonical repair should pass:\n${fixed.stdout}\n${fixed.stderr}\n${fixedOracle?.stderr ?? ""}`
       );
     }
-    console.log(`${scenarioId}: ${files.length} files, failing baseline, passing scoped repair and oracle.`);
+    console.log(
+      `${scenarioId}: ${files.length} files, public baseline ${exitLabel(baseline.exitCode)}, `
+      + `oracle baseline ${exitLabel(baselineOracle?.exitCode)}, passing scoped repair and oracle.`
+    );
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+}
+
+function assertExpectedExit(label, exitCode, expectedToFail) {
+  const failed = exitCode !== 0;
+  if (failed !== expectedToFail) {
+    throw new Error(`${label} ${failed ? "failed" : "passed"}; expected to ${expectedToFail ? "fail" : "pass"}`);
+  }
+}
+
+function exitLabel(exitCode) {
+  if (exitCode === null || exitCode === undefined) return "not configured";
+  return exitCode === 0 ? "passed" : "failed";
 }
