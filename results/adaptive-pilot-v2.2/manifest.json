@@ -60,6 +60,31 @@
         "adaptive-palace": true
       },
       "publishedAt": "2026-07-19T04:51:42.618Z"
+    },
+    {
+      "trialId": "small-local-bug-adaptive-v2-2-pilot-03",
+      "scenario": "small-local-bug",
+      "seed": "3e736c5124c68d2eaf7442ca1b9471d5",
+      "order": [
+        "full-palace",
+        "adaptive-palace",
+        "route-only",
+        "control"
+      ],
+      "status": "completed",
+      "attemptedAt": "2026-07-19T04:58:30.414Z",
+      "report": "small-local-bug-adaptive-v2-2-pilot-03/comparison.json",
+      "error": null,
+      "evidenceDirectory": "small-local-bug-adaptive-v2-2-pilot-03",
+      "rawTranscriptsPublished": false,
+      "comparisonEligible": true,
+      "armValidity": {
+        "control": true,
+        "route-only": true,
+        "full-palace": true,
+        "adaptive-palace": true
+      },
+      "publishedAt": "2026-07-19T05:00:11.016Z"
     }
   ]
 }

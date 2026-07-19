@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 3,
+  "runId": "small-local-bug-adaptive-v2-2-pilot-03",
+  "arm": "control",
+  "createdAt": "2026-07-19T04:59:39.367Z",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "codexVersion": "codex-cli 0.145.0-alpha.18",
+  "palaceVersion": null,
+  "execution": {
+    "durationMs": 74793,
+    "exitCode": 0,
+    "startedAt": "2026-07-19T04:57:15.334Z",
+    "endedAt": "2026-07-19T04:58:30.127Z",
+    "timedOut": false,
+    "sequence": 4,
+    "order": "full-palace,adaptive-palace,route-only,control",
+    "cacheState": "warm",
+    "platform": "win32",
+    "sandboxProfile": "workspace-write/windows-elevated",
+    "lastMessageTransport": "workspace-local-then-artifacts-v1"
+  },
+  "transcript": {
+    "eventCount": 30,
+    "malformedLines": 0,
+    "toolCalls": 11,
+    "commandCalls": 11,
+    "failedCalls": 3,
+    "commandOutputChars": 7129,
+    "agentMessageChars": 1092,
+    "inspectionCommands": 3,
+    "palaceCalls": 0,
+    "successfulPalaceCalls": 0,
+    "palaceContextOutputChars": null,
+    "palaceContextOutputBytes": null,
+    "palaceContextEstimatedTokens": null,
+    "adaptivePayload": null,
+    "adaptivePayloadMatchesOutput": null,
+    "palaceReceivedTask": null,
+    "adaptiveRequested": false,
+    "inspectedFiles": [
+      "README.md",
+      "package.json",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "referencedFiles": [
+      ".gitignore",
+      "README.md",
+      "package.json",
+      "packages/catalog/src/module-001.mjs",
+      "packages/catalog/src/module-002.mjs",
+      "packages/catalog/src/module-003.mjs",
+      "packages/notifications/src/module-001.mjs",
+      "packages/notifications/src/module-002.mjs",
+      "packages/notifications/src/module-003.mjs",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "usage": {
+      "inputTokens": 122454,
+      "cachedInputTokens": 110592,
+      "outputTokens": 2330,
+      "totalTokens": 124784,
+      "uncachedInputTokens": 11862
+    }
+  },
+  "taskFidelityPassed": null,
+  "runtimeDiagnostics": {
+    "stderrChars": 4278,
+    "warningLines": 2,
+    "errorLines": 3,
+    "routerErrors": 3,
+    "applyPatchVerificationErrors": 0,
+    "sandboxPreparationErrors": 0
+  },
+  "validity": {
+    "verified": true,
+    "passed": true,
+    "reason": "0 Palace calls detected; expected 0; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches 2ec5b38cf07772f446ea62ca05385601bff044dd"
+  },
+  "tests": {
+    "command": "node --test",
+    "passed": true,
+    "publicPassed": true,
+    "oraclePassed": true,
+    "exitCode": 0,
+    "durationMs": 134,
+    "oracleCommand": "node oracle/verify.mjs",
+    "oracleExitCode": 0,
+    "oracleDurationMs": 62
+  },
+  "git": {
+    "status": [
+      "M src/format-currency.mjs"
+    ],
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "untrackedFiles": [],
+    "numstat": [
+      {
+        "file": "src/format-currency.mjs",
+        "added": 1,
+        "deleted": 1
+      }
+    ],
+    "diffCheckPassed": true,
+    "diffCheckOutput": "warning: in the working copy of 'src/format-currency.mjs', LF will be replaced by CRLF the next time Git touches it",
+    "headTree": "2ec5b38cf07772f446ea62ca05385601bff044dd"
+  },
+  "score": {
+    "total": 100,
+    "points": {
+      "correctness": 60,
+      "expectedCoverage": 20,
+      "scope": 20
+    },
+    "testsPassed": true,
+    "expectedCoverage": 1,
+    "changedFileRecall": 1,
+    "changedFilePrecision": 1,
+    "forbiddenViolation": false,
+    "expectedMatched": [
+      "src/format-currency.mjs"
+    ],
+    "expectedMissed": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": []
+  },
+  "success": true,
+  "route": null,
+  "memory": {
+    "pitfallViolation": null,
+    "wrongMemoryAdopted": null
+  },
+  "palaceEvaluation": null
+}
