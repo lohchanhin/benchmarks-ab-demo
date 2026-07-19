@@ -1,15 +1,15 @@
 # Vertex Palace Exploratory Pilot Analysis
 
 Planned pilot trials: 16
-Attempted trials: 5
-Loaded reports: 5
+Attempted trials: 6
+Loaded reports: 6
 
-Interim only: 5/16 planned trials are represented. Do not interpret these intervals or p-values as final evidence.
+Interim only: 6/16 planned trials are represented. Do not interpret these intervals or p-values as final evidence.
 
 | Scenario | Primary comparison | Valid pairs | Baseline success | Treatment success | Treatment minus baseline (95% bootstrap CI) | Exact p | Holm p |
 | --- | --- | ---: | ---: | ---: | --- | ---: | ---: |
 | small-local-bug | Adaptive Palace - Full Palace | 4 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
-| cross-stack-regression | Adaptive Palace - Full Palace | 1 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
+| cross-stack-regression | Adaptive Palace - Full Palace | 2 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
 
 ## Mutually Successful Pair Efficiency
 
@@ -23,12 +23,12 @@ Paired differences are primary treatment minus primary baseline. Negative values
 | small-local-bug | Palace context estimated tokens | 4 | 522 | 305 | -217 [-217, -217] |
 | small-local-bug | Tool calls | 4 | 12 | 8 | -4.5 [-6, 2] |
 | small-local-bug | Wall time | 4 | 63.5s | 55.7s | -7.4s [-14.6s, 0.3s] |
-| cross-stack-regression | Reported tokens | 1 | 114,486 | 139,074 | 24,588 [24,588, 24,588] |
-| cross-stack-regression | Uncached input tokens | 1 | 20,423 | 12,713 | -7,710 [-7,710, -7,710] |
-| cross-stack-regression | Palace context output bytes | 1 | 3,108 | 2,179 | -929 [-929, -929] |
-| cross-stack-regression | Palace context estimated tokens | 1 | 777 | 545 | -232 [-232, -232] |
-| cross-stack-regression | Tool calls | 1 | 5 | 7 | 2 [2, 2] |
-| cross-stack-regression | Wall time | 1 | 115.2s | 60.1s | -55.1s [-55.1s, -55.1s] |
+| cross-stack-regression | Reported tokens | 2 | 115,216 | 140,925.5 | 25,709.5 [24,588, 26,831] |
+| cross-stack-regression | Uncached input tokens | 2 | 26,465 | 15,354.5 | -11,110.5 [-14,511, -7,710] |
+| cross-stack-regression | Palace context output bytes | 2 | 3,108 | 2,179 | -929 [-929, -929] |
+| cross-stack-regression | Palace context estimated tokens | 2 | 777 | 545 | -232 [-232, -232] |
+| cross-stack-regression | Tool calls | 2 | 11.5 | 8.5 | -3 [-8, 2] |
+| cross-stack-regression | Wall time | 2 | 98.5s | 65.2s | -33.3s [-55.1s, -11.4s] |
 
 ## Four-Arm Adaptive Contrasts
 
@@ -56,26 +56,26 @@ Each contrast is treatment minus baseline. Negative efficiency values favor the 
 | small-local-bug | Adaptive Palace - Full Palace | Palace context estimated tokens | 4 | 522 | 305 | -217 [-217, -217] |
 | small-local-bug | Adaptive Palace - Full Palace | Tool calls | 4 | 12 | 8 | -4.5 [-6, 2] |
 | small-local-bug | Adaptive Palace - Full Palace | Wall time | 4 | 63.5s | 55.7s | -7.4s [-14.6s, 0.3s] |
-| cross-stack-regression | Route-only - Control | Reported tokens | 1 | 99,855 | 153,688 | 53,833 [53,833, 53,833] |
-| cross-stack-regression | Route-only - Control | Uncached input tokens | 1 | 15,009 | 26,751 | 11,742 [11,742, 11,742] |
-| cross-stack-regression | Route-only - Control | Tool calls | 1 | 6 | 16 | 10 [10, 10] |
-| cross-stack-regression | Route-only - Control | Wall time | 1 | 50.7s | 65.0s | 14.3s [14.3s, 14.3s] |
-| cross-stack-regression | Full Palace - Route-only | Reported tokens | 1 | 153,688 | 114,486 | -39,202 [-39,202, -39,202] |
-| cross-stack-regression | Full Palace - Route-only | Uncached input tokens | 1 | 26,751 | 20,423 | -6,328 [-6,328, -6,328] |
-| cross-stack-regression | Full Palace - Route-only | Palace context output bytes | 1 | 3,108 | 3,108 | 0 [0, 0] |
-| cross-stack-regression | Full Palace - Route-only | Palace context estimated tokens | 1 | 777 | 777 | 0 [0, 0] |
-| cross-stack-regression | Full Palace - Route-only | Tool calls | 1 | 16 | 5 | -11 [-11, -11] |
-| cross-stack-regression | Full Palace - Route-only | Wall time | 1 | 65.0s | 115.2s | 50.2s [50.2s, 50.2s] |
-| cross-stack-regression | Adaptive Palace - Control | Reported tokens | 1 | 99,855 | 139,074 | 39,219 [39,219, 39,219] |
-| cross-stack-regression | Adaptive Palace - Control | Uncached input tokens | 1 | 15,009 | 12,713 | -2,296 [-2,296, -2,296] |
-| cross-stack-regression | Adaptive Palace - Control | Tool calls | 1 | 6 | 7 | 1 [1, 1] |
-| cross-stack-regression | Adaptive Palace - Control | Wall time | 1 | 50.7s | 60.1s | 9.4s [9.4s, 9.4s] |
-| cross-stack-regression | Adaptive Palace - Full Palace | Reported tokens | 1 | 114,486 | 139,074 | 24,588 [24,588, 24,588] |
-| cross-stack-regression | Adaptive Palace - Full Palace | Uncached input tokens | 1 | 20,423 | 12,713 | -7,710 [-7,710, -7,710] |
-| cross-stack-regression | Adaptive Palace - Full Palace | Palace context output bytes | 1 | 3,108 | 2,179 | -929 [-929, -929] |
-| cross-stack-regression | Adaptive Palace - Full Palace | Palace context estimated tokens | 1 | 777 | 545 | -232 [-232, -232] |
-| cross-stack-regression | Adaptive Palace - Full Palace | Tool calls | 1 | 5 | 7 | 2 [2, 2] |
-| cross-stack-regression | Adaptive Palace - Full Palace | Wall time | 1 | 115.2s | 60.1s | -55.1s [-55.1s, -55.1s] |
+| cross-stack-regression | Route-only - Control | Reported tokens | 2 | 131,591 | 163,739.5 | 32,148.5 [10,464, 53,833] |
+| cross-stack-regression | Route-only - Control | Uncached input tokens | 2 | 14,285.5 | 29,808.5 | 15,523 [11,742, 19,304] |
+| cross-stack-regression | Route-only - Control | Tool calls | 2 | 5.5 | 13.5 | 8 [6, 10] |
+| cross-stack-regression | Route-only - Control | Wall time | 2 | 58.4s | 70.8s | 12.4s [10.5s, 14.3s] |
+| cross-stack-regression | Full Palace - Route-only | Reported tokens | 2 | 163,739.5 | 115,216 | -48,523.5 [-57,845, -39,202] |
+| cross-stack-regression | Full Palace - Route-only | Uncached input tokens | 2 | 29,808.5 | 26,465 | -3,343.5 [-6,328, -359] |
+| cross-stack-regression | Full Palace - Route-only | Palace context output bytes | 2 | 3,108 | 3,108 | 0 [0, 0] |
+| cross-stack-regression | Full Palace - Route-only | Palace context estimated tokens | 2 | 777 | 777 | 0 [0, 0] |
+| cross-stack-regression | Full Palace - Route-only | Tool calls | 2 | 13.5 | 11.5 | -2 [-11, 7] |
+| cross-stack-regression | Full Palace - Route-only | Wall time | 2 | 70.8s | 98.5s | 27.7s [5.2s, 50.2s] |
+| cross-stack-regression | Adaptive Palace - Control | Reported tokens | 2 | 131,591 | 140,925.5 | 9,334.5 [-20,550, 39,219] |
+| cross-stack-regression | Adaptive Palace - Control | Uncached input tokens | 2 | 14,285.5 | 15,354.5 | 1,069 [-2,296, 4,434] |
+| cross-stack-regression | Adaptive Palace - Control | Tool calls | 2 | 5.5 | 8.5 | 3 [1, 5] |
+| cross-stack-regression | Adaptive Palace - Control | Wall time | 2 | 58.4s | 65.2s | 6.8s [4.2s, 9.4s] |
+| cross-stack-regression | Adaptive Palace - Full Palace | Reported tokens | 2 | 115,216 | 140,925.5 | 25,709.5 [24,588, 26,831] |
+| cross-stack-regression | Adaptive Palace - Full Palace | Uncached input tokens | 2 | 26,465 | 15,354.5 | -11,110.5 [-14,511, -7,710] |
+| cross-stack-regression | Adaptive Palace - Full Palace | Palace context output bytes | 2 | 3,108 | 2,179 | -929 [-929, -929] |
+| cross-stack-regression | Adaptive Palace - Full Palace | Palace context estimated tokens | 2 | 777 | 545 | -232 [-232, -232] |
+| cross-stack-regression | Adaptive Palace - Full Palace | Tool calls | 2 | 11.5 | 8.5 | -3 [-8, 2] |
+| cross-stack-regression | Adaptive Palace - Full Palace | Wall time | 2 | 98.5s | 65.2s | -33.3s [-55.1s, -11.4s] |
 
 Efficiency metrics are calculated only for mutually successful pairs. Raw values and bootstrap intervals are available in the JSON report.
 
