@@ -1,17 +1,17 @@
 # Vertex Palace Exploratory Pilot Analysis
 
 Planned pilot trials: 16
-Attempted trials: 14
-Loaded reports: 14
+Attempted trials: 15
+Loaded reports: 15
 
-Interim only: 14/16 planned trials are represented. Do not interpret these intervals or p-values as final evidence.
+Interim only: 15/16 planned trials are represented. Do not interpret these intervals or p-values as final evidence.
 
 | Scenario | Primary comparison | Valid pairs | Baseline success | Treatment success | Treatment minus baseline (95% bootstrap CI) | Exact p | Holm p |
 | --- | --- | ---: | ---: | ---: | --- | ---: | ---: |
 | small-local-bug | Adaptive Palace - Full Palace | 4 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
 | cross-stack-regression | Adaptive Palace - Full Palace | 4 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
 | tenant-memory-pitfall | Adaptive Palace - Full Palace | 4 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
-| stale-memory-adversarial | Adaptive Palace - Full Palace | 2 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
+| stale-memory-adversarial | Adaptive Palace - Full Palace | 3 | 100.0% | 100.0% | 0.0% [0.0%, 0.0%] | 1.0000 | 1.0000 |
 
 ## Mutually Successful Pair Efficiency
 
@@ -37,12 +37,12 @@ Paired differences are primary treatment minus primary baseline. Negative values
 | tenant-memory-pitfall | Palace context estimated tokens | 4 | 1,367 | 613 | -754 [-754, -754] |
 | tenant-memory-pitfall | Tool calls | 4 | 17 | 9.5 | -7.5 [-15, -1] |
 | tenant-memory-pitfall | Wall time | 4 | 90.4s | 87.9s | -2.5s [-51.3s, 5.3s] |
-| stale-memory-adversarial | Reported tokens | 2 | 141,546 | 158,015.5 | 16,469.5 [6,827, 26,112] |
-| stale-memory-adversarial | Uncached input tokens | 2 | 12,811 | 15,116 | 2,305 [-1,036, 5,646] |
-| stale-memory-adversarial | Palace context output bytes | 2 | 3,127 | 2,894 | -233 [-233, -233] |
-| stale-memory-adversarial | Palace context estimated tokens | 2 | 782 | 724 | -58 [-58, -58] |
-| stale-memory-adversarial | Tool calls | 2 | 8 | 14.5 | 6.5 [6, 7] |
-| stale-memory-adversarial | Wall time | 2 | 78.2s | 90.2s | 12.0s [-5.6s, 29.6s] |
+| stale-memory-adversarial | Reported tokens | 3 | 146,893 | 139,459 | 6,827 [-39,589, 26,112] |
+| stale-memory-adversarial | Uncached input tokens | 3 | 12,386 | 14,338 | 1,952 [-1,036, 5,646] |
+| stale-memory-adversarial | Palace context output bytes | 3 | 3,127 | 2,894 | -233 [-233, -233] |
+| stale-memory-adversarial | Palace context estimated tokens | 3 | 782 | 724 | -58 [-58, -58] |
+| stale-memory-adversarial | Tool calls | 3 | 7 | 12 | 6 [2, 7] |
+| stale-memory-adversarial | Wall time | 3 | 65.4s | 59.8s | -5.6s [-7.1s, 29.6s] |
 
 ## Four-Arm Adaptive Contrasts
 
@@ -110,26 +110,26 @@ Each contrast is treatment minus baseline. Negative efficiency values favor the 
 | tenant-memory-pitfall | Adaptive Palace - Full Palace | Palace context estimated tokens | 4 | 1,367 | 613 | -754 [-754, -754] |
 | tenant-memory-pitfall | Adaptive Palace - Full Palace | Tool calls | 4 | 17 | 9.5 | -7.5 [-15, -1] |
 | tenant-memory-pitfall | Adaptive Palace - Full Palace | Wall time | 4 | 90.4s | 87.9s | -2.5s [-51.3s, 5.3s] |
-| stale-memory-adversarial | Route-only - Control | Reported tokens | 2 | 157,826 | 125,530.5 | -32,295.5 [-52,041, -12,550] |
-| stale-memory-adversarial | Route-only - Control | Uncached input tokens | 2 | 26,072.5 | 15,879.5 | -10,193 [-10,492, -9,894] |
-| stale-memory-adversarial | Route-only - Control | Tool calls | 2 | 11.5 | 8 | -3.5 [-8, 1] |
-| stale-memory-adversarial | Route-only - Control | Wall time | 2 | 68.3s | 64.9s | -3.3s [-6.3s, -0.4s] |
-| stale-memory-adversarial | Full Palace - Route-only | Reported tokens | 2 | 125,530.5 | 141,546 | 16,015.5 [2,563, 29,468] |
-| stale-memory-adversarial | Full Palace - Route-only | Uncached input tokens | 2 | 15,879.5 | 12,811 | -3,068.5 [-9,595, 3,458] |
-| stale-memory-adversarial | Full Palace - Route-only | Palace context output bytes | 2 | 2,327 | 3,127 | 800 [800, 800] |
-| stale-memory-adversarial | Full Palace - Route-only | Palace context estimated tokens | 2 | 582 | 782 | 200 [200, 200] |
-| stale-memory-adversarial | Full Palace - Route-only | Tool calls | 2 | 8 | 8 | 0 [-4, 4] |
-| stale-memory-adversarial | Full Palace - Route-only | Wall time | 2 | 64.9s | 78.2s | 13.3s [-6.0s, 32.6s] |
-| stale-memory-adversarial | Adaptive Palace - Control | Reported tokens | 2 | 157,826 | 158,015.5 | 189.5 [-42,651, 43,030] |
-| stale-memory-adversarial | Adaptive Palace - Control | Uncached input tokens | 2 | 26,072.5 | 15,116 | -10,956.5 [-21,123, -790] |
-| stale-memory-adversarial | Adaptive Palace - Control | Tool calls | 2 | 11.5 | 14.5 | 3 [-6, 12] |
-| stale-memory-adversarial | Adaptive Palace - Control | Wall time | 2 | 68.3s | 90.2s | 21.9s [-12.0s, 55.9s] |
-| stale-memory-adversarial | Adaptive Palace - Full Palace | Reported tokens | 2 | 141,546 | 158,015.5 | 16,469.5 [6,827, 26,112] |
-| stale-memory-adversarial | Adaptive Palace - Full Palace | Uncached input tokens | 2 | 12,811 | 15,116 | 2,305 [-1,036, 5,646] |
-| stale-memory-adversarial | Adaptive Palace - Full Palace | Palace context output bytes | 2 | 3,127 | 2,894 | -233 [-233, -233] |
-| stale-memory-adversarial | Adaptive Palace - Full Palace | Palace context estimated tokens | 2 | 782 | 724 | -58 [-58, -58] |
-| stale-memory-adversarial | Adaptive Palace - Full Palace | Tool calls | 2 | 8 | 14.5 | 6.5 [6, 7] |
-| stale-memory-adversarial | Adaptive Palace - Full Palace | Wall time | 2 | 78.2s | 90.2s | 12.0s [-5.6s, 29.6s] |
+| stale-memory-adversarial | Route-only - Control | Reported tokens | 3 | 133,542 | 128,680 | -12,550 [-52,041, -52] |
+| stale-memory-adversarial | Route-only - Control | Uncached input tokens | 3 | 20,015 | 17,521 | -9,894 [-10,492, 60] |
+| stale-memory-adversarial | Route-only - Control | Tool calls | 3 | 5 | 10 | 1 [-8, 10] |
+| stale-memory-adversarial | Route-only - Control | Wall time | 3 | 71.8s | 59.0s | -6.3s [-15.5s, -0.4s] |
+| stale-memory-adversarial | Full Palace - Route-only | Reported tokens | 3 | 128,680 | 146,893 | 18,213 [2,563, 29,468] |
+| stale-memory-adversarial | Full Palace - Route-only | Uncached input tokens | 3 | 17,521 | 12,386 | -5,135 [-9,595, 3,458] |
+| stale-memory-adversarial | Full Palace - Route-only | Palace context output bytes | 3 | 2,327 | 3,127 | 800 [800, 800] |
+| stale-memory-adversarial | Full Palace - Route-only | Palace context estimated tokens | 3 | 582 | 782 | 200 [200, 200] |
+| stale-memory-adversarial | Full Palace - Route-only | Tool calls | 3 | 10 | 7 | -4 [-8, 4] |
+| stale-memory-adversarial | Full Palace - Route-only | Wall time | 3 | 59.0s | 65.4s | 5.0s [-6.0s, 32.6s] |
+| stale-memory-adversarial | Adaptive Palace - Control | Reported tokens | 3 | 133,542 | 139,459 | -21,428 [-42,651, 43,030] |
+| stale-memory-adversarial | Adaptive Palace - Control | Uncached input tokens | 3 | 20,015 | 14,338 | -3,123 [-21,123, -790] |
+| stale-memory-adversarial | Adaptive Palace - Control | Tool calls | 3 | 5 | 12 | 4 [-6, 12] |
+| stale-memory-adversarial | Adaptive Palace - Control | Wall time | 3 | 71.8s | 59.8s | -12.0s [-17.6s, 55.9s] |
+| stale-memory-adversarial | Adaptive Palace - Full Palace | Reported tokens | 3 | 146,893 | 139,459 | 6,827 [-39,589, 26,112] |
+| stale-memory-adversarial | Adaptive Palace - Full Palace | Uncached input tokens | 3 | 12,386 | 14,338 | 1,952 [-1,036, 5,646] |
+| stale-memory-adversarial | Adaptive Palace - Full Palace | Palace context output bytes | 3 | 3,127 | 2,894 | -233 [-233, -233] |
+| stale-memory-adversarial | Adaptive Palace - Full Palace | Palace context estimated tokens | 3 | 782 | 724 | -58 [-58, -58] |
+| stale-memory-adversarial | Adaptive Palace - Full Palace | Tool calls | 3 | 7 | 12 | 6 [2, 7] |
+| stale-memory-adversarial | Adaptive Palace - Full Palace | Wall time | 3 | 65.4s | 59.8s | -5.6s [-7.1s, 29.6s] |
 
 Efficiency metrics are calculated only for mutually successful pairs. Raw values and bootstrap intervals are available in the JSON report.
 

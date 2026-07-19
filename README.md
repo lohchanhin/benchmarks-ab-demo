@@ -97,15 +97,16 @@ both notices every time. The [block report](docs/research/USEFUL_MEMORY_V2_2_BLO
 and [treatment finding](docs/research/ADAPTIVE_MEMORY_OMISSION.md) retain this as
 valid v0.2.1 behavior; v2.2 was not changed mid-study.
 
-The first two stale-memory adversarial trials brought the study to 14/16.
-Adaptive selected `guarded-memory-palace` twice, delivered both stale v1
+The first three stale-memory adversarial trials brought the study to 15/16.
+Adaptive selected `guarded-memory-palace` three times, delivered both stale v1
 records, and added two explicit guardrails that made current code and tests
-authoritative. All eight arms rejected the stale edit and passed, so
-correctness remains tied. Across two pairs, Adaptive-minus-Full paired medians
-are +16,469.5 reported tokens, +2,305 uncached input tokens, +6.5 tool calls,
-and +11.977 seconds, while the Palace payload is 233 bytes smaller. The
-sanitized mechanism evidence is public for [trial 01](docs/research/evidence/guarded-stale-memory-v2.2-trial01.json)
-and [trial 02](docs/research/evidence/guarded-stale-memory-v2.2-trial02.json).
+authoritative. All twelve arms rejected the stale edit and passed, so
+correctness remains tied. Across three pairs, Adaptive-minus-Full paired
+medians are +6,827 reported tokens, +1,952 uncached input tokens, +6 tool
+calls, and -5.641 seconds, while the Palace payload is 233 bytes smaller. The
+sanitized mechanism evidence is public for [trial 01](docs/research/evidence/guarded-stale-memory-v2.2-trial01.json),
+[trial 02](docs/research/evidence/guarded-stale-memory-v2.2-trial02.json), and
+[trial 03](docs/research/evidence/guarded-stale-memory-v2.2-trial03.json).
 
 Validate the frozen plan without running an agent:
 

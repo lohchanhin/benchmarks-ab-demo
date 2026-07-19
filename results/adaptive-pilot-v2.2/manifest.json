@@ -360,6 +360,31 @@
         "adaptive-palace": true
       },
       "publishedAt": "2026-07-19T06:49:39.492Z"
+    },
+    {
+      "trialId": "stale-memory-adversarial-adaptive-v2-2-pilot-03",
+      "scenario": "stale-memory-adversarial",
+      "seed": "568c07925f6b35ec80aeea587e4df474",
+      "order": [
+        "route-only",
+        "full-palace",
+        "control",
+        "adaptive-palace"
+      ],
+      "status": "completed",
+      "attemptedAt": "2026-07-19T06:59:36.913Z",
+      "report": "stale-memory-adversarial-adaptive-v2-2-pilot-03/comparison.json",
+      "error": null,
+      "evidenceDirectory": "stale-memory-adversarial-adaptive-v2-2-pilot-03",
+      "rawTranscriptsPublished": false,
+      "comparisonEligible": true,
+      "armValidity": {
+        "control": true,
+        "route-only": true,
+        "full-palace": true,
+        "adaptive-palace": true
+      },
+      "publishedAt": "2026-07-19T07:01:21.848Z"
     }
   ]
 }

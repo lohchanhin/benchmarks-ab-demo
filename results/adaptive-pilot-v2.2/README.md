@@ -1,8 +1,8 @@
 # Adaptive Pilot v2.2
 
-Status: in progress, 14 of 16 planned trials published. The preregistered
+Status: in progress, 15 of 16 planned trials published. The preregistered
 small-local, cross-stack, and useful-memory blocks are complete; stale-memory
-is 2/4. No agent outcome
+is 3/4. No agent outcome
 existed at protocol freeze.
 
 Protocol v2.2 repeats the four-arm Adaptive study with fresh trial ids and
@@ -94,7 +94,7 @@ uncached input tokens, +5.5 tool calls, and +20.228 seconds. See the
 [block report](../../docs/research/CROSS_STACK_V2_2_BLOCK.md) and updated
 [interim analysis](analysis.md).
 
-## Stale-Memory Block (2/4)
+## Stale-Memory Block (3/4)
 
 The first warm-index adversarial trial had four valid, successful, correctly
 scoped arms. Every arm changed only `src/scheduler/load-batch-limit.mjs`, left
@@ -123,13 +123,16 @@ wall time, but made six more tool calls and used 6,827 more reported tokens.
 | --- | ---: | ---: | ---: | ---: | ---: |
 | [01](stale-memory-adversarial-adaptive-v2-2-pilot-01/comparison.md) | +26,112 | +5,646 | +7 | +29.594s | -233 |
 | [02](stale-memory-adversarial-adaptive-v2-2-pilot-02/comparison.md) | +6,827 | -1,036 | +6 | -5.641s | -233 |
+| [03](stale-memory-adversarial-adaptive-v2-2-pilot-03/comparison.md) | -39,589 | +1,952 | +2 | -7.113s | -233 |
 
-Across two pairs, the Adaptive-minus-Full paired medians are +16,469.5
-reported tokens, +2,305 uncached input tokens, +6.5 tool calls, +11.977
-seconds, and -233 Palace bytes. The observed ranges include both timing and
-uncached-token directions, while calls and reported tokens are higher in both
-pairs. See the second [comparison](stale-memory-adversarial-adaptive-v2-2-pilot-02/comparison.md)
-and [sanitized mechanism record](../../docs/research/evidence/guarded-stale-memory-v2.2-trial02.json).
+The third warm-index trial again passed all correctness and scope gates and
+reproduced the same memory and guardrail delivery. Full recorded one failed
+agent command classified as a router error; this remains in the evidence and
+does not invalidate the arm under the frozen rules. Across three pairs, the
+Adaptive-minus-Full paired medians are +6,827 reported tokens, +1,952
+uncached input tokens, +6 tool calls, -5.641 seconds, and -233 Palace bytes.
+See the third [comparison](stale-memory-adversarial-adaptive-v2-2-pilot-03/comparison.md)
+and [sanitized mechanism record](../../docs/research/evidence/guarded-stale-memory-v2.2-trial03.json).
 
 ## Useful-Memory Block (4/4)
 
