@@ -7,7 +7,7 @@ A public, preregistered, reproducible experiment comparing Codex repository
 work with no Palace, structural routing only, always-on Full Palace, and
 Adaptive Palace.
 
-[Simplified Chinese](README.zh-CN.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [v1 protocol](docs/research/PROTOCOL.md) | [Adaptive v2.2 protocol](docs/research/PROTOCOL_V2_2.md) | [Amendments](docs/research/PROTOCOL_AMENDMENTS.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
+[Simplified Chinese](README.zh-CN.md) | [中文辅助文档](docs/zh-CN/README.md) | [中文快速验证](docs/zh-CN/QUICKSTART.md) | [中文结果解读](docs/zh-CN/RESULTS_GUIDE.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [v1 protocol](docs/research/PROTOCOL.md) | [Adaptive v2.2 protocol](docs/research/PROTOCOL_V2_2.md) | [Amendments](docs/research/PROTOCOL_AMENDMENTS.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
 
 ## Falsifiable Claims
 
