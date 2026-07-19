@@ -1,6 +1,6 @@
 export const borealisArticleTokens = Object.freeze({
   article: Object.freeze({
-    surface: "#f8fafc",
+    surface: "#ffffff",
     text: "#94a3b8"
   })
 });

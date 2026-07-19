@@ -8,13 +8,21 @@ import { invalidatePalaceIndex, seedPalace } from "../lib/palace.mjs";
 import { buildPrompts } from "../lib/prompts.mjs";
 import { runProcess } from "../lib/process.mjs";
 import { defaultRunId, repositoryRoot, safeRunId, toPosix } from "../lib/root.mjs";
-import { defaultScenarioId, loadScenario, materializeScenario, runScenarioOracle } from "../lib/scenario.mjs";
+import {
+  applyScenarioVariant,
+  createScenarioVariant,
+  defaultScenarioId,
+  loadScenario,
+  materializeScenario,
+  runScenarioOracle,
+  scenarioVariantKeyEnvironment
+} from "../lib/scenario.mjs";
 import { resolvePalaceInvocation } from "../lib/tooling.mjs";
 
 export async function prepareCommand(flags) {
   const scenarioId = stringFlag(flags, "scenario", defaultScenarioId);
-  const scenario = await loadScenario(scenarioId);
-  const runId = safeRunId(stringFlag(flags, "run-id", defaultRunId(scenario.id)));
+  const baseScenario = await loadScenario(scenarioId);
+  const runId = safeRunId(stringFlag(flags, "run-id", defaultRunId(baseScenario.id)));
   const seed = stringFlag(flags, "seed", randomBytes(8).toString("hex"));
   const runsRoot = path.resolve(stringFlag(flags, "runs-root", path.join(repositoryRoot, ".benchmark-runs")));
   const runDirectory = path.join(runsRoot, runId);
@@ -27,6 +35,9 @@ export async function prepareCommand(flags) {
   );
   const adaptiveProtocol = protocolVersion !== "1.0.0";
   const controlFirstProtocol = protocolVersion === "3.0.0";
+  const variantKey = stringFlag(flags, "variant-key", process.env[scenarioVariantKeyEnvironment]);
+  const scenarioVariant = createScenarioVariant(baseScenario, { protocolVersion, seed, variantKey });
+  const scenario = applyScenarioVariant(baseScenario, scenarioVariant, seed, { variantKey });
   const cacheState = enumFlag(flags, "cache-state", ["warm", "cold"], "warm");
   const palaceInvocation = await resolvePalaceInvocation(stringFlag(flags, "palace-bin", undefined));
 
@@ -61,7 +72,7 @@ export async function prepareCommand(flags) {
 
   const baseline = await runProcess(scenario.testCommand[0], scenario.testCommand.slice(1), {
     cwd: arms.control,
-    unsetEnv: ["NODE_TEST_CONTEXT"]
+    unsetEnv: ["NODE_TEST_CONTEXT", scenarioVariantKeyEnvironment]
   });
   const baselinePublicExpectedToFail = scenario.baselinePublicExpectedToFail
     ?? scenario.baselineExpectedToFail
@@ -113,7 +124,7 @@ export async function prepareCommand(flags) {
   await Promise.all(promptWrites);
 
   const manifest = {
-    schemaVersion: controlFirstProtocol ? 4 : adaptiveProtocol ? 3 : 2,
+    schemaVersion: controlFirstProtocol ? 5 : adaptiveProtocol ? 3 : 2,
     protocolVersion,
     id: runId,
     createdAt: new Date().toISOString(),
@@ -121,6 +132,7 @@ export async function prepareCommand(flags) {
     scenario: scenario.id,
     scenarioTitle: scenario.title,
     task: scenario.task,
+    ...(scenarioVariant ? { scenarioVariant } : {}),
     ...(controlFirstProtocol
       ? {
           primaryComparison: "adaptive-vs-control",

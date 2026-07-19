@@ -46,6 +46,13 @@ Every arm receives the same task, generated fixture bytes, Git tree, model,
 reasoning effort, timeout, and public tests. Arms execute sequentially in fresh
 ephemeral Codex processes; they never run concurrently.
 
+Every prompt also receives the same completion boundary: do not inventory the
+repository when direct evidence is sufficient, and stop after the requested
+behavior is fixed, the complete tests pass, the Git diff contains only required
+changes, and no task-relevant conflict remains. Adaptive alone receives the
+treatment-specific instruction to obey a `bypass` Primary candidate unless
+current code, a failing test, or runtime evidence contradicts it.
+
 ## Scenarios
 
 | Scenario | Purpose | Expected product boundary |
@@ -65,11 +72,26 @@ The launch-tenant task is deliberately underdetermined from public evidence:
 - several tenant-local fixes and a shared-token fix are plausible;
 - public tests verify the resolver contract but do not identify the launch
   tenant or enforce its contrast;
-- seeded memory identifies Aurora as the independently governed launch tenant
-  and warns against editing shared or sibling tokens;
+- all three named tenants begin with the same plausible low-contrast token, so
+  public source does not identify the independently governed owner;
+- each public seed selects an anonymous stratum, while a preregistered secret
+  256-bit key deterministically permutes the three strata onto Aurora,
+  Borealis, and Cedar;
+- seeded memory identifies only that trial's concealed owner and warns against
+  editing shared or sibling tokens;
 - memory does not provide a replacement color or literal patch;
-- the hidden oracle verifies WCAG AA for Aurora and unchanged behavior for the
-  shared fallback, Borealis, and Cedar.
+- the hidden oracle uses the same concealed assignment to verify WCAG AA for
+  the owner and unchanged behavior for the shared fallback and two siblings.
+
+The public plan covers all three anonymous strata in four trials. Before
+freeze, it must contain the SHA-256 commitment of a cryptographically random
+blinding key, never the key or owner assignments. Per-run manifests contain an
+HMAC assignment commitment but no owner. The key is removed from every Codex,
+Palace, public-test, and oracle subprocess environment and is revealed only
+after outcomes are locked, allowing the published assignments to be
+recomputed without enabling pre-run guessing. The current draft deliberately
+has `blindingKeyCommitment:null`, so changing only `frozen` cannot make it
+executable.
 
 Its unmodified baseline must pass public tests and fail the hidden oracle. The
 canonical one-file repair must pass both. Eligible memory-benefit evidence is a
@@ -119,9 +141,9 @@ powered as a confirmatory non-inferiority or superiority study.
 - Codex: `codex-cli 0.145.0-alpha.18`
 - Vertex Palace candidate: `0.3.0`
 - Vertex Palace source commit:
-  `2d167f81d688160649a8768c863b4e5fe188d1a6`
+  `97d1736f971438f7f2913f0b731633b0bab8441d`
 - Vertex Palace evidence commit:
-  `605b254341d6f3d3ce4993410bd108bda5593182`
+  `8328ea29d55260e34e2e6170bd420e4c659af39e`
 - Platform: `win32`
 - Sandbox: `workspace-write/windows-elevated`
 - Timeout: 600 seconds per arm
@@ -155,7 +177,9 @@ Before changing `frozen` to `true` or creating `protocol-v3.0.0`:
 6. The benchmark depends on the published immutable `vertex-palace@0.3.0`.
 7. The complete benchmark test and evidence audit pass.
 8. The committed public result manifest still contains zero attempted trials.
-9. The reviewed plan is frozen and tagged before any formal arm runs.
+9. A 32-byte random blinding key is generated outside Git, its commitment is
+   committed before freeze, and the key is scrubbed from every Agent process.
+10. The reviewed plan is frozen and tagged before any formal arm runs.
 
 Publishing the npm package uses an interactive browser/device verification only
 after these engineering and research gates succeed.
@@ -165,4 +189,5 @@ after these engineering and research gates succeed.
 Attempted, failed, invalid, and timed-out trials remain outcomes. Reviewed JSON,
 Markdown, and checksums may be published. Raw JSONL transcripts remain local
 because they may contain machine paths and session identifiers. No v3 outcome
-exists at the time of this draft.
+exists at the time of this draft. The blinding key remains private until all
+formal outcomes are locked; its later publication is part of the audit trail.

@@ -2,9 +2,15 @@ import { mkdir, rm } from "node:fs/promises";
 import path from "node:path";
 import { readJson } from "./files.mjs";
 import { runProcess } from "./process.mjs";
+import { scenarioVariantKeyEnvironment } from "./scenario.mjs";
 
 export async function seedPalace(workspace, scenario, invocation, options = {}) {
-  const commandOptions = { cwd: workspace, check: true, windowsShim: invocation.windowsShim };
+  const commandOptions = {
+    cwd: workspace,
+    check: true,
+    windowsShim: invocation.windowsShim,
+    unsetEnv: [scenarioVariantKeyEnvironment]
+  };
   const call = (args) => runProcess(invocation.command, [...invocation.prefix, ...args], commandOptions);
   await call(["init"]);
   await call(["index"]);

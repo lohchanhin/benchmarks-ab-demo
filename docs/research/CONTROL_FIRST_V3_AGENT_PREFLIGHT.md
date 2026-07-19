@@ -114,21 +114,35 @@ all harness, regression, localization, and new evidence files. This negative
 self-evaluation is further evidence that broad multi-surface maintenance
 routing remains unresolved.
 
-## Next Protocol Direction
+## Protocol Corrections Implemented After Preflight
 
-1. Apply the same explicit completion criteria to every arm so prompt quality
-   is not a hidden confound. Adaptive must additionally obey the route's
-   Primary, Deferred, Do Not, and Stop Condition contract.
-2. Randomize the historical tenant owner by seed. The public fixture must not
-   reveal the assignment; seeded memory and the hidden oracle share it. This
-   removes repeated Aurora naming as a favorable guess.
-3. Use fresh IDs and seeds with balanced sequential order. Provider-side load
-   remains uncontrolled, so wall time stays secondary.
-4. Keep Adaptive versus Control as primary. Correctness, hidden oracle, and
-   exact scope are gates; paired cumulative reported tokens are the primary
-   efficiency outcome only among mutually successful valid pairs.
-5. Freeze and tag the revised plan before formal runs. These preflight outcomes
-   will remain outside the formal manifest.
+1. Every arm now receives the same no-inventory completion boundary and stop
+   condition. Adaptive alone receives the treatment-specific `bypass` rule.
+2. The formal fixture no longer fixes Aurora as the owner. Public seeds cover
+   three anonymous strata; a private 256-bit key deterministically permutes the
+   strata onto Aurora, Borealis, and Cedar. Public source and prompts reveal no
+   assignment.
+3. The plan commits to the key hash before freeze, run manifests retain only an
+   HMAC assignment commitment, and the key is scrubbed from every Agent child
+   process. Publishing the key after outcomes are locked makes the assignment
+   reproducible without making it guessable before execution.
+4. Regression tests exercise all three possible owners, baseline public-pass /
+   oracle-fail behavior, canonical repair, wrong-key rejection, prompt
+   non-disclosure, and environment scrubbing.
+
+The draft intentionally retains `blindingKeyCommitment:null` and
+`frozen:false`; it cannot become executable by changing the freeze flag alone.
+No additional Agent outcome was generated while making these corrections.
+
+## Remaining Direction
+
+1. Run the complete harness and evidence audit, then publish this design stage.
+2. Complete the remaining package and real-repository release gates.
+3. Generate the formal key outside Git, commit only its hash, freeze and tag
+   the reviewed plan, and confirm the public manifest is still empty.
+4. Execute fresh sequential arms. Adaptive versus Control stays primary;
+   correctness, hidden oracle, and exact scope remain gates before paired
+   cumulative reported tokens are interpreted.
 
 ## Audit Boundary
 

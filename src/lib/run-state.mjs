@@ -3,7 +3,7 @@ import path from "node:path";
 import { stringFlag } from "./args.mjs";
 import { readJson } from "./files.mjs";
 import { repositoryRoot } from "./root.mjs";
-import { loadScenario } from "./scenario.mjs";
+import { applyScenarioVariant, loadScenario } from "./scenario.mjs";
 
 export const LEGACY_ARMS = Object.freeze(["control", "route-only", "full-palace"]);
 export const ADAPTIVE_ARMS = Object.freeze(["control", "route-only", "full-palace", "adaptive-palace"]);
@@ -24,9 +24,10 @@ export async function resolveRunDirectory(flags) {
   if (!latest) throw new Error("No benchmark runs found. Run prepare first.");
   return path.join(runsRoot, latest);
 }
-export async function loadRun(runDirectory) {
+export async function loadRun(runDirectory, options = {}) {
   const manifest = await readJson(path.join(runDirectory, "manifest.json"));
-  const scenario = await loadScenario(manifest.scenario);
+  const baseScenario = await loadScenario(manifest.scenario);
+  const scenario = applyScenarioVariant(baseScenario, manifest.scenarioVariant ?? null, manifest.seed, options);
   return {
     runDirectory,
     manifest,

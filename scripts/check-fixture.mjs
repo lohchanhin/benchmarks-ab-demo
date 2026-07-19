@@ -3,8 +3,10 @@ import os from "node:os";
 import path from "node:path";
 import { runProcess } from "../src/lib/process.mjs";
 import {
+  applyScenarioVariant,
   applyCanonicalRepair,
   controlFirstScenarioIds,
+  createScenarioVariant,
   loadScenario,
   materializeScenario,
   pilotScenarioIds,
@@ -12,12 +14,20 @@ import {
 } from "../src/lib/scenario.mjs";
 
 const scenarioIds = [...new Set([...pilotScenarioIds, ...controlFirstScenarioIds])];
+const fixtureVariantKey = "4444444444444444444444444444444444444444444444444444444444444444";
 
 for (const scenarioId of scenarioIds) {
   const root = await mkdtemp(path.join(os.tmpdir(), `vertex-palace-${scenarioId}-`));
   try {
-    const scenario = await loadScenario(scenarioId);
-    const files = await materializeScenario(scenario, root, { seed: "fixture-check-seed" });
+    const seed = "fixture-check-seed";
+    const baseScenario = await loadScenario(scenarioId);
+    const variant = createScenarioVariant(baseScenario, {
+      protocolVersion: "3.0.0",
+      seed,
+      variantKey: fixtureVariantKey
+    });
+    const scenario = applyScenarioVariant(baseScenario, variant, seed, { variantKey: fixtureVariantKey });
+    const files = await materializeScenario(scenario, root, { seed });
     const baseline = await runProcess(scenario.testCommand[0], scenario.testCommand.slice(1), { cwd: root });
     const baselineOracle = await runScenarioOracle(scenario, root);
     const publicExpectedToFail = scenario.baselinePublicExpectedToFail

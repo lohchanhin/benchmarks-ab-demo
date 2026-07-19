@@ -124,7 +124,9 @@ Adaptive Palace versus normal Codex. Its primary efficiency metric is paired
 cumulative `reportedTokens`, but correctness and exact changed-file scope are
 evaluated first. The old useful-memory fixture is replaced by a deliberately
 underdetermined ownership task whose public tests pass at baseline while an
-external oracle requires the historically designated Aurora scope.
+external oracle requires a seed-stratified, secretly permuted tenant scope.
+Aurora, Borealis, and Cedar are fictional tenants; the public plan and prompts
+do not reveal which one owns a given formal trial.
 
 The [v3 protocol draft](docs/research/PROTOCOL_V3.md), [16-trial candidate
 plan](results/control-first-v3/plan.json), and empty [result
@@ -140,13 +142,17 @@ The subsequent [two-run Agent preflight](docs/research/CONTROL_FIRST_V3_AGENT_PR
 keeps a 177-byte bypass that was still slower and more Token-heavy than Control,
 plus one guarded-memory run where Route-only failed but Control and Adaptive
 both succeeded. These are design inputs, not formal v3 outcomes.
+The follow-up [blinded-fixture design](docs/research/CONTROL_FIRST_V3_BLINDED_DESIGN.md)
+adds a preregistered 256-bit key commitment, all-owner regression coverage, and
+prompt-matched stop conditions without running another Agent arm. The draft key
+commitment remains `null`, so the plan still cannot be frozen accidentally.
 The current product gate also records exact Zod and Requests routes at recall
 1.000 / strict precision 1.000 and a clean-install 50-memory ceiling test; these
 remain engineering evidence until the independent Agent arms are frozen and run.
 
 The reviewed runtime source is pinned to Vertex Palace
-`2d167f81d688160649a8768c863b4e5fe188d1a6`; the bilingual evidence record is
-pinned to `605b254341d6f3d3ce4993410bd108bda5593182`. Historical route evaluations
+`97d1736f971438f7f2913f0b731633b0bab8441d`; the bilingual evidence record is
+pinned to `8328ea29d55260e34e2e6170bd420e4c659af39e`. Historical route evaluations
 progressed from 3/8 to an exact 8/8 fixed oracle, yet a real nine-file update
 still reached only 7/9. The final provenance candidate routes the current
 nine-file source/evidence sync exactly 9/9 with 1.00 coverage and focus. Its own

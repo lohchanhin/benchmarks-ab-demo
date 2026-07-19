@@ -3,11 +3,13 @@ import path from "node:path";
 import test from "node:test";
 import {
   codexArguments,
+  codexProcessEnvironment,
   LAST_MESSAGE_TRANSPORT,
   orderedArms,
   WINDOWS_SANDBOX_MODE
 } from "../src/commands/run.mjs";
 import { ADAPTIVE_ARMS } from "../src/lib/run-state.mjs";
+import { scenarioVariantKeyEnvironment } from "../src/lib/scenario.mjs";
 
 test("runs three arms sequentially in explicit or seeded order", () => {
   assert.deepEqual(orderedArms("both", "control-first"), ["control", "full-palace"]);
@@ -53,4 +55,13 @@ test("keeps Codex last-message output inside the arm workspace during execution"
   }
   assert.equal(args[outputIndex + 1], lastMessagePath);
   assert.equal(path.relative(workspace, lastMessagePath).startsWith(".."), false);
+});
+
+test("scrubs the blinded scenario key from every Codex arm", () => {
+  for (const arm of ADAPTIVE_ARMS) {
+    const options = codexProcessEnvironment(arm);
+    assert.deepEqual(options.unsetEnv, [scenarioVariantKeyEnvironment]);
+    if (arm === "control") assert.equal(options.env, undefined);
+    else assert.match(options.env.PATH, /node_modules[\\/]\.bin/);
+  }
 });

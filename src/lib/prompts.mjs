@@ -5,6 +5,8 @@ export function buildPrompts(scenario) {
     "Work directly in the repository and complete the task end to end.",
     "Run the complete test suite before finishing.",
     "Keep changes narrowly scoped and do not rewrite tests to make them pass.",
+    "Do not inventory the repository when direct task evidence is sufficient; expand only when current code, tests, or runtime output conflicts.",
+    "Stop exploring when the requested behavior is fixed, the complete tests pass, the Git diff contains only task-required changes, and no task-relevant conflict remains.",
     "",
     "TASK",
     task
@@ -46,6 +48,7 @@ export function buildPrompts(scenario) {
     "This run measures Vertex Palace adaptive mode selection with the same project history as Full Palace.",
     `Before ordinary repository exploration, run exactly one Vertex Palace preparation command: palace context ${quotedTask} --auto --budget 6000 --route-limit 8 --max-drawers 4`,
     "Follow the selected mode and inspect Primary context first. Open Deferred references only when current code, tests, or runtime evidence requires it.",
+    "When the selected mode is bypass, inspect the Primary candidate directly and do not inventory the repository unless that file, a failing test, or runtime evidence contradicts the route.",
     "Treat guarded memory as scoped evidence; current code and tests outrank memory.",
     "Do not call palace status, init, index, route, pack, help, open, evaluate, or memory separately during this benchmark arm.",
     "Post-task evaluation, memory writing, and index maintenance are intentionally outside this timed routing comparison.",

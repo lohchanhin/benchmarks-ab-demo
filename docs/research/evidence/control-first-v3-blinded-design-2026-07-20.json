@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-20T05:09:35+08:00",
+  "status": "design-validated-no-agent-runs",
+  "claimBoundary": "Experimental-validity evidence only; no Token, time, call, or correctness benefit is claimed.",
+  "formalStudy": {
+    "plan": "results/control-first-v3/plan.json",
+    "frozen": false,
+    "blindingKeyCommitment": null,
+    "newAgentArmRuns": 0
+  },
+  "productCandidate": {
+    "version": "0.3.0",
+    "sourceCommit": "97d1736f971438f7f2913f0b731633b0bab8441d",
+    "evidenceCommit": "8328ea29d55260e34e2e6170bd420e4c659af39e"
+  },
+  "fixture": {
+    "scenario": "decision-memory-dependent",
+    "variantId": "seeded-tenant-owner-v1",
+    "candidates": ["aurora", "borealis", "cedar"],
+    "candidateMeaning": "fictional tenants",
+    "publicStrata": [1, 2, 0, 2],
+    "assignment": "sha256 seed stratum plus HMAC-SHA256 secret permutation",
+    "keyRequirement": "32-byte hexadecimal secret",
+    "keyStoredInGit": false,
+    "committedTestKeysEligibleForFormalRuns": false,
+    "ownerStoredInPlanOrPrompt": false,
+    "postStudyRevealRequired": true
+  },
+  "promptBoundary": {
+    "commonToAllArms": [
+      "avoid repository inventory when direct evidence is sufficient",
+      "stop after behavior is fixed, complete tests pass, Git diff is task-only, and no relevant conflict remains"
+    ],
+    "adaptiveOnly": "obey bypass Primary candidate unless contradicted by code, tests, or runtime evidence"
+  },
+  "targetedVerification": {
+    "tests": 24,
+    "passed": 24,
+    "failed": 0,
+    "covers": [
+      "all three concealed owners",
+      "public-pass and oracle-fail baseline",
+      "canonical one-file repair",
+      "wrong-key rejection",
+      "prompt non-disclosure",
+      "all-strata draft coverage",
+      "Codex child environment key scrubbing"
+    ]
+  },
+  "completeRepositoryVerification": {
+    "tests": 62,
+    "passed": 62,
+    "failed": 0,
+    "fixtureContractsPassed": 5,
+    "historicalResultAuditsPassed": 5,
+    "adaptiveV22AnalysisReproduced": true,
+    "controlFirstV3Manifest": "0/16"
+  },
+  "palaceCloseoutEvaluation": {
+    "changedFiles": 31,
+    "default": {
+      "routeLimit": 10,
+      "matchedFiles": 6,
+      "changedFileCoverage": 0.19,
+      "routeFocus": 0.6,
+      "confidence": 0.35,
+      "calibration": "overconfident",
+      "assessment": "needs-review"
+    },
+    "expanded": {
+      "routeLimit": 40,
+      "matchedFiles": 15,
+      "changedFileCoverage": 0.48,
+      "routeFocus": 0.63,
+      "confidence": 0.35,
+      "calibration": "well-calibrated",
+      "assessment": "needs-review"
+    },
+    "claimBoundary": "Estimated context reduction is not evidence of end-to-end Agent Token or time savings."
+  },
+  "remaining": [
+    "complete repository check and evidence audit",
+    "publish benchmark design stage",
+    "publish immutable vertex-palace 0.3.0 after release gates",
+    "commit a real key commitment, freeze, and tag before formal arms",
+    "run fresh sequential formal trials"
+  ]
+}

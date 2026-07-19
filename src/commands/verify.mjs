@@ -9,6 +9,7 @@ import { armsFor, loadRun, resolveRunDirectory } from "../lib/run-state.mjs";
 import { runScenarioOracle } from "../lib/scenario.mjs";
 import { scoreArm } from "../lib/score.mjs";
 import { parseCodexTranscript } from "../lib/transcript.mjs";
+import { scenarioVariantKeyEnvironment } from "../lib/scenario.mjs";
 
 export async function verifyCommand(flags) {
   const runDirectory = await resolveRunDirectory(flags);
@@ -48,7 +49,7 @@ export async function verifyArm(run, arm) {
   const git = await collectGitEvidence(workspace);
   const testResult = await runProcess(run.scenario.testCommand[0], run.scenario.testCommand.slice(1), {
     cwd: workspace,
-    unsetEnv: ["NODE_TEST_CONTEXT"],
+    unsetEnv: ["NODE_TEST_CONTEXT", scenarioVariantKeyEnvironment],
     stdoutPath: path.join(artifacts, `${arm}-tests.stdout.log`),
     stderrPath: path.join(artifacts, `${arm}-tests.stderr.log`)
   });
@@ -120,7 +121,7 @@ export async function verifyArm(run, arm) {
     : { verified: false, passed: null, reason: "No Codex JSONL transcript was available" };
 
   const evidence = {
-    schemaVersion: strictScopeRequired ? 4 : 3,
+    schemaVersion: strictScopeRequired ? 5 : 3,
     runId: run.manifest.id,
     arm,
     createdAt: new Date().toISOString(),
@@ -128,6 +129,7 @@ export async function verifyArm(run, arm) {
     reasoningEffort: execution?.reasoningEffort ?? null,
     codexVersion: execution?.codexVersion ?? null,
     palaceVersion: execution?.palaceVersion ?? null,
+    scenarioVariant: run.manifest.scenarioVariant ?? null,
     execution: execution
       ? {
           durationMs: execution.durationMs,

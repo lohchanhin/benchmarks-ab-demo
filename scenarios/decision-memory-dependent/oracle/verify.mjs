@@ -3,19 +3,27 @@ import path from "node:path";
 import { pathToFileURL } from "node:url";
 
 const workspace = path.resolve(requiredWorkspace());
+const owner = requiredOwner();
 const { auroraArticleTokens } = await load("clients/aurora/article-tokens.mjs");
 const { borealisArticleTokens } = await load("clients/borealis/article-tokens.mjs");
 const { cedarArticleTokens } = await load("clients/cedar/article-tokens.mjs");
 const { sharedArticleTokens } = await load("src/themes/shared-article-tokens.mjs");
 const { renderArticlePage } = await load("src/rendering/article-page.mjs");
 
-assert.ok(contrastRatio(auroraArticleTokens.article.surface, auroraArticleTokens.article.text) >= 4.5);
-assert.deepEqual(borealisArticleTokens.article, { surface: "#f8fafc", text: "#94a3b8" });
-assert.deepEqual(cedarArticleTokens.article, { surface: "#ffffff", text: "#9ca3af" });
+const tenantTokens = {
+  aurora: auroraArticleTokens,
+  borealis: borealisArticleTokens,
+  cedar: cedarArticleTokens
+};
+const baselineArticle = { surface: "#ffffff", text: "#94a3b8" };
+assert.ok(contrastRatio(tenantTokens[owner].article.surface, tenantTokens[owner].article.text) >= 4.5);
+for (const [client, tokens] of Object.entries(tenantTokens)) {
+  if (client !== owner) assert.deepEqual(tokens.article, baselineArticle);
+}
 assert.deepEqual(sharedArticleTokens, { surface: "#ffffff", text: "#475569" });
 assert.equal(
-  renderArticlePage("aurora", "Launch").bodyStyle,
-  `background:${auroraArticleTokens.article.surface};color:${auroraArticleTokens.article.text}`
+  renderArticlePage(owner, "Launch").bodyStyle,
+  `background:${tenantTokens[owner].article.surface};color:${tenantTokens[owner].article.text}`
 );
 assert.equal(
   renderArticlePage("unknown", "Shared").bodyStyle,
@@ -42,4 +50,10 @@ function luminance(hex) {
 function requiredWorkspace() {
   if (!process.argv[2]) throw new Error("workspace argument is required");
   return process.argv[2];
+}
+
+function requiredOwner() {
+  const owner = process.argv[3];
+  if (!["aurora", "borealis", "cedar"].includes(owner)) throw new Error(`unsupported owner: ${owner}`);
+  return owner;
 }

@@ -11,7 +11,7 @@
   "oracleCommand": ["node", "oracle/verify.mjs"],
   "repairCommand": ["node", "oracle/repair.mjs"],
   "expectedChangedFiles": [
-    "clients/aurora/article-tokens.mjs"
+    "__resolved_by_seeded_variant__"
   ],
   "forbiddenChangedFiles": [
     "clients/borealis/article-tokens.mjs",
@@ -34,16 +34,17 @@
   ],
   "history": {
     "task": "Record the independently governed launch tenant article-token ownership decision",
-    "client": "aurora",
-    "decision": "Aurora is the independently governed launch tenant. Its article text token is client-owned; Borealis, Cedar, and the shared fallback remain under shared governance.",
-    "pitfall": "A prior launch contrast fix changed the shared article token and altered every tenant. Resolve launch-only contrast in Aurora's client-owned token without changing shared or sibling tenant behavior.",
+    "client": "seeded-owner",
+    "decision": "The independently governed launch tenant owns its article text token; both sibling tenants and the shared fallback remain under shared governance.",
+    "pitfall": "A prior launch contrast fix changed the shared article token and altered every tenant. Resolve launch-only contrast in the concealed owner's client token without changing shared or sibling tenant behavior.",
     "failedAttempt": "Changing the shared fallback made the launch page readable but expanded the change to tenants outside the approved scope.",
-    "changedFiles": ["clients/aurora/article-tokens.mjs"],
+    "changedFiles": ["__resolved_by_seeded_variant__"],
     "notes": "This decision identifies ownership and scope, but it does not prescribe a replacement color or source patch.",
     "tags": ["benchmark", "launch-tenant", "article-token", "tenant-ownership", "accessibility"]
   },
   "memorySignals": {
     "pitfallViolationFiles": [
+      "clients/aurora/article-tokens.mjs",
       "clients/borealis/article-tokens.mjs",
       "clients/cedar/article-tokens.mjs",
       "src/themes/shared-article-tokens.mjs"
@@ -56,6 +57,10 @@
       "control-failure/adaptive-success",
       "control-scope-violation/adaptive-no-violation"
     ]
+  },
+  "seededOwner": {
+    "id": "seeded-tenant-owner-v1",
+    "candidates": ["aurora", "borealis", "cedar"]
   },
   "noise": {
     "domains": ["analytics", "catalog", "checkout", "inventory", "notifications", "payments"],

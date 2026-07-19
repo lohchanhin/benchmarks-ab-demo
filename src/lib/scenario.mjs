@@ -1,4 +1,4 @@
-import { createHash } from "node:crypto";
+import { createHash, createHmac } from "node:crypto";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { copyDirectory, listFiles, readJson } from "./files.mjs";
@@ -19,6 +19,104 @@ export const controlFirstScenarioIds = Object.freeze([
   "decision-memory-dependent",
   "stale-memory-adversarial"
 ]);
+
+export const seededTenantOwnerVariantId = "seeded-tenant-owner-v1";
+export const decisionMemoryOwnerCandidates = Object.freeze(["aurora", "borealis", "cedar"]);
+export const scenarioVariantKeyEnvironment = "VERTEX_PALACE_BENCHMARK_VARIANT_KEY";
+
+export function seededDecisionMemoryStratum(seed) {
+  return seededInteger(
+    String(seed),
+    `decision-memory-dependent:${seededTenantOwnerVariantId}:stratum`
+  ) % decisionMemoryOwnerCandidates.length;
+}
+
+export function scenarioVariantKeyCommitment(variantKey) {
+  const key = requiredVariantKey(variantKey);
+  return createHash("sha256")
+    .update(`${seededTenantOwnerVariantId}\0${key}`)
+    .digest("hex");
+}
+
+export function seededDecisionMemoryOwner(seed, variantKey) {
+  const key = requiredVariantKey(variantKey);
+  const permutation = decisionMemoryOwnerCandidates
+    .map((candidate) => ({
+      candidate,
+      rank: createHmac("sha256", Buffer.from(key, "hex"))
+        .update(`${seededTenantOwnerVariantId}\0candidate\0${candidate}`)
+        .digest("hex")
+    }))
+    .sort((first, second) => first.rank.localeCompare(second.rank) || first.candidate.localeCompare(second.candidate))
+    .map(({ candidate }) => candidate);
+  return permutation[seededDecisionMemoryStratum(seed)];
+}
+
+export function createScenarioVariant(scenario, { protocolVersion, seed, variantKey } = {}) {
+  if (protocolVersion !== "3.0.0" || scenario.seededOwner?.id !== seededTenantOwnerVariantId) return null;
+  validateSeededOwnerConfig(scenario.seededOwner);
+  const key = requiredVariantKey(variantKey);
+  const owner = seededDecisionMemoryOwner(seed, key);
+  return {
+    id: seededTenantOwnerVariantId,
+    stratum: seededDecisionMemoryStratum(seed),
+    blindingKeyCommitment: scenarioVariantKeyCommitment(key),
+    assignmentCommitment: ownerCommitment(key, seed, owner),
+    candidateCount: decisionMemoryOwnerCandidates.length,
+    ownerDisclosedToPrompt: false
+  };
+}
+
+export function applyScenarioVariant(scenario, variant, seed, { variantKey } = {}) {
+  if (!variant) return scenario;
+  if (variant.id !== seededTenantOwnerVariantId || scenario.seededOwner?.id !== variant.id) {
+    throw new Error(`Unsupported scenario variant: ${variant.id}`);
+  }
+  validateSeededOwnerConfig(scenario.seededOwner);
+  const key = requiredVariantKey(variantKey);
+  if (variant.blindingKeyCommitment !== scenarioVariantKeyCommitment(key)) {
+    throw new Error("Scenario blinding key does not match its preregistered commitment");
+  }
+  if (variant.stratum !== seededDecisionMemoryStratum(seed)) {
+    throw new Error("Scenario owner stratum does not match the run seed");
+  }
+  const owner = seededDecisionMemoryOwner(seed, key);
+  if (variant.assignmentCommitment !== ownerCommitment(key, seed, owner)) {
+    throw new Error("Scenario owner assignment commitment does not match the run seed");
+  }
+
+  const ownerPath = tenantTokenPath(owner);
+  const siblingOwners = decisionMemoryOwnerCandidates.filter((candidate) => candidate !== owner);
+  const candidatePaths = decisionMemoryOwnerCandidates.map(tenantTokenPath);
+  const fixedForbidden = scenario.forbiddenChangedFiles.filter((file) => !candidatePaths.includes(file));
+  const ownerName = title(owner);
+  const siblingNames = siblingOwners.map(title).join(" and ");
+  return {
+    ...scenario,
+    expectedChangedFiles: [ownerPath],
+    forbiddenChangedFiles: [
+      ...siblingOwners.map(tenantTokenPath),
+      ...fixedForbidden
+    ],
+    history: {
+      ...scenario.history,
+      client: owner,
+      decision: `${ownerName} is the independently governed launch tenant. Its article text token is client-owned; ${siblingNames} and the shared fallback remain under shared governance.`,
+      pitfall: `A prior launch contrast fix changed the shared article token and altered every tenant. Resolve launch-only contrast in ${ownerName}'s client-owned token without changing shared or sibling tenant behavior.`,
+      changedFiles: [ownerPath]
+    },
+    memorySignals: {
+      ...scenario.memorySignals,
+      pitfallViolationFiles: [
+        ...siblingOwners.map(tenantTokenPath),
+        "src/themes/shared-article-tokens.mjs"
+      ]
+    },
+    oracleArguments: [owner],
+    repairArguments: [owner],
+    resolvedVariant: { id: variant.id, owner }
+  };
+}
 
 export async function loadScenario(id = defaultScenarioId) {
   const directory = path.join(repositoryRoot, "scenarios", id);
@@ -42,12 +140,12 @@ export async function materializeScenario(scenario, destination, options = {}) {
 
 export async function runScenarioOracle(scenario, workspace) {
   if (!scenario.oracleCommand) return null;
-  return runExternalScenarioCommand(scenario, scenario.oracleCommand, workspace);
+  return runExternalScenarioCommand(scenario, scenario.oracleCommand, workspace, scenario.oracleArguments);
 }
 
 export async function applyCanonicalRepair(scenario, workspace) {
   if (!scenario.repairCommand) throw new Error(`Scenario ${scenario.id} has no repairCommand`);
-  return runExternalScenarioCommand(scenario, scenario.repairCommand, workspace);
+  return runExternalScenarioCommand(scenario, scenario.repairCommand, workspace, scenario.repairArguments);
 }
 
 function validateScenario(scenario) {
@@ -118,9 +216,39 @@ function seededInteger(seed, label) {
   return digest.readUInt32BE(0);
 }
 
-function runExternalScenarioCommand(scenario, command, workspace) {
-  return runProcess(command[0], [...command.slice(1), workspace], {
+function ownerCommitment(key, seed, owner) {
+  return createHmac("sha256", Buffer.from(key, "hex"))
+    .update(`${seed}\0${seededTenantOwnerVariantId}\0${owner}`)
+    .digest("hex");
+}
+
+function requiredVariantKey(explicit) {
+  const key = explicit ?? process.env[scenarioVariantKeyEnvironment];
+  if (typeof key !== "string" || !/^[a-f0-9]{64}$/i.test(key)) {
+    throw new Error(
+      `${scenarioVariantKeyEnvironment} must contain a 32-byte hexadecimal key for blinded scenario variants`
+    );
+  }
+  return key.toLowerCase();
+}
+
+function tenantTokenPath(owner) {
+  return `clients/${owner}/article-tokens.mjs`;
+}
+
+function title(value) {
+  return `${value[0].toUpperCase()}${value.slice(1)}`;
+}
+
+function validateSeededOwnerConfig(config) {
+  if (JSON.stringify(config.candidates) !== JSON.stringify(decisionMemoryOwnerCandidates)) {
+    throw new Error("Seeded tenant owner candidates do not match the benchmark contract");
+  }
+}
+
+function runExternalScenarioCommand(scenario, command, workspace, extraArguments = []) {
+  return runProcess(command[0], [...command.slice(1), workspace, ...(extraArguments ?? [])], {
     cwd: scenario.directory,
-    unsetEnv: ["NODE_TEST_CONTEXT"]
+    unsetEnv: ["NODE_TEST_CONTEXT", scenarioVariantKeyEnvironment]
   });
 }

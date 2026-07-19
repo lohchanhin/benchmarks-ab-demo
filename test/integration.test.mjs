@@ -11,6 +11,24 @@ import { collectGitEvidence } from "../src/lib/git.mjs";
 import { loadRun } from "../src/lib/run-state.mjs";
 import { applyCanonicalRepair as applyScenarioRepair } from "../src/lib/scenario.mjs";
 
+const testVariantKey = "3333333333333333333333333333333333333333333333333333333333333333";
+
+test("control-first seeded scenarios reject preparation without a blinding key", async (context) => {
+  const root = await mkdtemp(path.join(os.tmpdir(), "benchmark-missing-variant-key-"));
+  context.after(() => rm(root, { recursive: true, force: true }));
+  await assert.rejects(
+    prepareCommand(new Map([
+      ["scenario", "decision-memory-dependent"],
+      ["run-id", "missing-variant-key"],
+      ["seed", "missing-variant-key-seed"],
+      ["runs-root", root],
+      ["protocol-version", "3.0.0"],
+      ["skip-palace-seed", true]
+    ])),
+    /must contain a 32-byte hexadecimal key/
+  );
+});
+
 test("prepares identical arms, verifies repairs, and writes comparison reports", async (context) => {
   const root = await mkdtemp(path.join(os.tmpdir(), "benchmark-integration-"));
   context.after(() => rm(root, { recursive: true, force: true }));
@@ -113,9 +131,14 @@ test("control-first v3 rejects correct output with an over-broad changed-file sc
     ["seed", "control-first-scope-seed"],
     ["runs-root", root],
     ["protocol-version", "3.0.0"],
+    ["variant-key", testVariantKey],
     ["skip-palace-seed", true]
   ]));
-  const run = await loadRun(runDirectory);
+  const run = await loadRun(runDirectory, { variantKey: testVariantKey });
+  assert.equal(run.manifest.schemaVersion, 5);
+  assert.equal(run.manifest.scenarioVariant.ownerDisclosedToPrompt, false);
+  assert.equal("owner" in run.manifest.scenarioVariant, false);
+  assert.equal(run.scenario.expectedChangedFiles[0], `clients/${run.scenario.resolvedVariant.owner}/article-tokens.mjs`);
   const workspace = run.workspace("control");
   const repair = await applyScenarioRepair(run.scenario, workspace);
   assert.equal(repair.exitCode, 0);

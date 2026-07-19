@@ -31,6 +31,11 @@ Common options:
   --codex-bin <path>    Codex CLI executable or command
   --palace-bin <path>   Vertex Palace CLI executable or command
 
+Control-first v3 environment:
+  VERTEX_PALACE_BENCHMARK_VARIANT_KEY
+                         32-byte hexadecimal blinding key; required only after
+                         its commitment is preregistered in the frozen plan
+
 Examples:
   npm run benchmark -- doctor
   npm run benchmark -- study --plan results/pilot/plan.json

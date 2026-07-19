@@ -63,6 +63,7 @@ export function buildComparison(run, evidence) {
     cacheState: run.manifest.cacheState ?? "unrecorded",
     seed: run.manifest.seed ?? null,
     protocolVersion: run.manifest.protocolVersion ?? null,
+    scenarioVariant: run.manifest.scenarioVariant ?? null,
     ...(controlFirst
       ? {
           primaryComparison: "adaptive-vs-control",

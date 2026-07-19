@@ -7,6 +7,7 @@ import { pathExists, readJson, writeJson } from "../lib/files.mjs";
 import { runProcess } from "../lib/process.mjs";
 import { armsFor, loadRun, resolveRunDirectory } from "../lib/run-state.mjs";
 import { repositoryRoot } from "../lib/root.mjs";
+import { scenarioVariantKeyEnvironment } from "../lib/scenario.mjs";
 import { resolveCodexBin } from "../lib/tooling.mjs";
 import { verifyArm } from "./verify.mjs";
 import { writeComparisonReport } from "./report.mjs";
@@ -82,12 +83,13 @@ export async function runCommand(flags) {
     const lastMessagePath = path.join(artifacts, `${arm}-last-message.md`);
     const workspaceLastMessagePath = path.join(workspace, ".benchmark-last-message.md");
     const args = codexArguments({ workspace, model, reasoningEffort, lastMessagePath: workspaceLastMessagePath });
+    const processEnvironment = codexProcessEnvironment(arm);
 
     console.log(`Running ${arm} arm with ${model}...`);
     const result = await runProcess(codexBin, args, {
       cwd: workspace,
       input: prompt,
-      env: arm === "control" ? undefined : palaceEnvironment(),
+      ...processEnvironment,
       stdoutPath: transcriptPath,
       stderrPath,
       timeoutMs
@@ -176,6 +178,13 @@ export function codexArguments({ workspace, model, reasoningEffort, lastMessageP
     "-"
   );
   return args;
+}
+
+export function codexProcessEnvironment(arm) {
+  return {
+    env: arm === "control" ? undefined : palaceEnvironment(),
+    unsetEnv: [scenarioVariantKeyEnvironment]
+  };
 }
 
 async function relocateLastMessage(source, target) {

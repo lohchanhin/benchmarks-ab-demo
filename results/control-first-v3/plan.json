@@ -1,9 +1,10 @@
 {
-  "schemaVersion": 4,
+  "schemaVersion": 5,
   "protocolVersion": "3.0.0",
   "protocolTag": "protocol-v3.0.0",
   "id": "vertex-palace-control-first-four-scenario-pilot-v3",
   "createdAt": "2026-07-19T16:22:42.105Z",
+  "revisedAt": "2026-07-20T05:02:00+08:00",
   "frozen": false,
   "primaryComparison": "adaptive-vs-control",
   "primaryEfficiencyMetric": "reportedTokens",
@@ -20,10 +21,22 @@
     "timeoutMs": 600000,
     "cooldownMs": 15000,
     "palaceVersion": "0.3.0",
-    "palaceSourceCommit": "2d167f81d688160649a8768c863b4e5fe188d1a6",
+    "palaceSourceCommit": "97d1736f971438f7f2913f0b731633b0bab8441d",
     "platform": "win32",
     "sandboxProfile": "workspace-write/windows-elevated",
     "lastMessageTransport": "workspace-local-then-artifacts-v1"
+  },
+  "scenarioVariantPolicy": {
+    "decision-memory-dependent": {
+      "id": "seeded-tenant-owner-v1",
+      "selection": "sha256-seed-stratum+hmac-sha256-secret-permutation",
+      "candidates": ["aurora", "borealis", "cedar"],
+      "requiredCoverage": "all-strata",
+      "blindingKeyEnvironment": "VERTEX_PALACE_BENCHMARK_VARIANT_KEY",
+      "blindingKeyCommitmentAlgorithm": "sha256",
+      "revealPolicy": "publish-key-after-study-lock",
+      "blindingKeyCommitment": null
+    }
   },
   "trials": [
     {
@@ -99,7 +112,7 @@
     {
       "trialId": "decision-memory-dependent-control-first-v3-pilot-03",
       "scenario": "decision-memory-dependent",
-      "seed": "d8922b7f4b88d338f8c8efba3fbc416a",
+      "seed": "fec53ebb71898490181bda46e37955bf",
       "order": ["control", "route-only", "adaptive-palace", "full-palace"],
       "cacheState": "warm"
     },

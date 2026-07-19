@@ -5,9 +5,16 @@ import {
   adaptiveWilliamsOrders,
   buildAdaptivePilotPlan,
   studyCommand,
+  validateScenarioVariantKey,
   validateStudyPlan
 } from "../src/commands/study.mjs";
 import { repositoryRoot } from "../src/lib/root.mjs";
+import {
+  scenarioVariantKeyCommitment,
+  seededDecisionMemoryStratum
+} from "../src/lib/scenario.mjs";
+
+const testVariantKey = "2222222222222222222222222222222222222222222222222222222222222222";
 
 test("committed pilot plan has five paired seeds and distinct orders per scenario", async () => {
   const plan = JSON.parse(await readFile(`${repositoryRoot}/results/pilot/plan.json`, "utf8"));
@@ -121,11 +128,12 @@ test("committed v2.2 plan freezes the corrected harness with fresh ids and seeds
 test("control-first v3 makes Adaptive versus Control primary with a fresh scenario set", async () => {
   const plan = buildAdaptivePilotPlan({
     protocolVersion: "3.0.0",
-    codexVersion: "codex-cli 0.145.0-alpha.18"
+    codexVersion: "codex-cli 0.145.0-alpha.18",
+    variantKey: testVariantKey
   });
   plan.frozen = true;
   assert.equal(validateStudyPlan(plan), true);
-  assert.equal(plan.schemaVersion, 4);
+  assert.equal(plan.schemaVersion, 5);
   assert.equal(plan.primaryComparison, "adaptive-vs-control");
   assert.equal(plan.primaryEfficiencyMetric, "reportedTokens");
   assert.deepEqual(plan.comparisonOrder, [
@@ -135,21 +143,43 @@ test("control-first v3 makes Adaptive versus Control primary with a fresh scenar
     "full-vs-route-only"
   ]);
   assert.equal(plan.execution.palaceVersion, "0.3.0");
-  assert.equal(plan.execution.palaceSourceCommit, "2d167f81d688160649a8768c863b4e5fe188d1a6");
+  assert.equal(plan.execution.palaceSourceCommit, "97d1736f971438f7f2913f0b731633b0bab8441d");
   assert.equal(plan.trials.length, 16);
   assert.deepEqual(
     [...new Set(plan.trials.map((trial) => trial.scenario))],
     ["small-local-bug", "cross-stack-regression", "decision-memory-dependent", "stale-memory-adversarial"]
   );
   assert.equal(plan.trials.some((trial) => trial.scenario === "tenant-memory-pitfall"), false);
+  const ownerTrials = plan.trials.filter((trial) => trial.scenario === "decision-memory-dependent");
+  assert.deepEqual(
+    [...new Set(ownerTrials.map((trial) => seededDecisionMemoryStratum(trial.seed)))].sort(),
+    [0, 1, 2]
+  );
+  assert.equal(plan.scenarioVariantPolicy["decision-memory-dependent"].id, "seeded-tenant-owner-v1");
+  assert.equal(
+    plan.scenarioVariantPolicy["decision-memory-dependent"].blindingKeyCommitment,
+    scenarioVariantKeyCommitment(testVariantKey)
+  );
+  assert.equal(validateScenarioVariantKey(plan, testVariantKey), true);
+  assert.throws(
+    () => validateScenarioVariantKey(
+      plan,
+      "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+    ),
+    /does not match/
+  );
 });
 
 test("committed v3 draft is structurally valid, fresh, and intentionally not executable", async () => {
   const draft = JSON.parse(await readFile(`${repositoryRoot}/results/control-first-v3/plan.json`, "utf8"));
   assert.equal(draft.frozen, false);
   assert.equal(draft.trials.length, 16);
+  assert.equal(draft.scenarioVariantPolicy["decision-memory-dependent"].blindingKeyCommitment, null);
   const reviewCopy = structuredClone(draft);
   reviewCopy.frozen = true;
+  assert.throws(() => validateStudyPlan(reviewCopy), /needs a committed blinding key/);
+  reviewCopy.scenarioVariantPolicy["decision-memory-dependent"].blindingKeyCommitment =
+    scenarioVariantKeyCommitment(testVariantKey);
   assert.equal(validateStudyPlan(reviewCopy), true);
 
   const oldPlans = await Promise.all([
