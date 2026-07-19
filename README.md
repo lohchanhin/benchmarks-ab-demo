@@ -7,7 +7,7 @@ A public, preregistered, reproducible experiment comparing Codex repository
 work with no Palace, structural routing only, always-on Full Palace, and
 Adaptive Palace.
 
-[Simplified Chinese](README.zh-CN.md) | [v1 protocol](docs/research/PROTOCOL.md) | [Adaptive v2.2 protocol](docs/research/PROTOCOL_V2_2.md) | [Amendments](docs/research/PROTOCOL_AMENDMENTS.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
+[Simplified Chinese](README.zh-CN.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [v1 protocol](docs/research/PROTOCOL.md) | [Adaptive v2.2 protocol](docs/research/PROTOCOL_V2_2.md) | [Amendments](docs/research/PROTOCOL_AMENDMENTS.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
 
 ## Falsifiable Claims
 
@@ -97,16 +97,25 @@ both notices every time. The [block report](docs/research/USEFUL_MEMORY_V2_2_BLO
 and [treatment finding](docs/research/ADAPTIVE_MEMORY_OMISSION.md) retain this as
 valid v0.2.1 behavior; v2.2 was not changed mid-study.
 
-The first three stale-memory adversarial trials brought the study to 15/16.
-Adaptive selected `guarded-memory-palace` three times, delivered both stale v1
+The complete stale-memory adversarial block brought the study to 16/16.
+Adaptive selected `guarded-memory-palace` four times, delivered both stale v1
 records, and added two explicit guardrails that made current code and tests
-authoritative. All twelve arms rejected the stale edit and passed, so
-correctness remains tied. Across three pairs, Adaptive-minus-Full paired
-medians are +6,827 reported tokens, +1,952 uncached input tokens, +6 tool
-calls, and -5.641 seconds, while the Palace payload is 233 bytes smaller. The
-sanitized mechanism evidence is public for [trial 01](docs/research/evidence/guarded-stale-memory-v2.2-trial01.json),
-[trial 02](docs/research/evidence/guarded-stale-memory-v2.2-trial02.json), and
-[trial 03](docs/research/evidence/guarded-stale-memory-v2.2-trial03.json).
+authoritative. All sixteen arms rejected the stale edit and passed, so
+correctness remains tied. Across four pairs, Adaptive-minus-Full paired
+medians are -16,381 reported tokens, +458 uncached input tokens, +4 tool
+calls, and -6.377 seconds, while the Palace payload is 233 bytes smaller. See
+the [block report](docs/research/STALE_MEMORY_V2_2_BLOCK.md) and four sanitized
+mechanism records under [`docs/research/evidence/`](docs/research/evidence/).
+
+The completed study has 64/64 valid, successful, correctly scoped arms.
+Adaptive versus Full has a pooled median of -898.5 Palace bytes, -16,522.5
+reported tokens, -2.5 tool calls, and -6.553 seconds, but only the Palace
+payload interval excludes zero. Against Control, Adaptive has central
+differences of +30,147 reported tokens, +4.5 tool calls, and +10.919 seconds;
+the tool-call interval is entirely positive. The
+[final report](docs/research/ADAPTIVE_V2_2_FINAL.md) concludes that routing and
+guarded context are useful, while universal Token or speed savings are not
+established.
 
 Validate the frozen plan without running an agent:
 

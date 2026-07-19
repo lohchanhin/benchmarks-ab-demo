@@ -1,9 +1,8 @@
 # Adaptive Pilot v2.2
 
-Status: in progress, 15 of 16 planned trials published. The preregistered
-small-local, cross-stack, and useful-memory blocks are complete; stale-memory
-is 3/4. No agent outcome
-existed at protocol freeze.
+Status: complete, 16 of 16 planned trials and 64 of 64 arms published. All
+four preregistered scenario blocks are complete. No agent outcome existed at
+protocol freeze. See the [final report](../../docs/research/ADAPTIVE_V2_2_FINAL.md).
 
 Protocol v2.2 repeats the four-arm Adaptive study with fresh trial ids and
 seeds after correcting a Windows benchmark-harness confound. The frozen plan
@@ -19,7 +18,7 @@ sandbox failures before using fallbacks. See the
 No v2.2 agent may run before the commit containing this empty manifest is
 available at tag `protocol-v2.2.0`.
 
-## Interim Results
+## Completed Results
 
 The first frozen trial, `small-local-bug-adaptive-v2-2-pilot-01`, ran all four
 arms sequentially in the preregistered order. Every arm was valid, changed
@@ -92,9 +91,9 @@ reported tokens, -2,083 uncached input tokens, -2 tool calls, and -16.483
 seconds. Adaptive-minus-Control medians are +51,917 reported tokens, +1,069
 uncached input tokens, +5.5 tool calls, and +20.228 seconds. See the
 [block report](../../docs/research/CROSS_STACK_V2_2_BLOCK.md) and updated
-[interim analysis](analysis.md).
+[complete analysis](analysis.md).
 
-## Stale-Memory Block (3/4)
+## Stale-Memory Block (4/4)
 
 The first warm-index adversarial trial had four valid, successful, correctly
 scoped arms. Every arm changed only `src/scheduler/load-batch-limit.mjs`, left
@@ -124,15 +123,17 @@ wall time, but made six more tool calls and used 6,827 more reported tokens.
 | [01](stale-memory-adversarial-adaptive-v2-2-pilot-01/comparison.md) | +26,112 | +5,646 | +7 | +29.594s | -233 |
 | [02](stale-memory-adversarial-adaptive-v2-2-pilot-02/comparison.md) | +6,827 | -1,036 | +6 | -5.641s | -233 |
 | [03](stale-memory-adversarial-adaptive-v2-2-pilot-03/comparison.md) | -39,589 | +1,952 | +2 | -7.113s | -233 |
+| [04](stale-memory-adversarial-adaptive-v2-2-pilot-04/comparison.md) | -54,183 | -9,708 | -2 | -8.374s | -233 |
 
-The third warm-index trial again passed all correctness and scope gates and
+The third and fourth trials again passed all correctness and scope gates and
 reproduced the same memory and guardrail delivery. Full recorded one failed
-agent command classified as a router error; this remains in the evidence and
-does not invalidate the arm under the frozen rules. Across three pairs, the
-Adaptive-minus-Full paired medians are +6,827 reported tokens, +1,952
-uncached input tokens, +6 tool calls, -5.641 seconds, and -233 Palace bytes.
-See the third [comparison](stale-memory-adversarial-adaptive-v2-2-pilot-03/comparison.md)
-and [sanitized mechanism record](../../docs/research/evidence/guarded-stale-memory-v2.2-trial03.json).
+agent command in trial 03 and two in trial 04; these remain in the evidence
+and do not invalidate either arm under the frozen rules. Across four pairs,
+the Adaptive-minus-Full paired medians are -16,381 reported tokens, +458
+uncached input tokens, +4 tool calls, -6.377 seconds, and -233 Palace bytes.
+See the [block report](../../docs/research/STALE_MEMORY_V2_2_BLOCK.md), final
+[comparison](stale-memory-adversarial-adaptive-v2-2-pilot-04/comparison.md),
+and [sanitized mechanism record](../../docs/research/evidence/guarded-stale-memory-v2.2-trial04.json).
 
 ## Useful-Memory Block (4/4)
 
@@ -173,4 +174,4 @@ not two equally memory-aware treatments. Adaptive-minus-Control medians are
 +35,850.5 reported tokens, -6,453.5 uncached input tokens, +4.5 tool calls, and
 +16.361 seconds. See the
 [block report](../../docs/research/USEFUL_MEMORY_V2_2_BLOCK.md) and updated
-[interim analysis](analysis.md).
+[complete analysis](analysis.md).
