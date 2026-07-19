@@ -59,6 +59,30 @@ test("keeps local links in the Chinese documentation surface resolvable", async 
   }
 });
 
+test("pins real-repository evidence to the preregistered Palace package", async () => {
+  const plan = JSON.parse(await read("results/control-first-v3/plan.json"));
+  const evidence = JSON.parse(
+    await read("docs/research/evidence/control-first-v3-release-provenance-2026-07-20.json")
+  );
+  const validation = evidence.realRepositoryValidation;
+
+  assert.equal(validation.sourceCommit, plan.execution.palaceReleaseCommit);
+  assert.equal(validation.candidate.package, `vertex-palace@${plan.execution.palaceVersion}`);
+  assert.equal(validation.candidate.shasum, plan.execution.palacePackageShasum);
+  assert.equal(validation.candidate.integrity, plan.execution.palacePackageIntegrity);
+  assert.equal(validation.protocol.repetitionsPerRepository, 2);
+  assert.equal(validation.protocol.trackedWorktreeMutationAllowed, false);
+
+  assert.deepEqual(validation.repositories.map((repository) => repository.name), ["zod", "requests"]);
+  for (const repository of validation.repositories) {
+    assert.equal(repository.targetRecall, 1);
+    assert.equal(repository.strictTargetPrecision, 1);
+    assert.equal(repository.deterministicRepetitions, "2/2");
+    assert.equal(repository.trackedWorktreeClean, true);
+    assert.deepEqual(repository.observedFiles, repository.expectedFiles);
+  }
+});
+
 async function read(relativeFile) {
   return readFile(path.join(repositoryRoot, relativeFile), "utf8");
 }

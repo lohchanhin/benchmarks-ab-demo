@@ -20,6 +20,27 @@ Vertex Palace 实现提交固定为
 发布前已经通过产品 lint、89 项测试、build、MCP smoke、干净安装包验证，以及固定
 Zod／Requests 仓库验证。
 
+## 真实仓库来源证据
+
+真实仓库闸门现已使用精确发布源码
+`8328ea29d55260e34e2e6170bd420e4c659af39e` 和上方完全相同的 7 文件 tarball
+重新生成。已核对的证据提交为
+[`7d59d7825eccccef3e92cd56f85d594bc53f2cf2`](https://github.com/lohchanhin/vertex-palace/commit/7d59d7825eccccef3e92cd56f85d594bc53f2cf2)，
+[CI 29705165573](https://github.com/lohchanhin/vertex-palace/actions/runs/29705165573)
+已通过 Ubuntu、Windows、macOS 与 npm package dry-run。
+
+Zod 是固定的 TypeScript monorepo 案例，Requests 是固定的 Python 案例。每个仓库都在
+精确 commit 上重新克隆，并使用干净安装的候选包、6,000-token 上限重复路由两次。
+四次运行都只返回已知实现与聚焦测试：目标召回率 `1.000`、严格目标精度 `1.000`、
+边界稳定性 `2/2`，tracked worktree 也保持干净。完整任务、预期／实际路径、仓库 commit
+和执行命令已经复制到机器证据，评审不需要跨仓库猜测。但这仍是没有 Control Arm 的
+产品路由闸门，时间只能用于诊断，不能证明 Agent 更快或更省 Token。
+
+benchmark 侧同步任务的 Palace 路线在 5 个实际改动中只命中 `test/docs.test.mjs`，
+coverage 为 `0.20`、focus 为 `0.10`、confidence 为 `0.35`。机器 JSON 与三份发布／
+preflight 说明都被漏掉；这个 `needs-review` 结果与通过项一起保留，直接说明证据到双语
+文档的路由仍需改进。
+
 ## npm 发布尝试
 
 `npm whoami` 已确认账号为 `lohchanhin`。0.3.0 发布进入 npm 官方浏览器授权页后，

@@ -69,18 +69,20 @@ existing relevant-memory Full Palace contract.
 
 ## Product Evidence
 
-- Vertex Palace candidate source commit:
-  [`2d167f81d688160649a8768c863b4e5fe188d1a6`](https://github.com/lohchanhin/vertex-palace/commit/2d167f81d688160649a8768c863b4e5fe188d1a6)
+- Vertex Palace implementation commit:
+  [`97d1736f971438f7f2913f0b731633b0bab8441d`](https://github.com/lohchanhin/vertex-palace/commit/97d1736f971438f7f2913f0b731633b0bab8441d)
+- Release source validated by the current package and real-repository gates:
+  [`8328ea29d55260e34e2e6170bd420e4c659af39e`](https://github.com/lohchanhin/vertex-palace/commit/8328ea29d55260e34e2e6170bd420e4c659af39e)
 - Machine-evidence commit:
-  [`605b254341d6f3d3ce4993410bd108bda5593182`](https://github.com/lohchanhin/vertex-palace/commit/605b254341d6f3d3ce4993410bd108bda5593182)
+  [`7d59d7825eccccef3e92cd56f85d594bc53f2cf2`](https://github.com/lohchanhin/vertex-palace/commit/7d59d7825eccccef3e92cd56f85d594bc53f2cf2)
 - Candidate and evidence CI runs:
-  [29701435229](https://github.com/lohchanhin/vertex-palace/actions/runs/29701435229),
-  [29701590766](https://github.com/lohchanhin/vertex-palace/actions/runs/29701590766)
-- [Machine-readable provenance-routing evidence](https://github.com/lohchanhin/vertex-palace/blob/605b254341d6f3d3ce4993410bd108bda5593182/docs/research/evidence/provenance-routing-0.3.0.json)
-- [Machine-readable real-repository evidence](https://github.com/lohchanhin/vertex-palace/blob/605b254341d6f3d3ce4993410bd108bda5593182/docs/research/evidence/real-repository-validation-0.3.0.json)
-- [Machine-readable clean-install evidence](https://github.com/lohchanhin/vertex-palace/blob/605b254341d6f3d3ce4993410bd108bda5593182/docs/research/evidence/release-candidate-0.3.0.json)
-- [Bilingual provenance-routing record](https://github.com/lohchanhin/vertex-palace/blob/605b254341d6f3d3ce4993410bd108bda5593182/docs/research/PROVENANCE_ROUTING_0_3_0.md)
-- Core: 82/82 tests
+  [29702976570](https://github.com/lohchanhin/vertex-palace/actions/runs/29702976570),
+  [29705165573](https://github.com/lohchanhin/vertex-palace/actions/runs/29705165573)
+- [Machine-readable provenance-routing evidence](https://github.com/lohchanhin/vertex-palace/blob/7d59d7825eccccef3e92cd56f85d594bc53f2cf2/docs/research/evidence/provenance-routing-0.3.0.json)
+- [Machine-readable real-repository evidence](https://github.com/lohchanhin/vertex-palace/blob/7d59d7825eccccef3e92cd56f85d594bc53f2cf2/docs/research/evidence/real-repository-validation-0.3.0.json)
+- [Machine-readable clean-install evidence](https://github.com/lohchanhin/vertex-palace/blob/7d59d7825eccccef3e92cd56f85d594bc53f2cf2/docs/research/evidence/release-candidate-0.3.0.json)
+- [Bilingual provenance-routing record](https://github.com/lohchanhin/vertex-palace/blob/7d59d7825eccccef3e92cd56f85d594bc53f2cf2/docs/research/PROVENANCE_ROUTING_0_3_0.md)
+- Core: 89/89 tests
 - CLI: 2/2 tests
 - MCP: 2/2 tests
 - TypeScript, build, clean tarball install, package CLI, and MCP smoke: pass

@@ -22,6 +22,31 @@ produced the same seven-file `vertex-palace@0.3.0` tarball:
 Product lint, 89 product tests, build, MCP smoke, clean-package validation, and
 pinned Zod and Requests validation passed before publication was attempted.
 
+## Real-Repository Provenance
+
+The real-repository gate has now been regenerated from the exact release source
+`8328ea29d55260e34e2e6170bd420e4c659af39e` and the exact seven-file tarball
+above. Its checked evidence is committed at
+[`7d59d7825eccccef3e92cd56f85d594bc53f2cf2`](https://github.com/lohchanhin/vertex-palace/commit/7d59d7825eccccef3e92cd56f85d594bc53f2cf2),
+and [CI run 29705165573](https://github.com/lohchanhin/vertex-palace/actions/runs/29705165573)
+passed on Ubuntu, Windows, macOS, and the package dry-run job.
+
+Zod is the pinned TypeScript monorepo case; Requests is the pinned Python case.
+Each repository was cloned at an exact commit and routed twice from a clean
+tarball install under a 6,000-token ceiling. In all four runs, Palace returned
+only the known implementation and focused test: target recall `1.000`, strict
+target precision `1.000`, deterministic boundaries `2/2`, and clean tracked
+worktrees. The full tasks, expected and observed paths, repository commits, and
+command are copied into the machine evidence for single-repository audit. This
+is a product routing gate with no Control arm, so timing remains diagnostic and
+does not support an Agent speed or Token claim.
+
+The benchmark-side sync route matched only `test/docs.test.mjs` among five
+changed files (coverage `0.20`, focus `0.10`, confidence `0.35`). It missed the
+machine JSON and all three release/preflight records. That `needs-review`
+result is retained beside the passing repository gate; it is direct evidence
+that evidence-to-bilingual-document routing still needs work.
+
 ## Publication Attempt
 
 `npm whoami` succeeded as `lohchanhin`. The subsequent public 0.3.0 publish
