@@ -1,10 +1,13 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import test from "node:test";
 import {
   adaptiveWilliamsOrders,
   buildAdaptivePilotPlan,
   studyCommand,
+  validatePalacePackageLock,
   validateScenarioVariantKey,
   validateStudyPlan
 } from "../src/commands/study.mjs";
@@ -15,6 +18,8 @@ import {
 } from "../src/lib/scenario.mjs";
 
 const testVariantKey = "2222222222222222222222222222222222222222222222222222222222222222";
+const palacePackageIntegrity =
+  "sha512-wfxQUxLKk1kQxQm8X1eGKbRaXX/yxIla8KO6PAxj83Fx+7ofwQSzla6tTVvLIlBOxchGy0OmopFdS684GDz9RA==";
 
 test("committed pilot plan has five paired seeds and distinct orders per scenario", async () => {
   const plan = JSON.parse(await readFile(`${repositoryRoot}/results/pilot/plan.json`, "utf8"));
@@ -133,7 +138,7 @@ test("control-first v3 makes Adaptive versus Control primary with a fresh scenar
   });
   plan.frozen = true;
   assert.equal(validateStudyPlan(plan), true);
-  assert.equal(plan.schemaVersion, 5);
+  assert.equal(plan.schemaVersion, 6);
   assert.equal(plan.primaryComparison, "adaptive-vs-control");
   assert.equal(plan.primaryEfficiencyMetric, "reportedTokens");
   assert.deepEqual(plan.comparisonOrder, [
@@ -144,6 +149,12 @@ test("control-first v3 makes Adaptive versus Control primary with a fresh scenar
   ]);
   assert.equal(plan.execution.palaceVersion, "0.3.0");
   assert.equal(plan.execution.palaceSourceCommit, "97d1736f971438f7f2913f0b731633b0bab8441d");
+  assert.equal(plan.execution.palaceReleaseCommit, "8328ea29d55260e34e2e6170bd420e4c659af39e");
+  assert.equal(plan.execution.palacePackageShasum, "4f4f7843cbfebaec0a9f3aade31fac24d96d1133");
+  assert.equal(
+    plan.execution.palacePackageIntegrity,
+    palacePackageIntegrity
+  );
   assert.equal(plan.trials.length, 16);
   assert.deepEqual(
     [...new Set(plan.trials.map((trial) => trial.scenario))],
@@ -167,6 +178,46 @@ test("control-first v3 makes Adaptive versus Control primary with a fresh scenar
       "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
     ),
     /does not match/
+  );
+});
+
+test("control-first v3 verifies the exact installed npm tarball before execution", async (context) => {
+  const root = await mkdtemp(path.join(tmpdir(), "vertex-palace-package-lock-"));
+  context.after(() => rm(root, { recursive: true, force: true }));
+  await mkdir(path.join(root, "node_modules", "vertex-palace"), { recursive: true });
+  const plan = buildAdaptivePilotPlan({
+    protocolVersion: "3.0.0",
+    variantKey: testVariantKey
+  });
+  const packageLock = {
+    lockfileVersion: 3,
+    packages: {
+      "": { dependencies: { "vertex-palace": "0.3.0" } },
+      "node_modules/vertex-palace": {
+        version: "0.3.0",
+        resolved: "https://registry.npmjs.org/vertex-palace/-/vertex-palace-0.3.0.tgz",
+        integrity: palacePackageIntegrity
+      }
+    }
+  };
+  await Promise.all([
+    writeFile(
+      path.join(root, "package.json"),
+      `${JSON.stringify({ dependencies: { "vertex-palace": "0.3.0" } }, null, 2)}\n`
+    ),
+    writeFile(path.join(root, "package-lock.json"), `${JSON.stringify(packageLock, null, 2)}\n`),
+    writeFile(
+      path.join(root, "node_modules", "vertex-palace", "package.json"),
+      `${JSON.stringify({ name: "vertex-palace", version: "0.3.0" }, null, 2)}\n`
+    )
+  ]);
+
+  assert.equal(await validatePalacePackageLock(plan, root), true);
+  packageLock.packages["node_modules/vertex-palace"].integrity = "sha512-wrong";
+  await writeFile(path.join(root, "package-lock.json"), `${JSON.stringify(packageLock, null, 2)}\n`);
+  await assert.rejects(
+    validatePalacePackageLock(plan, root),
+    /package-lock integrity does not match/
   );
 });
 

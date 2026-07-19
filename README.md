@@ -146,13 +146,20 @@ The follow-up [blinded-fixture design](docs/research/CONTROL_FIRST_V3_BLINDED_DE
 adds a preregistered 256-bit key commitment, all-owner regression coverage, and
 prompt-matched stop conditions without running another Agent arm. The draft key
 commitment remains `null`, so the plan still cannot be frozen accidentally.
+The [release-provenance gate](docs/research/CONTROL_FIRST_V3_RELEASE_PROVENANCE.md)
+pins the exact candidate tarball and records the first expired npm browser
+authorization without pretending the package was published.
 The current product gate also records exact Zod and Requests routes at recall
 1.000 / strict precision 1.000 and a clean-install 50-memory ceiling test; these
 remain engineering evidence until the independent Agent arms are frozen and run.
 
 The reviewed runtime source is pinned to Vertex Palace
 `97d1736f971438f7f2913f0b731633b0bab8441d`; the bilingual evidence record is
-pinned to `8328ea29d55260e34e2e6170bd420e4c659af39e`. Historical route evaluations
+pinned to `8328ea29d55260e34e2e6170bd420e4c659af39e`, which is also the release
+HEAD. Plan schema 6 additionally pins candidate tarball SHA-1
+`4f4f7843cbfebaec0a9f3aade31fac24d96d1133` and its full npm integrity. Formal
+execution validates the exact version and integrity in `package-lock.json` plus
+the installed package before any arm starts. Historical route evaluations
 progressed from 3/8 to an exact 8/8 fixed oracle, yet a real nine-file update
 still reached only 7/9. The final provenance candidate routes the current
 nine-file source/evidence sync exactly 9/9 with 1.00 coverage and focus. Its own

@@ -56,6 +56,9 @@ const adaptiveProtocols = Object.freeze({
     tag: "protocol-v3.0.0",
     palaceVersion: "0.3.0",
     palaceSourceCommit: "97d1736f971438f7f2913f0b731633b0bab8441d",
+    palaceReleaseCommit: "8328ea29d55260e34e2e6170bd420e4c659af39e",
+    palacePackageShasum: "4f4f7843cbfebaec0a9f3aade31fac24d96d1133",
+    palacePackageIntegrity: "sha512-wfxQUxLKk1kQxQm8X1eGKbRaXX/yxIla8KO6PAxj83Fx+7ofwQSzla6tTVvLIlBOxchGy0OmopFdS684GDz9RA==",
     resultDirectory: "control-first-v3",
     studyId: "vertex-palace-control-first-four-scenario-pilot-v3",
     trialLabel: "control-first-v3-pilot",
@@ -79,7 +82,7 @@ const adaptiveProtocols = Object.freeze({
         revealPolicy: "publish-key-after-study-lock"
       }
     },
-    planSchemaVersion: 5,
+    planSchemaVersion: 6,
     executionEnvironment: {
       platform: "win32",
       sandboxProfile: "workspace-write/windows-elevated",
@@ -102,6 +105,7 @@ export async function studyCommand(flags) {
     console.log("Plan validated. Pass --execute to begin or resume the preregistered runs.");
     return { plan, executed: false };
   }
+  await validatePalacePackageLock(plan);
   validateScenarioVariantKey(plan);
 
   const adaptiveProtocol = adaptiveProtocols[plan.protocolVersion];
@@ -277,6 +281,9 @@ export function buildAdaptivePilotPlan(options = {}) {
       cooldownMs: 15000,
       palaceVersion: protocol.palaceVersion,
       ...(protocol.palaceSourceCommit ? { palaceSourceCommit: protocol.palaceSourceCommit } : {}),
+      ...(protocol.palaceReleaseCommit ? { palaceReleaseCommit: protocol.palaceReleaseCommit } : {}),
+      ...(protocol.palacePackageShasum ? { palacePackageShasum: protocol.palacePackageShasum } : {}),
+      ...(protocol.palacePackageIntegrity ? { palacePackageIntegrity: protocol.palacePackageIntegrity } : {}),
       ...(protocol.executionEnvironment ?? {})
     },
     trials
@@ -350,8 +357,15 @@ function validateAdaptiveStudyPlan(plan, protocol) {
       || plan.execution?.palaceVersion !== protocol.palaceVersion) {
     throw new Error(`Study execution settings do not match protocol ${plan.protocolVersion}`);
   }
-  if (protocol.palaceSourceCommit && plan.execution?.palaceSourceCommit !== protocol.palaceSourceCommit) {
-    throw new Error(`Study Palace source commit does not match protocol ${plan.protocolVersion}`);
+  for (const key of [
+    "palaceSourceCommit",
+    "palaceReleaseCommit",
+    "palacePackageShasum",
+    "palacePackageIntegrity"
+  ]) {
+    if (protocol[key] && plan.execution?.[key] !== protocol[key]) {
+      throw new Error(`Study ${key} does not match protocol ${plan.protocolVersion}`);
+    }
   }
   if (protocol.primaryComparison && (
     plan.primaryComparison !== protocol.primaryComparison
@@ -471,6 +485,35 @@ export function validateScenarioVariantKey(plan, explicitKey) {
     if (scenarioVariantKeyCommitment(key) !== policy.blindingKeyCommitment) {
       throw new Error(`Scenario blinding key does not match the preregistered commitment for ${scenario}`);
     }
+  }
+  return true;
+}
+
+export async function validatePalacePackageLock(plan, root = repositoryRoot) {
+  const expectedVersion = plan.execution?.palaceVersion;
+  const expectedIntegrity = plan.execution?.palacePackageIntegrity;
+  if (!expectedIntegrity) return true;
+
+  const [packageJson, packageLock, installedPackage] = await Promise.all([
+    readJson(path.join(root, "package.json")),
+    readJson(path.join(root, "package-lock.json")),
+    readJson(path.join(root, "node_modules", "vertex-palace", "package.json"))
+  ]);
+  const rootLock = packageLock.packages?.[""];
+  const lockedPackage = packageLock.packages?.["node_modules/vertex-palace"];
+  const expectedTarballSuffix = `/vertex-palace-${expectedVersion}.tgz`;
+
+  if (packageJson.dependencies?.["vertex-palace"] !== expectedVersion
+      || rootLock?.dependencies?.["vertex-palace"] !== expectedVersion
+      || lockedPackage?.version !== expectedVersion
+      || installedPackage.version !== expectedVersion) {
+    throw new Error(`Installed Vertex Palace does not match frozen version ${expectedVersion}`);
+  }
+  if (lockedPackage.integrity !== expectedIntegrity) {
+    throw new Error("Vertex Palace package-lock integrity does not match the frozen protocol");
+  }
+  if (typeof lockedPackage.resolved !== "string" || !lockedPackage.resolved.endsWith(expectedTarballSuffix)) {
+    throw new Error("Vertex Palace package-lock tarball does not match the frozen protocol");
   }
   return true;
 }

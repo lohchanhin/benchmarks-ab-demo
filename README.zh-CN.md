@@ -63,12 +63,18 @@ stale-memory 对抗场景四组 trial 全部完成后，整体进度达到 16/16
 下一轮独立协议把主比较改为 Adaptive Palace 对普通 Codex，主要效率指标固定为
 配对累计 `reportedTokens`，但仍先判断正确性与严格修改范围。新
 `decision-memory-dependent` 情境在 baseline 会通过公开测试，却会被 hidden
-oracle 拒绝；只有历史决策能明确指出 Aurora 才是独立治理的 launch tenant。
+oracle 拒绝。Aurora、Borealis 与 Cedar 只是三个虚构租户；正式 trial 的 owner 会由
+未公开的 256-bit 密钥置换，只有相应历史决策才能指出该次 trial 的正确租户。
 
 [英文 v3 协议草案](docs/research/PROTOCOL_V3.md)、[简体中文辅助说明](docs/zh-CN/PROTOCOL_V3.md)、
 [16-trial 草案计划](results/control-first-v3/plan.json)与[空结果 manifest](results/control-first-v3/manifest.json)
 已经公开。目前计划仍是 `frozen:false`、0 个 Agent 结果，不能执行。产品 0.3.0、
 clean install、记忆 smoke 与完整 benchmark 闸门通过后，才会冻结并打协议 tag。
+
+计划 schema 6 同时固定实现提交 `97d1736f971438f7f2913f0b731633b0bab8441d`、
+发布提交 `8328ea29d55260e34e2e6170bd420e4c659af39e`、候选 tarball SHA-1
+`4f4f7843cbfebaec0a9f3aade31fac24d96d1133` 与完整 npm integrity。正式执行前会
+核对 `package-lock.json` 和实际安装版本，不能只靠相同的包名与版本号混过去。
 
 [v3 preflight 研发记录](docs/research/CONTROL_FIRST_V3_PREFLIGHT.md)保留了三次
 memory smoke 的失败与修复、产品 commit、CI 证据和剩余闸门，不会把工程 smoke
@@ -77,6 +83,9 @@ memory smoke 的失败与修复、产品 commit、CI 证据和剩余闸门，不
 [两组 Agent 预跑说明](docs/zh-CN/CONTROL_FIRST_V3_AGENT_PREFLIGHT.md)进一步保留了
 177 bytes bypass 仍比 Control 慢且 Token 更多的负面结果，以及一组 Route-only 失败、
 Control 与 Adaptive 都成功的记忆任务。它们只是修订正式设计的依据，不在 v3 manifest 内。
+
+[发布来源闸门](docs/zh-CN/CONTROL_FIRST_V3_RELEASE_PROVENANCE.md)固定候选 tarball，
+并如实记录第一次 npm 浏览器授权过期；不会把未完成发布写成成功。
 
 ```sh
 npm ci

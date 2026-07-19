@@ -144,6 +144,12 @@ powered as a confirmatory non-inferiority or superiority study.
   `97d1736f971438f7f2913f0b731633b0bab8441d`
 - Vertex Palace evidence commit:
   `8328ea29d55260e34e2e6170bd420e4c659af39e`
+- Vertex Palace release commit:
+  `8328ea29d55260e34e2e6170bd420e4c659af39e`
+- Candidate npm tarball SHA-1:
+  `4f4f7843cbfebaec0a9f3aade31fac24d96d1133`
+- Candidate npm integrity:
+  `sha512-wfxQUxLKk1kQxQm8X1eGKbRaXX/yxIla8KO6PAxj83Fx+7ofwQSzla6tTVvLIlBOxchGy0OmopFdS684GDz9RA==`
 - Platform: `win32`
 - Sandbox: `workspace-write/windows-elevated`
 - Timeout: 600 seconds per arm
@@ -175,11 +181,13 @@ Before changing `frozen` to `true` or creating `protocol-v3.0.0`:
 5. Pinned TypeScript and Python repositories pass deterministic target-
    retrieval validation with recall and strict precision reported separately.
 6. The benchmark depends on the published immutable `vertex-palace@0.3.0`.
-7. The complete benchmark test and evidence audit pass.
-8. The committed public result manifest still contains zero attempted trials.
-9. A 32-byte random blinding key is generated outside Git, its commitment is
+7. `package-lock.json`, the installed package version, and npm integrity match
+   the preregistered plan before any arm starts.
+8. The complete benchmark test and evidence audit pass.
+9. The committed public result manifest still contains zero attempted trials.
+10. A 32-byte random blinding key is generated outside Git, its commitment is
    committed before freeze, and the key is scrubbed from every Agent process.
-10. The reviewed plan is frozen and tagged before any formal arm runs.
+11. The reviewed plan is frozen and tagged before any formal arm runs.
 
 Publishing the npm package uses an interactive browser/device verification only
 after these engineering and research gates succeed.
