@@ -1,14 +1,50 @@
 {
   "schemaVersion": 1,
   "createdAt": "2026-07-19T18:59:24.157Z",
-  "claimBoundary": "Repository pin-sync route evaluation only; not an Agent performance result.",
+  "updatedAt": "2026-07-19T20:04:18.919Z",
+  "claimBoundary": "Repository routing and pin-sync evidence only; not an Agent performance result.",
   "product": {
-    "sourceCommit": "ef010c196f3a9ba659e705a363fade8686403b1b",
-    "evidenceCommit": "e10d16dc509100430701a427e22be6280fc6d72c",
-    "sourceCiRun": "https://github.com/lohchanhin/vertex-palace/actions/runs/29699542507",
-    "evidenceCiRun": "https://github.com/lohchanhin/vertex-palace/actions/runs/29699688482"
+    "sourceCommit": "2d167f81d688160649a8768c863b4e5fe188d1a6",
+    "evidenceCommit": "605b254341d6f3d3ce4993410bd108bda5593182",
+    "sourceCiRun": "https://github.com/lohchanhin/vertex-palace/actions/runs/29701435229",
+    "evidenceCiRun": "https://github.com/lohchanhin/vertex-palace/actions/runs/29701590766",
+    "workspaceTests": "86/86 passed (82 core, 2 MCP, 2 CLI)",
+    "npmLatestObserved": "0.2.3",
+    "npmPublished": false
   },
-  "benchmarkBaseCommit": "a0f21d6674b5928c13c4d78af03c3c3f22155d4b",
+  "benchmarkBaseCommit": "2e4d3ac6e2a689fa617ba1e52cb9d672f95d4c09",
+  "productRoutingEvaluations": {
+    "defaultRouteLimit": {
+      "evaluationId": "evaluation_dc51170d08460861",
+      "matchedFiles": 9,
+      "changedFiles": 17,
+      "routeFiles": 10,
+      "changedFileCoverage": 0.53,
+      "routeFocus": 0.9,
+      "packTokens": 5505
+    },
+    "expandedRouteLimit": {
+      "evaluationId": "evaluation_c8653871e26dde5a",
+      "matchedFiles": 13,
+      "changedFiles": 17,
+      "routeFiles": 18,
+      "changedFileCoverage": 0.76,
+      "routeFocus": 0.72,
+      "packTokens": 5815
+    },
+    "documentationCloseout": {
+      "evaluationId": "evaluation_e3ead315962d54f4",
+      "matchedFiles": 3,
+      "changedFiles": 5,
+      "routeFiles": 6,
+      "changedFileCoverage": 0.6,
+      "routeFocus": 0.5,
+      "missedFiles": [
+        "docs/research/evidence/provenance-routing-0.3.0.json",
+        "docs/research/evidence/release-candidate-0.3.0.json"
+      ]
+    }
+  },
   "previousEvaluation": {
     "createdAt": "2026-07-19T18:39:30.273Z",
     "task": "同步 Vertex Palace 产品源码 5cae580、研究证据 087d5c6、CI 29698755147 与多表面路由 8/8 结果到 control-first v3 计划、英文协议、简体中文协议和 README；保留 frozen false 与零 Agent outcomes",
@@ -37,9 +73,49 @@
       "test/study.test.mjs"
     ]
   },
-  "task": "同步 Vertex Palace 产品源码、研究证据与 CI 到 control-first v3 计划、英文协议、简体中文协议和 README；保留 frozen false 与零 Agent outcomes",
-  "evaluationId": "evaluation_edb97dc25b1ba8f2",
-  "routeId": "route_7b2bd22d57027e73",
+  "previousEightFileEvaluation": {
+    "task": "同步 Vertex Palace 产品源码、研究证据与 CI 到 control-first v3 计划、英文协议、简体中文协议和 README；保留 frozen false 与零 Agent outcomes",
+    "evaluationId": "evaluation_edb97dc25b1ba8f2",
+    "routeId": "route_7b2bd22d57027e73",
+    "taskType": "evaluation",
+    "oracleChangedFiles": [
+      "src/commands/study.mjs",
+      "test/study.test.mjs",
+      "results/control-first-v3/plan.json",
+      "docs/research/CONTROL_FIRST_V3_PREFLIGHT.md",
+      "docs/research/PROTOCOL_V3.md",
+      "docs/zh-CN/PROTOCOL_V3.md",
+      "README.md",
+      "docs/zh-CN/README.md"
+    ],
+    "routeFiles": [
+      "results/control-first-v3/plan.json",
+      "src/commands/study.mjs",
+      "docs/research/CONTROL_FIRST_V3_PREFLIGHT.md",
+      "docs/research/PROTOCOL_V3.md",
+      "README.md",
+      "docs/zh-CN/PROTOCOL_V3.md",
+      ".github/workflows/ci.yml",
+      "docs/zh-CN/README.md",
+      "test/study.test.mjs"
+    ],
+    "metrics": {
+      "routeFileCount": 9,
+      "matchedFileCount": 8,
+      "changedFileCoverage": 1,
+      "routeFocus": 0.89,
+      "confidence": 0.35,
+      "calibration": "underconfident",
+      "calibrationError": 0.65
+    },
+    "missedFiles": [],
+    "routeOnlyFiles": [
+      ".github/workflows/ci.yml"
+    ]
+  },
+  "task": "Pin Vertex Palace source 2d167f81d688160649a8768c863b4e5fe188d1a6 and provenance evidence 605b254 in the control-first v3 generator, focused test, plan, bilingual protocol, and README; update the machine-readable sync evidence while preserving frozen false and zero Agent outcomes",
+  "evaluationId": "evaluation_cbd162c0fd5943fc",
+  "routeId": "route_0c6afb5c7b85b448",
   "taskType": "evaluation",
   "oracleChangedFiles": [
     "src/commands/study.mjs",
@@ -49,32 +125,31 @@
     "docs/research/PROTOCOL_V3.md",
     "docs/zh-CN/PROTOCOL_V3.md",
     "README.md",
-    "docs/zh-CN/README.md"
+    "docs/zh-CN/README.md",
+    "docs/research/evidence/vertex-palace-0.3.0-sync-evaluation.json"
   ],
   "routeFiles": [
     "results/control-first-v3/plan.json",
-    "src/commands/study.mjs",
     "docs/research/CONTROL_FIRST_V3_PREFLIGHT.md",
     "docs/research/PROTOCOL_V3.md",
-    "README.md",
+    "src/commands/study.mjs",
     "docs/zh-CN/PROTOCOL_V3.md",
-    ".github/workflows/ci.yml",
+    "README.md",
+    "docs/research/evidence/vertex-palace-0.3.0-sync-evaluation.json",
     "docs/zh-CN/README.md",
     "test/study.test.mjs"
   ],
   "metrics": {
     "routeFileCount": 9,
-    "matchedFileCount": 8,
+    "matchedFileCount": 9,
     "changedFileCoverage": 1,
-    "routeFocus": 0.89,
+    "routeFocus": 1,
     "confidence": 0.35,
     "calibration": "underconfident",
     "calibrationError": 0.65
   },
   "missedFiles": [],
-  "routeOnlyFiles": [
-    ".github/workflows/ci.yml"
-  ],
+  "routeOnlyFiles": [],
   "postUpdateSelfEvaluation": {
     "createdAt": "2026-07-19T19:01:49.700Z",
     "task": "Pin Vertex Palace ef010c1 and evidence e10d16d in the control-first v3 generator, test, plan, bilingual protocol and README; preserve the previous 7/8 evaluation inside the updated 8/8 machine evidence while keeping frozen false and zero Agent outcomes",
@@ -110,8 +185,8 @@
   },
   "staticContextEstimate": {
     "repositoryTextFiles": 491,
-    "repositoryTokens": 1022378,
-    "packTokens": 2721,
+    "repositoryTokens": 1023968,
+    "packTokens": 2400,
     "note": "Scanner estimates only; not end-to-end Agent tokens."
   },
   "studyState": {

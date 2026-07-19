@@ -141,18 +141,16 @@ The current product gate also records exact Zod and Requests routes at recall
 remain engineering evidence until the independent Agent arms are frozen and run.
 
 The reviewed runtime source is pinned to Vertex Palace
-`ef010c196f3a9ba659e705a363fade8686403b1b`; the bilingual evidence record is
-pinned to `e10d16dc509100430701a427e22be6280fc6d72c`. A fixed evidence-maintenance
-oracle improved from 3/8 coverage and 0.30 focus to 8/8 and 1.00 focus. The first
-real repository sync reached 7/8; after artifact-intent and verification-companion
-work, the same eight-file oracle reached 8/8 plus the requested CI file, with
-1.00 coverage and 0.89 focus. The product's own follow-up self-evaluation still
-reached only 5/8. Both the repaired result and the remaining miss are retained as
+`2d167f81d688160649a8768c863b4e5fe188d1a6`; the bilingual evidence record is
+pinned to `605b254341d6f3d3ce4993410bd108bda5593182`. Historical route evaluations
+progressed from 3/8 to an exact 8/8 fixed oracle, yet a real nine-file update
+still reached only 7/9. The final provenance candidate routes the current
+nine-file source/evidence sync exactly 9/9 with 1.00 coverage and focus. Its own
+broader implementation self-evaluation remains 9/17 by default and 13/17 with
+an expanded route; the final documentation closeout remains 3/5. Passing and
+negative results are retained together as
 [machine evidence](docs/research/evidence/vertex-palace-0.3.0-sync-evaluation.json),
 and neither proves lower end-to-end Agent tokens or time.
-The subsequent nine-file pin-and-evidence update self-evaluation matched 7/9,
-missing the study generator and the machine-evidence JSON itself; generated
-provenance therefore remains an explicit open problem.
 
 Validate the frozen plan without running an agent:
 

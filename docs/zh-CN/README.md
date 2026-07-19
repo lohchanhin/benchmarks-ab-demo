@@ -51,15 +51,13 @@ Control-first v3 正是这样的独立新协议，但目前仍处于设计审核
 并通过包含 50 条记忆候选的干净安装 context ceiling 测试。这些数据只证明固定的
 路由与输出契约，不是 Adaptive 相对普通 Codex 的 Agent A/B 结果。
 
-当前运行时源码固定到 `ef010c196f3a9ba659e705a363fade8686403b1b`，双语研究证据
-固定到 `e10d16dc509100430701a427e22be6280fc6d72c`。固定八文件证据维护 oracle
-由 3/8 coverage、0.30 focus 提升到 8/8、1.00 focus。第一次真实同步仍为 7/8；
-发布资料意图与测试伴随修正后，同一八文件 oracle 命中 8/8，并额外带上明确要求的
-CI，coverage 为 1.00、focus 为 0.89。产品自身后续自评仍只有 5/8。修复结果与
-剩余失败都保存在[机器证据](../research/evidence/vertex-palace-0.3.0-sync-evaluation.json)，
-这些属于路由工程证据，不代表端到端 Agent Token 或时间已经下降。
-随后按九个实际 pin 与证据改动文件进行自评时只命中 7/9，漏掉 study 生成器和机器
-证据 JSON 本身；生成物 provenance 因此仍是明确未解决的问题。
+当前运行时源码固定到 `2d167f81d688160649a8768c863b4e5fe188d1a6`，双语研究证据
+固定到 `605b254341d6f3d3ce4993410bd108bda5593182`。历史路由评估由 3/8 进展到
+固定 oracle 8/8，但真实九文件更新仍曾只有 7/9。最终 provenance 候选让当前九文件
+源码／证据同步精确命中 9/9，coverage 与 focus 都为 1.00。产品自身 17 文件广域
+改造则仍为默认 9/17、扩展路线 13/17；文档收尾也只有 3/5。通过与失败结果都保存在
+[机器证据](../research/evidence/vertex-palace-0.3.0-sync-evaluation.json)，这些属于路由
+工程证据，不代表端到端 Agent Token 或时间已经下降。
 
 ## 引用边界
 

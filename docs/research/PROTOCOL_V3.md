@@ -119,9 +119,9 @@ powered as a confirmatory non-inferiority or superiority study.
 - Codex: `codex-cli 0.145.0-alpha.18`
 - Vertex Palace candidate: `0.3.0`
 - Vertex Palace source commit:
-  `ef010c196f3a9ba659e705a363fade8686403b1b`
+  `2d167f81d688160649a8768c863b4e5fe188d1a6`
 - Vertex Palace evidence commit:
-  `e10d16dc509100430701a427e22be6280fc6d72c`
+  `605b254341d6f3d3ce4993410bd108bda5593182`
 - Platform: `win32`
 - Sandbox: `workspace-write/windows-elevated`
 - Timeout: 600 seconds per arm
@@ -134,12 +134,13 @@ accidental formal run.
 Engineering evidence at the pinned source commit reports exact two-file routes
 for both pinned Zod and Requests tasks (recall 1.000, strict precision 1.000)
 and clean-install JSON/Markdown output below the selected ceiling with 50
-memory candidates. A fixed eight-file evidence-maintenance oracle improved from
-3/8 coverage and 0.30 route focus to 8/8 and 1.00 focus. A real pin-sync first
-reached 7/8, then reached 8/8 plus the requested CI file after artifact-intent
-and verification-companion work. The product's own follow-up self-evaluation
-still reached only 5/8, so these are release gates and routing research, not
-Agent outcomes.
+memory candidates. Historical evaluations progressed from 3/8 to an exact 8/8
+fixed evidence oracle, while a real nine-file update still reached only 7/9.
+The final provenance candidate routes the current nine-file source/evidence pin
+exactly 9/9 with 1.00 coverage and focus. Its own broader 17-file implementation
+self-evaluation remains 9/17 at the default route limit and 13/17 at an expanded
+limit; a documentation closeout remains 3/5. These are release gates and routing
+research, not Agent outcomes.
 
 ## Release And Freeze Gates
 
