@@ -51,9 +51,13 @@ Provider-side model caches cannot be controlled and remain an explicit limitatio
 
 The v2 primary comparison is Adaptive Palace versus Full Palace correctness.
 Payload, cumulative Token, tool calls, and wall time are secondary and are
-compared only for mutually successful valid pairs. The v2.1 study is currently
-**preregistered with zero executed trials**; no performance result should be
-inferred from its plan.
+compared only for mutually successful valid pairs. One v2.1 trial was executed
+and all four arms were valid and correct. Adaptive versus Full reduced payload
+by 868 bytes, calls by 9, and reported tokens by 135,969, but was 4.1 seconds
+slower and used 2,392 more uncached input tokens. This is one interim result,
+not a general efficiency claim. The [full disclosure](results/adaptive-pilot-v2.1/README.md)
+also records a Windows split-writable-root error that added unequal recovery
+noise, so the remaining v2.1 plan is retired rather than silently continued.
 
 Validate the frozen plan without running an agent:
 
@@ -62,7 +66,8 @@ npm ci
 npm run benchmark -- study --plan results/adaptive-pilot-v2.1/plan.json
 ```
 
-Execute or resume the preregistered pilot only with the frozen model and CLI:
+The historical execution command is shown for reproducibility, not for
+continuing the retired v2.1 plan:
 
 ```sh
 npm run benchmark -- study --plan results/adaptive-pilot-v2.1/plan.json --execute

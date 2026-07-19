@@ -1,5 +1,11 @@
 # Vertex Palace Adaptive Benchmark Protocol 2.1
 
+> Historical protocol notice: one valid trial was executed, then the remaining
+> plan was retired after a post-outcome Windows split-writable-root defect was
+> identified in the benchmark harness. The result remains public; future runs
+> require a fresh successor protocol and seeds. The original frozen text is
+> available at tag `protocol-v2.1.0`.
+
 Protocol version: 2.1.0
 
 Status: preregistered exploratory successor pilot

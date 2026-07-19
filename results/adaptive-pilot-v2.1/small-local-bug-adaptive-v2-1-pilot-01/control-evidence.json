@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 3,
+  "runId": "small-local-bug-adaptive-v2-1-pilot-01",
+  "arm": "control",
+  "createdAt": "2026-07-19T03:45:37.418Z",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "codexVersion": "codex-cli 0.145.0-alpha.18",
+  "palaceVersion": null,
+  "execution": {
+    "durationMs": 487613,
+    "exitCode": 0,
+    "startedAt": "2026-07-19T03:37:29.499Z",
+    "endedAt": "2026-07-19T03:45:37.113Z",
+    "timedOut": false,
+    "sequence": 1,
+    "order": "control,route-only,adaptive-palace,full-palace",
+    "cacheState": "warm"
+  },
+  "transcript": {
+    "eventCount": 86,
+    "malformedLines": 0,
+    "toolCalls": 38,
+    "commandCalls": 38,
+    "failedCalls": 20,
+    "commandOutputChars": 15913,
+    "agentMessageChars": 1807,
+    "inspectionCommands": 4,
+    "palaceCalls": 0,
+    "successfulPalaceCalls": 0,
+    "palaceContextOutputChars": null,
+    "palaceContextOutputBytes": null,
+    "palaceContextEstimatedTokens": null,
+    "adaptivePayload": null,
+    "adaptivePayloadMatchesOutput": null,
+    "palaceReceivedTask": null,
+    "adaptiveRequested": false,
+    "inspectedFiles": [
+      "README.md",
+      "package.json",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "referencedFiles": [
+      ".gitignore",
+      "README.md",
+      "package.json",
+      "packages/catalog/src/module-001.mjs",
+      "packages/catalog/src/module-002.mjs",
+      "packages/catalog/src/module-003.mjs",
+      "packages/notifications/src/module-001.mjs",
+      "packages/notifications/src/module-002.mjs",
+      "packages/notifications/src/module-003.mjs",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "usage": {
+      "inputTokens": 1042972,
+      "cachedInputTokens": 981760,
+      "outputTokens": 18240,
+      "totalTokens": 1061212,
+      "uncachedInputTokens": 61212
+    }
+  },
+  "taskFidelityPassed": null,
+  "runtimeDiagnostics": {
+    "stderrChars": 11684,
+    "warningLines": 2,
+    "errorLines": 22,
+    "routerErrors": 22
+  },
+  "validity": {
+    "verified": true,
+    "passed": true,
+    "reason": "0 Palace calls detected; expected 0; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; fixture tree matches 0ce2b7827d0f630c99e2f20961941d054050e6f1"
+  },
+  "tests": {
+    "command": "node --test",
+    "passed": true,
+    "publicPassed": true,
+    "oraclePassed": true,
+    "exitCode": 0,
+    "durationMs": 149,
+    "oracleCommand": "node oracle/verify.mjs",
+    "oracleExitCode": 0,
+    "oracleDurationMs": 60
+  },
+  "git": {
+    "status": [
+      "M src/format-currency.mjs"
+    ],
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "untrackedFiles": [],
+    "numstat": [
+      {
+        "file": "src/format-currency.mjs",
+        "added": 1,
+        "deleted": 1
+      }
+    ],
+    "diffCheckPassed": true,
+    "diffCheckOutput": "",
+    "headTree": "0ce2b7827d0f630c99e2f20961941d054050e6f1"
+  },
+  "score": {
+    "total": 100,
+    "points": {
+      "correctness": 60,
+      "expectedCoverage": 20,
+      "scope": 20
+    },
+    "testsPassed": true,
+    "expectedCoverage": 1,
+    "changedFileRecall": 1,
+    "changedFilePrecision": 1,
+    "forbiddenViolation": false,
+    "expectedMatched": [
+      "src/format-currency.mjs"
+    ],
+    "expectedMissed": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": []
+  },
+  "success": true,
+  "route": null,
+  "memory": {
+    "pitfallViolation": null,
+    "wrongMemoryAdopted": null
+  },
+  "palaceEvaluation": null
+}

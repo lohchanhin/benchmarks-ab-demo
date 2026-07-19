@@ -1,0 +1,146 @@
+{
+  "schemaVersion": 3,
+  "runId": "small-local-bug-adaptive-v2-1-pilot-01",
+  "arm": "route-only",
+  "createdAt": "2026-07-19T03:49:07.206Z",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "codexVersion": "codex-cli 0.145.0-alpha.18",
+  "palaceVersion": "0.2.1",
+  "execution": {
+    "durationMs": 194440,
+    "exitCode": 0,
+    "startedAt": "2026-07-19T03:45:52.425Z",
+    "endedAt": "2026-07-19T03:49:06.865Z",
+    "timedOut": false,
+    "sequence": 2,
+    "order": "control,route-only,adaptive-palace,full-palace",
+    "cacheState": "warm"
+  },
+  "transcript": {
+    "eventCount": 46,
+    "malformedLines": 0,
+    "toolCalls": 18,
+    "commandCalls": 18,
+    "failedCalls": 10,
+    "commandOutputChars": 7648,
+    "agentMessageChars": 1610,
+    "inspectionCommands": 2,
+    "palaceCalls": 1,
+    "successfulPalaceCalls": 1,
+    "palaceContextOutputChars": 2086,
+    "palaceContextOutputBytes": 2086,
+    "palaceContextEstimatedTokens": 522,
+    "adaptivePayload": null,
+    "adaptivePayloadMatchesOutput": null,
+    "palaceReceivedTask": "Fix currency formatting so negative zero is rendered as $0.00 while genuinely negative cent values keep their minus sign. Keep the public API stable and make the complete test suite pass without changing tests.",
+    "adaptiveRequested": false,
+    "inspectedFiles": [
+      "README.md",
+      "package.json",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "referencedFiles": [
+      "README.md",
+      "package.json",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "usage": {
+      "inputTokens": 370696,
+      "cachedInputTokens": 327680,
+      "outputTokens": 5488,
+      "totalTokens": 376184,
+      "uncachedInputTokens": 43016
+    }
+  },
+  "taskFidelityPassed": true,
+  "runtimeDiagnostics": {
+    "stderrChars": 5030,
+    "warningLines": 2,
+    "errorLines": 13,
+    "routerErrors": 12
+  },
+  "validity": {
+    "verified": true,
+    "passed": true,
+    "reason": "1/1 successful/total Palace calls; adaptiveRequested=false; expected false; adaptivePayloadMatchesOutput=null; taskFidelity=true; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; fixture tree matches 0ce2b7827d0f630c99e2f20961941d054050e6f1"
+  },
+  "tests": {
+    "command": "node --test",
+    "passed": true,
+    "publicPassed": true,
+    "oraclePassed": true,
+    "exitCode": 0,
+    "durationMs": 161,
+    "oracleCommand": "node oracle/verify.mjs",
+    "oracleExitCode": 0,
+    "oracleDurationMs": 92
+  },
+  "git": {
+    "status": [
+      "M src/format-currency.mjs"
+    ],
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "untrackedFiles": [],
+    "numstat": [
+      {
+        "file": "src/format-currency.mjs",
+        "added": 1,
+        "deleted": 1
+      }
+    ],
+    "diffCheckPassed": true,
+    "diffCheckOutput": "",
+    "headTree": "0ce2b7827d0f630c99e2f20961941d054050e6f1"
+  },
+  "score": {
+    "total": 100,
+    "points": {
+      "correctness": 60,
+      "expectedCoverage": 20,
+      "scope": 20
+    },
+    "testsPassed": true,
+    "expectedCoverage": 1,
+    "changedFileRecall": 1,
+    "changedFilePrecision": 1,
+    "forbiddenViolation": false,
+    "expectedMatched": [
+      "src/format-currency.mjs"
+    ],
+    "expectedMissed": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": []
+  },
+  "success": true,
+  "route": {
+    "routeId": "route_30611d90ced4c9bb",
+    "confidence": 0.53,
+    "k": 4,
+    "recallAtK": 1,
+    "precisionAtK": 0.5,
+    "groundTruthFiles": [
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "matchedFiles": [
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "retrievedFiles": [
+      "test/format-currency.test.mjs",
+      "src/format-currency.mjs",
+      "README.md",
+      "package.json"
+    ]
+  },
+  "memory": {
+    "pitfallViolation": null,
+    "wrongMemoryAdopted": null
+  },
+  "palaceEvaluation": null
+}

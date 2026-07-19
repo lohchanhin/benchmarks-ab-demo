@@ -29,7 +29,7 @@ v1 的 Full Palace 没有观察到端到端效率优势，所以 v2 不是改写
 
 设计包含 4 个场景 x 4 个 seed x 4 个 Arm，共 64 个全新 Session。每个场景使用完整的四臂 Williams 顺序，让每个 Arm 在第一、第二、第三、第四位置各出现一次；两组使用 warm 本地索引，两组在计时前移除索引并强制重建。Cache 分配会跨场景轮换，使每条 Williams 顺序在完整 Pilot 中恰好出现两次 warm、两次 cold。这个控制不包含服务端模型缓存，墙钟时间仍是次要指标。
 
-v2.1 主比较是 Adaptive 相对 Full Palace 的正确性；只有双方都有效且正确完成，才比较 Palace payload、Codex Token、工具调用和时间。目前 v2.1 是**已预注册、执行数为 0**，不能从计划本身推断性能结果。
+v2.1 主比较是 Adaptive 相对 Full Palace 的正确性；只有双方都有效且正确完成，才比较 Palace payload、Codex Token、工具调用和时间。第一组 v2.1 四个 Arm 均有效且正确；Adaptive 相对 Full 的 payload 少 868 bytes、调用少 9 次、reported tokens 少 135,969，但慢 4.1 秒且 uncached input 多 2,392。这只是单组 interim 结果，不是普遍效率结论。完整[结果与基础设施噪声说明](results/adaptive-pilot-v2.1/README.md)已公开；因为发现 Windows split writable roots 导致四臂都发生 `apply_patch` 失败，剩余 v2.1 计划停止执行，不会悄悄续跑。
 
 ```sh
 npm ci
