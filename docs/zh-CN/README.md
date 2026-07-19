@@ -51,11 +51,15 @@ Control-first v3 正是这样的独立新协议，但目前仍处于设计审核
 并通过包含 50 条记忆候选的干净安装 context ceiling 测试。这些数据只证明固定的
 路由与输出契约，不是 Adaptive 相对普通 Codex 的 Agent A/B 结果。
 
-当前运行时源码固定到 `5cae580a67c3b8d3b6885abb900a69cd285ecbc0`，双语研究证据
-固定到 `087d5c65a740c91f6ab849088c27c609d1f6e201`。固定八文件证据维护 oracle
-由 3/8 coverage、0.30 focus 提升到 8/8、1.00 focus；但另外两项产品自评仍只有
-3/6 与 1/8。本仓库实际同步任务则为 7/8，结果保存在[机器证据](../research/evidence/vertex-palace-0.3.0-sync-evaluation.json)。
+当前运行时源码固定到 `ef010c196f3a9ba659e705a363fade8686403b1b`，双语研究证据
+固定到 `e10d16dc509100430701a427e22be6280fc6d72c`。固定八文件证据维护 oracle
+由 3/8 coverage、0.30 focus 提升到 8/8、1.00 focus。第一次真实同步仍为 7/8；
+发布资料意图与测试伴随修正后，同一八文件 oracle 命中 8/8，并额外带上明确要求的
+CI，coverage 为 1.00、focus 为 0.89。产品自身后续自评仍只有 5/8。修复结果与
+剩余失败都保存在[机器证据](../research/evidence/vertex-palace-0.3.0-sync-evaluation.json)，
 这些属于路由工程证据，不代表端到端 Agent Token 或时间已经下降。
+随后按九个实际 pin 与证据改动文件进行自评时只命中 7/9，漏掉 study 生成器和机器
+证据 JSON 本身；生成物 provenance 因此仍是明确未解决的问题。
 
 ## 引用边界
 

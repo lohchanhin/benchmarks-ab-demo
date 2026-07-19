@@ -119,9 +119,9 @@ powered as a confirmatory non-inferiority or superiority study.
 - Codex: `codex-cli 0.145.0-alpha.18`
 - Vertex Palace candidate: `0.3.0`
 - Vertex Palace source commit:
-  `5cae580a67c3b8d3b6885abb900a69cd285ecbc0`
+  `ef010c196f3a9ba659e705a363fade8686403b1b`
 - Vertex Palace evidence commit:
-  `087d5c65a740c91f6ab849088c27c609d1f6e201`
+  `e10d16dc509100430701a427e22be6280fc6d72c`
 - Platform: `win32`
 - Sandbox: `workspace-write/windows-elevated`
 - Timeout: 600 seconds per arm
@@ -135,9 +135,10 @@ Engineering evidence at the pinned source commit reports exact two-file routes
 for both pinned Zod and Requests tasks (recall 1.000, strict precision 1.000)
 and clean-install JSON/Markdown output below the selected ceiling with 50
 memory candidates. A fixed eight-file evidence-maintenance oracle improved from
-3/8 coverage and 0.30 route focus to 8/8 and 1.00 focus. Product self-checks
-still report 3/6 for the implementation change and 1/8 for the following
-documentation-only update, so these are release gates and routing research, not
+3/8 coverage and 0.30 route focus to 8/8 and 1.00 focus. A real pin-sync first
+reached 7/8, then reached 8/8 plus the requested CI file after artifact-intent
+and verification-companion work. The product's own follow-up self-evaluation
+still reached only 5/8, so these are release gates and routing research, not
 Agent outcomes.
 
 ## Release And Freeze Gates

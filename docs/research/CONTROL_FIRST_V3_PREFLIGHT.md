@@ -66,18 +66,19 @@ existing relevant-memory Full Palace contract.
 ## Product Evidence
 
 - Vertex Palace candidate source commit:
-  [`5cae580a67c3b8d3b6885abb900a69cd285ecbc0`](https://github.com/lohchanhin/vertex-palace/commit/5cae580a67c3b8d3b6885abb900a69cd285ecbc0)
+  [`ef010c196f3a9ba659e705a363fade8686403b1b`](https://github.com/lohchanhin/vertex-palace/commit/ef010c196f3a9ba659e705a363fade8686403b1b)
 - Machine-evidence commit:
-  [`087d5c65a740c91f6ab849088c27c609d1f6e201`](https://github.com/lohchanhin/vertex-palace/commit/087d5c65a740c91f6ab849088c27c609d1f6e201)
+  [`e10d16dc509100430701a427e22be6280fc6d72c`](https://github.com/lohchanhin/vertex-palace/commit/e10d16dc509100430701a427e22be6280fc6d72c)
 - Candidate and evidence CI runs:
-  [29698755147](https://github.com/lohchanhin/vertex-palace/actions/runs/29698755147),
-  [29699008823](https://github.com/lohchanhin/vertex-palace/actions/runs/29699008823)
-- [Machine-readable real-repository evidence](https://github.com/lohchanhin/vertex-palace/blob/087d5c65a740c91f6ab849088c27c609d1f6e201/docs/research/evidence/real-repository-validation-0.3.0.json)
-- [Machine-readable clean-install evidence](https://github.com/lohchanhin/vertex-palace/blob/087d5c65a740c91f6ab849088c27c609d1f6e201/docs/research/evidence/release-candidate-0.3.0.json)
-- [Machine-readable multi-surface routing evidence](https://github.com/lohchanhin/vertex-palace/blob/087d5c65a740c91f6ab849088c27c609d1f6e201/docs/research/evidence/multi-surface-evidence-routing-0.3.0.json)
-- [Bilingual context-ceiling incident record](https://github.com/lohchanhin/vertex-palace/blob/087d5c65a740c91f6ab849088c27c609d1f6e201/docs/research/ADAPTIVE_CONTEXT_CEILING_0_3_0.md)
-- [Bilingual multi-surface routing record](https://github.com/lohchanhin/vertex-palace/blob/087d5c65a740c91f6ab849088c27c609d1f6e201/docs/research/MULTI_SURFACE_EVIDENCE_ROUTING_0_3_0.md)
-- Core: 73/73 tests
+  [29699542507](https://github.com/lohchanhin/vertex-palace/actions/runs/29699542507),
+  [29699688482](https://github.com/lohchanhin/vertex-palace/actions/runs/29699688482)
+- [Machine-readable real-repository evidence](https://github.com/lohchanhin/vertex-palace/blob/e10d16dc509100430701a427e22be6280fc6d72c/docs/research/evidence/real-repository-validation-0.3.0.json)
+- [Machine-readable clean-install evidence](https://github.com/lohchanhin/vertex-palace/blob/e10d16dc509100430701a427e22be6280fc6d72c/docs/research/evidence/release-candidate-0.3.0.json)
+- [Machine-readable multi-surface routing evidence](https://github.com/lohchanhin/vertex-palace/blob/e10d16dc509100430701a427e22be6280fc6d72c/docs/research/evidence/multi-surface-evidence-routing-0.3.0.json)
+- [Machine-readable release-artifact follow-up](https://github.com/lohchanhin/vertex-palace/blob/e10d16dc509100430701a427e22be6280fc6d72c/docs/research/evidence/release-artifact-routing-0.3.0.json)
+- [Bilingual context-ceiling incident record](https://github.com/lohchanhin/vertex-palace/blob/e10d16dc509100430701a427e22be6280fc6d72c/docs/research/ADAPTIVE_CONTEXT_CEILING_0_3_0.md)
+- [Bilingual multi-surface routing record](https://github.com/lohchanhin/vertex-palace/blob/e10d16dc509100430701a427e22be6280fc6d72c/docs/research/MULTI_SURFACE_EVIDENCE_ROUTING_0_3_0.md)
+- Core: 74/74 tests
 - CLI: 2/2 tests
 - MCP: 2/2 tests
 - TypeScript, build, clean tarball install, package CLI, and MCP smoke: pass
@@ -87,12 +88,13 @@ repetitions, with deterministic boundaries and clean tracked worktrees. Each
 repository had target recall 1.000 and strict target precision 1.000, with no
 extra boundary files. The clean installed package also kept 50 memory
 candidates auditable while delivering JSON at 4,050 / 5,000 estimated tokens
-and Markdown at 4,473 / 5,000. Product self-evaluation still exposes a broader
-limitation: the six-file implementation revision matched 3/6 at confidence 0.35
-and missed the classifier, regression test, and generated MCP bundle. A later
-documentation-only update was misclassified as release work and matched 1/8.
-These are routing and packaging findings, not evidence of lower Agent tokens or
-wall time.
+and Markdown at 4,473 / 5,000. Earlier product self-evaluations remain public:
+the six-file implementation revision matched 3/6 and a documentation-only
+release-artifact update matched 1/8. The follow-up fixed that intent boundary and
+direct-test companion, but its own eight-file self-evaluation still matched only
+5/8, missing the new helper, classifier sibling, and generated MCP bundle. These
+are routing and packaging findings, not evidence of lower Agent tokens or wall
+time.
 
 ## Benchmark Evidence
 
@@ -111,6 +113,14 @@ wall time.
   coverage and 0.88 focus. It selected the explicitly mentioned CI workflow but
   missed `test/study.test.mjs`, which the task did not name. The complete result
   is preserved in [machine-readable benchmark evidence](./evidence/vertex-palace-0.3.0-sync-evaluation.json).
+- Re-running the same eight-file oracle with the pinned follow-up candidate
+  matched 8/8 plus the requested CI workflow: coverage 1.00, focus 0.89, and
+  confidence 0.35. The earlier 7/8 result remains embedded in the same evidence
+  file instead of being overwritten.
+- A separate post-update evaluation used all nine files actually changed while
+  pinning and documenting this result. It matched 7/9 with 0.78 coverage and
+  0.88 focus, missing `src/commands/study.mjs` and the machine-evidence JSON.
+  Generator and generated-evidence provenance therefore remain open.
 
 ## Remaining Freeze Gates
 
@@ -132,9 +142,11 @@ Support bucket 里的 shared step 仍显示 `tier: primary`。最终修复让 Au
 真实 Zod 与 Requests 仓库各重复两次，都只返回已知实现和测试，目标召回率与严格
 精度均为 1.000，没有额外边界文件。干净安装包在 50 条记忆候选下，JSON 为
 4,050 / 5,000 estimated tokens，Markdown 为 4,473 / 5,000，并保留所有候选的
-纳入或排除原因。产品六文件实现修正自评仍只有 3/6，漏掉分类模块、回归测试与生成
-后的 MCP bundle；随后仅更新研究资料的任务又被误判成 release，只命中 1/8。
-这些都是冻结前工程验证，不是比赛结果，也不能证明节省 Agent Token 或时间。
+纳入或排除原因。先前产品六文件实现修正自评只有 3/6，随后仅更新发布资料的任务
+又被误判成 release，只命中 1/8；两项失败都继续公开。后续已经修复资料意图与直接
+测试伴随，但它自己的八文件自评仍只有 5/8，漏掉新 helper、分类兄弟模块与生成后的
+MCP bundle。这些都是冻结前工程验证，不是比赛结果，也不能证明节省 Agent Token
+或时间。
 
 本 benchmark 的固定八文件证据维护 oracle 最初只覆盖 3/8，coverage 为 38%、focus
 为 30%，置信度却有 0.78。修正后正好命中 8/8，coverage 与 focus 都为 100%，
@@ -143,6 +155,14 @@ Support bucket 里的 shared step 仍显示 `tier: primary`。最终修复让 Au
 本次真正执行的 pin 同步任务自评为 7/8，coverage 与 focus 都为 0.88。它因为任务
 明确提到 CI 而选入 CI workflow，但漏掉任务没有点名的 `test/study.test.mjs`。完整结果
 保存在[机器可读 benchmark 证据](./evidence/vertex-palace-0.3.0-sync-evaluation.json)中。
+
+使用后续候选版重跑同一八文件 oracle 后，路线命中 8/8，并额外带上明确要求的 CI；
+coverage 为 1.00、focus 为 0.89、confidence 为 0.35。先前 7/8 失败仍嵌在同一证据
+文件中，没有被覆盖或删除。
+
+另一项后续自评使用这次 pin 与说明实际改动的全部九个文件，只命中 7/9，coverage
+为 0.78、focus 为 0.88；它漏掉 `src/commands/study.mjs` 与机器证据 JSON。本结果
+确认生成器与生成证据的 provenance 仍未解决。
 
 v3 计划仍为 `frozen:false`，manifest 仍是 0/16；真实仓库门槛已经完成，但在 npm
 0.3.0 发布与协议 tag 完成前不会启动正式 Arm。

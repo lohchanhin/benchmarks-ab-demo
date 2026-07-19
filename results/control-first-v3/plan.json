@@ -20,7 +20,7 @@
     "timeoutMs": 600000,
     "cooldownMs": 15000,
     "palaceVersion": "0.3.0",
-    "palaceSourceCommit": "5cae580a67c3b8d3b6885abb900a69cd285ecbc0",
+    "palaceSourceCommit": "ef010c196f3a9ba659e705a363fade8686403b1b",
     "platform": "win32",
     "sandboxProfile": "workspace-write/windows-elevated",
     "lastMessageTransport": "workspace-local-then-artifacts-v1"
