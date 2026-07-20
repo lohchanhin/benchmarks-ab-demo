@@ -3,11 +3,11 @@
   "protocolVersion": "3.0.0",
   "primaryComparison": "adaptive-vs-control",
   "primaryEfficiencyMetric": "reportedTokens",
-  "generatedAt": "2026-07-20T22:36:21.518Z",
+  "generatedAt": "2026-07-20T22:42:08.037Z",
   "exploratory": true,
   "plannedTrials": 16,
-  "attemptedTrials": 14,
-  "loadedTrials": 14,
+  "attemptedTrials": 15,
+  "loadedTrials": 15,
   "missingTrials": [],
   "scenarios": {
     "small-local-bug": {
@@ -8225,21 +8225,23 @@
       }
     },
     "stale-memory-adversarial": {
-      "attemptedPairs": 2,
-      "validPairs": 2,
+      "attemptedPairs": 3,
+      "validPairs": 3,
       "invalidPairIds": [],
       "comparisons": {
         "routeOnlyMinusControl": {
           "baselineArm": "control",
           "treatmentArm": "routeOnly",
-          "validPairs": 2,
+          "validPairs": 3,
           "invalidPairIds": [],
           "success": {
             "baselineRaw": [
               1,
+              1,
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1
             ],
@@ -8266,21 +8268,23 @@
           },
           "metrics": {
             "durationMs": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 35170,
-                37935
+                37935,
+                37245
               ],
               "treatmentRaw": [
                 82305,
-                53314
+                53314,
+                46946
               ],
-              "baselineMedian": 36552.5,
-              "treatmentMedian": 67809.5,
+              "baselineMedian": 37245,
+              "treatmentMedian": 53314,
               "treatmentMinusBaseline": {
-                "estimate": 31257,
+                "estimate": 15379,
                 "confidenceInterval": [
-                  15379,
+                  9701,
                   47135
                 ],
                 "iterations": 10000,
@@ -8289,19 +8293,21 @@
               }
             },
             "toolCalls": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                4,
                 4,
                 4
               ],
               "treatmentRaw": [
                 14,
+                13,
                 13
               ],
               "baselineMedian": 4,
-              "treatmentMedian": 13.5,
+              "treatmentMedian": 13,
               "treatmentMinusBaseline": {
-                "estimate": 9.5,
+                "estimate": 9,
                 "confidenceInterval": [
                   9,
                   10
@@ -8312,12 +8318,14 @@
               }
             },
             "failedCalls": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -8335,12 +8343,14 @@
               }
             },
             "routerErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -8358,12 +8368,14 @@
               }
             },
             "applyPatchVerificationErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -8381,12 +8393,14 @@
               }
             },
             "sandboxPreparationErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -8404,12 +8418,14 @@
               }
             },
             "inspectionCommands": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                2,
                 2,
                 2
               ],
               "treatmentRaw": [
+                7,
                 7,
                 7
               ],
@@ -8427,21 +8443,23 @@
               }
             },
             "commandOutputChars": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 3144,
-                3176
+                3176,
+                7777
               ],
               "treatmentRaw": [
                 4651,
-                4654
+                4654,
+                4680
               ],
-              "baselineMedian": 3160,
-              "treatmentMedian": 4652.5,
+              "baselineMedian": 3176,
+              "treatmentMedian": 4654,
               "treatmentMinusBaseline": {
-                "estimate": 1492.5,
+                "estimate": 1478,
                 "confidenceInterval": [
-                  1478,
+                  -3097,
                   1507
                 ],
                 "iterations": 10000,
@@ -8495,21 +8513,23 @@
               }
             },
             "inputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 86496,
-                85905
+                85905,
+                91410
               ],
               "treatmentRaw": [
                 122076,
-                108067
+                108067,
+                90262
               ],
-              "baselineMedian": 86200.5,
-              "treatmentMedian": 115071.5,
+              "baselineMedian": 86496,
+              "treatmentMedian": 108067,
               "treatmentMinusBaseline": {
-                "estimate": 28871,
+                "estimate": 22162,
                 "confidenceInterval": [
-                  22162,
+                  -1148,
                   35580
                 ],
                 "iterations": 10000,
@@ -8518,19 +8538,21 @@
               }
             },
             "cachedInputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 78336,
-                78336
+                78336,
+                81408
               ],
               "treatmentRaw": [
                 106496,
-                69376
+                69376,
+                81408
               ],
               "baselineMedian": 78336,
-              "treatmentMedian": 87936,
+              "treatmentMedian": 81408,
               "treatmentMinusBaseline": {
-                "estimate": 9600,
+                "estimate": 0,
                 "confidenceInterval": [
                   -8960,
                   28160
@@ -8541,21 +8563,23 @@
               }
             },
             "uncachedInputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 8160,
-                7569
+                7569,
+                10002
               ],
               "treatmentRaw": [
                 15580,
-                38691
+                38691,
+                8854
               ],
-              "baselineMedian": 7864.5,
-              "treatmentMedian": 27135.5,
+              "baselineMedian": 8160,
+              "treatmentMedian": 15580,
               "treatmentMinusBaseline": {
-                "estimate": 19271,
+                "estimate": 7420,
                 "confidenceInterval": [
-                  7420,
+                  -1148,
                   31122
                 ],
                 "iterations": 10000,
@@ -8564,21 +8588,23 @@
               }
             },
             "outputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 1060,
-                905
+                905,
+                1024
               ],
               "treatmentRaw": [
                 1549,
-                1859
+                1859,
+                1313
               ],
-              "baselineMedian": 982.5,
-              "treatmentMedian": 1704,
+              "baselineMedian": 1024,
+              "treatmentMedian": 1549,
               "treatmentMinusBaseline": {
-                "estimate": 721.5,
+                "estimate": 489,
                 "confidenceInterval": [
-                  489,
+                  289,
                   954
                 ],
                 "iterations": 10000,
@@ -8587,21 +8613,23 @@
               }
             },
             "reportedTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 87556,
-                86810
+                86810,
+                92434
               ],
               "treatmentRaw": [
                 123625,
-                109926
+                109926,
+                91575
               ],
-              "baselineMedian": 87183,
-              "treatmentMedian": 116775.5,
+              "baselineMedian": 87556,
+              "treatmentMedian": 109926,
               "treatmentMinusBaseline": {
-                "estimate": 29592.5,
+                "estimate": 23116,
                 "confidenceInterval": [
-                  23116,
+                  -859,
                   36069
                 ],
                 "iterations": 10000,
@@ -8610,12 +8638,14 @@
               }
             },
             "changedFilePrecision": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                1,
                 1,
                 1
               ],
               "treatmentRaw": [
+                1,
                 1,
                 1
               ],
@@ -8633,12 +8663,14 @@
               }
             },
             "changedFileRecall": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                1,
                 1,
                 1
               ],
               "treatmentRaw": [
+                1,
                 1,
                 1
               ],
@@ -8657,19 +8689,22 @@
             }
           },
           "scope": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baseline": {
               "changedFilePrecisionRaw": [
+                1,
                 1,
                 1
               ],
               "changedFileRecallRaw": [
+                1,
                 1,
                 1
               ],
               "changedFilePrecisionMedian": 1,
               "changedFileRecallMedian": 1,
               "forbiddenViolationRaw": [
+                false,
                 false,
                 false
               ],
@@ -8679,15 +8714,18 @@
             "treatment": {
               "changedFilePrecisionRaw": [
                 1,
+                1,
                 1
               ],
               "changedFileRecallRaw": [
+                1,
                 1,
                 1
               ],
               "changedFilePrecisionMedian": 1,
               "changedFileRecallMedian": 1,
               "forbiddenViolationRaw": [
+                false,
                 false,
                 false
               ],
@@ -8699,14 +8737,16 @@
         "fullPalaceMinusRouteOnly": {
           "baselineArm": "routeOnly",
           "treatmentArm": "fullPalace",
-          "validPairs": 2,
+          "validPairs": 3,
           "invalidPairIds": [],
           "success": {
             "baselineRaw": [
               1,
+              1,
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1
             ],
@@ -8733,22 +8773,24 @@
           },
           "metrics": {
             "durationMs": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 82305,
-                53314
+                53314,
+                46946
               ],
               "treatmentRaw": [
                 55026,
-                45239
+                45239,
+                65736
               ],
-              "baselineMedian": 67809.5,
-              "treatmentMedian": 50132.5,
+              "baselineMedian": 53314,
+              "treatmentMedian": 55026,
               "treatmentMinusBaseline": {
-                "estimate": -17677,
+                "estimate": -8075,
                 "confidenceInterval": [
                   -27279,
-                  -8075
+                  18790
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -8756,22 +8798,24 @@
               }
             },
             "toolCalls": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 14,
+                13,
                 13
               ],
               "treatmentRaw": [
                 9,
-                13
+                13,
+                15
               ],
-              "baselineMedian": 13.5,
-              "treatmentMedian": 11,
+              "baselineMedian": 13,
+              "treatmentMedian": 13,
               "treatmentMinusBaseline": {
-                "estimate": -2.5,
+                "estimate": 0,
                 "confidenceInterval": [
                   -5,
-                  0
+                  2
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -8779,12 +8823,14 @@
               }
             },
             "failedCalls": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                1,
                 1,
                 1
               ],
@@ -8802,12 +8848,14 @@
               }
             },
             "routerErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                1,
                 1,
                 1
               ],
@@ -8825,12 +8873,14 @@
               }
             },
             "applyPatchVerificationErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -8848,12 +8898,14 @@
               }
             },
             "sandboxPreparationErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -8871,19 +8923,21 @@
               }
             },
             "inspectionCommands": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                7,
                 7,
                 7
               ],
               "treatmentRaw": [
                 1,
+                7,
                 7
               ],
               "baselineMedian": 7,
-              "treatmentMedian": 4,
+              "treatmentMedian": 7,
               "treatmentMinusBaseline": {
-                "estimate": -3,
+                "estimate": 0,
                 "confidenceInterval": [
                   -6,
                   0
@@ -8894,19 +8948,21 @@
               }
             },
             "commandOutputChars": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 4651,
-                4654
+                4654,
+                4680
               ],
               "treatmentRaw": [
                 6659,
-                6148
+                6148,
+                6433
               ],
-              "baselineMedian": 4652.5,
-              "treatmentMedian": 6403.5,
+              "baselineMedian": 4654,
+              "treatmentMedian": 6433,
               "treatmentMinusBaseline": {
-                "estimate": 1751,
+                "estimate": 1753,
                 "confidenceInterval": [
                   1494,
                   2008
@@ -8917,12 +8973,14 @@
               }
             },
             "palaceContextOutputChars": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                2339,
                 2339,
                 2339
               ],
               "treatmentRaw": [
+                3139,
                 3139,
                 3139
               ],
@@ -8940,12 +8998,14 @@
               }
             },
             "palaceContextOutputBytes": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                2339,
                 2339,
                 2339
               ],
               "treatmentRaw": [
+                3139,
                 3139,
                 3139
               ],
@@ -8963,12 +9023,14 @@
               }
             },
             "palaceContextEstimatedTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                585,
                 585,
                 585
               ],
               "treatmentRaw": [
+                785,
                 785,
                 785
               ],
@@ -8986,22 +9048,24 @@
               }
             },
             "inputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 122076,
-                108067
+                108067,
+                90262
               ],
               "treatmentRaw": [
                 125184,
-                92554
+                92554,
+                175926
               ],
-              "baselineMedian": 115071.5,
-              "treatmentMedian": 108869,
+              "baselineMedian": 108067,
+              "treatmentMedian": 125184,
               "treatmentMinusBaseline": {
-                "estimate": -6202.5,
+                "estimate": 3108,
                 "confidenceInterval": [
                   -15513,
-                  3108
+                  85664
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9009,22 +9073,24 @@
               }
             },
             "cachedInputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 106496,
-                69376
+                69376,
+                81408
               ],
               "treatmentRaw": [
                 107520,
-                83456
+                83456,
+                163072
               ],
-              "baselineMedian": 87936,
-              "treatmentMedian": 95488,
+              "baselineMedian": 81408,
+              "treatmentMedian": 107520,
               "treatmentMinusBaseline": {
-                "estimate": 7552,
+                "estimate": 14080,
                 "confidenceInterval": [
                   1024,
-                  14080
+                  81664
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9032,22 +9098,24 @@
               }
             },
             "uncachedInputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 15580,
-                38691
+                38691,
+                8854
               ],
               "treatmentRaw": [
                 17664,
-                9098
+                9098,
+                12854
               ],
-              "baselineMedian": 27135.5,
-              "treatmentMedian": 13381,
+              "baselineMedian": 15580,
+              "treatmentMedian": 12854,
               "treatmentMinusBaseline": {
-                "estimate": -13754.5,
+                "estimate": 2084,
                 "confidenceInterval": [
                   -29593,
-                  2084
+                  4000
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9055,22 +9123,24 @@
               }
             },
             "outputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 1549,
-                1859
+                1859,
+                1313
               ],
               "treatmentRaw": [
                 1651,
-                1488
+                1488,
+                1960
               ],
-              "baselineMedian": 1704,
-              "treatmentMedian": 1569.5,
+              "baselineMedian": 1549,
+              "treatmentMedian": 1651,
               "treatmentMinusBaseline": {
-                "estimate": -134.5,
+                "estimate": 102,
                 "confidenceInterval": [
                   -371,
-                  102
+                  647
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9078,22 +9148,24 @@
               }
             },
             "reportedTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 123625,
-                109926
+                109926,
+                91575
               ],
               "treatmentRaw": [
                 126835,
-                94042
+                94042,
+                177886
               ],
-              "baselineMedian": 116775.5,
-              "treatmentMedian": 110438.5,
+              "baselineMedian": 109926,
+              "treatmentMedian": 126835,
               "treatmentMinusBaseline": {
-                "estimate": -6337,
+                "estimate": 3210,
                 "confidenceInterval": [
                   -15884,
-                  3210
+                  86311
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9101,12 +9173,14 @@
               }
             },
             "changedFilePrecision": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                1,
                 1,
                 1
               ],
               "treatmentRaw": [
+                1,
                 1,
                 1
               ],
@@ -9124,12 +9198,14 @@
               }
             },
             "changedFileRecall": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                1,
                 1,
                 1
               ],
               "treatmentRaw": [
+                1,
                 1,
                 1
               ],
@@ -9148,19 +9224,22 @@
             }
           },
           "scope": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baseline": {
               "changedFilePrecisionRaw": [
+                1,
                 1,
                 1
               ],
               "changedFileRecallRaw": [
+                1,
                 1,
                 1
               ],
               "changedFilePrecisionMedian": 1,
               "changedFileRecallMedian": 1,
               "forbiddenViolationRaw": [
+                false,
                 false,
                 false
               ],
@@ -9170,15 +9249,18 @@
             "treatment": {
               "changedFilePrecisionRaw": [
                 1,
+                1,
                 1
               ],
               "changedFileRecallRaw": [
+                1,
                 1,
                 1
               ],
               "changedFilePrecisionMedian": 1,
               "changedFileRecallMedian": 1,
               "forbiddenViolationRaw": [
+                false,
                 false,
                 false
               ],
@@ -9190,14 +9272,16 @@
         "adaptiveMinusControl": {
           "baselineArm": "control",
           "treatmentArm": "adaptivePalace",
-          "validPairs": 2,
+          "validPairs": 3,
           "invalidPairIds": [],
           "success": {
             "baselineRaw": [
               1,
+              1,
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1
             ],
@@ -9225,19 +9309,21 @@
           },
           "metrics": {
             "durationMs": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 35170,
-                37935
+                37935,
+                37245
               ],
               "treatmentRaw": [
                 60214,
-                49800
+                49800,
+                60837
               ],
-              "baselineMedian": 36552.5,
-              "treatmentMedian": 55007,
+              "baselineMedian": 37245,
+              "treatmentMedian": 60214,
               "treatmentMinusBaseline": {
-                "estimate": 18454.5,
+                "estimate": 23592,
                 "confidenceInterval": [
                   11865,
                   25044
@@ -9248,22 +9334,24 @@
               }
             },
             "toolCalls": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                4,
                 4,
                 4
               ],
               "treatmentRaw": [
                 8,
-                7
+                7,
+                9
               ],
               "baselineMedian": 4,
-              "treatmentMedian": 7.5,
+              "treatmentMedian": 8,
               "treatmentMinusBaseline": {
-                "estimate": 3.5,
+                "estimate": 4,
                 "confidenceInterval": [
                   3,
-                  4
+                  5
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9271,12 +9359,14 @@
               }
             },
             "failedCalls": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -9294,12 +9384,14 @@
               }
             },
             "routerErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -9317,12 +9409,14 @@
               }
             },
             "applyPatchVerificationErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -9340,12 +9434,14 @@
               }
             },
             "sandboxPreparationErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -9363,22 +9459,24 @@
               }
             },
             "inspectionCommands": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                2,
                 2,
                 2
               ],
               "treatmentRaw": [
                 2,
-                1
+                1,
+                3
               ],
               "baselineMedian": 2,
-              "treatmentMedian": 1.5,
+              "treatmentMedian": 2,
               "treatmentMinusBaseline": {
-                "estimate": -0.5,
+                "estimate": 0,
                 "confidenceInterval": [
                   -1,
-                  0
+                  1
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9386,21 +9484,23 @@
               }
             },
             "commandOutputChars": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 3144,
-                3176
+                3176,
+                7777
               ],
               "treatmentRaw": [
                 6293,
-                6072
+                6072,
+                6436
               ],
-              "baselineMedian": 3160,
-              "treatmentMedian": 6182.5,
+              "baselineMedian": 3176,
+              "treatmentMedian": 6293,
               "treatmentMinusBaseline": {
-                "estimate": 3022.5,
+                "estimate": 2896,
                 "confidenceInterval": [
-                  2896,
+                  -1341,
                   3149
                 ],
                 "iterations": 10000,
@@ -9454,22 +9554,24 @@
               }
             },
             "inputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 86496,
-                85905
+                85905,
+                91410
               ],
               "treatmentRaw": [
                 124955,
-                107783
+                107783,
+                142741
               ],
-              "baselineMedian": 86200.5,
-              "treatmentMedian": 116369,
+              "baselineMedian": 86496,
+              "treatmentMedian": 124955,
               "treatmentMinusBaseline": {
-                "estimate": 30168.5,
+                "estimate": 38459,
                 "confidenceInterval": [
                   21878,
-                  38459
+                  51331
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9477,22 +9579,24 @@
               }
             },
             "cachedInputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 78336,
-                78336
+                78336,
+                81408
               ],
               "treatmentRaw": [
                 112640,
-                97536
+                97536,
+                125696
               ],
               "baselineMedian": 78336,
-              "treatmentMedian": 105088,
+              "treatmentMedian": 112640,
               "treatmentMinusBaseline": {
-                "estimate": 26752,
+                "estimate": 34304,
                 "confidenceInterval": [
                   19200,
-                  34304
+                  44288
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9500,22 +9604,24 @@
               }
             },
             "uncachedInputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 8160,
-                7569
+                7569,
+                10002
               ],
               "treatmentRaw": [
                 12315,
-                10247
+                10247,
+                17045
               ],
-              "baselineMedian": 7864.5,
-              "treatmentMedian": 11281,
+              "baselineMedian": 8160,
+              "treatmentMedian": 12315,
               "treatmentMinusBaseline": {
-                "estimate": 3416.5,
+                "estimate": 4155,
                 "confidenceInterval": [
                   2678,
-                  4155
+                  7043
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9523,22 +9629,24 @@
               }
             },
             "outputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 1060,
-                905
+                905,
+                1024
               ],
               "treatmentRaw": [
                 1863,
-                1525
+                1525,
+                2166
               ],
-              "baselineMedian": 982.5,
-              "treatmentMedian": 1694,
+              "baselineMedian": 1024,
+              "treatmentMedian": 1863,
               "treatmentMinusBaseline": {
-                "estimate": 711.5,
+                "estimate": 803,
                 "confidenceInterval": [
                   620,
-                  803
+                  1142
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9546,22 +9654,24 @@
               }
             },
             "reportedTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 87556,
-                86810
+                86810,
+                92434
               ],
               "treatmentRaw": [
                 126818,
-                109308
+                109308,
+                144907
               ],
-              "baselineMedian": 87183,
-              "treatmentMedian": 118063,
+              "baselineMedian": 87556,
+              "treatmentMedian": 126818,
               "treatmentMinusBaseline": {
-                "estimate": 30880,
+                "estimate": 39262,
                 "confidenceInterval": [
                   22498,
-                  39262
+                  52473
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9569,12 +9679,14 @@
               }
             },
             "changedFilePrecision": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                1,
                 1,
                 1
               ],
               "treatmentRaw": [
+                1,
                 1,
                 1
               ],
@@ -9592,12 +9704,14 @@
               }
             },
             "changedFileRecall": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                1,
                 1,
                 1
               ],
               "treatmentRaw": [
+                1,
                 1,
                 1
               ],
@@ -9616,19 +9730,22 @@
             }
           },
           "scope": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baseline": {
               "changedFilePrecisionRaw": [
+                1,
                 1,
                 1
               ],
               "changedFileRecallRaw": [
+                1,
                 1,
                 1
               ],
               "changedFilePrecisionMedian": 1,
               "changedFileRecallMedian": 1,
               "forbiddenViolationRaw": [
+                false,
                 false,
                 false
               ],
@@ -9638,15 +9755,18 @@
             "treatment": {
               "changedFilePrecisionRaw": [
                 1,
+                1,
                 1
               ],
               "changedFileRecallRaw": [
+                1,
                 1,
                 1
               ],
               "changedFilePrecisionMedian": 1,
               "changedFileRecallMedian": 1,
               "forbiddenViolationRaw": [
+                false,
                 false,
                 false
               ],
@@ -9658,14 +9778,16 @@
         "adaptiveMinusFullPalace": {
           "baselineArm": "fullPalace",
           "treatmentArm": "adaptivePalace",
-          "validPairs": 2,
+          "validPairs": 3,
           "invalidPairIds": [],
           "success": {
             "baselineRaw": [
               1,
+              1,
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1
             ],
@@ -9692,21 +9814,23 @@
           },
           "metrics": {
             "durationMs": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 55026,
-                45239
+                45239,
+                65736
               ],
               "treatmentRaw": [
                 60214,
-                49800
+                49800,
+                60837
               ],
-              "baselineMedian": 50132.5,
-              "treatmentMedian": 55007,
+              "baselineMedian": 55026,
+              "treatmentMedian": 60214,
               "treatmentMinusBaseline": {
-                "estimate": 4874.5,
+                "estimate": 4561,
                 "confidenceInterval": [
-                  4561,
+                  -4899,
                   5188
                 ],
                 "iterations": 10000,
@@ -9715,19 +9839,21 @@
               }
             },
             "toolCalls": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 9,
-                13
+                13,
+                15
               ],
               "treatmentRaw": [
                 8,
-                7
+                7,
+                9
               ],
-              "baselineMedian": 11,
-              "treatmentMedian": 7.5,
+              "baselineMedian": 13,
+              "treatmentMedian": 8,
               "treatmentMinusBaseline": {
-                "estimate": -3.5,
+                "estimate": -6,
                 "confidenceInterval": [
                   -6,
                   -1
@@ -9738,12 +9864,14 @@
               }
             },
             "failedCalls": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                1,
                 1,
                 1
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -9761,12 +9889,14 @@
               }
             },
             "routerErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                1,
                 1,
                 1
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -9784,12 +9914,14 @@
               }
             },
             "applyPatchVerificationErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -9807,12 +9939,14 @@
               }
             },
             "sandboxPreparationErrors": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                0,
                 0,
                 0
               ],
               "treatmentRaw": [
+                0,
                 0,
                 0
               ],
@@ -9830,19 +9964,21 @@
               }
             },
             "inspectionCommands": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 1,
+                7,
                 7
               ],
               "treatmentRaw": [
                 2,
-                1
+                1,
+                3
               ],
-              "baselineMedian": 4,
-              "treatmentMedian": 1.5,
+              "baselineMedian": 7,
+              "treatmentMedian": 2,
               "treatmentMinusBaseline": {
-                "estimate": -2.5,
+                "estimate": -4,
                 "confidenceInterval": [
                   -6,
                   1
@@ -9853,22 +9989,24 @@
               }
             },
             "commandOutputChars": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 6659,
-                6148
+                6148,
+                6433
               ],
               "treatmentRaw": [
                 6293,
-                6072
+                6072,
+                6436
               ],
-              "baselineMedian": 6403.5,
-              "treatmentMedian": 6182.5,
+              "baselineMedian": 6433,
+              "treatmentMedian": 6293,
               "treatmentMinusBaseline": {
-                "estimate": -221,
+                "estimate": -76,
                 "confidenceInterval": [
                   -366,
-                  -76
+                  3
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -9876,12 +10014,14 @@
               }
             },
             "palaceContextOutputChars": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                3139,
                 3139,
                 3139
               ],
               "treatmentRaw": [
+                4272,
                 4272,
                 4272
               ],
@@ -9899,12 +10039,14 @@
               }
             },
             "palaceContextOutputBytes": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                3139,
                 3139,
                 3139
               ],
               "treatmentRaw": [
+                4272,
                 4272,
                 4272
               ],
@@ -9922,12 +10064,14 @@
               }
             },
             "palaceContextEstimatedTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                785,
                 785,
                 785
               ],
               "treatmentRaw": [
+                1068,
                 1068,
                 1068
               ],
@@ -9945,21 +10089,23 @@
               }
             },
             "inputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 125184,
-                92554
+                92554,
+                175926
               ],
               "treatmentRaw": [
                 124955,
-                107783
+                107783,
+                142741
               ],
-              "baselineMedian": 108869,
-              "treatmentMedian": 116369,
+              "baselineMedian": 125184,
+              "treatmentMedian": 124955,
               "treatmentMinusBaseline": {
-                "estimate": 7500,
+                "estimate": -229,
                 "confidenceInterval": [
-                  -229,
+                  -33185,
                   15229
                 ],
                 "iterations": 10000,
@@ -9968,21 +10114,23 @@
               }
             },
             "cachedInputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 107520,
-                83456
+                83456,
+                163072
               ],
               "treatmentRaw": [
                 112640,
-                97536
+                97536,
+                125696
               ],
-              "baselineMedian": 95488,
-              "treatmentMedian": 105088,
+              "baselineMedian": 107520,
+              "treatmentMedian": 112640,
               "treatmentMinusBaseline": {
-                "estimate": 9600,
+                "estimate": 5120,
                 "confidenceInterval": [
-                  5120,
+                  -37376,
                   14080
                 ],
                 "iterations": 10000,
@@ -9991,22 +10139,24 @@
               }
             },
             "uncachedInputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 17664,
-                9098
+                9098,
+                12854
               ],
               "treatmentRaw": [
                 12315,
-                10247
+                10247,
+                17045
               ],
-              "baselineMedian": 13381,
-              "treatmentMedian": 11281,
+              "baselineMedian": 12854,
+              "treatmentMedian": 12315,
               "treatmentMinusBaseline": {
-                "estimate": -2100,
+                "estimate": 1149,
                 "confidenceInterval": [
                   -5349,
-                  1149
+                  4191
                 ],
                 "iterations": 10000,
                 "confidence": 0.95,
@@ -10014,19 +10164,21 @@
               }
             },
             "outputTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 1651,
-                1488
+                1488,
+                1960
               ],
               "treatmentRaw": [
                 1863,
-                1525
+                1525,
+                2166
               ],
-              "baselineMedian": 1569.5,
-              "treatmentMedian": 1694,
+              "baselineMedian": 1651,
+              "treatmentMedian": 1863,
               "treatmentMinusBaseline": {
-                "estimate": 124.5,
+                "estimate": 206,
                 "confidenceInterval": [
                   37,
                   212
@@ -10037,21 +10189,23 @@
               }
             },
             "reportedTokens": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
                 126835,
-                94042
+                94042,
+                177886
               ],
               "treatmentRaw": [
                 126818,
-                109308
+                109308,
+                144907
               ],
-              "baselineMedian": 110438.5,
-              "treatmentMedian": 118063,
+              "baselineMedian": 126835,
+              "treatmentMedian": 126818,
               "treatmentMinusBaseline": {
-                "estimate": 7624.5,
+                "estimate": -17,
                 "confidenceInterval": [
-                  -17,
+                  -32979,
                   15266
                 ],
                 "iterations": 10000,
@@ -10060,12 +10214,14 @@
               }
             },
             "changedFilePrecision": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                1,
                 1,
                 1
               ],
               "treatmentRaw": [
+                1,
                 1,
                 1
               ],
@@ -10083,12 +10239,14 @@
               }
             },
             "changedFileRecall": {
-              "pairCount": 2,
+              "pairCount": 3,
               "baselineRaw": [
+                1,
                 1,
                 1
               ],
               "treatmentRaw": [
+                1,
                 1,
                 1
               ],
@@ -10107,19 +10265,22 @@
             }
           },
           "scope": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baseline": {
               "changedFilePrecisionRaw": [
+                1,
                 1,
                 1
               ],
               "changedFileRecallRaw": [
+                1,
                 1,
                 1
               ],
               "changedFilePrecisionMedian": 1,
               "changedFileRecallMedian": 1,
               "forbiddenViolationRaw": [
+                false,
                 false,
                 false
               ],
@@ -10129,15 +10290,18 @@
             "treatment": {
               "changedFilePrecisionRaw": [
                 1,
+                1,
                 1
               ],
               "changedFileRecallRaw": [
+                1,
                 1,
                 1
               ],
               "changedFilePrecisionMedian": 1,
               "changedFileRecallMedian": 1,
               "forbiddenViolationRaw": [
+                false,
                 false,
                 false
               ],
@@ -10150,14 +10314,16 @@
       "primaryComparison": {
         "baselineArm": "control",
         "treatmentArm": "adaptivePalace",
-        "validPairs": 2,
+        "validPairs": 3,
         "invalidPairIds": [],
         "success": {
           "baselineRaw": [
             1,
+            1,
             1
           ],
           "treatmentRaw": [
+            1,
             1,
             1
           ],
@@ -10185,19 +10351,21 @@
         },
         "metrics": {
           "durationMs": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
               35170,
-              37935
+              37935,
+              37245
             ],
             "treatmentRaw": [
               60214,
-              49800
+              49800,
+              60837
             ],
-            "baselineMedian": 36552.5,
-            "treatmentMedian": 55007,
+            "baselineMedian": 37245,
+            "treatmentMedian": 60214,
             "treatmentMinusBaseline": {
-              "estimate": 18454.5,
+              "estimate": 23592,
               "confidenceInterval": [
                 11865,
                 25044
@@ -10208,22 +10376,24 @@
             }
           },
           "toolCalls": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
+              4,
               4,
               4
             ],
             "treatmentRaw": [
               8,
-              7
+              7,
+              9
             ],
             "baselineMedian": 4,
-            "treatmentMedian": 7.5,
+            "treatmentMedian": 8,
             "treatmentMinusBaseline": {
-              "estimate": 3.5,
+              "estimate": 4,
               "confidenceInterval": [
                 3,
-                4
+                5
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -10231,12 +10401,14 @@
             }
           },
           "failedCalls": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
+              0,
               0,
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0
             ],
@@ -10254,12 +10426,14 @@
             }
           },
           "routerErrors": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
+              0,
               0,
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0
             ],
@@ -10277,12 +10451,14 @@
             }
           },
           "applyPatchVerificationErrors": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
+              0,
               0,
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0
             ],
@@ -10300,12 +10476,14 @@
             }
           },
           "sandboxPreparationErrors": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
+              0,
               0,
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0
             ],
@@ -10323,22 +10501,24 @@
             }
           },
           "inspectionCommands": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
+              2,
               2,
               2
             ],
             "treatmentRaw": [
               2,
-              1
+              1,
+              3
             ],
             "baselineMedian": 2,
-            "treatmentMedian": 1.5,
+            "treatmentMedian": 2,
             "treatmentMinusBaseline": {
-              "estimate": -0.5,
+              "estimate": 0,
               "confidenceInterval": [
                 -1,
-                0
+                1
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -10346,21 +10526,23 @@
             }
           },
           "commandOutputChars": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
               3144,
-              3176
+              3176,
+              7777
             ],
             "treatmentRaw": [
               6293,
-              6072
+              6072,
+              6436
             ],
-            "baselineMedian": 3160,
-            "treatmentMedian": 6182.5,
+            "baselineMedian": 3176,
+            "treatmentMedian": 6293,
             "treatmentMinusBaseline": {
-              "estimate": 3022.5,
+              "estimate": 2896,
               "confidenceInterval": [
-                2896,
+                -1341,
                 3149
               ],
               "iterations": 10000,
@@ -10414,22 +10596,24 @@
             }
           },
           "inputTokens": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
               86496,
-              85905
+              85905,
+              91410
             ],
             "treatmentRaw": [
               124955,
-              107783
+              107783,
+              142741
             ],
-            "baselineMedian": 86200.5,
-            "treatmentMedian": 116369,
+            "baselineMedian": 86496,
+            "treatmentMedian": 124955,
             "treatmentMinusBaseline": {
-              "estimate": 30168.5,
+              "estimate": 38459,
               "confidenceInterval": [
                 21878,
-                38459
+                51331
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -10437,22 +10621,24 @@
             }
           },
           "cachedInputTokens": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
               78336,
-              78336
+              78336,
+              81408
             ],
             "treatmentRaw": [
               112640,
-              97536
+              97536,
+              125696
             ],
             "baselineMedian": 78336,
-            "treatmentMedian": 105088,
+            "treatmentMedian": 112640,
             "treatmentMinusBaseline": {
-              "estimate": 26752,
+              "estimate": 34304,
               "confidenceInterval": [
                 19200,
-                34304
+                44288
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -10460,22 +10646,24 @@
             }
           },
           "uncachedInputTokens": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
               8160,
-              7569
+              7569,
+              10002
             ],
             "treatmentRaw": [
               12315,
-              10247
+              10247,
+              17045
             ],
-            "baselineMedian": 7864.5,
-            "treatmentMedian": 11281,
+            "baselineMedian": 8160,
+            "treatmentMedian": 12315,
             "treatmentMinusBaseline": {
-              "estimate": 3416.5,
+              "estimate": 4155,
               "confidenceInterval": [
                 2678,
-                4155
+                7043
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -10483,22 +10671,24 @@
             }
           },
           "outputTokens": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
               1060,
-              905
+              905,
+              1024
             ],
             "treatmentRaw": [
               1863,
-              1525
+              1525,
+              2166
             ],
-            "baselineMedian": 982.5,
-            "treatmentMedian": 1694,
+            "baselineMedian": 1024,
+            "treatmentMedian": 1863,
             "treatmentMinusBaseline": {
-              "estimate": 711.5,
+              "estimate": 803,
               "confidenceInterval": [
                 620,
-                803
+                1142
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -10506,22 +10696,24 @@
             }
           },
           "reportedTokens": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
               87556,
-              86810
+              86810,
+              92434
             ],
             "treatmentRaw": [
               126818,
-              109308
+              109308,
+              144907
             ],
-            "baselineMedian": 87183,
-            "treatmentMedian": 118063,
+            "baselineMedian": 87556,
+            "treatmentMedian": 126818,
             "treatmentMinusBaseline": {
-              "estimate": 30880,
+              "estimate": 39262,
               "confidenceInterval": [
                 22498,
-                39262
+                52473
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -10529,12 +10721,14 @@
             }
           },
           "changedFilePrecision": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
+              1,
               1,
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1
             ],
@@ -10552,12 +10746,14 @@
             }
           },
           "changedFileRecall": {
-            "pairCount": 2,
+            "pairCount": 3,
             "baselineRaw": [
+              1,
               1,
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1
             ],
@@ -10576,19 +10772,22 @@
           }
         },
         "scope": {
-          "pairCount": 2,
+          "pairCount": 3,
           "baseline": {
             "changedFilePrecisionRaw": [
+              1,
               1,
               1
             ],
             "changedFileRecallRaw": [
+              1,
               1,
               1
             ],
             "changedFilePrecisionMedian": 1,
             "changedFileRecallMedian": 1,
             "forbiddenViolationRaw": [
+              false,
               false,
               false
             ],
@@ -10598,15 +10797,18 @@
           "treatment": {
             "changedFilePrecisionRaw": [
               1,
+              1,
               1
             ],
             "changedFileRecallRaw": [
+              1,
               1,
               1
             ],
             "changedFilePrecisionMedian": 1,
             "changedFileRecallMedian": 1,
             "forbiddenViolationRaw": [
+              false,
               false,
               false
             ],
@@ -10616,17 +10818,20 @@
         }
       },
       "mechanisms": {
-        "routeOnlyPairs": 2,
+        "routeOnlyPairs": 3,
         "routeRecallAtK": {
           "routeOnly": [
+            1,
             1,
             1
           ],
           "fullPalace": [
             1,
+            1,
             1
           ],
           "adaptivePalace": [
+            1,
             1,
             1
           ]
@@ -10634,13 +10839,16 @@
         "routePrecisionAtK": {
           "routeOnly": [
             0.5714285714285714,
+            0.5714285714285714,
             0.5714285714285714
           ],
           "fullPalace": [
             0.5714285714285714,
+            0.5714285714285714,
             0.5714285714285714
           ],
           "adaptivePalace": [
+            0.5714285714285714,
             0.5714285714285714,
             0.5714285714285714
           ]
@@ -10656,13 +10864,16 @@
         "wrongMemoryAdoptionRate": {
           "routeOnlyRaw": [
             false,
+            false,
             false
           ],
           "fullPalaceRaw": [
             false,
+            false,
             false
           ],
           "adaptivePalaceRaw": [
+            false,
             false,
             false
           ],
@@ -10674,14 +10885,14 @@
     }
   },
   "overall": {
-    "attemptedPairs": 14,
-    "validPairs": 14,
+    "attemptedPairs": 15,
+    "validPairs": 15,
     "invalidPairIds": [],
     "comparisons": {
       "routeOnlyMinusControl": {
         "baselineArm": "control",
         "treatmentArm": "routeOnly",
-        "validPairs": 14,
+        "validPairs": 15,
         "invalidPairIds": [],
         "success": {
           "baselineRaw": [
@@ -10696,6 +10907,7 @@
             0,
             0,
             0,
+            1,
             1,
             1,
             1
@@ -10714,10 +10926,11 @@
             0,
             1,
             1,
+            1,
             1
           ],
-          "baselineRate": 0.7857142857142857,
-          "treatmentRate": 0.7857142857142857,
+          "baselineRate": 0.8,
+          "treatmentRate": 0.8,
           "treatmentMinusBaseline": {
             "estimate": 0,
             "confidenceInterval": [
@@ -10739,7 +10952,7 @@
         },
         "metrics": {
           "durationMs": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               51920,
               40888,
@@ -10751,7 +10964,8 @@
               53373,
               137971,
               35170,
-              37935
+              37935,
+              37245
             ],
             "treatmentRaw": [
               49971,
@@ -10764,15 +10978,16 @@
               56455,
               167358,
               82305,
-              53314
+              53314,
+              46946
             ],
-            "baselineMedian": 41065,
-            "treatmentMedian": 55298,
+            "baselineMedian": 40976.5,
+            "treatmentMedian": 54393,
             "treatmentMinusBaseline": {
-              "estimate": 8968,
+              "estimate": 9334.5,
               "confidenceInterval": [
-                3082,
-                23715
+                4060,
+                19547
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -10780,7 +10995,7 @@
             }
           },
           "toolCalls": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               4,
               5,
@@ -10791,6 +11006,7 @@
               4,
               4,
               24,
+              4,
               4,
               4
             ],
@@ -10805,12 +11021,13 @@
               14,
               17,
               14,
+              13,
               13
             ],
             "baselineMedian": 4,
-            "treatmentMedian": 11,
+            "treatmentMedian": 12,
             "treatmentMinusBaseline": {
-              "estimate": 4,
+              "estimate": 5.5,
               "confidenceInterval": [
                 2,
                 9
@@ -10821,7 +11038,7 @@
             }
           },
           "failedCalls": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               0,
               1,
@@ -10832,6 +11049,7 @@
               0,
               0,
               2,
+              0,
               0,
               0
             ],
@@ -10846,6 +11064,7 @@
               0,
               1,
               0,
+              0,
               0
             ],
             "baselineMedian": 0,
@@ -10853,7 +11072,7 @@
             "treatmentMinusBaseline": {
               "estimate": 0,
               "confidenceInterval": [
-                -1,
+                -0.5,
                 0
               ],
               "iterations": 10000,
@@ -10862,7 +11081,7 @@
             }
           },
           "routerErrors": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               0,
               1,
@@ -10874,6 +11093,7 @@
               0,
               2,
               0,
+              0,
               0
             ],
             "treatmentRaw": [
@@ -10887,6 +11107,7 @@
               0,
               1,
               0,
+              0,
               0
             ],
             "baselineMedian": 0,
@@ -10894,7 +11115,7 @@
             "treatmentMinusBaseline": {
               "estimate": 0,
               "confidenceInterval": [
-                -1,
+                -0.5,
                 0
               ],
               "iterations": 10000,
@@ -10903,7 +11124,7 @@
             }
           },
           "applyPatchVerificationErrors": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               0,
               0,
@@ -10915,9 +11136,11 @@
               0,
               0,
               0,
+              0,
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -10944,8 +11167,9 @@
             }
           },
           "sandboxPreparationErrors": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              0,
               0,
               0,
               0,
@@ -10959,6 +11183,7 @@
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -10985,7 +11210,7 @@
             }
           },
           "inspectionCommands": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               2,
               2,
@@ -10996,6 +11221,7 @@
               2,
               2,
               11,
+              2,
               2,
               2
             ],
@@ -11010,15 +11236,16 @@
               6,
               3,
               7,
+              7,
               7
             ],
             "baselineMedian": 2,
-            "treatmentMedian": 3,
+            "treatmentMedian": 4.5,
             "treatmentMinusBaseline": {
-              "estimate": 1,
+              "estimate": 2.5,
               "confidenceInterval": [
                 -1,
-                4
+                4.5
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -11026,7 +11253,7 @@
             }
           },
           "commandOutputChars": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               2580,
               5386,
@@ -11038,7 +11265,8 @@
               5584,
               24569,
               3144,
-              3176
+              3176,
+              7777
             ],
             "treatmentRaw": [
               3837,
@@ -11051,15 +11279,16 @@
               7765,
               16154,
               4651,
-              4654
+              4654,
+              4680
             ],
-            "baselineMedian": 5386,
-            "treatmentMedian": 4997,
+            "baselineMedian": 5485,
+            "treatmentMedian": 4838.5,
             "treatmentMinusBaseline": {
-              "estimate": 1257,
+              "estimate": 1110,
               "confidenceInterval": [
-                -1683,
-                1772
+                -1772.5,
+                1639.5
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -11112,7 +11341,7 @@
             }
           },
           "inputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               86093,
               87643,
@@ -11124,7 +11353,8 @@
               89698,
               222885,
               86496,
-              85905
+              85905,
+              91410
             ],
             "treatmentRaw": [
               103467,
@@ -11137,15 +11367,16 @@
               127802,
               202325,
               122076,
-              108067
+              108067,
+              90262
             ],
-            "baselineMedian": 89495,
-            "treatmentMedian": 122076,
+            "baselineMedian": 89584,
+            "treatmentMedian": 120803,
             "treatmentMinusBaseline": {
-              "estimate": 22162,
+              "estimate": 19768,
               "confidenceInterval": [
-                13868,
-                35580
+                9845,
+                35252
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -11153,7 +11384,7 @@
             }
           },
           "cachedInputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               77312,
               75264,
@@ -11165,7 +11396,8 @@
               65280,
               189696,
               78336,
-              78336
+              78336,
+              81408
             ],
             "treatmentRaw": [
               93440,
@@ -11178,15 +11410,16 @@
               112640,
               178432,
               106496,
-              69376
+              69376,
+              81408
             ],
             "baselineMedian": 78336,
-            "treatmentMedian": 108544,
+            "treatmentMedian": 107520,
             "treatmentMinusBaseline": {
-              "estimate": 19456,
+              "estimate": 17792,
               "confidenceInterval": [
-                9216,
-                35328
+                4608,
+                32768
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -11194,7 +11427,7 @@
             }
           },
           "uncachedInputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               8781,
               12379,
@@ -11206,7 +11439,8 @@
               24418,
               33189,
               8160,
-              7569
+              7569,
+              10002
             ],
             "treatmentRaw": [
               10027,
@@ -11219,15 +11453,16 @@
               15162,
               23893,
               15580,
-              38691
+              38691,
+              8854
             ],
-            "baselineMedian": 12379,
-            "treatmentMedian": 15580,
+            "baselineMedian": 12048.5,
+            "treatmentMedian": 15371,
             "treatmentMinusBaseline": {
-              "estimate": -732,
+              "estimate": -940,
               "confidenceInterval": [
-                -5588,
-                5556
+                -4491,
+                5136
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -11235,7 +11470,7 @@
             }
           },
           "outputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               1260,
               989,
@@ -11247,7 +11482,8 @@
               1735,
               5649,
               1060,
-              905
+              905,
+              1024
             ],
             "treatmentRaw": [
               1187,
@@ -11260,15 +11496,16 @@
               1839,
               6455,
               1549,
-              1859
+              1859,
+              1313
             ],
-            "baselineMedian": 1090,
-            "treatmentMedian": 1529,
+            "baselineMedian": 1086.5,
+            "treatmentMedian": 1470.5,
             "treatmentMinusBaseline": {
-              "estimate": 322,
+              "estimate": 320.5,
               "confidenceInterval": [
-                -73,
-                489
+                15.5,
+                480
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -11276,7 +11513,7 @@
             }
           },
           "reportedTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               87353,
               88632,
@@ -11288,7 +11525,8 @@
               91433,
               228534,
               87556,
-              86810
+              86810,
+              92434
             ],
             "treatmentRaw": [
               104654,
@@ -11301,15 +11539,16 @@
               129641,
               208780,
               123625,
-              109926
+              109926,
+              91575
             ],
-            "baselineMedian": 90578,
-            "treatmentMedian": 123625,
+            "baselineMedian": 90654.5,
+            "treatmentMedian": 122283.5,
             "treatmentMinusBaseline": {
-              "estimate": 23116,
+              "estimate": 20208.5,
               "confidenceInterval": [
-                13617,
-                36069
+                9660,
+                35656
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -11317,8 +11556,9 @@
             }
           },
           "changedFilePrecision": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              1,
               1,
               1,
               1,
@@ -11332,6 +11572,7 @@
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1,
               1,
@@ -11358,8 +11599,9 @@
             }
           },
           "changedFileRecall": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              1,
               1,
               1,
               1,
@@ -11373,6 +11615,7 @@
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1,
               1,
@@ -11400,7 +11643,7 @@
           }
         },
         "scope": {
-          "pairCount": 14,
+          "pairCount": 15,
           "baseline": {
             "changedFilePrecisionRaw": [
               1,
@@ -11414,6 +11657,7 @@
               0,
               0,
               0,
+              1,
               1,
               1,
               1
@@ -11430,6 +11674,7 @@
               0,
               0,
               0,
+              1,
               1,
               1,
               1
@@ -11450,10 +11695,11 @@
               true,
               false,
               false,
+              false,
               false
             ],
             "forbiddenViolationCount": 3,
-            "forbiddenViolationRate": 0.21428571428571427
+            "forbiddenViolationRate": 0.2
           },
           "treatment": {
             "changedFilePrecisionRaw": [
@@ -11470,6 +11716,7 @@
               0,
               1,
               1,
+              1,
               1
             ],
             "changedFileRecallRaw": [
@@ -11484,6 +11731,7 @@
               0,
               0,
               0,
+              1,
               1,
               1,
               1
@@ -11504,17 +11752,18 @@
               true,
               false,
               false,
+              false,
               false
             ],
             "forbiddenViolationCount": 3,
-            "forbiddenViolationRate": 0.21428571428571427
+            "forbiddenViolationRate": 0.2
           }
         }
       },
       "fullPalaceMinusRouteOnly": {
         "baselineArm": "routeOnly",
         "treatmentArm": "fullPalace",
-        "validPairs": 14,
+        "validPairs": 15,
         "invalidPairIds": [],
         "success": {
           "baselineRaw": [
@@ -11529,6 +11778,7 @@
             0,
             0,
             0,
+            1,
             1,
             1,
             1
@@ -11547,15 +11797,16 @@
             1,
             1,
             1,
+            1,
             1
           ],
-          "baselineRate": 0.7857142857142857,
+          "baselineRate": 0.8,
           "treatmentRate": 1,
           "treatmentMinusBaseline": {
-            "estimate": 0.21428571428571427,
+            "estimate": 0.2,
             "confidenceInterval": [
               0,
-              0.42857142857142855
+              0.4
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -11576,7 +11827,7 @@
         },
         "metrics": {
           "durationMs": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               49971,
               49106,
@@ -11588,7 +11839,8 @@
               56455,
               167358,
               82305,
-              53314
+              53314,
+              46946
             ],
             "treatmentRaw": [
               61443,
@@ -11601,15 +11853,16 @@
               60533,
               108560,
               55026,
-              45239
+              45239,
+              65736
             ],
-            "baselineMedian": 55298,
-            "treatmentMedian": 57654,
+            "baselineMedian": 54393,
+            "treatmentMedian": 58198.5,
             "treatmentMinusBaseline": {
-              "estimate": -2985,
+              "estimate": -2508.5,
               "confidenceInterval": [
-                -8075,
-                4078
+                -6603.5,
+                5849.5
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -11617,7 +11870,7 @@
             }
           },
           "toolCalls": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               5,
               8,
@@ -11629,6 +11882,7 @@
               14,
               17,
               14,
+              13,
               13
             ],
             "treatmentRaw": [
@@ -11642,14 +11896,15 @@
               8,
               21,
               9,
-              13
+              13,
+              15
             ],
-            "baselineMedian": 11,
+            "baselineMedian": 12,
             "treatmentMedian": 9,
             "treatmentMinusBaseline": {
               "estimate": 0,
               "confidenceInterval": [
-                -5,
+                -4,
                 3
               ],
               "iterations": 10000,
@@ -11658,7 +11913,7 @@
             }
           },
           "failedCalls": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               0,
               0,
@@ -11669,6 +11924,7 @@
               0,
               0,
               1,
+              0,
               0,
               0
             ],
@@ -11682,6 +11938,7 @@
               0,
               1,
               4,
+              1,
               1,
               1
             ],
@@ -11699,7 +11956,7 @@
             }
           },
           "routerErrors": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               0,
               0,
@@ -11710,6 +11967,7 @@
               0,
               0,
               1,
+              0,
               0,
               0
             ],
@@ -11723,6 +11981,7 @@
               0,
               1,
               4,
+              1,
               1,
               1
             ],
@@ -11740,8 +11999,9 @@
             }
           },
           "applyPatchVerificationErrors": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              0,
               0,
               0,
               0,
@@ -11755,6 +12015,7 @@
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -11781,8 +12042,9 @@
             }
           },
           "sandboxPreparationErrors": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              0,
               0,
               0,
               0,
@@ -11796,6 +12058,7 @@
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -11822,7 +12085,7 @@
             }
           },
           "inspectionCommands": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               1,
               3,
@@ -11833,6 +12096,7 @@
               6,
               6,
               3,
+              7,
               7,
               7
             ],
@@ -11847,14 +12111,15 @@
               3,
               2,
               1,
+              7,
               7
             ],
-            "baselineMedian": 3,
-            "treatmentMedian": 2,
+            "baselineMedian": 4.5,
+            "treatmentMedian": 2.5,
             "treatmentMinusBaseline": {
               "estimate": 0,
               "confidenceInterval": [
-                -3,
+                -2.5,
                 0
               ],
               "iterations": 10000,
@@ -11863,7 +12128,7 @@
             }
           },
           "commandOutputChars": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               3837,
               3703,
@@ -11875,7 +12140,8 @@
               7765,
               16154,
               4651,
-              4654
+              4654,
+              4680
             ],
             "treatmentRaw": [
               5611,
@@ -11888,15 +12154,16 @@
               9877,
               16125,
               6659,
-              6148
+              6148,
+              6433
             ],
-            "baselineMedian": 4997,
-            "treatmentMedian": 6659,
+            "baselineMedian": 4838.5,
+            "treatmentMedian": 6546,
             "treatmentMinusBaseline": {
-              "estimate": 117,
+              "estimate": 805.5,
               "confidenceInterval": [
                 -29,
-                2008
+                1891
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -11904,7 +12171,7 @@
             }
           },
           "palaceContextOutputChars": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               1870,
               1870,
@@ -11915,6 +12182,7 @@
               3121,
               3121,
               3600,
+              2339,
               2339,
               2339
             ],
@@ -11928,6 +12196,7 @@
               3121,
               3121,
               4571,
+              3139,
               3139,
               3139
             ],
@@ -11945,7 +12214,7 @@
             }
           },
           "palaceContextOutputBytes": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               1870,
               1870,
@@ -11956,6 +12225,7 @@
               3121,
               3121,
               3600,
+              2339,
               2339,
               2339
             ],
@@ -11969,6 +12239,7 @@
               3121,
               3121,
               4571,
+              3139,
               3139,
               3139
             ],
@@ -11986,7 +12257,7 @@
             }
           },
           "palaceContextEstimatedTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               468,
               468,
@@ -11997,6 +12268,7 @@
               781,
               781,
               900,
+              585,
               585,
               585
             ],
@@ -12010,6 +12282,7 @@
               781,
               781,
               1143,
+              785,
               785,
               785
             ],
@@ -12027,7 +12300,7 @@
             }
           },
           "inputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               103467,
               104207,
@@ -12039,7 +12312,8 @@
               127802,
               202325,
               122076,
-              108067
+              108067,
+              90262
             ],
             "treatmentRaw": [
               121229,
@@ -12052,15 +12326,16 @@
               145887,
               188346,
               125184,
-              92554
+              92554,
+              175926
             ],
-            "baselineMedian": 122076,
-            "treatmentMedian": 125184,
+            "baselineMedian": 120803,
+            "treatmentMedian": 125373,
             "treatmentMinusBaseline": {
-              "estimate": -820,
+              "estimate": 889,
               "confidenceInterval": [
-                -14869,
-                17762
+                -14567,
+                17825.5
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12068,7 +12343,7 @@
             }
           },
           "cachedInputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               93440,
               86272,
@@ -12080,7 +12355,8 @@
               112640,
               178432,
               106496,
-              69376
+              69376,
+              81408
             ],
             "treatmentRaw": [
               94464,
@@ -12093,15 +12369,16 @@
               130816,
               170496,
               107520,
-              83456
+              83456,
+              163072
             ],
-            "baselineMedian": 108544,
-            "treatmentMedian": 107520,
+            "baselineMedian": 107520,
+            "treatmentMedian": 108032,
             "treatmentMinusBaseline": {
-              "estimate": 1024,
+              "estimate": 4096,
               "confidenceInterval": [
-                -13056,
-                14080
+                -10496,
+                15104
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12109,7 +12386,7 @@
             }
           },
           "uncachedInputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               10027,
               17935,
@@ -12121,7 +12398,8 @@
               15162,
               23893,
               15580,
-              38691
+              38691,
+              8854
             ],
             "treatmentRaw": [
               26765,
@@ -12134,15 +12412,16 @@
               15071,
               17850,
               17664,
-              9098
+              9098,
+              12854
             ],
-            "baselineMedian": 15580,
-            "treatmentMedian": 15071,
+            "baselineMedian": 15371,
+            "treatmentMedian": 13962.5,
             "treatmentMinusBaseline": {
-              "estimate": -91,
+              "estimate": 72,
               "confidenceInterval": [
-                -6043,
-                2084
+                -5306.5,
+                2962
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12150,7 +12429,7 @@
             }
           },
           "outputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               1187,
               1334,
@@ -12162,7 +12441,8 @@
               1839,
               6455,
               1549,
-              1859
+              1859,
+              1313
             ],
             "treatmentRaw": [
               1886,
@@ -12175,15 +12455,16 @@
               1814,
               4138,
               1651,
-              1488
+              1488,
+              1960
             ],
-            "baselineMedian": 1529,
-            "treatmentMedian": 1651,
+            "baselineMedian": 1470.5,
+            "treatmentMedian": 1688,
             "treatmentMinusBaseline": {
-              "estimate": 35,
+              "estimate": 68.5,
               "confidenceInterval": [
-                -195,
-                225
+                -136,
+                364.5
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12191,7 +12472,7 @@
             }
           },
           "reportedTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               104654,
               105541,
@@ -12203,7 +12484,8 @@
               129641,
               208780,
               123625,
-              109926
+              109926,
+              91575
             ],
             "treatmentRaw": [
               123115,
@@ -12216,15 +12498,16 @@
               147701,
               192484,
               126835,
-              94042
+              94042,
+              177886
             ],
-            "baselineMedian": 123625,
-            "treatmentMedian": 126835,
+            "baselineMedian": 122283.5,
+            "treatmentMedian": 127061,
             "treatmentMinusBaseline": {
-              "estimate": -1015,
+              "estimate": 809,
               "confidenceInterval": [
-                -15693,
-                18060
+                -15183,
+                18226.5
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12232,8 +12515,9 @@
             }
           },
           "changedFilePrecision": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              1,
               1,
               1,
               1,
@@ -12247,6 +12531,7 @@
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1,
               1,
@@ -12273,8 +12558,9 @@
             }
           },
           "changedFileRecall": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              1,
               1,
               1,
               1,
@@ -12288,6 +12574,7 @@
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1,
               1,
@@ -12315,7 +12602,7 @@
           }
         },
         "scope": {
-          "pairCount": 14,
+          "pairCount": 15,
           "baseline": {
             "changedFilePrecisionRaw": [
               1,
@@ -12329,6 +12616,7 @@
               0,
               0,
               0,
+              1,
               1,
               1,
               1
@@ -12345,6 +12633,7 @@
               0,
               0,
               0,
+              1,
               1,
               1,
               1
@@ -12365,10 +12654,11 @@
               true,
               false,
               false,
+              false,
               false
             ],
             "forbiddenViolationCount": 3,
-            "forbiddenViolationRate": 0.21428571428571427
+            "forbiddenViolationRate": 0.2
           },
           "treatment": {
             "changedFilePrecisionRaw": [
@@ -12385,9 +12675,11 @@
               1,
               1,
               1,
+              1,
               1
             ],
             "changedFileRecallRaw": [
+              1,
               1,
               1,
               1,
@@ -12406,6 +12698,7 @@
             "changedFilePrecisionMedian": 1,
             "changedFileRecallMedian": 1,
             "forbiddenViolationRaw": [
+              false,
               false,
               false,
               false,
@@ -12429,7 +12722,7 @@
       "adaptiveMinusControl": {
         "baselineArm": "control",
         "treatmentArm": "adaptivePalace",
-        "validPairs": 14,
+        "validPairs": 15,
         "invalidPairIds": [],
         "success": {
           "baselineRaw": [
@@ -12444,6 +12737,7 @@
             0,
             0,
             0,
+            1,
             1,
             1,
             1
@@ -12462,15 +12756,16 @@
             1,
             1,
             1,
+            1,
             1
           ],
-          "baselineRate": 0.7857142857142857,
+          "baselineRate": 0.8,
           "treatmentRate": 1,
           "treatmentMinusBaseline": {
-            "estimate": 0.21428571428571427,
+            "estimate": 0.2,
             "confidenceInterval": [
               0,
-              0.42857142857142855
+              0.4
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -12491,7 +12786,7 @@
         },
         "metrics": {
           "durationMs": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               51920,
               40888,
@@ -12503,7 +12798,8 @@
               53373,
               137971,
               35170,
-              37935
+              37935,
+              37245
             ],
             "treatmentRaw": [
               47122,
@@ -12516,15 +12812,16 @@
               43403,
               58800,
               60214,
-              49800
+              49800,
+              60837
             ],
-            "baselineMedian": 41065,
-            "treatmentMedian": 44908,
+            "baselineMedian": 40976.5,
+            "treatmentMedian": 45958.5,
             "treatmentMinusBaseline": {
-              "estimate": -2535,
+              "estimate": 214,
               "confidenceInterval": [
-                -9970,
-                10671
+                -8019.5,
+                11268
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12532,7 +12829,7 @@
             }
           },
           "toolCalls": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               4,
               5,
@@ -12543,6 +12840,7 @@
               4,
               4,
               24,
+              4,
               4,
               4
             ],
@@ -12557,15 +12855,16 @@
               3,
               8,
               8,
-              7
+              7,
+              9
             ],
             "baselineMedian": 4,
-            "treatmentMedian": 4,
+            "treatmentMedian": 5,
             "treatmentMinusBaseline": {
               "estimate": 0,
               "confidenceInterval": [
                 -1,
-                2
+                2.5
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12573,7 +12872,7 @@
             }
           },
           "failedCalls": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               0,
               1,
@@ -12585,9 +12884,11 @@
               0,
               2,
               0,
+              0,
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -12605,7 +12906,7 @@
             "treatmentMinusBaseline": {
               "estimate": 0,
               "confidenceInterval": [
-                -1,
+                -0.5,
                 0
               ],
               "iterations": 10000,
@@ -12614,7 +12915,7 @@
             }
           },
           "routerErrors": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               0,
               1,
@@ -12626,9 +12927,11 @@
               0,
               2,
               0,
+              0,
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -12646,7 +12949,7 @@
             "treatmentMinusBaseline": {
               "estimate": 0,
               "confidenceInterval": [
-                -1,
+                -0.5,
                 0
               ],
               "iterations": 10000,
@@ -12655,8 +12958,9 @@
             }
           },
           "applyPatchVerificationErrors": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              0,
               0,
               0,
               0,
@@ -12670,6 +12974,7 @@
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -12696,8 +13001,9 @@
             }
           },
           "sandboxPreparationErrors": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              0,
               0,
               0,
               0,
@@ -12711,6 +13017,7 @@
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -12737,7 +13044,7 @@
             }
           },
           "inspectionCommands": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               2,
               2,
@@ -12748,6 +13055,7 @@
               2,
               2,
               11,
+              2,
               2,
               2
             ],
@@ -12762,7 +13070,8 @@
               0,
               2,
               2,
-              1
+              1,
+              3
             ],
             "baselineMedian": 2,
             "treatmentMedian": 1,
@@ -12778,7 +13087,7 @@
             }
           },
           "commandOutputChars": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               2580,
               5386,
@@ -12790,7 +13099,8 @@
               5584,
               24569,
               3144,
-              3176
+              3176,
+              7777
             ],
             "treatmentRaw": [
               1486,
@@ -12803,15 +13113,16 @@
               6669,
               9060,
               6293,
-              6072
+              6072,
+              6436
             ],
-            "baselineMedian": 5386,
-            "treatmentMedian": 6293,
+            "baselineMedian": 5485,
+            "treatmentMedian": 6364.5,
             "treatmentMinusBaseline": {
-              "estimate": 504,
+              "estimate": -44.5,
               "confidenceInterval": [
-                -3897,
-                2605
+                -2619,
+                1845
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12864,7 +13175,7 @@
             }
           },
           "inputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               86093,
               87643,
@@ -12876,7 +13187,8 @@
               89698,
               222885,
               86496,
-              85905
+              85905,
+              91410
             ],
             "treatmentRaw": [
               85367,
@@ -12889,15 +13201,16 @@
               75522,
               129161,
               124955,
-              107783
+              107783,
+              142741
             ],
-            "baselineMedian": 89495,
-            "treatmentMedian": 85367,
+            "baselineMedian": 89584,
+            "treatmentMedian": 85391,
             "treatmentMinusBaseline": {
-              "estimate": -2228,
+              "estimate": -1477,
               "confidenceInterval": [
-                -27734,
-                2110
+                -20955,
+                11994
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12905,7 +13218,7 @@
             }
           },
           "cachedInputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               77312,
               75264,
@@ -12917,7 +13230,8 @@
               65280,
               189696,
               78336,
-              78336
+              78336,
+              81408
             ],
             "treatmentRaw": [
               73216,
@@ -12930,15 +13244,16 @@
               67328,
               116736,
               112640,
-              97536
+              97536,
+              125696
             ],
             "baselineMedian": 78336,
-            "treatmentMedian": 72448,
+            "treatmentMedian": 72832,
             "treatmentMinusBaseline": {
-              "estimate": -4096,
+              "estimate": -1536,
               "confidenceInterval": [
-                -37120,
-                2048
+                -28032,
+                10624
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12946,7 +13261,7 @@
             }
           },
           "uncachedInputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               8781,
               12379,
@@ -12958,7 +13273,8 @@
               24418,
               33189,
               8160,
-              7569
+              7569,
+              10002
             ],
             "treatmentRaw": [
               12151,
@@ -12971,15 +13287,16 @@
               8194,
               12425,
               12315,
-              10247
+              10247,
+              17045
             ],
-            "baselineMedian": 12379,
-            "treatmentMedian": 12315,
+            "baselineMedian": 12048.5,
+            "treatmentMedian": 12370,
             "treatmentMinusBaseline": {
-              "estimate": 1086,
+              "estimate": 1882,
               "confidenceInterval": [
-                -4276,
-                4155
+                -3240,
+                5599
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -12987,7 +13304,7 @@
             }
           },
           "outputTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               1260,
               989,
@@ -12999,7 +13316,8 @@
               1735,
               5649,
               1060,
-              905
+              905,
+              1024
             ],
             "treatmentRaw": [
               1180,
@@ -13012,15 +13330,16 @@
               1168,
               2074,
               1863,
-              1525
+              1525,
+              2166
             ],
-            "baselineMedian": 1090,
-            "treatmentMedian": 1249,
+            "baselineMedian": 1086.5,
+            "treatmentMedian": 1313,
             "treatmentMinusBaseline": {
-              "estimate": -78,
+              "estimate": 34.5,
               "confidenceInterval": [
-                -567,
-                319
+                -414,
+                469.5
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -13028,7 +13347,7 @@
             }
           },
           "reportedTokens": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
               87353,
               88632,
@@ -13040,7 +13359,8 @@
               91433,
               228534,
               87556,
-              86810
+              86810,
+              92434
             ],
             "treatmentRaw": [
               86547,
@@ -13053,15 +13373,16 @@
               76690,
               131235,
               126818,
-              109308
+              109308,
+              144907
             ],
-            "baselineMedian": 90578,
-            "treatmentMedian": 86547,
+            "baselineMedian": 90654.5,
+            "treatmentMedian": 86549,
             "treatmentMinusBaseline": {
-              "estimate": -2081,
+              "estimate": -1443.5,
               "confidenceInterval": [
-                -27995,
-                2429
+                -21369,
+                12463.5
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -13069,8 +13390,9 @@
             }
           },
           "changedFilePrecision": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              1,
               1,
               1,
               1,
@@ -13084,6 +13406,7 @@
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1,
               1,
@@ -13110,8 +13433,9 @@
             }
           },
           "changedFileRecall": {
-            "pairCount": 11,
+            "pairCount": 12,
             "baselineRaw": [
+              1,
               1,
               1,
               1,
@@ -13125,6 +13449,7 @@
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1,
               1,
@@ -13152,7 +13477,7 @@
           }
         },
         "scope": {
-          "pairCount": 14,
+          "pairCount": 15,
           "baseline": {
             "changedFilePrecisionRaw": [
               1,
@@ -13166,6 +13491,7 @@
               0,
               0,
               0,
+              1,
               1,
               1,
               1
@@ -13182,6 +13508,7 @@
               0,
               0,
               0,
+              1,
               1,
               1,
               1
@@ -13202,10 +13529,11 @@
               true,
               false,
               false,
+              false,
               false
             ],
             "forbiddenViolationCount": 3,
-            "forbiddenViolationRate": 0.21428571428571427
+            "forbiddenViolationRate": 0.2
           },
           "treatment": {
             "changedFilePrecisionRaw": [
@@ -13222,9 +13550,11 @@
               1,
               1,
               1,
+              1,
               1
             ],
             "changedFileRecallRaw": [
+              1,
               1,
               1,
               1,
@@ -13243,6 +13573,7 @@
             "changedFilePrecisionMedian": 1,
             "changedFileRecallMedian": 1,
             "forbiddenViolationRaw": [
+              false,
               false,
               false,
               false,
@@ -13266,7 +13597,7 @@
       "adaptiveMinusFullPalace": {
         "baselineArm": "fullPalace",
         "treatmentArm": "adaptivePalace",
-        "validPairs": 14,
+        "validPairs": 15,
         "invalidPairIds": [],
         "success": {
           "baselineRaw": [
@@ -13283,9 +13614,11 @@
             1,
             1,
             1,
+            1,
             1
           ],
           "treatmentRaw": [
+            1,
             1,
             1,
             1,
@@ -13324,7 +13657,7 @@
         },
         "metrics": {
           "durationMs": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               61443,
               43974,
@@ -13339,7 +13672,8 @@
               68955,
               108560,
               55026,
-              45239
+              45239,
+              65736
             ],
             "treatmentRaw": [
               47122,
@@ -13355,15 +13689,16 @@
               46853,
               58800,
               60214,
-              49800
+              49800,
+              60837
             ],
-            "baselineMedian": 59638,
-            "treatmentMedian": 46931,
+            "baselineMedian": 60533,
+            "treatmentMedian": 47009,
             "treatmentMinusBaseline": {
-              "estimate": -14436.5,
+              "estimate": -14321,
               "confidenceInterval": [
                 -22102,
-                -7695
+                -6548
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -13371,7 +13706,7 @@
             }
           },
           "toolCalls": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               8,
               5,
@@ -13386,7 +13721,8 @@
               17,
               21,
               9,
-              13
+              13,
+              15
             ],
             "treatmentRaw": [
               6,
@@ -13402,12 +13738,13 @@
               5,
               8,
               8,
-              7
+              7,
+              9
             ],
-            "baselineMedian": 10.5,
-            "treatmentMedian": 5.5,
+            "baselineMedian": 12,
+            "treatmentMedian": 6,
             "treatmentMinusBaseline": {
-              "estimate": -5.5,
+              "estimate": -6,
               "confidenceInterval": [
                 -11,
                 -3
@@ -13418,7 +13755,7 @@
             }
           },
           "failedCalls": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               1,
               0,
@@ -13433,9 +13770,11 @@
               0,
               4,
               1,
+              1,
               1
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -13465,7 +13804,7 @@
             }
           },
           "routerErrors": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               1,
               0,
@@ -13480,9 +13819,11 @@
               0,
               4,
               1,
+              1,
               1
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -13512,8 +13853,9 @@
             }
           },
           "applyPatchVerificationErrors": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
+              0,
               0,
               0,
               0,
@@ -13530,6 +13872,7 @@
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -13559,8 +13902,9 @@
             }
           },
           "sandboxPreparationErrors": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
+              0,
               0,
               0,
               0,
@@ -13577,6 +13921,7 @@
               0
             ],
             "treatmentRaw": [
+              0,
               0,
               0,
               0,
@@ -13606,7 +13951,7 @@
             }
           },
           "inspectionCommands": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               1,
               1,
@@ -13621,6 +13966,7 @@
               9,
               2,
               1,
+              7,
               7
             ],
             "treatmentRaw": [
@@ -13637,12 +13983,13 @@
               1,
               2,
               2,
-              1
+              1,
+              3
             ],
             "baselineMedian": 3,
             "treatmentMedian": 1,
             "treatmentMinusBaseline": {
-              "estimate": -2.5,
+              "estimate": -3,
               "confidenceInterval": [
                 -6,
                 0
@@ -13653,7 +14000,7 @@
             }
           },
           "commandOutputChars": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               5611,
               3820,
@@ -13668,7 +14015,8 @@
               8421,
               16125,
               6659,
-              6148
+              6148,
+              6433
             ],
             "treatmentRaw": [
               1486,
@@ -13684,15 +14032,16 @@
               8803,
               9060,
               6293,
-              6072
+              6072,
+              6436
             ],
-            "baselineMedian": 7474.5,
-            "treatmentMedian": 6790.5,
+            "baselineMedian": 7438,
+            "treatmentMedian": 6669,
             "treatmentMinusBaseline": {
-              "estimate": -1815.5,
+              "estimate": -1300,
               "confidenceInterval": [
-                -2911,
-                -562.5
+                -2866,
+                -366
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -13700,7 +14049,7 @@
             }
           },
           "palaceContextOutputChars": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               1870,
               1870,
@@ -13714,6 +14063,7 @@
               4571,
               4566,
               4571,
+              3139,
               3139,
               3139
             ],
@@ -13731,6 +14081,7 @@
               6874,
               6890,
               4272,
+              4272,
               4272
             ],
             "baselineMedian": 3121,
@@ -13738,8 +14089,8 @@
             "treatmentMinusBaseline": {
               "estimate": 1496,
               "confidenceInterval": [
-                -239,
-                1907.5
+                -1611,
+                2308
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -13747,7 +14098,7 @@
             }
           },
           "palaceContextOutputBytes": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               1870,
               1870,
@@ -13761,6 +14112,7 @@
               4571,
               4566,
               4571,
+              3139,
               3139,
               3139
             ],
@@ -13778,6 +14130,7 @@
               6874,
               6890,
               4272,
+              4272,
               4272
             ],
             "baselineMedian": 3121,
@@ -13785,7 +14138,7 @@
             "treatmentMinusBaseline": {
               "estimate": 1496,
               "confidenceInterval": [
-                -239,
+                -1611,
                 2308
               ],
               "iterations": 10000,
@@ -13794,7 +14147,7 @@
             }
           },
           "palaceContextEstimatedTokens": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               468,
               468,
@@ -13808,6 +14161,7 @@
               1143,
               1142,
               1143,
+              785,
               785,
               785
             ],
@@ -13825,6 +14179,7 @@
               1719,
               1723,
               1068,
+              1068,
               1068
             ],
             "baselineMedian": 781,
@@ -13832,8 +14187,8 @@
             "treatmentMinusBaseline": {
               "estimate": 374,
               "confidenceInterval": [
-                -60,
-                477
+                283,
+                379.07499999992615
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -13841,7 +14196,7 @@
             }
           },
           "inputTokens": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               121229,
               103387,
@@ -13856,7 +14211,8 @@
               131849,
               188346,
               125184,
-              92554
+              92554,
+              175926
             ],
             "treatmentRaw": [
               85367,
@@ -13872,15 +14228,16 @@
               94837,
               129161,
               124955,
-              107783
+              107783,
+              142741
             ],
-            "baselineMedian": 126289.5,
-            "treatmentMedian": 88599,
+            "baselineMedian": 127017,
+            "treatmentMedian": 91783,
             "treatmentMinusBaseline": {
-              "estimate": -36437,
+              "estimate": -35862,
               "confidenceInterval": [
                 -59185,
-                -25875.5
+                -33185
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -13888,7 +14245,7 @@
             }
           },
           "cachedInputTokens": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               94464,
               93440,
@@ -13903,7 +14260,8 @@
               111616,
               170496,
               107520,
-              83456
+              83456,
+              163072
             ],
             "treatmentRaw": [
               73216,
@@ -13919,15 +14277,16 @@
               79360,
               116736,
               112640,
-              97536
+              97536,
+              125696
             ],
-            "baselineMedian": 110080,
-            "treatmentMedian": 75264,
+            "baselineMedian": 111616,
+            "treatmentMedian": 77312,
             "treatmentMinusBaseline": {
-              "estimate": -39168,
+              "estimate": -37376,
               "confidenceInterval": [
-                -58624,
-                -24192
+                -63488,
+                -32256
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -13935,7 +14294,7 @@
             }
           },
           "uncachedInputTokens": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               26765,
               9947,
@@ -13950,7 +14309,8 @@
               20233,
               17850,
               17664,
-              9098
+              9098,
+              12854
             ],
             "treatmentRaw": [
               12151,
@@ -13966,15 +14326,16 @@
               15477,
               12425,
               12315,
-              10247
+              10247,
+              17045
             ],
-            "baselineMedian": 16582.5,
-            "treatmentMedian": 12370,
+            "baselineMedian": 16164,
+            "treatmentMedian": 12425,
             "treatmentMinusBaseline": {
-              "estimate": -2097,
+              "estimate": -1844,
               "confidenceInterval": [
-                -5425,
-                1733
+                -5349,
+                2317
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -13982,7 +14343,7 @@
             }
           },
           "outputTokens": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               1886,
               1139,
@@ -13997,7 +14358,8 @@
               2502,
               4138,
               1651,
-              1488
+              1488,
+              1960
             ],
             "treatmentRaw": [
               1180,
@@ -14013,15 +14375,16 @@
               1416,
               2074,
               1863,
-              1525
+              1525,
+              2166
             ],
-            "baselineMedian": 1769.5,
-            "treatmentMedian": 1385,
+            "baselineMedian": 1814,
+            "treatmentMedian": 1393,
             "treatmentMinusBaseline": {
-              "estimate": -635.5,
+              "estimate": -625,
               "confidenceInterval": [
-                -896,
-                -175.5
+                -933,
+                -3
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -14029,7 +14392,7 @@
             }
           },
           "reportedTokens": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
               123115,
               104526,
@@ -14044,7 +14407,8 @@
               134351,
               192484,
               126835,
-              94042
+              94042,
+              177886
             ],
             "treatmentRaw": [
               86547,
@@ -14060,15 +14424,16 @@
               96253,
               131235,
               126818,
-              109308
+              109308,
+              144907
             ],
-            "baselineMedian": 127870.5,
-            "treatmentMedian": 89855.5,
+            "baselineMedian": 128454,
+            "treatmentMedian": 93160,
             "treatmentMinusBaseline": {
-              "estimate": -37333,
+              "estimate": -36568,
               "confidenceInterval": [
                 -61249,
-                -26051
+                -20840
               ],
               "iterations": 10000,
               "confidence": 0.95,
@@ -14076,8 +14441,9 @@
             }
           },
           "changedFilePrecision": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
+              1,
               1,
               1,
               1,
@@ -14094,6 +14460,7 @@
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1,
               1,
@@ -14123,8 +14490,9 @@
             }
           },
           "changedFileRecall": {
-            "pairCount": 14,
+            "pairCount": 15,
             "baselineRaw": [
+              1,
               1,
               1,
               1,
@@ -14141,6 +14509,7 @@
               1
             ],
             "treatmentRaw": [
+              1,
               1,
               1,
               1,
@@ -14171,9 +14540,10 @@
           }
         },
         "scope": {
-          "pairCount": 14,
+          "pairCount": 15,
           "baseline": {
             "changedFilePrecisionRaw": [
+              1,
               1,
               1,
               1,
@@ -14203,11 +14573,13 @@
               1,
               1,
               1,
+              1,
               1
             ],
             "changedFilePrecisionMedian": 1,
             "changedFileRecallMedian": 1,
             "forbiddenViolationRaw": [
+              false,
               false,
               false,
               false,
@@ -14241,9 +14613,11 @@
               1,
               1,
               1,
+              1,
               1
             ],
             "changedFileRecallRaw": [
+              1,
               1,
               1,
               1,
@@ -14275,6 +14649,7 @@
               false,
               false,
               false,
+              false,
               false
             ],
             "forbiddenViolationCount": 0,
@@ -14286,7 +14661,7 @@
     "primaryComparison": {
       "baselineArm": "control",
       "treatmentArm": "adaptivePalace",
-      "validPairs": 14,
+      "validPairs": 15,
       "invalidPairIds": [],
       "success": {
         "baselineRaw": [
@@ -14301,6 +14676,7 @@
           0,
           0,
           0,
+          1,
           1,
           1,
           1
@@ -14319,15 +14695,16 @@
           1,
           1,
           1,
+          1,
           1
         ],
-        "baselineRate": 0.7857142857142857,
+        "baselineRate": 0.8,
         "treatmentRate": 1,
         "treatmentMinusBaseline": {
-          "estimate": 0.21428571428571427,
+          "estimate": 0.2,
           "confidenceInterval": [
             0,
-            0.42857142857142855
+            0.4
           ],
           "iterations": 10000,
           "confidence": 0.95,
@@ -14348,7 +14725,7 @@
       },
       "metrics": {
         "durationMs": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             51920,
             40888,
@@ -14360,7 +14737,8 @@
             53373,
             137971,
             35170,
-            37935
+            37935,
+            37245
           ],
           "treatmentRaw": [
             47122,
@@ -14373,15 +14751,16 @@
             43403,
             58800,
             60214,
-            49800
+            49800,
+            60837
           ],
-          "baselineMedian": 41065,
-          "treatmentMedian": 44908,
+          "baselineMedian": 40976.5,
+          "treatmentMedian": 45958.5,
           "treatmentMinusBaseline": {
-            "estimate": -2535,
+            "estimate": 214,
             "confidenceInterval": [
-              -9970,
-              10671
+              -8019.5,
+              11268
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -14389,7 +14768,7 @@
           }
         },
         "toolCalls": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             4,
             5,
@@ -14400,6 +14779,7 @@
             4,
             4,
             24,
+            4,
             4,
             4
           ],
@@ -14414,15 +14794,16 @@
             3,
             8,
             8,
-            7
+            7,
+            9
           ],
           "baselineMedian": 4,
-          "treatmentMedian": 4,
+          "treatmentMedian": 5,
           "treatmentMinusBaseline": {
             "estimate": 0,
             "confidenceInterval": [
               -1,
-              2
+              2.5
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -14430,7 +14811,7 @@
           }
         },
         "failedCalls": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             0,
             1,
@@ -14442,9 +14823,11 @@
             0,
             2,
             0,
+            0,
             0
           ],
           "treatmentRaw": [
+            0,
             0,
             0,
             0,
@@ -14462,7 +14845,7 @@
           "treatmentMinusBaseline": {
             "estimate": 0,
             "confidenceInterval": [
-              -1,
+              -0.5,
               0
             ],
             "iterations": 10000,
@@ -14471,7 +14854,7 @@
           }
         },
         "routerErrors": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             0,
             1,
@@ -14483,9 +14866,11 @@
             0,
             2,
             0,
+            0,
             0
           ],
           "treatmentRaw": [
+            0,
             0,
             0,
             0,
@@ -14503,7 +14888,7 @@
           "treatmentMinusBaseline": {
             "estimate": 0,
             "confidenceInterval": [
-              -1,
+              -0.5,
               0
             ],
             "iterations": 10000,
@@ -14512,8 +14897,9 @@
           }
         },
         "applyPatchVerificationErrors": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
+            0,
             0,
             0,
             0,
@@ -14527,6 +14913,7 @@
             0
           ],
           "treatmentRaw": [
+            0,
             0,
             0,
             0,
@@ -14553,8 +14940,9 @@
           }
         },
         "sandboxPreparationErrors": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
+            0,
             0,
             0,
             0,
@@ -14568,6 +14956,7 @@
             0
           ],
           "treatmentRaw": [
+            0,
             0,
             0,
             0,
@@ -14594,7 +14983,7 @@
           }
         },
         "inspectionCommands": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             2,
             2,
@@ -14605,6 +14994,7 @@
             2,
             2,
             11,
+            2,
             2,
             2
           ],
@@ -14619,7 +15009,8 @@
             0,
             2,
             2,
-            1
+            1,
+            3
           ],
           "baselineMedian": 2,
           "treatmentMedian": 1,
@@ -14635,7 +15026,7 @@
           }
         },
         "commandOutputChars": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             2580,
             5386,
@@ -14647,7 +15038,8 @@
             5584,
             24569,
             3144,
-            3176
+            3176,
+            7777
           ],
           "treatmentRaw": [
             1486,
@@ -14660,15 +15052,16 @@
             6669,
             9060,
             6293,
-            6072
+            6072,
+            6436
           ],
-          "baselineMedian": 5386,
-          "treatmentMedian": 6293,
+          "baselineMedian": 5485,
+          "treatmentMedian": 6364.5,
           "treatmentMinusBaseline": {
-            "estimate": 504,
+            "estimate": -44.5,
             "confidenceInterval": [
-              -3897,
-              2605
+              -2619,
+              1845
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -14721,7 +15114,7 @@
           }
         },
         "inputTokens": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             86093,
             87643,
@@ -14733,7 +15126,8 @@
             89698,
             222885,
             86496,
-            85905
+            85905,
+            91410
           ],
           "treatmentRaw": [
             85367,
@@ -14746,15 +15140,16 @@
             75522,
             129161,
             124955,
-            107783
+            107783,
+            142741
           ],
-          "baselineMedian": 89495,
-          "treatmentMedian": 85367,
+          "baselineMedian": 89584,
+          "treatmentMedian": 85391,
           "treatmentMinusBaseline": {
-            "estimate": -2228,
+            "estimate": -1477,
             "confidenceInterval": [
-              -27734,
-              2110
+              -20955,
+              11994
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -14762,7 +15157,7 @@
           }
         },
         "cachedInputTokens": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             77312,
             75264,
@@ -14774,7 +15169,8 @@
             65280,
             189696,
             78336,
-            78336
+            78336,
+            81408
           ],
           "treatmentRaw": [
             73216,
@@ -14787,15 +15183,16 @@
             67328,
             116736,
             112640,
-            97536
+            97536,
+            125696
           ],
           "baselineMedian": 78336,
-          "treatmentMedian": 72448,
+          "treatmentMedian": 72832,
           "treatmentMinusBaseline": {
-            "estimate": -4096,
+            "estimate": -1536,
             "confidenceInterval": [
-              -37120,
-              2048
+              -28032,
+              10624
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -14803,7 +15200,7 @@
           }
         },
         "uncachedInputTokens": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             8781,
             12379,
@@ -14815,7 +15212,8 @@
             24418,
             33189,
             8160,
-            7569
+            7569,
+            10002
           ],
           "treatmentRaw": [
             12151,
@@ -14828,15 +15226,16 @@
             8194,
             12425,
             12315,
-            10247
+            10247,
+            17045
           ],
-          "baselineMedian": 12379,
-          "treatmentMedian": 12315,
+          "baselineMedian": 12048.5,
+          "treatmentMedian": 12370,
           "treatmentMinusBaseline": {
-            "estimate": 1086,
+            "estimate": 1882,
             "confidenceInterval": [
-              -4276,
-              4155
+              -3240,
+              5599
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -14844,7 +15243,7 @@
           }
         },
         "outputTokens": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             1260,
             989,
@@ -14856,7 +15255,8 @@
             1735,
             5649,
             1060,
-            905
+            905,
+            1024
           ],
           "treatmentRaw": [
             1180,
@@ -14869,15 +15269,16 @@
             1168,
             2074,
             1863,
-            1525
+            1525,
+            2166
           ],
-          "baselineMedian": 1090,
-          "treatmentMedian": 1249,
+          "baselineMedian": 1086.5,
+          "treatmentMedian": 1313,
           "treatmentMinusBaseline": {
-            "estimate": -78,
+            "estimate": 34.5,
             "confidenceInterval": [
-              -567,
-              319
+              -414,
+              469.5
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -14885,7 +15286,7 @@
           }
         },
         "reportedTokens": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
             87353,
             88632,
@@ -14897,7 +15298,8 @@
             91433,
             228534,
             87556,
-            86810
+            86810,
+            92434
           ],
           "treatmentRaw": [
             86547,
@@ -14910,15 +15312,16 @@
             76690,
             131235,
             126818,
-            109308
+            109308,
+            144907
           ],
-          "baselineMedian": 90578,
-          "treatmentMedian": 86547,
+          "baselineMedian": 90654.5,
+          "treatmentMedian": 86549,
           "treatmentMinusBaseline": {
-            "estimate": -2081,
+            "estimate": -1443.5,
             "confidenceInterval": [
-              -27995,
-              2429
+              -21369,
+              12463.5
             ],
             "iterations": 10000,
             "confidence": 0.95,
@@ -14926,8 +15329,9 @@
           }
         },
         "changedFilePrecision": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
+            1,
             1,
             1,
             1,
@@ -14941,6 +15345,7 @@
             1
           ],
           "treatmentRaw": [
+            1,
             1,
             1,
             1,
@@ -14967,8 +15372,9 @@
           }
         },
         "changedFileRecall": {
-          "pairCount": 11,
+          "pairCount": 12,
           "baselineRaw": [
+            1,
             1,
             1,
             1,
@@ -14982,6 +15388,7 @@
             1
           ],
           "treatmentRaw": [
+            1,
             1,
             1,
             1,
@@ -15009,7 +15416,7 @@
         }
       },
       "scope": {
-        "pairCount": 14,
+        "pairCount": 15,
         "baseline": {
           "changedFilePrecisionRaw": [
             1,
@@ -15023,6 +15430,7 @@
             0,
             0,
             0,
+            1,
             1,
             1,
             1
@@ -15039,6 +15447,7 @@
             0,
             0,
             0,
+            1,
             1,
             1,
             1
@@ -15059,10 +15468,11 @@
             true,
             false,
             false,
+            false,
             false
           ],
           "forbiddenViolationCount": 3,
-          "forbiddenViolationRate": 0.21428571428571427
+          "forbiddenViolationRate": 0.2
         },
         "treatment": {
           "changedFilePrecisionRaw": [
@@ -15079,9 +15489,11 @@
             1,
             1,
             1,
+            1,
             1
           ],
           "changedFileRecallRaw": [
+            1,
             1,
             1,
             1,
@@ -15100,6 +15512,7 @@
           "changedFilePrecisionMedian": 1,
           "changedFileRecallMedian": 1,
           "forbiddenViolationRaw": [
+            false,
             false,
             false,
             false,
@@ -15121,9 +15534,10 @@
       }
     },
     "mechanisms": {
-      "routeOnlyPairs": 14,
+      "routeOnlyPairs": 15,
       "routeRecallAtK": {
         "routeOnly": [
+          1,
           1,
           1,
           1,
@@ -15153,9 +15567,11 @@
           1,
           1,
           1,
+          1,
           1
         ],
         "adaptivePalace": [
+          1,
           1,
           1,
           1,
@@ -15187,6 +15603,7 @@
           1,
           1,
           0.5714285714285714,
+          0.5714285714285714,
           0.5714285714285714
         ],
         "fullPalace": [
@@ -15203,6 +15620,7 @@
           1,
           1,
           0.5714285714285714,
+          0.5714285714285714,
           0.5714285714285714
         ],
         "adaptivePalace": [
@@ -15218,6 +15636,7 @@
           1,
           1,
           1,
+          0.5714285714285714,
           0.5714285714285714,
           0.5714285714285714
         ]
@@ -15248,13 +15667,16 @@
       "wrongMemoryAdoptionRate": {
         "routeOnlyRaw": [
           false,
+          false,
           false
         ],
         "fullPalaceRaw": [
           false,
+          false,
           false
         ],
         "adaptivePalaceRaw": [
+          false,
           false,
           false
         ],
@@ -15282,7 +15704,7 @@
   },
   "caveats": [
     "This is an exploratory pilot and is not powered to establish non-inferiority.",
-    "This is an interim analysis with 14 of 16 planned trials loaded; intervals and p-values are not final.",
+    "This is an interim analysis with 15 of 16 planned trials loaded; intervals and p-values are not final.",
     "Efficiency metrics include only pairs where both compared arms achieved protocol-defined success.",
     "Invalid infrastructure or treatment runs are retained but excluded from paired estimates; agent failures and timeouts remain outcomes."
   ]
