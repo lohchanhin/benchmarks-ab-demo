@@ -1,7 +1,7 @@
 {
   "schemaVersion": 4,
   "protocolVersion": "3.0.0",
-  "status": "pilot-in-progress",
+  "status": "pilot-complete",
   "primaryComparison": "adaptive-vs-control",
   "primaryEfficiencyMetric": "reportedTokens",
   "plannedTrials": 16,
@@ -391,6 +391,31 @@
         "adaptive-palace": true
       },
       "publishedAt": "2026-07-20T22:41:52.007Z"
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-pilot-04",
+      "scenario": "stale-memory-adversarial",
+      "seed": "ded18e89eb0ea64f35628eb36b164fc9",
+      "order": [
+        "full-palace",
+        "adaptive-palace",
+        "route-only",
+        "control"
+      ],
+      "status": "completed",
+      "attemptedAt": "2026-07-20T22:47:05.570Z",
+      "report": "stale-memory-adversarial-control-first-v3-pilot-04/comparison.json",
+      "error": null,
+      "evidenceDirectory": "stale-memory-adversarial-control-first-v3-pilot-04",
+      "rawTranscriptsPublished": false,
+      "comparisonEligible": true,
+      "armValidity": {
+        "control": true,
+        "route-only": true,
+        "full-palace": true,
+        "adaptive-palace": true
+      },
+      "publishedAt": "2026-07-20T22:47:19.237Z"
     }
   ]
 }
