@@ -221,17 +221,18 @@ test("control-first v3 verifies the exact installed npm tarball before execution
   );
 });
 
-test("committed v3 draft is structurally valid, fresh, and intentionally not executable", async () => {
-  const draft = JSON.parse(await readFile(`${repositoryRoot}/results/control-first-v3/plan.json`, "utf8"));
-  assert.equal(draft.frozen, false);
-  assert.equal(draft.trials.length, 16);
-  assert.equal(draft.scenarioVariantPolicy["decision-memory-dependent"].blindingKeyCommitment, null);
-  const reviewCopy = structuredClone(draft);
-  reviewCopy.frozen = true;
-  assert.throws(() => validateStudyPlan(reviewCopy), /needs a committed blinding key/);
-  reviewCopy.scenarioVariantPolicy["decision-memory-dependent"].blindingKeyCommitment =
-    scenarioVariantKeyCommitment(testVariantKey);
-  assert.equal(validateStudyPlan(reviewCopy), true);
+test("committed v3 plan is frozen, fresh, and validates without executing", async () => {
+  const plan = JSON.parse(await readFile(`${repositoryRoot}/results/control-first-v3/plan.json`, "utf8"));
+  assert.equal(plan.frozen, true);
+  assert.equal(plan.trials.length, 16);
+  assert.match(
+    plan.scenarioVariantPolicy["decision-memory-dependent"].blindingKeyCommitment,
+    /^[a-f0-9]{64}$/
+  );
+  assert.equal(validateStudyPlan(plan), true);
+  const missingCommitment = structuredClone(plan);
+  missingCommitment.scenarioVariantPolicy["decision-memory-dependent"].blindingKeyCommitment = null;
+  assert.throws(() => validateStudyPlan(missingCommitment), /needs a committed blinding key/);
 
   const oldPlans = await Promise.all([
     "results/adaptive-pilot/plan.json",
@@ -239,9 +240,9 @@ test("committed v3 draft is structurally valid, fresh, and intentionally not exe
     "results/adaptive-pilot-v2.2/plan.json"
   ].map((relative) => readFile(`${repositoryRoot}/${relative}`, "utf8").then(JSON.parse)));
   const oldSeeds = new Set(oldPlans.flatMap((plan) => plan.trials.map((trial) => trial.seed)));
-  assert.equal(draft.trials.some((trial) => oldSeeds.has(trial.seed)), false);
-  await assert.rejects(
-    studyCommand(new Map([["plan", `${repositoryRoot}/results/control-first-v3/plan.json`]])),
-    /must be frozen/
+  assert.equal(plan.trials.some((trial) => oldSeeds.has(trial.seed)), false);
+  const validation = await studyCommand(
+    new Map([["plan", `${repositoryRoot}/results/control-first-v3/plan.json`]])
   );
+  assert.equal(validation.executed, false);
 });

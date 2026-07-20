@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-07-21T04:48:34.7432098+08:00",
+  "subject": "Control-first v3 formal protocol freeze",
+  "protocol": {
+    "version": "3.0.0",
+    "tag": "protocol-v3.0.0",
+    "plan": "results/control-first-v3/plan.json",
+    "planSha256": "18801784940ad71b5c402a177fa02389e35745110cc6c98415e3ff1291441230"
+  },
+  "studyState": {
+    "frozen": true,
+    "plannedTrials": 16,
+    "attemptedTrials": 0,
+    "plannedArms": 64,
+    "attemptedArms": 0,
+    "manifestStatus": "empty"
+  },
+  "blinding": {
+    "variantId": "seeded-tenant-owner-v1",
+    "commitment": "6c835757dc87f59011486b17fa1adf0db07c996f92c7be0cb4e5c13129697b2c",
+    "commitmentFormula": "sha256(UTF-8 variant id + NUL byte + UTF-8 hex key)",
+    "keyBytes": 32,
+    "keyHexCharacters": 64,
+    "keyStorage": "outside Git",
+    "keyPublished": false,
+    "revealPolicy": "publish-key-after-study-lock"
+  },
+  "freezeExecution": {
+    "dryRunPassed": true,
+    "writePassed": true,
+    "privateKeyPrinted": false,
+    "privateKeyWrittenToRepository": false,
+    "childProcessKeyScrubbingRequired": true
+  },
+  "independentCommitmentAudit": {
+    "firstCheckPassed": false,
+    "firstCheckFailure": "The independent script encoded a literal backslash-zero instead of the required NUL byte.",
+    "correctedCheckPassed": true,
+    "correctedDomainSeparator": "NUL byte",
+    "commitmentMatchesPlan": true
+  },
+  "preFreezeGates": {
+    "benchmarkTestsPassed": 78,
+    "benchmarkTestsFailed": 0,
+    "releaseChecksPassed": 19,
+    "releaseChecksFailed": 0,
+    "publicArtifact": "vertex-palace@0.3.0",
+    "publicArtifactShasum": "9a04440d7e95c4d34e68e1b7e2cd3f6ecd62e83e"
+  },
+  "designPreservation": {
+    "sourceEvidence": "docs/research/evidence/control-first-v3-public-binding-2026-07-21.json",
+    "trialIdsChanged": false,
+    "seedsChanged": false,
+    "armOrdersChanged": false,
+    "primaryComparison": "adaptive-vs-control",
+    "primaryEfficiencyMetric": "reportedTokens"
+  },
+  "claimBoundary": {
+    "supported": "The reviewed 16-trial plan is frozen with a public commitment while the private key remains outside Git and the public manifest remains empty.",
+    "notSupported": "Protocol freeze is not a formal Agent outcome and does not establish Token, time, tool-call, or correctness gains."
+  },
+  "nextStep": "Create protocol-v3.0.0 on the exact freeze commit, then execute all formal trials sequentially without changing the protocol."
+}

@@ -63,10 +63,10 @@ candidate tarball across 16 trials and 64 arms. It found one memory-dependent
 scope correction and safe stale-memory behavior, but also systematic Adaptive
 overhead versus Control. After two fresh small-local pairs showed a narrower
 directional result, 0.3.0 was published without turning that exploratory result
-into a general speed claim. The formal protocol remains `frozen:false` at 0/16
+into a general speed claim. The formal protocol is now `frozen:true` at 0/16
 trials and 0/64 Arms. Its plan, dependency, lockfile, installed package, and
-registry now match the public artifact; the 19/19 release gate passes, while
-the private-key commitment, freeze commit, and protocol tag remain pending.
+registry match the public artifact; the 19/19 release gate passed, and only the
+public commitment was added before the exact freeze commit was tagged.
 
 ## Coverage
 
@@ -84,7 +84,7 @@ the private-key commitment, freeze commit, and protocol tag remain pending.
 | Memory-dependent tenant fixture | **Candidate exploratory evidence** | 4 trials: Adaptive and Full 4/4, Control 3/4, Route-only 1/4 | One Control scope violation was prevented; exact paired p=1.0, so the correctness effect is not established. |
 | Stale-memory resistance | **Candidate exploratory evidence** | 0.3.0 candidate: 4 trials, 16/16 successful Arms, zero wrong-memory adoption | Guardrails were safe, but Adaptive carried two stale memories as warnings instead of excluding them. |
 | Adaptive versus Control efficiency | **Candidate negative evidence** | 14 mutual successes: Adaptive +19,922.5 tokens, +10.135 s, +2.5 calls; all 95% CIs above zero | The tested 0.3.0 candidate did not improve end-to-end efficiency and should not be marketed as a speedup. |
-| Control-first v3 formal study | **Ready to freeze, not run** | Public 0.3.0 binding gate 19/19; `frozen:false`; 0/16 trials; 0/64 Arms | Artifact provenance is aligned, but no formal Agent outcome exists before commitment, freeze, and tag. |
+| Control-first v3 formal study | **Frozen, not run** | Public 0.3.0 binding gate 19/19; public key commitment; `frozen:true`; 0/16 trials; 0/64 Arms | Artifact provenance and protocol design are locked, but no formal Agent outcome exists yet. |
 | Public npm and Codex plugin installation | **Validated release gate** | npm latest `0.3.0`; SHA-1 `9a04440d...`; clean registry install; GitHub Release `v0.3.0`; isolated Codex marketplace and plugin install | The public package and plugin path are installable. This verifies distribution, not an Agent efficiency effect. |
 
 ## Claims We Can Make
@@ -105,8 +105,8 @@ the private-key commitment, freeze commit, and protocol tag remain pending.
   than Control.
 - `vertex-palace@0.3.0` is publicly installable, and the GitHub `v0.3.0`
   marketplace installs the 0.3.0 Codex plugin in an isolated configuration.
-- The unfrozen v3 plan and benchmark installation now agree with the immutable
-  public 0.3.0 metadata, and all 19 release-binding checks pass.
+- The frozen v3 plan and benchmark installation agree with the immutable public
+  0.3.0 metadata; all 19 release-binding checks passed and the manifest is 0/16.
 
 ## Claims We Cannot Make Yet
 
@@ -119,14 +119,12 @@ the private-key commitment, freeze commit, and protocol tag remain pending.
 
 ## Next Evidence
 
-1. Generate the private 256-bit variant key outside Git, commit only its
-   SHA-256 commitment, freeze the reviewed plan, and tag that exact commit.
+1. Run the 16 formal Control-first trials sequentially from the protocol tag,
+   retaining every failed, invalid, or timed-out attempt.
 2. Preregister a fresh confirmation that repeats the small-local result and
    tests bounded cross-stack behavior without changing treatment mid-study.
-3. Run the 16 formal Control-first trials sequentially from the protocol tag,
-   retaining every failed, invalid, or timed-out attempt.
-4. Reveal the variant key only after all formal outcomes are locked, then
+3. Reveal the variant key only after all formal outcomes are locked, then
    reproduce the owner assignments and primary paired analysis.
-5. In a separate future protocol, define a small-OSS size threshold before
+4. In a separate future protocol, define a small-OSS size threshold before
    selecting a repository and add real-repository history and architecture
    tasks with hidden, objective oracles.

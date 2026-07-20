@@ -42,9 +42,10 @@ npm run audit:control-first:v3
 经过脱敏；raw transcript 不在 Git 中，因为它可能包含本机路径与 Session
 metadata。
 
-`audit:control-first:v3` 目前应显示 `0/16`。这是设计审核闸门，不是缺少结果：
-v3 草案明确为 `frozen:false`，在 Palace 0.3.0 发布、clean install 与协议 tag
-完成前，任何正式 Agent trial 都不得启动。
+`audit:control-first:v3` 目前应显示 `0/16`。这是冻结后、正式执行前的正确状态，
+不是证据丢失：v3 计划已为 `frozen:true`，Palace 0.3.0、clean install 与
+19/19 发布闸门均已通过；任何正式 Agent trial 仍只能从精确
+`protocol-v3.0.0` tag 顺序启动。
 
 ## 重新生成聚合分析
 

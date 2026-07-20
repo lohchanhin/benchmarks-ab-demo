@@ -1,11 +1,13 @@
 # Control-First Protocol v3.0.0
 
-Status: **design-review draft; zero agent outcomes; execution prohibited**
+Status: **frozen; zero Agent outcomes; execution allowed only from the exact protocol tag**
 
 This protocol is the independent successor to the completed v2.2 study. It
-does not reinterpret or overwrite v2.2. The committed candidate plan is
+does not reinterpret or overwrite v2.2. The committed formal plan is
 [`results/control-first-v3/plan.json`](../../results/control-first-v3/plan.json),
-where `frozen` remains `false` until every release gate below passes.
+where `frozen` is now `true`. Its 16 trial ids, seeds, and arm orders are
+unchanged from the reviewed public-binding plan, and its result manifest remains
+empty.
 
 [简体中文辅助说明](../zh-CN/PROTOCOL_V3.md)
 
@@ -83,15 +85,15 @@ The launch-tenant task is deliberately underdetermined from public evidence:
 - the hidden oracle uses the same concealed assignment to verify WCAG AA for
   the owner and unchanged behavior for the shared fallback and two siblings.
 
-The public plan covers all three anonymous strata in four trials. Before
-freeze, it must contain the SHA-256 commitment of a cryptographically random
-blinding key, never the key or owner assignments. Per-run manifests contain an
+The public plan covers all three anonymous strata in four trials. At freeze it
+received the SHA-256 commitment of a cryptographically random blinding key,
+never the key or owner assignments. Per-run manifests contain an
 HMAC assignment commitment but no owner. The key is removed from every Codex,
 Palace, public-test, and oracle subprocess environment and is revealed only
 after outcomes are locked, allowing the published assignments to be
-recomputed without enabling pre-run guessing. The current draft deliberately
-has `blindingKeyCommitment:null`, so changing only `frozen` cannot make it
-executable.
+recomputed without enabling pre-run guessing. The public commitment is
+`6c835757dc87f59011486b17fa1adf0db07c996f92c7be0cb4e5c13129697b2c`;
+the 32-byte key remains outside Git.
 
 Its unmodified baseline must pass public tests and fail the hidden oracle. The
 canonical one-file repair must pass both. Eligible memory-benefit evidence is a
@@ -115,7 +117,7 @@ over-broad edit is an outcome, not a success.
 
 ## Design And Statistics
 
-The draft contains 4 scenarios x 4 fresh seeds x 4 arms: 16 paired trials and
+The frozen plan contains 4 scenarios x 4 fresh seeds x 4 arms: 16 paired trials and
 64 arm runs. Each scenario uses all four Williams orders exactly once, so every
 arm occupies every execution position once. Warm and cold local Palace index
 states are balanced within scenarios and across Williams orders. Provider-side
@@ -153,10 +155,10 @@ powered as a confirmatory non-inferiority or superiority study.
 - Timeout: 600 seconds per arm
 - Cooldown: 15 seconds between arms
 
-The benchmark dependency, lockfile, installed package, draft plan, and public
-registry now identify this same artifact. The plan remains non-executable until
-its blinding-key commitment is committed, `frozen` becomes true, and the exact
-freeze commit is tagged `protocol-v3.0.0`.
+The benchmark dependency, lockfile, installed package, frozen plan, and public
+registry identify this same artifact. The blinding-key commitment is committed,
+`frozen` is true, and the exact freeze commit is identified by
+`protocol-v3.0.0` before any formal Arm runs.
 
 Engineering evidence at the pinned source commit reports exact two-file routes
 for both pinned Zod and Requests tasks (recall 1.000, strict precision 1.000)
@@ -171,7 +173,8 @@ research, not Agent outcomes.
 
 ## Release And Freeze Gates
 
-Before changing `frozen` to `true` or creating `protocol-v3.0.0`:
+Before changing `frozen` to `true` and creating `protocol-v3.0.0`, the freeze
+commit had to satisfy all of the following:
 
 1. Product unit, CLI, MCP, package, and CI checks for Palace 0.3.0 pass.
 2. A clean package install reports 0.3.0 and passes the release-candidate gate.
@@ -189,8 +192,8 @@ Before changing `frozen` to `true` or creating `protocol-v3.0.0`:
 11. The reviewed plan is frozen and tagged before any formal arm runs.
 
 The npm package was published only after the non-formal candidate and revised
-bypass engineering checks. Formal v3 still requires this independent binding,
-freeze, and protocol tag before any Agent arm runs.
+bypass engineering checks. Formal v3 then completed the independent public
+binding and freeze without running an Agent Arm.
 
 `npm run gate:control-first:v3` performs the 19 machine-readable package and
 empty-study checks without invoking Codex. `npm run check:release-ready` runs
@@ -198,18 +201,25 @@ the complete local suite before that network-backed gate. The command must fail
 until npm publication and the exact dependency update are both complete; it
 passed 19/19 after the public artifact was bound.
 
-Once it passes, `npm run freeze:control-first:v3` is dry-run-only by default.
+After the gate passed, `npm run freeze:control-first:v3` remained dry-run-only by default.
 It reads `VERTEX_PALACE_BENCHMARK_VARIANT_KEY` only after every child process has
 finished, emits only the SHA-256 commitment, and requires `-- --write` to change
-the plan. The first `study --execute` invocation requires a clean HEAD exactly
+the plan. Both dry-run and write modes passed. An independent check initially
+used a literal backslash-zero and failed; the corrected NUL-byte domain
+separator reproduced the committed value. The first `study --execute` invocation requires a clean HEAD exactly
 at `protocol-v3.0.0`. A resumed invocation permits only the v3 manifest in the
 worktree and result-only commits descended from that tag; source, protocol, or
 plan changes terminate before an Agent arm starts.
+
+The machine-readable [freeze evidence](./evidence/control-first-v3-freeze-2026-07-21.json)
+records the public commitment, the empty 0/16 manifest, the preserved design,
+and the failed and corrected independent commitment checks. It does not contain
+the private key.
 
 ## Evidence And Privacy
 
 Attempted, failed, invalid, and timed-out trials remain outcomes. Reviewed JSON,
 Markdown, and checksums may be published. Raw JSONL transcripts remain local
 because they may contain machine paths and session identifiers. No v3 outcome
-exists at the time of this draft. The blinding key remains private until all
+exists at protocol freeze. The blinding key remains private until all
 formal outcomes are locked; its later publication is part of the audit trail.

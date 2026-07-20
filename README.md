@@ -159,14 +159,14 @@ external oracle requires a seed-stratified, secretly permuted tenant scope.
 Aurora, Borealis, and Cedar are fictional tenants; the public plan and prompts
 do not reveal which one owns a given formal trial.
 
-The [v3 protocol draft](docs/research/PROTOCOL_V3.md), [16-trial candidate
+The [v3 protocol](docs/research/PROTOCOL_V3.md), [frozen 16-trial
 plan](results/control-first-v3/plan.json), and empty [result
-manifest](results/control-first-v3/manifest.json) are public. The plan remains
-`frozen:false`, has zero Agent outcomes, and cannot execute. The benchmark
-dependency, lockfile, installed package, and plan are now rebound to the
-immutable public Palace 0.3.0 package, and the release gate passes 19/19. The
-remaining pre-execution steps are the private-key commitment, freeze commit,
-and exact `protocol-v3.0.0` tag.
+manifest](results/control-first-v3/manifest.json) are public. The plan now has
+`frozen:true`, a public key commitment, zero Agent outcomes, and unchanged trial
+ids, seeds, and arm orders. The benchmark dependency, lockfile, installed
+package, and plan are bound to the immutable public Palace 0.3.0 package, and
+the release gate passed 19/19. The private key remains outside Git and is not
+revealed until every formal outcome is locked.
 
 The [preflight record](docs/research/CONTROL_FIRST_V3_PREFLIGHT.md) publishes the
 failed and passing memory smokes, the product fix commit, CI evidence, and the
@@ -177,23 +177,22 @@ plus one guarded-memory run where Route-only failed but Control and Adaptive
 both succeeded. These are design inputs, not formal v3 outcomes.
 The follow-up [blinded-fixture design](docs/research/CONTROL_FIRST_V3_BLINDED_DESIGN.md)
 adds a preregistered 256-bit key commitment, all-owner regression coverage, and
-prompt-matched stop conditions without running another Agent arm. The draft key
-commitment remains `null`, so the plan still cannot be frozen accidentally.
+prompt-matched stop conditions without running another Agent arm. The reviewed
+commitment is now recorded in the frozen plan; the key itself remains private.
 The [release-provenance gate](docs/research/CONTROL_FIRST_V3_RELEASE_PROVENANCE.md)
 pins the exact candidate tarball and records the first expired npm browser
 authorization as historical pre-release evidence. The later
 [public release verification](docs/research/evidence/vertex-palace-0.3.0-public-release-2026-07-20.json)
 records the successful npm, GitHub Release, marketplace, and plugin checks.
-Run `npm run gate:control-first:v3` for a machine-readable 19-check pre-freeze
-audit, or `npm run check:release-ready` to run the complete benchmark checks
-first. The public binding now passes all 19 checks while the public v3 manifest
-remains empty. This is release-readiness evidence, not a formal Agent outcome.
-After those checks pass, `npm run freeze:control-first:v3` performs a dry run
-using the private key from `VERTEX_PALACE_BENCHMARK_VARIANT_KEY`; append
-`-- --write` only after reviewing the public commitment. The key is never
-printed, written, or inherited by a child process. Initial formal execution
-requires a clean HEAD exactly at `protocol-v3.0.0`; an interrupted study may
-resume only from that tag or a descendant containing result-only changes.
+The 19-check pre-freeze gate and complete benchmark checks passed before the
+plan changed. `npm run freeze:control-first:v3` then passed in dry-run and write
+modes using the private key from `VERTEX_PALACE_BENCHMARK_VARIANT_KEY`. The key
+was not printed or written to the repository, and child Agent processes are
+required to receive a scrubbed environment. The exact audit is retained in the
+[freeze evidence](docs/research/evidence/control-first-v3-freeze-2026-07-21.json).
+Initial formal execution requires a clean HEAD exactly at
+`protocol-v3.0.0`; an interrupted study may resume only from that tag or a
+descendant containing result-only changes.
 The current product gate also records exact Zod and Requests routes at recall
 1.000 / strict precision 1.000 and a clean-install 50-memory ceiling test; these
 remain engineering evidence until the independent Agent arms are frozen and run.
@@ -214,22 +213,24 @@ negative results are retained together as
 [machine evidence](docs/research/evidence/vertex-palace-0.3.0-sync-evaluation.json),
 and neither proves lower end-to-end Agent tokens or time.
 
-Validate the frozen plan without running an agent:
+Validate the frozen v3 plan without running an Agent:
 
 ```sh
 npm ci
-npm run benchmark -- study --plan results/adaptive-pilot-v2.2/plan.json
+npm run benchmark -- study --plan results/control-first-v3/plan.json
 ```
 
-After checking out tag `protocol-v2.2.0`, execute or resume the frozen study:
+The key custodian can execute one sequential trial at a time from the exact
+`protocol-v3.0.0` tag after loading the private key into the environment:
 
 ```sh
-npm run benchmark -- study --plan results/adaptive-pilot-v2.2/plan.json --execute
-npm run analysis:adaptive
+npm run benchmark -- study --plan results/control-first-v3/plan.json --execute --limit 1
+npm run analysis:control-first:v3
 ```
 
-The retired v2.1 analysis remains reproducible with
-`npm run analysis:adaptive:v2.1`; its remaining planned trials must not be run.
+The completed v2.2 analysis remains reproducible with
+`npm run analysis:adaptive`; the retired v2.1 analysis remains reproducible
+with `npm run analysis:adaptive:v2.1`, but neither plan may receive new trials.
 
 ## Reproduce The Published v1 Pilot
 

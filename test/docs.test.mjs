@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
@@ -42,7 +43,7 @@ test("publishes discoverable Simplified Chinese judge guidance", async () => {
   assert.match(results, /不能说 Vertex Palace.*普遍省 Token/);
   assert.match(results, /不能改写冻结结果/);
   assert.match(protocolV3, /Adaptive Palace 对 Control/);
-  assert.match(protocolV3, /frozen:false/);
+  assert.match(protocolV3, /frozen:true/);
   assert.match(protocolV3, /公开测试通过/);
   assert.match(protocolV3, /hidden oracle 失败/);
   assert.match(protocolV3, /npm 0\.3\.0 已/);
@@ -96,7 +97,8 @@ test("keeps the validation coverage matrix synchronized with published evidence"
   const matrix = JSON.parse(
     await read("docs/research/evidence/validation-coverage-matrix-2026-07-20.json")
   );
-  const plan = JSON.parse(await read("results/control-first-v3/plan.json"));
+  const planText = await read("results/control-first-v3/plan.json");
+  const plan = JSON.parse(planText);
   const manifest = JSON.parse(await read("results/control-first-v3/manifest.json"));
   const firstAnalysis = JSON.parse(await read("results/pilot/analysis.json"));
   const analysis = JSON.parse(await read("results/adaptive-pilot-v2.2/analysis.json"));
@@ -106,6 +108,9 @@ test("keeps the validation coverage matrix synchronized with published evidence"
   const publicBinding = JSON.parse(
     await read("docs/research/evidence/control-first-v3-public-binding-2026-07-21.json")
   );
+  const freezeEvidence = JSON.parse(
+    await read("docs/research/evidence/control-first-v3-freeze-2026-07-21.json")
+  );
   const rows = new Map(matrix.coverage.map((row) => [row.id, row]));
 
   const v3 = rows.get("control-first-v3-formal");
@@ -113,9 +118,20 @@ test("keeps the validation coverage matrix synchronized with published evidence"
   assert.equal(v3.observed.plannedTrials, plan.trials.length);
   assert.equal(v3.observed.attemptedTrials, manifest.trials.length);
   assert.equal(v3.observed.attemptedArms, 0);
-  assert.equal(v3.status, "ready-to-freeze");
-  assert.equal(publicBinding.studyState.frozen, plan.frozen);
+  assert.equal(v3.status, "frozen-protocol");
+  assert.equal(publicBinding.studyState.frozen, false);
   assert.equal(publicBinding.studyState.attemptedTrials, manifest.trials.length);
+  assert.equal(freezeEvidence.studyState.frozen, plan.frozen);
+  assert.equal(freezeEvidence.studyState.attemptedTrials, manifest.trials.length);
+  assert.equal(
+    freezeEvidence.blinding.commitment,
+    plan.scenarioVariantPolicy["decision-memory-dependent"].blindingKeyCommitment
+  );
+  assert.equal(
+    freezeEvidence.protocol.planSha256,
+    createHash("sha256").update(planText).digest("hex")
+  );
+  assert.equal(freezeEvidence.independentCommitmentAudit.correctedCheckPassed, true);
   assert.equal(publicBinding.artifact.npmShasum, plan.execution.palacePackageShasum);
   assert.equal(publicBinding.artifact.npmIntegrity, plan.execution.palacePackageIntegrity);
   assert.equal(publicBinding.releaseGate.after.checksPassed, 19);
