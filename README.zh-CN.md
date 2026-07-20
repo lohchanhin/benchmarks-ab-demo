@@ -72,9 +72,9 @@ oracle 拒绝。Aurora、Borealis 与 Cedar 只是三个虚构租户；正式 tr
 已经公开。目前计划仍是 `frozen:false`、0 个 Agent 结果，不能执行。产品 0.3.0、
 clean install、记忆 smoke 与完整 benchmark 闸门通过后，才会冻结并打协议 tag。
 
-计划 schema 6 同时固定实现提交 `97d1736f971438f7f2913f0b731633b0bab8441d`、
-发布提交 `8328ea29d55260e34e2e6170bd420e4c659af39e`、候选 tarball SHA-1
-`4f4f7843cbfebaec0a9f3aade31fac24d96d1133` 与完整 npm integrity。正式执行前会
+计划 schema 6 同时固定实现提交 `e901c1739c5aa907bc44ebcbd25bbdd7abd75e7a`、
+发布提交 `f2e0ccabb0f5a7af77a72b971524122469f47172`、候选 tarball SHA-1
+`04602918f8e661a57c8286fb7b6d344baf9fb3aa` 与完整 npm integrity。正式执行前会
 核对 `package-lock.json` 和实际安装版本，不能只靠相同的包名与版本号混过去。
 
 [v3 preflight 研发记录](docs/research/CONTROL_FIRST_V3_PREFLIGHT.md)保留了三次

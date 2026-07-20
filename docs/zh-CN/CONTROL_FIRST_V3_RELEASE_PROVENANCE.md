@@ -9,30 +9,31 @@
 正式 v3 研究仍刻意保持未冻结：16 个 trial、64 个 Agent Arm 都尚未执行。本阶段
 只增加可执行的安装包来源校验，不算 Agent 结果，也不宣称已经提高效率。
 
-Vertex Palace 实现提交固定为
-`97d1736f971438f7f2913f0b731633b0bab8441d`，发布候选 HEAD 为
-`8328ea29d55260e34e2e6170bd420e4c659af39e`；两者之间只多了不进入 npm 包的机器
-证据 JSON。多次 `npm pack --dry-run` 都产生相同的 7 文件 `vertex-palace@0.3.0`：
+Vertex Palace 最终包内容源码固定为
+`e901c1739c5aa907bc44ebcbd25bbdd7abd75e7a`，已核对的发布证据提交为
+`f2e0ccabb0f5a7af77a72b971524122469f47172`；后续提交只加入不在 npm 文件清单内的
+研究资产。多次 `npm pack --dry-run` 都产生相同的 7 文件 `vertex-palace@0.3.0`：
 
-- SHA-1：`4f4f7843cbfebaec0a9f3aade31fac24d96d1133`
-- integrity：`sha512-wfxQUxLKk1kQxQm8X1eGKbRaXX/yxIla8KO6PAxj83Fx+7ofwQSzla6tTVvLIlBOxchGy0OmopFdS684GDz9RA==`
+- SHA-1：`04602918f8e661a57c8286fb7b6d344baf9fb3aa`
+- integrity：`sha512-muQvR5KxELoxhFKCUfnASJW58g9xdWp3+u6UJxtzAtiCpz8nh2GWDSm6UNmVIMeFt+qY7IdQ/s5yWrCcwgPRvg==`
 
-发布前已经通过产品 lint、89 项测试、build、MCP smoke、干净安装包验证，以及固定
-Zod／Requests 仓库验证。
+发布前已经通过产品 lint、90 项测试、build、MCP smoke、干净安装包验证，以及固定
+Zod／Requests 仓库验证。旧候选继续保留在非正式 preflight 记录中；重新绑定最终候选前
+没有产生正式 v3 结果。
 
 ## 真实仓库来源证据
 
 真实仓库闸门现已使用精确发布源码
-`8328ea29d55260e34e2e6170bd420e4c659af39e` 和上方完全相同的 7 文件 tarball
+`e901c1739c5aa907bc44ebcbd25bbdd7abd75e7a` 和上方完全相同的 7 文件 tarball
 重新生成。已核对的证据提交为
-[`7d59d7825eccccef3e92cd56f85d594bc53f2cf2`](https://github.com/lohchanhin/vertex-palace/commit/7d59d7825eccccef3e92cd56f85d594bc53f2cf2)，
-[CI 29705165573](https://github.com/lohchanhin/vertex-palace/actions/runs/29705165573)
+[`f2e0ccabb0f5a7af77a72b971524122469f47172`](https://github.com/lohchanhin/vertex-palace/commit/f2e0ccabb0f5a7af77a72b971524122469f47172)，
+后续 [CI 29743726827](https://github.com/lohchanhin/vertex-palace/actions/runs/29743726827)
 已通过 Ubuntu、Windows、macOS 与 npm package dry-run。
 
 Zod 是固定的 TypeScript monorepo 案例，Requests 是固定的 Python 案例。每个仓库都在
 精确 commit 上重新克隆，并使用干净安装的候选包、6,000-token 上限重复路由两次。
 四次运行都只返回已知实现与聚焦测试：目标召回率 `1.000`、严格目标精度 `1.000`、
-边界稳定性 `2/2`，tracked worktree 也保持干净。完整任务、预期／实际路径、仓库 commit
+边界稳定性 `2/2`、已选路线与 Excluded 路径重叠集为空，tracked worktree 也保持干净。完整任务、预期／实际路径、仓库 commit
 和执行命令已经复制到机器证据，评审不需要跨仓库猜测。但这仍是没有 Control Arm 的
 产品路由闸门，时间只能用于诊断，不能证明 Agent 更快或更省 Token。
 

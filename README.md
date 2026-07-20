@@ -165,10 +165,10 @@ The current product gate also records exact Zod and Requests routes at recall
 remain engineering evidence until the independent Agent arms are frozen and run.
 
 The reviewed runtime source is pinned to Vertex Palace
-`97d1736f971438f7f2913f0b731633b0bab8441d`; the bilingual evidence record is
-pinned to `8328ea29d55260e34e2e6170bd420e4c659af39e`, which is also the release
+`e901c1739c5aa907bc44ebcbd25bbdd7abd75e7a`; the bilingual evidence record is
+pinned to `f2e0ccabb0f5a7af77a72b971524122469f47172`, which is also the release
 HEAD. Plan schema 6 additionally pins candidate tarball SHA-1
-`4f4f7843cbfebaec0a9f3aade31fac24d96d1133` and its full npm integrity. Formal
+`04602918f8e661a57c8286fb7b6d344baf9fb3aa` and its full npm integrity. Formal
 execution validates the exact version and integrity in `package-lock.json` plus
 the installed package before any arm starts. Historical route evaluations
 progressed from 3/8 to an exact 8/8 fixed oracle, yet a real nine-file update

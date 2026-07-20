@@ -10,33 +10,36 @@ The formal v3 study remains intentionally unfrozen with 0/16 trials and 0/64
 Agent arms attempted. This stage adds an executable package-provenance gate; it
 does not add an Agent outcome or claim an efficiency improvement.
 
-The reviewed Vertex Palace implementation is commit
-`97d1736f971438f7f2913f0b731633b0bab8441d`. The release-candidate HEAD is
-`8328ea29d55260e34e2e6170bd420e4c659af39e`; the only change between those
-commits is the excluded machine-evidence JSON. Repeated `npm pack --dry-run`
+The final Vertex Palace package-content source is commit
+`e901c1739c5aa907bc44ebcbd25bbdd7abd75e7a`. The checked release evidence is
+committed at `f2e0ccabb0f5a7af77a72b971524122469f47172`; later commits add only
+research assets outside the npm file list. Repeated `npm pack --dry-run`
 produced the same seven-file `vertex-palace@0.3.0` tarball:
 
-- SHA-1: `4f4f7843cbfebaec0a9f3aade31fac24d96d1133`
-- integrity: `sha512-wfxQUxLKk1kQxQm8X1eGKbRaXX/yxIla8KO6PAxj83Fx+7ofwQSzla6tTVvLIlBOxchGy0OmopFdS684GDz9RA==`
+- SHA-1: `04602918f8e661a57c8286fb7b6d344baf9fb3aa`
+- integrity: `sha512-muQvR5KxELoxhFKCUfnASJW58g9xdWp3+u6UJxtzAtiCpz8nh2GWDSm6UNmVIMeFt+qY7IdQ/s5yWrCcwgPRvg==`
 
-Product lint, 89 product tests, build, MCP smoke, clean-package validation, and
+Product lint, 90 product tests, build, MCP smoke, clean-package validation, and
 pinned Zod and Requests validation passed before publication was attempted.
+The earlier candidate remains attached to the non-formal preflight record; no
+formal v3 outcome was generated before this final rebind.
 
 ## Real-Repository Provenance
 
 The real-repository gate has now been regenerated from the exact release source
-`8328ea29d55260e34e2e6170bd420e4c659af39e` and the exact seven-file tarball
+`e901c1739c5aa907bc44ebcbd25bbdd7abd75e7a` and the exact seven-file tarball
 above. Its checked evidence is committed at
-[`7d59d7825eccccef3e92cd56f85d594bc53f2cf2`](https://github.com/lohchanhin/vertex-palace/commit/7d59d7825eccccef3e92cd56f85d594bc53f2cf2),
-and [CI run 29705165573](https://github.com/lohchanhin/vertex-palace/actions/runs/29705165573)
+[`f2e0ccabb0f5a7af77a72b971524122469f47172`](https://github.com/lohchanhin/vertex-palace/commit/f2e0ccabb0f5a7af77a72b971524122469f47172),
+and descendant [CI run 29743726827](https://github.com/lohchanhin/vertex-palace/actions/runs/29743726827)
 passed on Ubuntu, Windows, macOS, and the package dry-run job.
 
 Zod is the pinned TypeScript monorepo case; Requests is the pinned Python case.
 Each repository was cloned at an exact commit and routed twice from a clean
 tarball install under a 6,000-token ceiling. In all four runs, Palace returned
 only the known implementation and focused test: target recall `1.000`, strict
-target precision `1.000`, deterministic boundaries `2/2`, and clean tracked
-worktrees. The full tasks, expected and observed paths, repository commits, and
+target precision `1.000`, deterministic boundaries `2/2`, empty
+selected-versus-Excluded overlap, and clean tracked worktrees. The full tasks,
+expected and observed paths, repository commits, and
 command are copied into the machine evidence for single-repository audit. This
 is a product routing gate with no Control arm, so timing remains diagnostic and
 does not support an Agent speed or Token claim.
