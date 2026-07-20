@@ -1,0 +1,4490 @@
+{
+  "schemaVersion": 3,
+  "protocolVersion": "3.0.0",
+  "primaryComparison": "adaptive-vs-control",
+  "primaryEfficiencyMetric": "reportedTokens",
+  "generatedAt": "2026-07-20T21:04:28.637Z",
+  "exploratory": true,
+  "plannedTrials": 16,
+  "attemptedTrials": 1,
+  "loadedTrials": 1,
+  "missingTrials": [],
+  "scenarios": {
+    "small-local-bug": {
+      "attemptedPairs": 1,
+      "validPairs": 1,
+      "invalidPairIds": [],
+      "comparisons": {
+        "routeOnlyMinusControl": {
+          "baselineArm": "control",
+          "treatmentArm": "routeOnly",
+          "validPairs": 1,
+          "invalidPairIds": [],
+          "success": {
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineRate": 1,
+            "treatmentRate": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:route-only-minus-control"
+            },
+            "discordant": {
+              "baselineOnly": 0,
+              "treatmentOnly": 0,
+              "total": 0,
+              "baselineOnlyIds": [],
+              "treatmentOnlyIds": []
+            },
+            "mcnemarExactPValue": 1
+          },
+          "metrics": {
+            "durationMs": {
+              "pairCount": 1,
+              "baselineRaw": [
+                51920
+              ],
+              "treatmentRaw": [
+                49971
+              ],
+              "baselineMedian": 51920,
+              "treatmentMedian": 49971,
+              "treatmentMinusBaseline": {
+                "estimate": -1949,
+                "confidenceInterval": [
+                  -1949,
+                  -1949
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:durationMs"
+              }
+            },
+            "toolCalls": {
+              "pairCount": 1,
+              "baselineRaw": [
+                4
+              ],
+              "treatmentRaw": [
+                5
+              ],
+              "baselineMedian": 4,
+              "treatmentMedian": 5,
+              "treatmentMinusBaseline": {
+                "estimate": 1,
+                "confidenceInterval": [
+                  1,
+                  1
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:toolCalls"
+              }
+            },
+            "failedCalls": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:failedCalls"
+              }
+            },
+            "routerErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:routerErrors"
+              }
+            },
+            "applyPatchVerificationErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:applyPatchVerificationErrors"
+              }
+            },
+            "sandboxPreparationErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:sandboxPreparationErrors"
+              }
+            },
+            "inspectionCommands": {
+              "pairCount": 1,
+              "baselineRaw": [
+                2
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 2,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": -1,
+                "confidenceInterval": [
+                  -1,
+                  -1
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:inspectionCommands"
+              }
+            },
+            "commandOutputChars": {
+              "pairCount": 1,
+              "baselineRaw": [
+                2580
+              ],
+              "treatmentRaw": [
+                3837
+              ],
+              "baselineMedian": 2580,
+              "treatmentMedian": 3837,
+              "treatmentMinusBaseline": {
+                "estimate": 1257,
+                "confidenceInterval": [
+                  1257,
+                  1257
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:commandOutputChars"
+              }
+            },
+            "palaceContextOutputChars": {
+              "pairCount": 0,
+              "baselineRaw": [],
+              "treatmentRaw": [],
+              "baselineMedian": null,
+              "treatmentMedian": null,
+              "treatmentMinusBaseline": {
+                "estimate": null,
+                "confidenceInterval": [
+                  null,
+                  null
+                ],
+                "iterations": 0
+              }
+            },
+            "palaceContextOutputBytes": {
+              "pairCount": 0,
+              "baselineRaw": [],
+              "treatmentRaw": [],
+              "baselineMedian": null,
+              "treatmentMedian": null,
+              "treatmentMinusBaseline": {
+                "estimate": null,
+                "confidenceInterval": [
+                  null,
+                  null
+                ],
+                "iterations": 0
+              }
+            },
+            "palaceContextEstimatedTokens": {
+              "pairCount": 0,
+              "baselineRaw": [],
+              "treatmentRaw": [],
+              "baselineMedian": null,
+              "treatmentMedian": null,
+              "treatmentMinusBaseline": {
+                "estimate": null,
+                "confidenceInterval": [
+                  null,
+                  null
+                ],
+                "iterations": 0
+              }
+            },
+            "inputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                86093
+              ],
+              "treatmentRaw": [
+                103467
+              ],
+              "baselineMedian": 86093,
+              "treatmentMedian": 103467,
+              "treatmentMinusBaseline": {
+                "estimate": 17374,
+                "confidenceInterval": [
+                  17374,
+                  17374
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:inputTokens"
+              }
+            },
+            "cachedInputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                77312
+              ],
+              "treatmentRaw": [
+                93440
+              ],
+              "baselineMedian": 77312,
+              "treatmentMedian": 93440,
+              "treatmentMinusBaseline": {
+                "estimate": 16128,
+                "confidenceInterval": [
+                  16128,
+                  16128
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:cachedInputTokens"
+              }
+            },
+            "uncachedInputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                8781
+              ],
+              "treatmentRaw": [
+                10027
+              ],
+              "baselineMedian": 8781,
+              "treatmentMedian": 10027,
+              "treatmentMinusBaseline": {
+                "estimate": 1246,
+                "confidenceInterval": [
+                  1246,
+                  1246
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:uncachedInputTokens"
+              }
+            },
+            "outputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1260
+              ],
+              "treatmentRaw": [
+                1187
+              ],
+              "baselineMedian": 1260,
+              "treatmentMedian": 1187,
+              "treatmentMinusBaseline": {
+                "estimate": -73,
+                "confidenceInterval": [
+                  -73,
+                  -73
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:outputTokens"
+              }
+            },
+            "reportedTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                87353
+              ],
+              "treatmentRaw": [
+                104654
+              ],
+              "baselineMedian": 87353,
+              "treatmentMedian": 104654,
+              "treatmentMinusBaseline": {
+                "estimate": 17301,
+                "confidenceInterval": [
+                  17301,
+                  17301
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:reportedTokens"
+              }
+            },
+            "changedFilePrecision": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:changedFilePrecision"
+              }
+            },
+            "changedFileRecall": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:route-only-minus-control:changedFileRecall"
+              }
+            }
+          },
+          "scope": {
+            "pairCount": 1,
+            "baseline": {
+              "changedFilePrecisionRaw": [
+                1
+              ],
+              "changedFileRecallRaw": [
+                1
+              ],
+              "changedFilePrecisionMedian": 1,
+              "changedFileRecallMedian": 1,
+              "forbiddenViolationRaw": [
+                false
+              ],
+              "forbiddenViolationCount": 0,
+              "forbiddenViolationRate": 0
+            },
+            "treatment": {
+              "changedFilePrecisionRaw": [
+                1
+              ],
+              "changedFileRecallRaw": [
+                1
+              ],
+              "changedFilePrecisionMedian": 1,
+              "changedFileRecallMedian": 1,
+              "forbiddenViolationRaw": [
+                false
+              ],
+              "forbiddenViolationCount": 0,
+              "forbiddenViolationRate": 0
+            }
+          }
+        },
+        "fullPalaceMinusRouteOnly": {
+          "baselineArm": "routeOnly",
+          "treatmentArm": "fullPalace",
+          "validPairs": 1,
+          "invalidPairIds": [],
+          "success": {
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineRate": 1,
+            "treatmentRate": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only"
+            },
+            "discordant": {
+              "baselineOnly": 0,
+              "treatmentOnly": 0,
+              "total": 0,
+              "baselineOnlyIds": [],
+              "treatmentOnlyIds": []
+            },
+            "mcnemarExactPValue": 1
+          },
+          "metrics": {
+            "durationMs": {
+              "pairCount": 1,
+              "baselineRaw": [
+                49971
+              ],
+              "treatmentRaw": [
+                61443
+              ],
+              "baselineMedian": 49971,
+              "treatmentMedian": 61443,
+              "treatmentMinusBaseline": {
+                "estimate": 11472,
+                "confidenceInterval": [
+                  11472,
+                  11472
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:durationMs"
+              }
+            },
+            "toolCalls": {
+              "pairCount": 1,
+              "baselineRaw": [
+                5
+              ],
+              "treatmentRaw": [
+                8
+              ],
+              "baselineMedian": 5,
+              "treatmentMedian": 8,
+              "treatmentMinusBaseline": {
+                "estimate": 3,
+                "confidenceInterval": [
+                  3,
+                  3
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:toolCalls"
+              }
+            },
+            "failedCalls": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 1,
+                "confidenceInterval": [
+                  1,
+                  1
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:failedCalls"
+              }
+            },
+            "routerErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 1,
+                "confidenceInterval": [
+                  1,
+                  1
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:routerErrors"
+              }
+            },
+            "applyPatchVerificationErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:applyPatchVerificationErrors"
+              }
+            },
+            "sandboxPreparationErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:sandboxPreparationErrors"
+              }
+            },
+            "inspectionCommands": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:inspectionCommands"
+              }
+            },
+            "commandOutputChars": {
+              "pairCount": 1,
+              "baselineRaw": [
+                3837
+              ],
+              "treatmentRaw": [
+                5611
+              ],
+              "baselineMedian": 3837,
+              "treatmentMedian": 5611,
+              "treatmentMinusBaseline": {
+                "estimate": 1774,
+                "confidenceInterval": [
+                  1774,
+                  1774
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:commandOutputChars"
+              }
+            },
+            "palaceContextOutputChars": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1870
+              ],
+              "treatmentRaw": [
+                1870
+              ],
+              "baselineMedian": 1870,
+              "treatmentMedian": 1870,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:palaceContextOutputChars"
+              }
+            },
+            "palaceContextOutputBytes": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1870
+              ],
+              "treatmentRaw": [
+                1870
+              ],
+              "baselineMedian": 1870,
+              "treatmentMedian": 1870,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:palaceContextOutputBytes"
+              }
+            },
+            "palaceContextEstimatedTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                468
+              ],
+              "treatmentRaw": [
+                468
+              ],
+              "baselineMedian": 468,
+              "treatmentMedian": 468,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:palaceContextEstimatedTokens"
+              }
+            },
+            "inputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                103467
+              ],
+              "treatmentRaw": [
+                121229
+              ],
+              "baselineMedian": 103467,
+              "treatmentMedian": 121229,
+              "treatmentMinusBaseline": {
+                "estimate": 17762,
+                "confidenceInterval": [
+                  17762,
+                  17762
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:inputTokens"
+              }
+            },
+            "cachedInputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                93440
+              ],
+              "treatmentRaw": [
+                94464
+              ],
+              "baselineMedian": 93440,
+              "treatmentMedian": 94464,
+              "treatmentMinusBaseline": {
+                "estimate": 1024,
+                "confidenceInterval": [
+                  1024,
+                  1024
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:cachedInputTokens"
+              }
+            },
+            "uncachedInputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                10027
+              ],
+              "treatmentRaw": [
+                26765
+              ],
+              "baselineMedian": 10027,
+              "treatmentMedian": 26765,
+              "treatmentMinusBaseline": {
+                "estimate": 16738,
+                "confidenceInterval": [
+                  16738,
+                  16738
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:uncachedInputTokens"
+              }
+            },
+            "outputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1187
+              ],
+              "treatmentRaw": [
+                1886
+              ],
+              "baselineMedian": 1187,
+              "treatmentMedian": 1886,
+              "treatmentMinusBaseline": {
+                "estimate": 699,
+                "confidenceInterval": [
+                  699,
+                  699
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:outputTokens"
+              }
+            },
+            "reportedTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                104654
+              ],
+              "treatmentRaw": [
+                123115
+              ],
+              "baselineMedian": 104654,
+              "treatmentMedian": 123115,
+              "treatmentMinusBaseline": {
+                "estimate": 18461,
+                "confidenceInterval": [
+                  18461,
+                  18461
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:reportedTokens"
+              }
+            },
+            "changedFilePrecision": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:changedFilePrecision"
+              }
+            },
+            "changedFileRecall": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:full-palace-minus-route-only:changedFileRecall"
+              }
+            }
+          },
+          "scope": {
+            "pairCount": 1,
+            "baseline": {
+              "changedFilePrecisionRaw": [
+                1
+              ],
+              "changedFileRecallRaw": [
+                1
+              ],
+              "changedFilePrecisionMedian": 1,
+              "changedFileRecallMedian": 1,
+              "forbiddenViolationRaw": [
+                false
+              ],
+              "forbiddenViolationCount": 0,
+              "forbiddenViolationRate": 0
+            },
+            "treatment": {
+              "changedFilePrecisionRaw": [
+                1
+              ],
+              "changedFileRecallRaw": [
+                1
+              ],
+              "changedFilePrecisionMedian": 1,
+              "changedFileRecallMedian": 1,
+              "forbiddenViolationRaw": [
+                false
+              ],
+              "forbiddenViolationCount": 0,
+              "forbiddenViolationRate": 0
+            }
+          }
+        },
+        "adaptiveMinusControl": {
+          "baselineArm": "control",
+          "treatmentArm": "adaptivePalace",
+          "validPairs": 1,
+          "invalidPairIds": [],
+          "success": {
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineRate": 1,
+            "treatmentRate": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control"
+            },
+            "discordant": {
+              "baselineOnly": 0,
+              "treatmentOnly": 0,
+              "total": 0,
+              "baselineOnlyIds": [],
+              "treatmentOnlyIds": []
+            },
+            "mcnemarExactPValue": 1,
+            "holmAdjustedPValue": 1
+          },
+          "metrics": {
+            "durationMs": {
+              "pairCount": 1,
+              "baselineRaw": [
+                51920
+              ],
+              "treatmentRaw": [
+                47122
+              ],
+              "baselineMedian": 51920,
+              "treatmentMedian": 47122,
+              "treatmentMinusBaseline": {
+                "estimate": -4798,
+                "confidenceInterval": [
+                  -4798,
+                  -4798
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:durationMs"
+              }
+            },
+            "toolCalls": {
+              "pairCount": 1,
+              "baselineRaw": [
+                4
+              ],
+              "treatmentRaw": [
+                6
+              ],
+              "baselineMedian": 4,
+              "treatmentMedian": 6,
+              "treatmentMinusBaseline": {
+                "estimate": 2,
+                "confidenceInterval": [
+                  2,
+                  2
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:toolCalls"
+              }
+            },
+            "failedCalls": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:failedCalls"
+              }
+            },
+            "routerErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:routerErrors"
+              }
+            },
+            "applyPatchVerificationErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:applyPatchVerificationErrors"
+              }
+            },
+            "sandboxPreparationErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:sandboxPreparationErrors"
+              }
+            },
+            "inspectionCommands": {
+              "pairCount": 1,
+              "baselineRaw": [
+                2
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 2,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": -1,
+                "confidenceInterval": [
+                  -1,
+                  -1
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:inspectionCommands"
+              }
+            },
+            "commandOutputChars": {
+              "pairCount": 1,
+              "baselineRaw": [
+                2580
+              ],
+              "treatmentRaw": [
+                1486
+              ],
+              "baselineMedian": 2580,
+              "treatmentMedian": 1486,
+              "treatmentMinusBaseline": {
+                "estimate": -1094,
+                "confidenceInterval": [
+                  -1094,
+                  -1094
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:commandOutputChars"
+              }
+            },
+            "palaceContextOutputChars": {
+              "pairCount": 0,
+              "baselineRaw": [],
+              "treatmentRaw": [],
+              "baselineMedian": null,
+              "treatmentMedian": null,
+              "treatmentMinusBaseline": {
+                "estimate": null,
+                "confidenceInterval": [
+                  null,
+                  null
+                ],
+                "iterations": 0
+              }
+            },
+            "palaceContextOutputBytes": {
+              "pairCount": 0,
+              "baselineRaw": [],
+              "treatmentRaw": [],
+              "baselineMedian": null,
+              "treatmentMedian": null,
+              "treatmentMinusBaseline": {
+                "estimate": null,
+                "confidenceInterval": [
+                  null,
+                  null
+                ],
+                "iterations": 0
+              }
+            },
+            "palaceContextEstimatedTokens": {
+              "pairCount": 0,
+              "baselineRaw": [],
+              "treatmentRaw": [],
+              "baselineMedian": null,
+              "treatmentMedian": null,
+              "treatmentMinusBaseline": {
+                "estimate": null,
+                "confidenceInterval": [
+                  null,
+                  null
+                ],
+                "iterations": 0
+              }
+            },
+            "inputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                86093
+              ],
+              "treatmentRaw": [
+                85367
+              ],
+              "baselineMedian": 86093,
+              "treatmentMedian": 85367,
+              "treatmentMinusBaseline": {
+                "estimate": -726,
+                "confidenceInterval": [
+                  -726,
+                  -726
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:inputTokens"
+              }
+            },
+            "cachedInputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                77312
+              ],
+              "treatmentRaw": [
+                73216
+              ],
+              "baselineMedian": 77312,
+              "treatmentMedian": 73216,
+              "treatmentMinusBaseline": {
+                "estimate": -4096,
+                "confidenceInterval": [
+                  -4096,
+                  -4096
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:cachedInputTokens"
+              }
+            },
+            "uncachedInputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                8781
+              ],
+              "treatmentRaw": [
+                12151
+              ],
+              "baselineMedian": 8781,
+              "treatmentMedian": 12151,
+              "treatmentMinusBaseline": {
+                "estimate": 3370,
+                "confidenceInterval": [
+                  3370,
+                  3370
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:uncachedInputTokens"
+              }
+            },
+            "outputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1260
+              ],
+              "treatmentRaw": [
+                1180
+              ],
+              "baselineMedian": 1260,
+              "treatmentMedian": 1180,
+              "treatmentMinusBaseline": {
+                "estimate": -80,
+                "confidenceInterval": [
+                  -80,
+                  -80
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:outputTokens"
+              }
+            },
+            "reportedTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                87353
+              ],
+              "treatmentRaw": [
+                86547
+              ],
+              "baselineMedian": 87353,
+              "treatmentMedian": 86547,
+              "treatmentMinusBaseline": {
+                "estimate": -806,
+                "confidenceInterval": [
+                  -806,
+                  -806
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:reportedTokens"
+              }
+            },
+            "changedFilePrecision": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:changedFilePrecision"
+              }
+            },
+            "changedFileRecall": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-control:changedFileRecall"
+              }
+            }
+          },
+          "scope": {
+            "pairCount": 1,
+            "baseline": {
+              "changedFilePrecisionRaw": [
+                1
+              ],
+              "changedFileRecallRaw": [
+                1
+              ],
+              "changedFilePrecisionMedian": 1,
+              "changedFileRecallMedian": 1,
+              "forbiddenViolationRaw": [
+                false
+              ],
+              "forbiddenViolationCount": 0,
+              "forbiddenViolationRate": 0
+            },
+            "treatment": {
+              "changedFilePrecisionRaw": [
+                1
+              ],
+              "changedFileRecallRaw": [
+                1
+              ],
+              "changedFilePrecisionMedian": 1,
+              "changedFileRecallMedian": 1,
+              "forbiddenViolationRaw": [
+                false
+              ],
+              "forbiddenViolationCount": 0,
+              "forbiddenViolationRate": 0
+            }
+          }
+        },
+        "adaptiveMinusFullPalace": {
+          "baselineArm": "fullPalace",
+          "treatmentArm": "adaptivePalace",
+          "validPairs": 1,
+          "invalidPairIds": [],
+          "success": {
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineRate": 1,
+            "treatmentRate": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace"
+            },
+            "discordant": {
+              "baselineOnly": 0,
+              "treatmentOnly": 0,
+              "total": 0,
+              "baselineOnlyIds": [],
+              "treatmentOnlyIds": []
+            },
+            "mcnemarExactPValue": 1
+          },
+          "metrics": {
+            "durationMs": {
+              "pairCount": 1,
+              "baselineRaw": [
+                61443
+              ],
+              "treatmentRaw": [
+                47122
+              ],
+              "baselineMedian": 61443,
+              "treatmentMedian": 47122,
+              "treatmentMinusBaseline": {
+                "estimate": -14321,
+                "confidenceInterval": [
+                  -14321,
+                  -14321
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:durationMs"
+              }
+            },
+            "toolCalls": {
+              "pairCount": 1,
+              "baselineRaw": [
+                8
+              ],
+              "treatmentRaw": [
+                6
+              ],
+              "baselineMedian": 8,
+              "treatmentMedian": 6,
+              "treatmentMinusBaseline": {
+                "estimate": -2,
+                "confidenceInterval": [
+                  -2,
+                  -2
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:toolCalls"
+              }
+            },
+            "failedCalls": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": -1,
+                "confidenceInterval": [
+                  -1,
+                  -1
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:failedCalls"
+              }
+            },
+            "routerErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": -1,
+                "confidenceInterval": [
+                  -1,
+                  -1
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:routerErrors"
+              }
+            },
+            "applyPatchVerificationErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:applyPatchVerificationErrors"
+              }
+            },
+            "sandboxPreparationErrors": {
+              "pairCount": 1,
+              "baselineRaw": [
+                0
+              ],
+              "treatmentRaw": [
+                0
+              ],
+              "baselineMedian": 0,
+              "treatmentMedian": 0,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:sandboxPreparationErrors"
+              }
+            },
+            "inspectionCommands": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:inspectionCommands"
+              }
+            },
+            "commandOutputChars": {
+              "pairCount": 1,
+              "baselineRaw": [
+                5611
+              ],
+              "treatmentRaw": [
+                1486
+              ],
+              "baselineMedian": 5611,
+              "treatmentMedian": 1486,
+              "treatmentMinusBaseline": {
+                "estimate": -4125,
+                "confidenceInterval": [
+                  -4125,
+                  -4125
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:commandOutputChars"
+              }
+            },
+            "palaceContextOutputChars": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1870
+              ],
+              "treatmentRaw": [
+                259
+              ],
+              "baselineMedian": 1870,
+              "treatmentMedian": 259,
+              "treatmentMinusBaseline": {
+                "estimate": -1611,
+                "confidenceInterval": [
+                  -1611,
+                  -1611
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:palaceContextOutputChars"
+              }
+            },
+            "palaceContextOutputBytes": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1870
+              ],
+              "treatmentRaw": [
+                259
+              ],
+              "baselineMedian": 1870,
+              "treatmentMedian": 259,
+              "treatmentMinusBaseline": {
+                "estimate": -1611,
+                "confidenceInterval": [
+                  -1611,
+                  -1611
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:palaceContextOutputBytes"
+              }
+            },
+            "palaceContextEstimatedTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                468
+              ],
+              "treatmentRaw": [
+                65
+              ],
+              "baselineMedian": 468,
+              "treatmentMedian": 65,
+              "treatmentMinusBaseline": {
+                "estimate": -403,
+                "confidenceInterval": [
+                  -403,
+                  -403
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:palaceContextEstimatedTokens"
+              }
+            },
+            "inputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                121229
+              ],
+              "treatmentRaw": [
+                85367
+              ],
+              "baselineMedian": 121229,
+              "treatmentMedian": 85367,
+              "treatmentMinusBaseline": {
+                "estimate": -35862,
+                "confidenceInterval": [
+                  -35862,
+                  -35862
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:inputTokens"
+              }
+            },
+            "cachedInputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                94464
+              ],
+              "treatmentRaw": [
+                73216
+              ],
+              "baselineMedian": 94464,
+              "treatmentMedian": 73216,
+              "treatmentMinusBaseline": {
+                "estimate": -21248,
+                "confidenceInterval": [
+                  -21248,
+                  -21248
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:cachedInputTokens"
+              }
+            },
+            "uncachedInputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                26765
+              ],
+              "treatmentRaw": [
+                12151
+              ],
+              "baselineMedian": 26765,
+              "treatmentMedian": 12151,
+              "treatmentMinusBaseline": {
+                "estimate": -14614,
+                "confidenceInterval": [
+                  -14614,
+                  -14614
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:uncachedInputTokens"
+              }
+            },
+            "outputTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1886
+              ],
+              "treatmentRaw": [
+                1180
+              ],
+              "baselineMedian": 1886,
+              "treatmentMedian": 1180,
+              "treatmentMinusBaseline": {
+                "estimate": -706,
+                "confidenceInterval": [
+                  -706,
+                  -706
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:outputTokens"
+              }
+            },
+            "reportedTokens": {
+              "pairCount": 1,
+              "baselineRaw": [
+                123115
+              ],
+              "treatmentRaw": [
+                86547
+              ],
+              "baselineMedian": 123115,
+              "treatmentMedian": 86547,
+              "treatmentMinusBaseline": {
+                "estimate": -36568,
+                "confidenceInterval": [
+                  -36568,
+                  -36568
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:reportedTokens"
+              }
+            },
+            "changedFilePrecision": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:changedFilePrecision"
+              }
+            },
+            "changedFileRecall": {
+              "pairCount": 1,
+              "baselineRaw": [
+                1
+              ],
+              "treatmentRaw": [
+                1
+              ],
+              "baselineMedian": 1,
+              "treatmentMedian": 1,
+              "treatmentMinusBaseline": {
+                "estimate": 0,
+                "confidenceInterval": [
+                  0,
+                  0
+                ],
+                "iterations": 10000,
+                "confidence": 0.95,
+                "seed": "pilot-v1:small-local-bug:adaptive-minus-full-palace:changedFileRecall"
+              }
+            }
+          },
+          "scope": {
+            "pairCount": 1,
+            "baseline": {
+              "changedFilePrecisionRaw": [
+                1
+              ],
+              "changedFileRecallRaw": [
+                1
+              ],
+              "changedFilePrecisionMedian": 1,
+              "changedFileRecallMedian": 1,
+              "forbiddenViolationRaw": [
+                false
+              ],
+              "forbiddenViolationCount": 0,
+              "forbiddenViolationRate": 0
+            },
+            "treatment": {
+              "changedFilePrecisionRaw": [
+                1
+              ],
+              "changedFileRecallRaw": [
+                1
+              ],
+              "changedFilePrecisionMedian": 1,
+              "changedFileRecallMedian": 1,
+              "forbiddenViolationRaw": [
+                false
+              ],
+              "forbiddenViolationCount": 0,
+              "forbiddenViolationRate": 0
+            }
+          }
+        }
+      },
+      "primaryComparison": {
+        "baselineArm": "control",
+        "treatmentArm": "adaptivePalace",
+        "validPairs": 1,
+        "invalidPairIds": [],
+        "success": {
+          "baselineRaw": [
+            1
+          ],
+          "treatmentRaw": [
+            1
+          ],
+          "baselineRate": 1,
+          "treatmentRate": 1,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:small-local-bug:adaptive-minus-control"
+          },
+          "discordant": {
+            "baselineOnly": 0,
+            "treatmentOnly": 0,
+            "total": 0,
+            "baselineOnlyIds": [],
+            "treatmentOnlyIds": []
+          },
+          "mcnemarExactPValue": 1,
+          "holmAdjustedPValue": 1
+        },
+        "metrics": {
+          "durationMs": {
+            "pairCount": 1,
+            "baselineRaw": [
+              51920
+            ],
+            "treatmentRaw": [
+              47122
+            ],
+            "baselineMedian": 51920,
+            "treatmentMedian": 47122,
+            "treatmentMinusBaseline": {
+              "estimate": -4798,
+              "confidenceInterval": [
+                -4798,
+                -4798
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:durationMs"
+            }
+          },
+          "toolCalls": {
+            "pairCount": 1,
+            "baselineRaw": [
+              4
+            ],
+            "treatmentRaw": [
+              6
+            ],
+            "baselineMedian": 4,
+            "treatmentMedian": 6,
+            "treatmentMinusBaseline": {
+              "estimate": 2,
+              "confidenceInterval": [
+                2,
+                2
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:toolCalls"
+            }
+          },
+          "failedCalls": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:failedCalls"
+            }
+          },
+          "routerErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:routerErrors"
+            }
+          },
+          "applyPatchVerificationErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:applyPatchVerificationErrors"
+            }
+          },
+          "sandboxPreparationErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:sandboxPreparationErrors"
+            }
+          },
+          "inspectionCommands": {
+            "pairCount": 1,
+            "baselineRaw": [
+              2
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 2,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": -1,
+              "confidenceInterval": [
+                -1,
+                -1
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:inspectionCommands"
+            }
+          },
+          "commandOutputChars": {
+            "pairCount": 1,
+            "baselineRaw": [
+              2580
+            ],
+            "treatmentRaw": [
+              1486
+            ],
+            "baselineMedian": 2580,
+            "treatmentMedian": 1486,
+            "treatmentMinusBaseline": {
+              "estimate": -1094,
+              "confidenceInterval": [
+                -1094,
+                -1094
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:commandOutputChars"
+            }
+          },
+          "palaceContextOutputChars": {
+            "pairCount": 0,
+            "baselineRaw": [],
+            "treatmentRaw": [],
+            "baselineMedian": null,
+            "treatmentMedian": null,
+            "treatmentMinusBaseline": {
+              "estimate": null,
+              "confidenceInterval": [
+                null,
+                null
+              ],
+              "iterations": 0
+            }
+          },
+          "palaceContextOutputBytes": {
+            "pairCount": 0,
+            "baselineRaw": [],
+            "treatmentRaw": [],
+            "baselineMedian": null,
+            "treatmentMedian": null,
+            "treatmentMinusBaseline": {
+              "estimate": null,
+              "confidenceInterval": [
+                null,
+                null
+              ],
+              "iterations": 0
+            }
+          },
+          "palaceContextEstimatedTokens": {
+            "pairCount": 0,
+            "baselineRaw": [],
+            "treatmentRaw": [],
+            "baselineMedian": null,
+            "treatmentMedian": null,
+            "treatmentMinusBaseline": {
+              "estimate": null,
+              "confidenceInterval": [
+                null,
+                null
+              ],
+              "iterations": 0
+            }
+          },
+          "inputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              86093
+            ],
+            "treatmentRaw": [
+              85367
+            ],
+            "baselineMedian": 86093,
+            "treatmentMedian": 85367,
+            "treatmentMinusBaseline": {
+              "estimate": -726,
+              "confidenceInterval": [
+                -726,
+                -726
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:inputTokens"
+            }
+          },
+          "cachedInputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              77312
+            ],
+            "treatmentRaw": [
+              73216
+            ],
+            "baselineMedian": 77312,
+            "treatmentMedian": 73216,
+            "treatmentMinusBaseline": {
+              "estimate": -4096,
+              "confidenceInterval": [
+                -4096,
+                -4096
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:cachedInputTokens"
+            }
+          },
+          "uncachedInputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              8781
+            ],
+            "treatmentRaw": [
+              12151
+            ],
+            "baselineMedian": 8781,
+            "treatmentMedian": 12151,
+            "treatmentMinusBaseline": {
+              "estimate": 3370,
+              "confidenceInterval": [
+                3370,
+                3370
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:uncachedInputTokens"
+            }
+          },
+          "outputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1260
+            ],
+            "treatmentRaw": [
+              1180
+            ],
+            "baselineMedian": 1260,
+            "treatmentMedian": 1180,
+            "treatmentMinusBaseline": {
+              "estimate": -80,
+              "confidenceInterval": [
+                -80,
+                -80
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:outputTokens"
+            }
+          },
+          "reportedTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              87353
+            ],
+            "treatmentRaw": [
+              86547
+            ],
+            "baselineMedian": 87353,
+            "treatmentMedian": 86547,
+            "treatmentMinusBaseline": {
+              "estimate": -806,
+              "confidenceInterval": [
+                -806,
+                -806
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:reportedTokens"
+            }
+          },
+          "changedFilePrecision": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:changedFilePrecision"
+            }
+          },
+          "changedFileRecall": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:small-local-bug:adaptive-minus-control:changedFileRecall"
+            }
+          }
+        },
+        "scope": {
+          "pairCount": 1,
+          "baseline": {
+            "changedFilePrecisionRaw": [
+              1
+            ],
+            "changedFileRecallRaw": [
+              1
+            ],
+            "changedFilePrecisionMedian": 1,
+            "changedFileRecallMedian": 1,
+            "forbiddenViolationRaw": [
+              false
+            ],
+            "forbiddenViolationCount": 0,
+            "forbiddenViolationRate": 0
+          },
+          "treatment": {
+            "changedFilePrecisionRaw": [
+              1
+            ],
+            "changedFileRecallRaw": [
+              1
+            ],
+            "changedFilePrecisionMedian": 1,
+            "changedFileRecallMedian": 1,
+            "forbiddenViolationRaw": [
+              false
+            ],
+            "forbiddenViolationCount": 0,
+            "forbiddenViolationRate": 0
+          }
+        }
+      },
+      "mechanisms": {
+        "routeOnlyPairs": 1,
+        "routeRecallAtK": {
+          "routeOnly": [
+            1
+          ],
+          "fullPalace": [
+            1
+          ],
+          "adaptivePalace": [
+            1
+          ]
+        },
+        "routePrecisionAtK": {
+          "routeOnly": [
+            0.6666666666666666
+          ],
+          "fullPalace": [
+            0.6666666666666666
+          ],
+          "adaptivePalace": [
+            0.6666666666666666
+          ]
+        },
+        "pitfallViolationRate": {
+          "routeOnlyRaw": [],
+          "fullPalaceRaw": [],
+          "adaptivePalaceRaw": [],
+          "routeOnlyRate": null,
+          "fullPalaceRate": null,
+          "adaptivePalaceRate": null
+        },
+        "wrongMemoryAdoptionRate": {
+          "routeOnlyRaw": [],
+          "fullPalaceRaw": [],
+          "adaptivePalaceRaw": [],
+          "routeOnlyRate": null,
+          "fullPalaceRate": null,
+          "adaptivePalaceRate": null
+        }
+      }
+    }
+  },
+  "overall": {
+    "attemptedPairs": 1,
+    "validPairs": 1,
+    "invalidPairIds": [],
+    "comparisons": {
+      "routeOnlyMinusControl": {
+        "baselineArm": "control",
+        "treatmentArm": "routeOnly",
+        "validPairs": 1,
+        "invalidPairIds": [],
+        "success": {
+          "baselineRaw": [
+            1
+          ],
+          "treatmentRaw": [
+            1
+          ],
+          "baselineRate": 1,
+          "treatmentRate": 1,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:route-only-minus-control"
+          },
+          "discordant": {
+            "baselineOnly": 0,
+            "treatmentOnly": 0,
+            "total": 0,
+            "baselineOnlyIds": [],
+            "treatmentOnlyIds": []
+          },
+          "mcnemarExactPValue": 1
+        },
+        "metrics": {
+          "durationMs": {
+            "pairCount": 1,
+            "baselineRaw": [
+              51920
+            ],
+            "treatmentRaw": [
+              49971
+            ],
+            "baselineMedian": 51920,
+            "treatmentMedian": 49971,
+            "treatmentMinusBaseline": {
+              "estimate": -1949,
+              "confidenceInterval": [
+                -1949,
+                -1949
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:durationMs"
+            }
+          },
+          "toolCalls": {
+            "pairCount": 1,
+            "baselineRaw": [
+              4
+            ],
+            "treatmentRaw": [
+              5
+            ],
+            "baselineMedian": 4,
+            "treatmentMedian": 5,
+            "treatmentMinusBaseline": {
+              "estimate": 1,
+              "confidenceInterval": [
+                1,
+                1
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:toolCalls"
+            }
+          },
+          "failedCalls": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:failedCalls"
+            }
+          },
+          "routerErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:routerErrors"
+            }
+          },
+          "applyPatchVerificationErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:applyPatchVerificationErrors"
+            }
+          },
+          "sandboxPreparationErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:sandboxPreparationErrors"
+            }
+          },
+          "inspectionCommands": {
+            "pairCount": 1,
+            "baselineRaw": [
+              2
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 2,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": -1,
+              "confidenceInterval": [
+                -1,
+                -1
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:inspectionCommands"
+            }
+          },
+          "commandOutputChars": {
+            "pairCount": 1,
+            "baselineRaw": [
+              2580
+            ],
+            "treatmentRaw": [
+              3837
+            ],
+            "baselineMedian": 2580,
+            "treatmentMedian": 3837,
+            "treatmentMinusBaseline": {
+              "estimate": 1257,
+              "confidenceInterval": [
+                1257,
+                1257
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:commandOutputChars"
+            }
+          },
+          "palaceContextOutputChars": {
+            "pairCount": 0,
+            "baselineRaw": [],
+            "treatmentRaw": [],
+            "baselineMedian": null,
+            "treatmentMedian": null,
+            "treatmentMinusBaseline": {
+              "estimate": null,
+              "confidenceInterval": [
+                null,
+                null
+              ],
+              "iterations": 0
+            }
+          },
+          "palaceContextOutputBytes": {
+            "pairCount": 0,
+            "baselineRaw": [],
+            "treatmentRaw": [],
+            "baselineMedian": null,
+            "treatmentMedian": null,
+            "treatmentMinusBaseline": {
+              "estimate": null,
+              "confidenceInterval": [
+                null,
+                null
+              ],
+              "iterations": 0
+            }
+          },
+          "palaceContextEstimatedTokens": {
+            "pairCount": 0,
+            "baselineRaw": [],
+            "treatmentRaw": [],
+            "baselineMedian": null,
+            "treatmentMedian": null,
+            "treatmentMinusBaseline": {
+              "estimate": null,
+              "confidenceInterval": [
+                null,
+                null
+              ],
+              "iterations": 0
+            }
+          },
+          "inputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              86093
+            ],
+            "treatmentRaw": [
+              103467
+            ],
+            "baselineMedian": 86093,
+            "treatmentMedian": 103467,
+            "treatmentMinusBaseline": {
+              "estimate": 17374,
+              "confidenceInterval": [
+                17374,
+                17374
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:inputTokens"
+            }
+          },
+          "cachedInputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              77312
+            ],
+            "treatmentRaw": [
+              93440
+            ],
+            "baselineMedian": 77312,
+            "treatmentMedian": 93440,
+            "treatmentMinusBaseline": {
+              "estimate": 16128,
+              "confidenceInterval": [
+                16128,
+                16128
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:cachedInputTokens"
+            }
+          },
+          "uncachedInputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              8781
+            ],
+            "treatmentRaw": [
+              10027
+            ],
+            "baselineMedian": 8781,
+            "treatmentMedian": 10027,
+            "treatmentMinusBaseline": {
+              "estimate": 1246,
+              "confidenceInterval": [
+                1246,
+                1246
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:uncachedInputTokens"
+            }
+          },
+          "outputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1260
+            ],
+            "treatmentRaw": [
+              1187
+            ],
+            "baselineMedian": 1260,
+            "treatmentMedian": 1187,
+            "treatmentMinusBaseline": {
+              "estimate": -73,
+              "confidenceInterval": [
+                -73,
+                -73
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:outputTokens"
+            }
+          },
+          "reportedTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              87353
+            ],
+            "treatmentRaw": [
+              104654
+            ],
+            "baselineMedian": 87353,
+            "treatmentMedian": 104654,
+            "treatmentMinusBaseline": {
+              "estimate": 17301,
+              "confidenceInterval": [
+                17301,
+                17301
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:reportedTokens"
+            }
+          },
+          "changedFilePrecision": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:changedFilePrecision"
+            }
+          },
+          "changedFileRecall": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:route-only-minus-control:changedFileRecall"
+            }
+          }
+        },
+        "scope": {
+          "pairCount": 1,
+          "baseline": {
+            "changedFilePrecisionRaw": [
+              1
+            ],
+            "changedFileRecallRaw": [
+              1
+            ],
+            "changedFilePrecisionMedian": 1,
+            "changedFileRecallMedian": 1,
+            "forbiddenViolationRaw": [
+              false
+            ],
+            "forbiddenViolationCount": 0,
+            "forbiddenViolationRate": 0
+          },
+          "treatment": {
+            "changedFilePrecisionRaw": [
+              1
+            ],
+            "changedFileRecallRaw": [
+              1
+            ],
+            "changedFilePrecisionMedian": 1,
+            "changedFileRecallMedian": 1,
+            "forbiddenViolationRaw": [
+              false
+            ],
+            "forbiddenViolationCount": 0,
+            "forbiddenViolationRate": 0
+          }
+        }
+      },
+      "fullPalaceMinusRouteOnly": {
+        "baselineArm": "routeOnly",
+        "treatmentArm": "fullPalace",
+        "validPairs": 1,
+        "invalidPairIds": [],
+        "success": {
+          "baselineRaw": [
+            1
+          ],
+          "treatmentRaw": [
+            1
+          ],
+          "baselineRate": 1,
+          "treatmentRate": 1,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:full-palace-minus-route-only"
+          },
+          "discordant": {
+            "baselineOnly": 0,
+            "treatmentOnly": 0,
+            "total": 0,
+            "baselineOnlyIds": [],
+            "treatmentOnlyIds": []
+          },
+          "mcnemarExactPValue": 1
+        },
+        "metrics": {
+          "durationMs": {
+            "pairCount": 1,
+            "baselineRaw": [
+              49971
+            ],
+            "treatmentRaw": [
+              61443
+            ],
+            "baselineMedian": 49971,
+            "treatmentMedian": 61443,
+            "treatmentMinusBaseline": {
+              "estimate": 11472,
+              "confidenceInterval": [
+                11472,
+                11472
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:durationMs"
+            }
+          },
+          "toolCalls": {
+            "pairCount": 1,
+            "baselineRaw": [
+              5
+            ],
+            "treatmentRaw": [
+              8
+            ],
+            "baselineMedian": 5,
+            "treatmentMedian": 8,
+            "treatmentMinusBaseline": {
+              "estimate": 3,
+              "confidenceInterval": [
+                3,
+                3
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:toolCalls"
+            }
+          },
+          "failedCalls": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 1,
+              "confidenceInterval": [
+                1,
+                1
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:failedCalls"
+            }
+          },
+          "routerErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 1,
+              "confidenceInterval": [
+                1,
+                1
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:routerErrors"
+            }
+          },
+          "applyPatchVerificationErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:applyPatchVerificationErrors"
+            }
+          },
+          "sandboxPreparationErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:sandboxPreparationErrors"
+            }
+          },
+          "inspectionCommands": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:inspectionCommands"
+            }
+          },
+          "commandOutputChars": {
+            "pairCount": 1,
+            "baselineRaw": [
+              3837
+            ],
+            "treatmentRaw": [
+              5611
+            ],
+            "baselineMedian": 3837,
+            "treatmentMedian": 5611,
+            "treatmentMinusBaseline": {
+              "estimate": 1774,
+              "confidenceInterval": [
+                1774,
+                1774
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:commandOutputChars"
+            }
+          },
+          "palaceContextOutputChars": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1870
+            ],
+            "treatmentRaw": [
+              1870
+            ],
+            "baselineMedian": 1870,
+            "treatmentMedian": 1870,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:palaceContextOutputChars"
+            }
+          },
+          "palaceContextOutputBytes": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1870
+            ],
+            "treatmentRaw": [
+              1870
+            ],
+            "baselineMedian": 1870,
+            "treatmentMedian": 1870,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:palaceContextOutputBytes"
+            }
+          },
+          "palaceContextEstimatedTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              468
+            ],
+            "treatmentRaw": [
+              468
+            ],
+            "baselineMedian": 468,
+            "treatmentMedian": 468,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:palaceContextEstimatedTokens"
+            }
+          },
+          "inputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              103467
+            ],
+            "treatmentRaw": [
+              121229
+            ],
+            "baselineMedian": 103467,
+            "treatmentMedian": 121229,
+            "treatmentMinusBaseline": {
+              "estimate": 17762,
+              "confidenceInterval": [
+                17762,
+                17762
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:inputTokens"
+            }
+          },
+          "cachedInputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              93440
+            ],
+            "treatmentRaw": [
+              94464
+            ],
+            "baselineMedian": 93440,
+            "treatmentMedian": 94464,
+            "treatmentMinusBaseline": {
+              "estimate": 1024,
+              "confidenceInterval": [
+                1024,
+                1024
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:cachedInputTokens"
+            }
+          },
+          "uncachedInputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              10027
+            ],
+            "treatmentRaw": [
+              26765
+            ],
+            "baselineMedian": 10027,
+            "treatmentMedian": 26765,
+            "treatmentMinusBaseline": {
+              "estimate": 16738,
+              "confidenceInterval": [
+                16738,
+                16738
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:uncachedInputTokens"
+            }
+          },
+          "outputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1187
+            ],
+            "treatmentRaw": [
+              1886
+            ],
+            "baselineMedian": 1187,
+            "treatmentMedian": 1886,
+            "treatmentMinusBaseline": {
+              "estimate": 699,
+              "confidenceInterval": [
+                699,
+                699
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:outputTokens"
+            }
+          },
+          "reportedTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              104654
+            ],
+            "treatmentRaw": [
+              123115
+            ],
+            "baselineMedian": 104654,
+            "treatmentMedian": 123115,
+            "treatmentMinusBaseline": {
+              "estimate": 18461,
+              "confidenceInterval": [
+                18461,
+                18461
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:reportedTokens"
+            }
+          },
+          "changedFilePrecision": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:changedFilePrecision"
+            }
+          },
+          "changedFileRecall": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:full-palace-minus-route-only:changedFileRecall"
+            }
+          }
+        },
+        "scope": {
+          "pairCount": 1,
+          "baseline": {
+            "changedFilePrecisionRaw": [
+              1
+            ],
+            "changedFileRecallRaw": [
+              1
+            ],
+            "changedFilePrecisionMedian": 1,
+            "changedFileRecallMedian": 1,
+            "forbiddenViolationRaw": [
+              false
+            ],
+            "forbiddenViolationCount": 0,
+            "forbiddenViolationRate": 0
+          },
+          "treatment": {
+            "changedFilePrecisionRaw": [
+              1
+            ],
+            "changedFileRecallRaw": [
+              1
+            ],
+            "changedFilePrecisionMedian": 1,
+            "changedFileRecallMedian": 1,
+            "forbiddenViolationRaw": [
+              false
+            ],
+            "forbiddenViolationCount": 0,
+            "forbiddenViolationRate": 0
+          }
+        }
+      },
+      "adaptiveMinusControl": {
+        "baselineArm": "control",
+        "treatmentArm": "adaptivePalace",
+        "validPairs": 1,
+        "invalidPairIds": [],
+        "success": {
+          "baselineRaw": [
+            1
+          ],
+          "treatmentRaw": [
+            1
+          ],
+          "baselineRate": 1,
+          "treatmentRate": 1,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control"
+          },
+          "discordant": {
+            "baselineOnly": 0,
+            "treatmentOnly": 0,
+            "total": 0,
+            "baselineOnlyIds": [],
+            "treatmentOnlyIds": []
+          },
+          "mcnemarExactPValue": 1
+        },
+        "metrics": {
+          "durationMs": {
+            "pairCount": 1,
+            "baselineRaw": [
+              51920
+            ],
+            "treatmentRaw": [
+              47122
+            ],
+            "baselineMedian": 51920,
+            "treatmentMedian": 47122,
+            "treatmentMinusBaseline": {
+              "estimate": -4798,
+              "confidenceInterval": [
+                -4798,
+                -4798
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:durationMs"
+            }
+          },
+          "toolCalls": {
+            "pairCount": 1,
+            "baselineRaw": [
+              4
+            ],
+            "treatmentRaw": [
+              6
+            ],
+            "baselineMedian": 4,
+            "treatmentMedian": 6,
+            "treatmentMinusBaseline": {
+              "estimate": 2,
+              "confidenceInterval": [
+                2,
+                2
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:toolCalls"
+            }
+          },
+          "failedCalls": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:failedCalls"
+            }
+          },
+          "routerErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:routerErrors"
+            }
+          },
+          "applyPatchVerificationErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:applyPatchVerificationErrors"
+            }
+          },
+          "sandboxPreparationErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:sandboxPreparationErrors"
+            }
+          },
+          "inspectionCommands": {
+            "pairCount": 1,
+            "baselineRaw": [
+              2
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 2,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": -1,
+              "confidenceInterval": [
+                -1,
+                -1
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:inspectionCommands"
+            }
+          },
+          "commandOutputChars": {
+            "pairCount": 1,
+            "baselineRaw": [
+              2580
+            ],
+            "treatmentRaw": [
+              1486
+            ],
+            "baselineMedian": 2580,
+            "treatmentMedian": 1486,
+            "treatmentMinusBaseline": {
+              "estimate": -1094,
+              "confidenceInterval": [
+                -1094,
+                -1094
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:commandOutputChars"
+            }
+          },
+          "palaceContextOutputChars": {
+            "pairCount": 0,
+            "baselineRaw": [],
+            "treatmentRaw": [],
+            "baselineMedian": null,
+            "treatmentMedian": null,
+            "treatmentMinusBaseline": {
+              "estimate": null,
+              "confidenceInterval": [
+                null,
+                null
+              ],
+              "iterations": 0
+            }
+          },
+          "palaceContextOutputBytes": {
+            "pairCount": 0,
+            "baselineRaw": [],
+            "treatmentRaw": [],
+            "baselineMedian": null,
+            "treatmentMedian": null,
+            "treatmentMinusBaseline": {
+              "estimate": null,
+              "confidenceInterval": [
+                null,
+                null
+              ],
+              "iterations": 0
+            }
+          },
+          "palaceContextEstimatedTokens": {
+            "pairCount": 0,
+            "baselineRaw": [],
+            "treatmentRaw": [],
+            "baselineMedian": null,
+            "treatmentMedian": null,
+            "treatmentMinusBaseline": {
+              "estimate": null,
+              "confidenceInterval": [
+                null,
+                null
+              ],
+              "iterations": 0
+            }
+          },
+          "inputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              86093
+            ],
+            "treatmentRaw": [
+              85367
+            ],
+            "baselineMedian": 86093,
+            "treatmentMedian": 85367,
+            "treatmentMinusBaseline": {
+              "estimate": -726,
+              "confidenceInterval": [
+                -726,
+                -726
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:inputTokens"
+            }
+          },
+          "cachedInputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              77312
+            ],
+            "treatmentRaw": [
+              73216
+            ],
+            "baselineMedian": 77312,
+            "treatmentMedian": 73216,
+            "treatmentMinusBaseline": {
+              "estimate": -4096,
+              "confidenceInterval": [
+                -4096,
+                -4096
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:cachedInputTokens"
+            }
+          },
+          "uncachedInputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              8781
+            ],
+            "treatmentRaw": [
+              12151
+            ],
+            "baselineMedian": 8781,
+            "treatmentMedian": 12151,
+            "treatmentMinusBaseline": {
+              "estimate": 3370,
+              "confidenceInterval": [
+                3370,
+                3370
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:uncachedInputTokens"
+            }
+          },
+          "outputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1260
+            ],
+            "treatmentRaw": [
+              1180
+            ],
+            "baselineMedian": 1260,
+            "treatmentMedian": 1180,
+            "treatmentMinusBaseline": {
+              "estimate": -80,
+              "confidenceInterval": [
+                -80,
+                -80
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:outputTokens"
+            }
+          },
+          "reportedTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              87353
+            ],
+            "treatmentRaw": [
+              86547
+            ],
+            "baselineMedian": 87353,
+            "treatmentMedian": 86547,
+            "treatmentMinusBaseline": {
+              "estimate": -806,
+              "confidenceInterval": [
+                -806,
+                -806
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:reportedTokens"
+            }
+          },
+          "changedFilePrecision": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:changedFilePrecision"
+            }
+          },
+          "changedFileRecall": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-control:changedFileRecall"
+            }
+          }
+        },
+        "scope": {
+          "pairCount": 1,
+          "baseline": {
+            "changedFilePrecisionRaw": [
+              1
+            ],
+            "changedFileRecallRaw": [
+              1
+            ],
+            "changedFilePrecisionMedian": 1,
+            "changedFileRecallMedian": 1,
+            "forbiddenViolationRaw": [
+              false
+            ],
+            "forbiddenViolationCount": 0,
+            "forbiddenViolationRate": 0
+          },
+          "treatment": {
+            "changedFilePrecisionRaw": [
+              1
+            ],
+            "changedFileRecallRaw": [
+              1
+            ],
+            "changedFilePrecisionMedian": 1,
+            "changedFileRecallMedian": 1,
+            "forbiddenViolationRaw": [
+              false
+            ],
+            "forbiddenViolationCount": 0,
+            "forbiddenViolationRate": 0
+          }
+        }
+      },
+      "adaptiveMinusFullPalace": {
+        "baselineArm": "fullPalace",
+        "treatmentArm": "adaptivePalace",
+        "validPairs": 1,
+        "invalidPairIds": [],
+        "success": {
+          "baselineRaw": [
+            1
+          ],
+          "treatmentRaw": [
+            1
+          ],
+          "baselineRate": 1,
+          "treatmentRate": 1,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-full-palace"
+          },
+          "discordant": {
+            "baselineOnly": 0,
+            "treatmentOnly": 0,
+            "total": 0,
+            "baselineOnlyIds": [],
+            "treatmentOnlyIds": []
+          },
+          "mcnemarExactPValue": 1
+        },
+        "metrics": {
+          "durationMs": {
+            "pairCount": 1,
+            "baselineRaw": [
+              61443
+            ],
+            "treatmentRaw": [
+              47122
+            ],
+            "baselineMedian": 61443,
+            "treatmentMedian": 47122,
+            "treatmentMinusBaseline": {
+              "estimate": -14321,
+              "confidenceInterval": [
+                -14321,
+                -14321
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:durationMs"
+            }
+          },
+          "toolCalls": {
+            "pairCount": 1,
+            "baselineRaw": [
+              8
+            ],
+            "treatmentRaw": [
+              6
+            ],
+            "baselineMedian": 8,
+            "treatmentMedian": 6,
+            "treatmentMinusBaseline": {
+              "estimate": -2,
+              "confidenceInterval": [
+                -2,
+                -2
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:toolCalls"
+            }
+          },
+          "failedCalls": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": -1,
+              "confidenceInterval": [
+                -1,
+                -1
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:failedCalls"
+            }
+          },
+          "routerErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": -1,
+              "confidenceInterval": [
+                -1,
+                -1
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:routerErrors"
+            }
+          },
+          "applyPatchVerificationErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:applyPatchVerificationErrors"
+            }
+          },
+          "sandboxPreparationErrors": {
+            "pairCount": 1,
+            "baselineRaw": [
+              0
+            ],
+            "treatmentRaw": [
+              0
+            ],
+            "baselineMedian": 0,
+            "treatmentMedian": 0,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:sandboxPreparationErrors"
+            }
+          },
+          "inspectionCommands": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:inspectionCommands"
+            }
+          },
+          "commandOutputChars": {
+            "pairCount": 1,
+            "baselineRaw": [
+              5611
+            ],
+            "treatmentRaw": [
+              1486
+            ],
+            "baselineMedian": 5611,
+            "treatmentMedian": 1486,
+            "treatmentMinusBaseline": {
+              "estimate": -4125,
+              "confidenceInterval": [
+                -4125,
+                -4125
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:commandOutputChars"
+            }
+          },
+          "palaceContextOutputChars": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1870
+            ],
+            "treatmentRaw": [
+              259
+            ],
+            "baselineMedian": 1870,
+            "treatmentMedian": 259,
+            "treatmentMinusBaseline": {
+              "estimate": -1611,
+              "confidenceInterval": [
+                -1611,
+                -1611
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:palaceContextOutputChars"
+            }
+          },
+          "palaceContextOutputBytes": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1870
+            ],
+            "treatmentRaw": [
+              259
+            ],
+            "baselineMedian": 1870,
+            "treatmentMedian": 259,
+            "treatmentMinusBaseline": {
+              "estimate": -1611,
+              "confidenceInterval": [
+                -1611,
+                -1611
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:palaceContextOutputBytes"
+            }
+          },
+          "palaceContextEstimatedTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              468
+            ],
+            "treatmentRaw": [
+              65
+            ],
+            "baselineMedian": 468,
+            "treatmentMedian": 65,
+            "treatmentMinusBaseline": {
+              "estimate": -403,
+              "confidenceInterval": [
+                -403,
+                -403
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:palaceContextEstimatedTokens"
+            }
+          },
+          "inputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              121229
+            ],
+            "treatmentRaw": [
+              85367
+            ],
+            "baselineMedian": 121229,
+            "treatmentMedian": 85367,
+            "treatmentMinusBaseline": {
+              "estimate": -35862,
+              "confidenceInterval": [
+                -35862,
+                -35862
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:inputTokens"
+            }
+          },
+          "cachedInputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              94464
+            ],
+            "treatmentRaw": [
+              73216
+            ],
+            "baselineMedian": 94464,
+            "treatmentMedian": 73216,
+            "treatmentMinusBaseline": {
+              "estimate": -21248,
+              "confidenceInterval": [
+                -21248,
+                -21248
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:cachedInputTokens"
+            }
+          },
+          "uncachedInputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              26765
+            ],
+            "treatmentRaw": [
+              12151
+            ],
+            "baselineMedian": 26765,
+            "treatmentMedian": 12151,
+            "treatmentMinusBaseline": {
+              "estimate": -14614,
+              "confidenceInterval": [
+                -14614,
+                -14614
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:uncachedInputTokens"
+            }
+          },
+          "outputTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1886
+            ],
+            "treatmentRaw": [
+              1180
+            ],
+            "baselineMedian": 1886,
+            "treatmentMedian": 1180,
+            "treatmentMinusBaseline": {
+              "estimate": -706,
+              "confidenceInterval": [
+                -706,
+                -706
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:outputTokens"
+            }
+          },
+          "reportedTokens": {
+            "pairCount": 1,
+            "baselineRaw": [
+              123115
+            ],
+            "treatmentRaw": [
+              86547
+            ],
+            "baselineMedian": 123115,
+            "treatmentMedian": 86547,
+            "treatmentMinusBaseline": {
+              "estimate": -36568,
+              "confidenceInterval": [
+                -36568,
+                -36568
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:reportedTokens"
+            }
+          },
+          "changedFilePrecision": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:changedFilePrecision"
+            }
+          },
+          "changedFileRecall": {
+            "pairCount": 1,
+            "baselineRaw": [
+              1
+            ],
+            "treatmentRaw": [
+              1
+            ],
+            "baselineMedian": 1,
+            "treatmentMedian": 1,
+            "treatmentMinusBaseline": {
+              "estimate": 0,
+              "confidenceInterval": [
+                0,
+                0
+              ],
+              "iterations": 10000,
+              "confidence": 0.95,
+              "seed": "pilot-v1:overall:adaptive-minus-full-palace:changedFileRecall"
+            }
+          }
+        },
+        "scope": {
+          "pairCount": 1,
+          "baseline": {
+            "changedFilePrecisionRaw": [
+              1
+            ],
+            "changedFileRecallRaw": [
+              1
+            ],
+            "changedFilePrecisionMedian": 1,
+            "changedFileRecallMedian": 1,
+            "forbiddenViolationRaw": [
+              false
+            ],
+            "forbiddenViolationCount": 0,
+            "forbiddenViolationRate": 0
+          },
+          "treatment": {
+            "changedFilePrecisionRaw": [
+              1
+            ],
+            "changedFileRecallRaw": [
+              1
+            ],
+            "changedFilePrecisionMedian": 1,
+            "changedFileRecallMedian": 1,
+            "forbiddenViolationRaw": [
+              false
+            ],
+            "forbiddenViolationCount": 0,
+            "forbiddenViolationRate": 0
+          }
+        }
+      }
+    },
+    "primaryComparison": {
+      "baselineArm": "control",
+      "treatmentArm": "adaptivePalace",
+      "validPairs": 1,
+      "invalidPairIds": [],
+      "success": {
+        "baselineRaw": [
+          1
+        ],
+        "treatmentRaw": [
+          1
+        ],
+        "baselineRate": 1,
+        "treatmentRate": 1,
+        "treatmentMinusBaseline": {
+          "estimate": 0,
+          "confidenceInterval": [
+            0,
+            0
+          ],
+          "iterations": 10000,
+          "confidence": 0.95,
+          "seed": "pilot-v1:overall:adaptive-minus-control"
+        },
+        "discordant": {
+          "baselineOnly": 0,
+          "treatmentOnly": 0,
+          "total": 0,
+          "baselineOnlyIds": [],
+          "treatmentOnlyIds": []
+        },
+        "mcnemarExactPValue": 1
+      },
+      "metrics": {
+        "durationMs": {
+          "pairCount": 1,
+          "baselineRaw": [
+            51920
+          ],
+          "treatmentRaw": [
+            47122
+          ],
+          "baselineMedian": 51920,
+          "treatmentMedian": 47122,
+          "treatmentMinusBaseline": {
+            "estimate": -4798,
+            "confidenceInterval": [
+              -4798,
+              -4798
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:durationMs"
+          }
+        },
+        "toolCalls": {
+          "pairCount": 1,
+          "baselineRaw": [
+            4
+          ],
+          "treatmentRaw": [
+            6
+          ],
+          "baselineMedian": 4,
+          "treatmentMedian": 6,
+          "treatmentMinusBaseline": {
+            "estimate": 2,
+            "confidenceInterval": [
+              2,
+              2
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:toolCalls"
+          }
+        },
+        "failedCalls": {
+          "pairCount": 1,
+          "baselineRaw": [
+            0
+          ],
+          "treatmentRaw": [
+            0
+          ],
+          "baselineMedian": 0,
+          "treatmentMedian": 0,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:failedCalls"
+          }
+        },
+        "routerErrors": {
+          "pairCount": 1,
+          "baselineRaw": [
+            0
+          ],
+          "treatmentRaw": [
+            0
+          ],
+          "baselineMedian": 0,
+          "treatmentMedian": 0,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:routerErrors"
+          }
+        },
+        "applyPatchVerificationErrors": {
+          "pairCount": 1,
+          "baselineRaw": [
+            0
+          ],
+          "treatmentRaw": [
+            0
+          ],
+          "baselineMedian": 0,
+          "treatmentMedian": 0,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:applyPatchVerificationErrors"
+          }
+        },
+        "sandboxPreparationErrors": {
+          "pairCount": 1,
+          "baselineRaw": [
+            0
+          ],
+          "treatmentRaw": [
+            0
+          ],
+          "baselineMedian": 0,
+          "treatmentMedian": 0,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:sandboxPreparationErrors"
+          }
+        },
+        "inspectionCommands": {
+          "pairCount": 1,
+          "baselineRaw": [
+            2
+          ],
+          "treatmentRaw": [
+            1
+          ],
+          "baselineMedian": 2,
+          "treatmentMedian": 1,
+          "treatmentMinusBaseline": {
+            "estimate": -1,
+            "confidenceInterval": [
+              -1,
+              -1
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:inspectionCommands"
+          }
+        },
+        "commandOutputChars": {
+          "pairCount": 1,
+          "baselineRaw": [
+            2580
+          ],
+          "treatmentRaw": [
+            1486
+          ],
+          "baselineMedian": 2580,
+          "treatmentMedian": 1486,
+          "treatmentMinusBaseline": {
+            "estimate": -1094,
+            "confidenceInterval": [
+              -1094,
+              -1094
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:commandOutputChars"
+          }
+        },
+        "palaceContextOutputChars": {
+          "pairCount": 0,
+          "baselineRaw": [],
+          "treatmentRaw": [],
+          "baselineMedian": null,
+          "treatmentMedian": null,
+          "treatmentMinusBaseline": {
+            "estimate": null,
+            "confidenceInterval": [
+              null,
+              null
+            ],
+            "iterations": 0
+          }
+        },
+        "palaceContextOutputBytes": {
+          "pairCount": 0,
+          "baselineRaw": [],
+          "treatmentRaw": [],
+          "baselineMedian": null,
+          "treatmentMedian": null,
+          "treatmentMinusBaseline": {
+            "estimate": null,
+            "confidenceInterval": [
+              null,
+              null
+            ],
+            "iterations": 0
+          }
+        },
+        "palaceContextEstimatedTokens": {
+          "pairCount": 0,
+          "baselineRaw": [],
+          "treatmentRaw": [],
+          "baselineMedian": null,
+          "treatmentMedian": null,
+          "treatmentMinusBaseline": {
+            "estimate": null,
+            "confidenceInterval": [
+              null,
+              null
+            ],
+            "iterations": 0
+          }
+        },
+        "inputTokens": {
+          "pairCount": 1,
+          "baselineRaw": [
+            86093
+          ],
+          "treatmentRaw": [
+            85367
+          ],
+          "baselineMedian": 86093,
+          "treatmentMedian": 85367,
+          "treatmentMinusBaseline": {
+            "estimate": -726,
+            "confidenceInterval": [
+              -726,
+              -726
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:inputTokens"
+          }
+        },
+        "cachedInputTokens": {
+          "pairCount": 1,
+          "baselineRaw": [
+            77312
+          ],
+          "treatmentRaw": [
+            73216
+          ],
+          "baselineMedian": 77312,
+          "treatmentMedian": 73216,
+          "treatmentMinusBaseline": {
+            "estimate": -4096,
+            "confidenceInterval": [
+              -4096,
+              -4096
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:cachedInputTokens"
+          }
+        },
+        "uncachedInputTokens": {
+          "pairCount": 1,
+          "baselineRaw": [
+            8781
+          ],
+          "treatmentRaw": [
+            12151
+          ],
+          "baselineMedian": 8781,
+          "treatmentMedian": 12151,
+          "treatmentMinusBaseline": {
+            "estimate": 3370,
+            "confidenceInterval": [
+              3370,
+              3370
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:uncachedInputTokens"
+          }
+        },
+        "outputTokens": {
+          "pairCount": 1,
+          "baselineRaw": [
+            1260
+          ],
+          "treatmentRaw": [
+            1180
+          ],
+          "baselineMedian": 1260,
+          "treatmentMedian": 1180,
+          "treatmentMinusBaseline": {
+            "estimate": -80,
+            "confidenceInterval": [
+              -80,
+              -80
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:outputTokens"
+          }
+        },
+        "reportedTokens": {
+          "pairCount": 1,
+          "baselineRaw": [
+            87353
+          ],
+          "treatmentRaw": [
+            86547
+          ],
+          "baselineMedian": 87353,
+          "treatmentMedian": 86547,
+          "treatmentMinusBaseline": {
+            "estimate": -806,
+            "confidenceInterval": [
+              -806,
+              -806
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:reportedTokens"
+          }
+        },
+        "changedFilePrecision": {
+          "pairCount": 1,
+          "baselineRaw": [
+            1
+          ],
+          "treatmentRaw": [
+            1
+          ],
+          "baselineMedian": 1,
+          "treatmentMedian": 1,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:changedFilePrecision"
+          }
+        },
+        "changedFileRecall": {
+          "pairCount": 1,
+          "baselineRaw": [
+            1
+          ],
+          "treatmentRaw": [
+            1
+          ],
+          "baselineMedian": 1,
+          "treatmentMedian": 1,
+          "treatmentMinusBaseline": {
+            "estimate": 0,
+            "confidenceInterval": [
+              0,
+              0
+            ],
+            "iterations": 10000,
+            "confidence": 0.95,
+            "seed": "pilot-v1:overall:adaptive-minus-control:changedFileRecall"
+          }
+        }
+      },
+      "scope": {
+        "pairCount": 1,
+        "baseline": {
+          "changedFilePrecisionRaw": [
+            1
+          ],
+          "changedFileRecallRaw": [
+            1
+          ],
+          "changedFilePrecisionMedian": 1,
+          "changedFileRecallMedian": 1,
+          "forbiddenViolationRaw": [
+            false
+          ],
+          "forbiddenViolationCount": 0,
+          "forbiddenViolationRate": 0
+        },
+        "treatment": {
+          "changedFilePrecisionRaw": [
+            1
+          ],
+          "changedFileRecallRaw": [
+            1
+          ],
+          "changedFilePrecisionMedian": 1,
+          "changedFileRecallMedian": 1,
+          "forbiddenViolationRaw": [
+            false
+          ],
+          "forbiddenViolationCount": 0,
+          "forbiddenViolationRate": 0
+        }
+      }
+    },
+    "mechanisms": {
+      "routeOnlyPairs": 1,
+      "routeRecallAtK": {
+        "routeOnly": [
+          1
+        ],
+        "fullPalace": [
+          1
+        ],
+        "adaptivePalace": [
+          1
+        ]
+      },
+      "routePrecisionAtK": {
+        "routeOnly": [
+          0.6666666666666666
+        ],
+        "fullPalace": [
+          0.6666666666666666
+        ],
+        "adaptivePalace": [
+          0.6666666666666666
+        ]
+      },
+      "pitfallViolationRate": {
+        "routeOnlyRaw": [],
+        "fullPalaceRaw": [],
+        "adaptivePalaceRaw": [],
+        "routeOnlyRate": null,
+        "fullPalaceRate": null,
+        "adaptivePalaceRate": null
+      },
+      "wrongMemoryAdoptionRate": {
+        "routeOnlyRaw": [],
+        "fullPalaceRaw": [],
+        "adaptivePalaceRaw": [],
+        "routeOnlyRate": null,
+        "fullPalaceRate": null,
+        "adaptivePalaceRate": null
+      }
+    }
+  },
+  "multiplicity": {
+    "method": "Holm step-down",
+    "family": "scenario-level exact Adaptive Palace versus Control paired success tests",
+    "rawPValues": [
+      1
+    ],
+    "adjustedPValues": [
+      1
+    ]
+  },
+  "caveats": [
+    "This is an exploratory pilot and is not powered to establish non-inferiority.",
+    "This is an interim analysis with 1 of 16 planned trials loaded; intervals and p-values are not final.",
+    "Efficiency metrics include only pairs where both compared arms achieved protocol-defined success.",
+    "Invalid infrastructure or treatment runs are retained but excluded from paired estimates; agent failures and timeouts remain outcomes."
+  ]
+}
