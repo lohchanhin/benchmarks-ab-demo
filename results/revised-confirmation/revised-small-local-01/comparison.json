@@ -1,0 +1,814 @@
+{
+  "schemaVersion": 5,
+  "runId": "revised-small-local-01",
+  "createdAt": "2026-07-20T19:17:13.628Z",
+  "scenario": "small-local-bug",
+  "scenarioTitle": "Small single-file negative-zero formatting bug",
+  "task": "Fix currency formatting so negative zero is rendered as $0.00 while genuinely negative cent values keep their minus sign. Keep the public API stable and make the complete test suite pass without changing tests.",
+  "repositoryTree": "fad1a951a27bbbd076b37711cb458ec3cd157fae",
+  "generatedFileCount": 11,
+  "cacheState": "warm",
+  "seed": "revised-small-local-seed-01",
+  "protocolVersion": "3.0.0",
+  "scenarioVariant": null,
+  "primaryComparison": "adaptive-vs-control",
+  "primaryEfficiencyMetric": "reportedTokens",
+  "control": {
+    "model": "gpt-5.6-sol",
+    "valid": true,
+    "validityVerified": true,
+    "validityReason": "0 Palace calls detected; expected 0; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches fad1a951a27bbbd076b37711cb458ec3cd157fae",
+    "testsPassed": true,
+    "publicTestsPassed": true,
+    "oraclePassed": true,
+    "success": true,
+    "score": 100,
+    "durationMs": 39173,
+    "startedAt": "2026-07-20T19:13:10.340Z",
+    "sequence": 1,
+    "toolCalls": 4,
+    "failedCalls": 0,
+    "commandOutputChars": 2847,
+    "palaceContextOutputChars": null,
+    "palaceContextOutputBytes": null,
+    "palaceContextEstimatedTokens": null,
+    "adaptivePayload": null,
+    "adaptivePayloadMatchesOutput": null,
+    "palaceReceivedTask": null,
+    "taskFidelity": null,
+    "inspectionCommands": 2,
+    "palaceCalls": 0,
+    "successfulPalaceCalls": 0,
+    "inspectedFiles": 3,
+    "referencedFiles": 10,
+    "referencedFilePaths": [
+      "README.md",
+      "package.json",
+      "packages/catalog/src/module-001.mjs",
+      "packages/catalog/src/module-002.mjs",
+      "packages/catalog/src/module-003.mjs",
+      "packages/notifications/src/module-001.mjs",
+      "packages/notifications/src/module-002.mjs",
+      "packages/notifications/src/module-003.mjs",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "inputTokens": 85367,
+    "cachedInputTokens": 64256,
+    "uncachedInputTokens": 21111,
+    "outputTokens": 928,
+    "reportedTokens": 86295,
+    "routerErrors": 0,
+    "applyPatchVerificationErrors": 0,
+    "sandboxPreparationErrors": 0,
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "gitStatus": [
+      "M src/format-currency.mjs"
+    ],
+    "instrumentationFiles": [],
+    "instrumentationUntrackedFiles": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": [],
+    "expectedCoverage": 1,
+    "changedFilePrecision": 1,
+    "changedFileRecall": 1,
+    "forbiddenViolation": false,
+    "timedOut": false,
+    "route": null,
+    "memory": {
+      "pitfallViolation": null,
+      "wrongMemoryAdopted": null
+    },
+    "palaceEvaluation": null
+  },
+  "routeOnly": {
+    "model": "gpt-5.6-sol",
+    "valid": true,
+    "validityVerified": true,
+    "validityReason": "1/1 successful/total Palace calls; adaptiveRequested=false; expected false; adaptivePayloadMatchesOutput=null; taskFidelity=true; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches fad1a951a27bbbd076b37711cb458ec3cd157fae",
+    "testsPassed": true,
+    "publicTestsPassed": true,
+    "oraclePassed": true,
+    "success": true,
+    "score": 100,
+    "durationMs": 51507,
+    "startedAt": "2026-07-20T19:15:14.440Z",
+    "sequence": 3,
+    "toolCalls": 8,
+    "failedCalls": 0,
+    "commandOutputChars": 3821,
+    "palaceContextOutputChars": 1870,
+    "palaceContextOutputBytes": 1870,
+    "palaceContextEstimatedTokens": 468,
+    "adaptivePayload": null,
+    "adaptivePayloadMatchesOutput": null,
+    "palaceReceivedTask": "Fix currency formatting so negative zero is rendered as $0.00 while genuinely negative cent values keep their minus sign. Keep the public API stable and make the complete test suite pass without changing tests.",
+    "taskFidelity": true,
+    "inspectionCommands": 3,
+    "palaceCalls": 1,
+    "successfulPalaceCalls": 1,
+    "inspectedFiles": 3,
+    "referencedFiles": 3,
+    "referencedFilePaths": [
+      "README.md",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "inputTokens": 104346,
+    "cachedInputTokens": 80384,
+    "uncachedInputTokens": 23962,
+    "outputTokens": 1391,
+    "reportedTokens": 105737,
+    "routerErrors": 0,
+    "applyPatchVerificationErrors": 0,
+    "sandboxPreparationErrors": 0,
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "gitStatus": [
+      "M src/format-currency.mjs"
+    ],
+    "instrumentationFiles": [],
+    "instrumentationUntrackedFiles": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": [],
+    "expectedCoverage": 1,
+    "changedFilePrecision": 1,
+    "changedFileRecall": 1,
+    "forbiddenViolation": false,
+    "timedOut": false,
+    "route": {
+      "routeId": "route_e92a0ce07ba26d56",
+      "confidence": 0.52,
+      "k": 3,
+      "recallAtK": 1,
+      "precisionAtK": 0.6666666666666666,
+      "groundTruthFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "matchedFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "retrievedFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs",
+        "README.md"
+      ]
+    },
+    "memory": {
+      "pitfallViolation": null,
+      "wrongMemoryAdopted": null
+    },
+    "palaceEvaluation": null
+  },
+  "palace": {
+    "model": "gpt-5.6-sol",
+    "valid": true,
+    "validityVerified": true,
+    "validityReason": "1/1 successful/total Palace calls; adaptiveRequested=false; expected false; adaptivePayloadMatchesOutput=null; taskFidelity=true; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches fad1a951a27bbbd076b37711cb458ec3cd157fae",
+    "testsPassed": true,
+    "publicTestsPassed": true,
+    "oraclePassed": true,
+    "success": true,
+    "score": 100,
+    "durationMs": 51786,
+    "startedAt": "2026-07-20T19:16:21.321Z",
+    "sequence": 4,
+    "toolCalls": 6,
+    "failedCalls": 0,
+    "commandOutputChars": 3819,
+    "palaceContextOutputChars": 1870,
+    "palaceContextOutputBytes": 1870,
+    "palaceContextEstimatedTokens": 468,
+    "adaptivePayload": null,
+    "adaptivePayloadMatchesOutput": null,
+    "palaceReceivedTask": "Fix currency formatting so negative zero is rendered as $0.00 while genuinely negative cent values keep their minus sign. Keep the public API stable and make the complete test suite pass without changing tests.",
+    "taskFidelity": true,
+    "inspectionCommands": 1,
+    "palaceCalls": 1,
+    "successfulPalaceCalls": 1,
+    "inspectedFiles": 3,
+    "referencedFiles": 3,
+    "referencedFilePaths": [
+      "README.md",
+      "src/format-currency.mjs",
+      "test/format-currency.test.mjs"
+    ],
+    "inputTokens": 118484,
+    "cachedInputTokens": 100352,
+    "uncachedInputTokens": 18132,
+    "outputTokens": 1301,
+    "reportedTokens": 119785,
+    "routerErrors": 0,
+    "applyPatchVerificationErrors": 0,
+    "sandboxPreparationErrors": 0,
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "gitStatus": [
+      "M src/format-currency.mjs"
+    ],
+    "instrumentationFiles": [],
+    "instrumentationUntrackedFiles": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": [],
+    "expectedCoverage": 1,
+    "changedFilePrecision": 1,
+    "changedFileRecall": 1,
+    "forbiddenViolation": false,
+    "timedOut": false,
+    "route": {
+      "routeId": "route_6f9ecd794a5c91ca",
+      "confidence": 0.52,
+      "k": 3,
+      "recallAtK": 1,
+      "precisionAtK": 0.6666666666666666,
+      "groundTruthFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "matchedFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "retrievedFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs",
+        "README.md"
+      ]
+    },
+    "memory": {
+      "pitfallViolation": null,
+      "wrongMemoryAdopted": null
+    },
+    "palaceEvaluation": null
+  },
+  "adaptive": {
+    "model": "gpt-5.6-sol",
+    "valid": true,
+    "validityVerified": true,
+    "validityReason": "1/1 successful/total Palace calls; adaptiveRequested=true; expected true; adaptivePayloadMatchesOutput=true; taskFidelity=true; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches fad1a951a27bbbd076b37711cb458ec3cd157fae",
+    "testsPassed": true,
+    "publicTestsPassed": true,
+    "oraclePassed": true,
+    "success": true,
+    "score": 100,
+    "durationMs": 54137,
+    "startedAt": "2026-07-20T19:14:04.910Z",
+    "sequence": 2,
+    "toolCalls": 5,
+    "failedCalls": 0,
+    "commandOutputChars": 1639,
+    "palaceContextOutputChars": 276,
+    "palaceContextOutputBytes": 276,
+    "palaceContextEstimatedTokens": 69,
+    "adaptivePayload": {
+      "mode": "bypass",
+      "calls": 1,
+      "contextBytes": 276,
+      "contextEstimatedTokens": 69,
+      "routeStepCount": 1,
+      "primaryCount": 1,
+      "supportCount": 0,
+      "deferredCount": 0,
+      "memoryItemCount": 0,
+      "memoryCandidateCount": 0,
+      "memoryExcludedCount": 0,
+      "memoryEstimatedTokens": 0,
+      "guardrailCount": 0,
+      "primaryCandidate": "src/format-currency.mjs",
+      "reason": "High-confidence single-file route with no relevant memory, cross-stack dependency, contract risk, or scope risk. Direct: inspect once, edit, run the known or conventional test, batch final diff and status, stop."
+    },
+    "adaptivePayloadMatchesOutput": true,
+    "palaceReceivedTask": null,
+    "taskFidelity": true,
+    "inspectionCommands": 2,
+    "palaceCalls": 1,
+    "successfulPalaceCalls": 1,
+    "inspectedFiles": 2,
+    "referencedFiles": 2,
+    "referencedFilePaths": [
+      "package.json",
+      "src/format-currency.mjs"
+    ],
+    "inputTokens": 99921,
+    "cachedInputTokens": 67328,
+    "uncachedInputTokens": 32593,
+    "outputTokens": 1186,
+    "reportedTokens": 101107,
+    "routerErrors": 0,
+    "applyPatchVerificationErrors": 0,
+    "sandboxPreparationErrors": 0,
+    "changedFiles": [
+      "src/format-currency.mjs"
+    ],
+    "gitStatus": [
+      "M src/format-currency.mjs"
+    ],
+    "instrumentationFiles": [],
+    "instrumentationUntrackedFiles": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": [],
+    "expectedCoverage": 1,
+    "changedFilePrecision": 1,
+    "changedFileRecall": 1,
+    "forbiddenViolation": false,
+    "timedOut": false,
+    "route": {
+      "routeId": "route_14db1a1fec3be1b7",
+      "confidence": 0.52,
+      "k": 3,
+      "recallAtK": 1,
+      "precisionAtK": 0.6666666666666666,
+      "groundTruthFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "matchedFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "retrievedFiles": [
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs",
+        "README.md"
+      ]
+    },
+    "memory": {
+      "pitfallViolation": null,
+      "wrongMemoryAdopted": null
+    },
+    "palaceEvaluation": null
+  },
+  "arms": {
+    "control": {
+      "model": "gpt-5.6-sol",
+      "valid": true,
+      "validityVerified": true,
+      "validityReason": "0 Palace calls detected; expected 0; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches fad1a951a27bbbd076b37711cb458ec3cd157fae",
+      "testsPassed": true,
+      "publicTestsPassed": true,
+      "oraclePassed": true,
+      "success": true,
+      "score": 100,
+      "durationMs": 39173,
+      "startedAt": "2026-07-20T19:13:10.340Z",
+      "sequence": 1,
+      "toolCalls": 4,
+      "failedCalls": 0,
+      "commandOutputChars": 2847,
+      "palaceContextOutputChars": null,
+      "palaceContextOutputBytes": null,
+      "palaceContextEstimatedTokens": null,
+      "adaptivePayload": null,
+      "adaptivePayloadMatchesOutput": null,
+      "palaceReceivedTask": null,
+      "taskFidelity": null,
+      "inspectionCommands": 2,
+      "palaceCalls": 0,
+      "successfulPalaceCalls": 0,
+      "inspectedFiles": 3,
+      "referencedFiles": 10,
+      "referencedFilePaths": [
+        "README.md",
+        "package.json",
+        "packages/catalog/src/module-001.mjs",
+        "packages/catalog/src/module-002.mjs",
+        "packages/catalog/src/module-003.mjs",
+        "packages/notifications/src/module-001.mjs",
+        "packages/notifications/src/module-002.mjs",
+        "packages/notifications/src/module-003.mjs",
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "inputTokens": 85367,
+      "cachedInputTokens": 64256,
+      "uncachedInputTokens": 21111,
+      "outputTokens": 928,
+      "reportedTokens": 86295,
+      "routerErrors": 0,
+      "applyPatchVerificationErrors": 0,
+      "sandboxPreparationErrors": 0,
+      "changedFiles": [
+        "src/format-currency.mjs"
+      ],
+      "gitStatus": [
+        "M src/format-currency.mjs"
+      ],
+      "instrumentationFiles": [],
+      "instrumentationUntrackedFiles": [],
+      "forbiddenChanged": [],
+      "unexpectedChanged": [],
+      "expectedCoverage": 1,
+      "changedFilePrecision": 1,
+      "changedFileRecall": 1,
+      "forbiddenViolation": false,
+      "timedOut": false,
+      "route": null,
+      "memory": {
+        "pitfallViolation": null,
+        "wrongMemoryAdopted": null
+      },
+      "palaceEvaluation": null
+    },
+    "route-only": {
+      "model": "gpt-5.6-sol",
+      "valid": true,
+      "validityVerified": true,
+      "validityReason": "1/1 successful/total Palace calls; adaptiveRequested=false; expected false; adaptivePayloadMatchesOutput=null; taskFidelity=true; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches fad1a951a27bbbd076b37711cb458ec3cd157fae",
+      "testsPassed": true,
+      "publicTestsPassed": true,
+      "oraclePassed": true,
+      "success": true,
+      "score": 100,
+      "durationMs": 51507,
+      "startedAt": "2026-07-20T19:15:14.440Z",
+      "sequence": 3,
+      "toolCalls": 8,
+      "failedCalls": 0,
+      "commandOutputChars": 3821,
+      "palaceContextOutputChars": 1870,
+      "palaceContextOutputBytes": 1870,
+      "palaceContextEstimatedTokens": 468,
+      "adaptivePayload": null,
+      "adaptivePayloadMatchesOutput": null,
+      "palaceReceivedTask": "Fix currency formatting so negative zero is rendered as $0.00 while genuinely negative cent values keep their minus sign. Keep the public API stable and make the complete test suite pass without changing tests.",
+      "taskFidelity": true,
+      "inspectionCommands": 3,
+      "palaceCalls": 1,
+      "successfulPalaceCalls": 1,
+      "inspectedFiles": 3,
+      "referencedFiles": 3,
+      "referencedFilePaths": [
+        "README.md",
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "inputTokens": 104346,
+      "cachedInputTokens": 80384,
+      "uncachedInputTokens": 23962,
+      "outputTokens": 1391,
+      "reportedTokens": 105737,
+      "routerErrors": 0,
+      "applyPatchVerificationErrors": 0,
+      "sandboxPreparationErrors": 0,
+      "changedFiles": [
+        "src/format-currency.mjs"
+      ],
+      "gitStatus": [
+        "M src/format-currency.mjs"
+      ],
+      "instrumentationFiles": [],
+      "instrumentationUntrackedFiles": [],
+      "forbiddenChanged": [],
+      "unexpectedChanged": [],
+      "expectedCoverage": 1,
+      "changedFilePrecision": 1,
+      "changedFileRecall": 1,
+      "forbiddenViolation": false,
+      "timedOut": false,
+      "route": {
+        "routeId": "route_e92a0ce07ba26d56",
+        "confidence": 0.52,
+        "k": 3,
+        "recallAtK": 1,
+        "precisionAtK": 0.6666666666666666,
+        "groundTruthFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs"
+        ],
+        "matchedFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs"
+        ],
+        "retrievedFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs",
+          "README.md"
+        ]
+      },
+      "memory": {
+        "pitfallViolation": null,
+        "wrongMemoryAdopted": null
+      },
+      "palaceEvaluation": null
+    },
+    "full-palace": {
+      "model": "gpt-5.6-sol",
+      "valid": true,
+      "validityVerified": true,
+      "validityReason": "1/1 successful/total Palace calls; adaptiveRequested=false; expected false; adaptivePayloadMatchesOutput=null; taskFidelity=true; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches fad1a951a27bbbd076b37711cb458ec3cd157fae",
+      "testsPassed": true,
+      "publicTestsPassed": true,
+      "oraclePassed": true,
+      "success": true,
+      "score": 100,
+      "durationMs": 51786,
+      "startedAt": "2026-07-20T19:16:21.321Z",
+      "sequence": 4,
+      "toolCalls": 6,
+      "failedCalls": 0,
+      "commandOutputChars": 3819,
+      "palaceContextOutputChars": 1870,
+      "palaceContextOutputBytes": 1870,
+      "palaceContextEstimatedTokens": 468,
+      "adaptivePayload": null,
+      "adaptivePayloadMatchesOutput": null,
+      "palaceReceivedTask": "Fix currency formatting so negative zero is rendered as $0.00 while genuinely negative cent values keep their minus sign. Keep the public API stable and make the complete test suite pass without changing tests.",
+      "taskFidelity": true,
+      "inspectionCommands": 1,
+      "palaceCalls": 1,
+      "successfulPalaceCalls": 1,
+      "inspectedFiles": 3,
+      "referencedFiles": 3,
+      "referencedFilePaths": [
+        "README.md",
+        "src/format-currency.mjs",
+        "test/format-currency.test.mjs"
+      ],
+      "inputTokens": 118484,
+      "cachedInputTokens": 100352,
+      "uncachedInputTokens": 18132,
+      "outputTokens": 1301,
+      "reportedTokens": 119785,
+      "routerErrors": 0,
+      "applyPatchVerificationErrors": 0,
+      "sandboxPreparationErrors": 0,
+      "changedFiles": [
+        "src/format-currency.mjs"
+      ],
+      "gitStatus": [
+        "M src/format-currency.mjs"
+      ],
+      "instrumentationFiles": [],
+      "instrumentationUntrackedFiles": [],
+      "forbiddenChanged": [],
+      "unexpectedChanged": [],
+      "expectedCoverage": 1,
+      "changedFilePrecision": 1,
+      "changedFileRecall": 1,
+      "forbiddenViolation": false,
+      "timedOut": false,
+      "route": {
+        "routeId": "route_6f9ecd794a5c91ca",
+        "confidence": 0.52,
+        "k": 3,
+        "recallAtK": 1,
+        "precisionAtK": 0.6666666666666666,
+        "groundTruthFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs"
+        ],
+        "matchedFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs"
+        ],
+        "retrievedFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs",
+          "README.md"
+        ]
+      },
+      "memory": {
+        "pitfallViolation": null,
+        "wrongMemoryAdopted": null
+      },
+      "palaceEvaluation": null
+    },
+    "adaptive-palace": {
+      "model": "gpt-5.6-sol",
+      "valid": true,
+      "validityVerified": true,
+      "validityReason": "1/1 successful/total Palace calls; adaptiveRequested=true; expected true; adaptivePayloadMatchesOutput=true; taskFidelity=true; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches fad1a951a27bbbd076b37711cb458ec3cd157fae",
+      "testsPassed": true,
+      "publicTestsPassed": true,
+      "oraclePassed": true,
+      "success": true,
+      "score": 100,
+      "durationMs": 54137,
+      "startedAt": "2026-07-20T19:14:04.910Z",
+      "sequence": 2,
+      "toolCalls": 5,
+      "failedCalls": 0,
+      "commandOutputChars": 1639,
+      "palaceContextOutputChars": 276,
+      "palaceContextOutputBytes": 276,
+      "palaceContextEstimatedTokens": 69,
+      "adaptivePayload": {
+        "mode": "bypass",
+        "calls": 1,
+        "contextBytes": 276,
+        "contextEstimatedTokens": 69,
+        "routeStepCount": 1,
+        "primaryCount": 1,
+        "supportCount": 0,
+        "deferredCount": 0,
+        "memoryItemCount": 0,
+        "memoryCandidateCount": 0,
+        "memoryExcludedCount": 0,
+        "memoryEstimatedTokens": 0,
+        "guardrailCount": 0,
+        "primaryCandidate": "src/format-currency.mjs",
+        "reason": "High-confidence single-file route with no relevant memory, cross-stack dependency, contract risk, or scope risk. Direct: inspect once, edit, run the known or conventional test, batch final diff and status, stop."
+      },
+      "adaptivePayloadMatchesOutput": true,
+      "palaceReceivedTask": null,
+      "taskFidelity": true,
+      "inspectionCommands": 2,
+      "palaceCalls": 1,
+      "successfulPalaceCalls": 1,
+      "inspectedFiles": 2,
+      "referencedFiles": 2,
+      "referencedFilePaths": [
+        "package.json",
+        "src/format-currency.mjs"
+      ],
+      "inputTokens": 99921,
+      "cachedInputTokens": 67328,
+      "uncachedInputTokens": 32593,
+      "outputTokens": 1186,
+      "reportedTokens": 101107,
+      "routerErrors": 0,
+      "applyPatchVerificationErrors": 0,
+      "sandboxPreparationErrors": 0,
+      "changedFiles": [
+        "src/format-currency.mjs"
+      ],
+      "gitStatus": [
+        "M src/format-currency.mjs"
+      ],
+      "instrumentationFiles": [],
+      "instrumentationUntrackedFiles": [],
+      "forbiddenChanged": [],
+      "unexpectedChanged": [],
+      "expectedCoverage": 1,
+      "changedFilePrecision": 1,
+      "changedFileRecall": 1,
+      "forbiddenViolation": false,
+      "timedOut": false,
+      "route": {
+        "routeId": "route_14db1a1fec3be1b7",
+        "confidence": 0.52,
+        "k": 3,
+        "recallAtK": 1,
+        "precisionAtK": 0.6666666666666666,
+        "groundTruthFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs"
+        ],
+        "matchedFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs"
+        ],
+        "retrievedFiles": [
+          "src/format-currency.mjs",
+          "test/format-currency.test.mjs",
+          "README.md"
+        ]
+      },
+      "memory": {
+        "pitfallViolation": null,
+        "wrongMemoryAdopted": null
+      },
+      "palaceEvaluation": null
+    }
+  },
+  "comparable": true,
+  "execution": {
+    "mode": "sequential",
+    "order": [
+      "control",
+      "adaptive-palace",
+      "route-only",
+      "full-palace"
+    ]
+  },
+  "delta": {
+    "durationMsSaved": -14964,
+    "toolCallsSaved": -1,
+    "failedCallsSaved": 0,
+    "routerErrorsSaved": 0,
+    "applyPatchVerificationErrorsSaved": 0,
+    "sandboxPreparationErrorsSaved": 0,
+    "inspectionCommandsSaved": 0,
+    "inspectedFilesSaved": 1,
+    "referencedFilesSaved": 8,
+    "commandOutputCharsSaved": 1208,
+    "palaceContextOutputCharsSaved": null,
+    "palaceContextOutputBytesSaved": null,
+    "palaceContextEstimatedTokensSaved": null,
+    "inputTokensSaved": -14554,
+    "cachedInputTokensSaved": -3072,
+    "uncachedInputTokensSaved": -11482,
+    "outputTokensSaved": -258,
+    "reportedTokensSaved": -14812
+  },
+  "pairwise": {
+    "controlVsFullPalace": {
+      "comparable": true,
+      "delta": {
+        "durationMsSaved": -12613,
+        "toolCallsSaved": -2,
+        "failedCallsSaved": 0,
+        "routerErrorsSaved": 0,
+        "applyPatchVerificationErrorsSaved": 0,
+        "sandboxPreparationErrorsSaved": 0,
+        "inspectionCommandsSaved": 1,
+        "inspectedFilesSaved": 0,
+        "referencedFilesSaved": 7,
+        "commandOutputCharsSaved": -972,
+        "palaceContextOutputCharsSaved": null,
+        "palaceContextOutputBytesSaved": null,
+        "palaceContextEstimatedTokensSaved": null,
+        "inputTokensSaved": -33117,
+        "cachedInputTokensSaved": -36096,
+        "uncachedInputTokensSaved": 2979,
+        "outputTokensSaved": -373,
+        "reportedTokensSaved": -33490
+      }
+    },
+    "controlVsAdaptivePalace": {
+      "comparable": true,
+      "delta": {
+        "durationMsSaved": -14964,
+        "toolCallsSaved": -1,
+        "failedCallsSaved": 0,
+        "routerErrorsSaved": 0,
+        "applyPatchVerificationErrorsSaved": 0,
+        "sandboxPreparationErrorsSaved": 0,
+        "inspectionCommandsSaved": 0,
+        "inspectedFilesSaved": 1,
+        "referencedFilesSaved": 8,
+        "commandOutputCharsSaved": 1208,
+        "palaceContextOutputCharsSaved": null,
+        "palaceContextOutputBytesSaved": null,
+        "palaceContextEstimatedTokensSaved": null,
+        "inputTokensSaved": -14554,
+        "cachedInputTokensSaved": -3072,
+        "uncachedInputTokensSaved": -11482,
+        "outputTokensSaved": -258,
+        "reportedTokensSaved": -14812
+      }
+    },
+    "fullPalaceVsAdaptivePalace": {
+      "comparable": true,
+      "delta": {
+        "durationMsSaved": -2351,
+        "toolCallsSaved": 1,
+        "failedCallsSaved": 0,
+        "routerErrorsSaved": 0,
+        "applyPatchVerificationErrorsSaved": 0,
+        "sandboxPreparationErrorsSaved": 0,
+        "inspectionCommandsSaved": -1,
+        "inspectedFilesSaved": 1,
+        "referencedFilesSaved": 1,
+        "commandOutputCharsSaved": 2180,
+        "palaceContextOutputCharsSaved": 1594,
+        "palaceContextOutputBytesSaved": 1594,
+        "palaceContextEstimatedTokensSaved": 399,
+        "inputTokensSaved": 18563,
+        "cachedInputTokensSaved": 33024,
+        "uncachedInputTokensSaved": -14461,
+        "outputTokensSaved": 115,
+        "reportedTokensSaved": 18678
+      }
+    },
+    "routeOnlyVsFullPalace": {
+      "comparable": true,
+      "delta": {
+        "durationMsSaved": -279,
+        "toolCallsSaved": 2,
+        "failedCallsSaved": 0,
+        "routerErrorsSaved": 0,
+        "applyPatchVerificationErrorsSaved": 0,
+        "sandboxPreparationErrorsSaved": 0,
+        "inspectionCommandsSaved": 2,
+        "inspectedFilesSaved": 0,
+        "referencedFilesSaved": 0,
+        "commandOutputCharsSaved": 2,
+        "palaceContextOutputCharsSaved": 0,
+        "palaceContextOutputBytesSaved": 0,
+        "palaceContextEstimatedTokensSaved": 0,
+        "inputTokensSaved": -14138,
+        "cachedInputTokensSaved": -19968,
+        "uncachedInputTokensSaved": 5830,
+        "outputTokensSaved": 90,
+        "reportedTokensSaved": -14048
+      }
+    }
+  },
+  "caveats": [
+    "Distinct repository path strings are matched anywhere in the transcript. An inventory command can list every path without reading every file's contents.",
+    "Command-named files and command-output characters are transcript-derived context proxies, not an operating-system file-access audit.",
+    "Codex input tokens are cumulative across model turns. Cached and uncached input are shown separately and are not an API billing statement.",
+    "Paired arms run sequentially, never concurrently. Repeat pairs with alternating order and report medians to reduce order and service-load effects.",
+    "Palace index cache state for this trial: warm. This does not control provider-side model caching.",
+    "Root .palace paths are recorded as benchmark instrumentation and excluded from changed-file scope; raw Git status remains in each arm evidence file.",
+    "A result is comparable only when both arms start from the recorded Git tree and pass their arm-validity checks.",
+    "Correctness and scope determine the score. Speed and token metrics are reported, not rewarded."
+  ]
+}

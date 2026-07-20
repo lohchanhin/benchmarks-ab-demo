@@ -7,7 +7,7 @@
 - **Full Palace**：路线、Context Pack、Pitfall Board 与历史记忆全部启用。
 - **Adaptive Palace（v2）**：协议设计为与 Full 使用相同记忆，但只调用一次 `palace context --auto`，由工具选择最小安全模式；v0.2.1 的实际记忆一致性也被本研究检验。
 
-[English](README.md) | [0.3.0 候选最终结果](docs/zh-CN/CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [验证覆盖矩阵](docs/zh-CN/VALIDATION_COVERAGE_MATRIX.md) | [候选研究协议](docs/zh-CN/CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) | [中文辅助文档](docs/zh-CN/README.md) | [快速验证指南](docs/zh-CN/QUICKSTART.md) | [结果阅读指南](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 中文协议](docs/zh-CN/PROTOCOL_V3.md) | [v2.2 最终报告](docs/research/ADAPTIVE_V2_2_FINAL.md) | [测试方法](METHODOLOGY.md) | [影片指南](DEMO.md)
+[English](README.md) | [修订版 Bypass 工程确认](docs/zh-CN/REVISED_BYPASS_CONFIRMATION.md) | [0.3.0 候选最终结果](docs/zh-CN/CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [验证覆盖矩阵](docs/zh-CN/VALIDATION_COVERAGE_MATRIX.md) | [候选研究协议](docs/zh-CN/CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) | [中文辅助文档](docs/zh-CN/README.md) | [快速验证指南](docs/zh-CN/QUICKSTART.md) | [结果阅读指南](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 中文协议](docs/zh-CN/PROTOCOL_V3.md) | [v2.2 最终报告](docs/research/ADAPTIVE_V2_2_FINAL.md) | [测试方法](METHODOLOGY.md) | [影片指南](DEMO.md)
 
 ## 第一次来这里
 
@@ -18,6 +18,7 @@
 | 不调用 Agent，只验证代码、计划与公开证据 | [快速验证指南](docs/zh-CN/QUICKSTART.md#快速验证不执行-agent) |
 | 了解完整实验设计 | [测试方法](METHODOLOGY.md)与[冻结 v2.2 协议](docs/research/PROTOCOL_V2_2.md) |
 | 审核最终数字与限制 | [Adaptive v2.2 最终报告](docs/research/ADAPTIVE_V2_2_FINAL.md) |
+| 查看候选修订后是否减少重复检查 | [修订版 Bypass 工程确认](docs/zh-CN/REVISED_BYPASS_CONFIRMATION.md) |
 | 查看修复后但尚未执行的 Control-first 设计 | [v3 中文协议](docs/zh-CN/PROTOCOL_V3.md) |
 | 准备三分钟比赛影片 | [快速验证指南的影片段落](docs/zh-CN/QUICKSTART.md#三分钟影片辅助流程)与[英文影片指南](DEMO.md) |
 
@@ -70,6 +71,12 @@ commitment、包哈希、脱敏结果与失败记录都会公开审计。
 相对 Control 的配对中位数仍多 +19,922.5 reported tokens、+10.135 秒、+2.5 calls。因此
 [候选最终报告](docs/zh-CN/CONTROL_FIRST_V3_CANDIDATE_FINAL.md)建议暂缓 stable npm 发布，
 先修正 bypass 与重复检查成本。这是安全性与可审计性结果，不是加速结论。
+
+第一组[候选修订后工程确认](docs/zh-CN/REVISED_BYPASS_CONFIRMATION.md)现已公开 3 次全新探索性
+trial，12/12 个 Arm 全部有效且成功。两个 exact-command 配对中，Adaptive 不再重读
+`package.json`，每次少 1 个检索命令，引用路径的配对中位数少 3 条；墙钟时间中位差
+约 -0.086 秒，实际上持平。但 Adaptive 仍多 +1.5 次调用与 +6,670.5 reported tokens，
+因此目前只证明我们消除了一个明确浪费点，并未证明 Token 或速度优势。
 
 下一轮独立协议把主比较改为 Adaptive Palace 对普通 Codex，主要效率指标固定为
 配对累计 `reportedTokens`，但仍先判断正确性与严格修改范围。新

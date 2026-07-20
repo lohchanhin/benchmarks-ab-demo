@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-20T19:34:00.000Z",
+  "claimBoundary": "Two exploratory exact-command pairs. Descriptive mechanism evidence only; no inferential performance claim.",
+  "candidate": {
+    "name": "vertex-palace",
+    "version": "0.3.0",
+    "sourceCommit": "4b0440cd32270c951b13e83e0d18fd5038e1108f",
+    "shasum": "19c8f5452050959ae6a7beb18dc71199a2174a76",
+    "integrity": "sha512-zHGa/Hp3+kQLV1Nh+oMVuEGN+Gre4+uyuefYLM+koDZ0nciapCoefve9eSTjUv+lLbbUDPHiJLR3pkyLF2OONw=="
+  },
+  "validPairs": 2,
+  "successfulPairs": 2,
+  "pairDeltasAdaptiveMinusControl": [
+    {
+      "trialId": "exact-command-small-local-02",
+      "durationMs": -2313,
+      "toolCalls": 1,
+      "reportedTokens": 26,
+      "uncachedInputTokens": 10104,
+      "inspectionCommands": -1,
+      "referencedPaths": -2
+    },
+    {
+      "trialId": "exact-command-small-local-03",
+      "durationMs": 2141,
+      "toolCalls": 2,
+      "reportedTokens": 13315,
+      "uncachedInputTokens": 4251,
+      "inspectionCommands": -1,
+      "referencedPaths": -4
+    }
+  ],
+  "pairedMediansAdaptiveMinusControl": {
+    "durationMs": -86,
+    "toolCalls": 1.5,
+    "reportedTokens": 6670.5,
+    "uncachedInputTokens": 7177.5,
+    "inspectionCommands": -1,
+    "referencedPaths": -3
+  },
+  "mechanism": {
+    "adaptivePayloadEstimatedTokens": [
+      64,
+      64
+    ],
+    "adaptivePackageMetadataReads": [
+      0,
+      0
+    ],
+    "adaptiveReferencedPaths": [
+      [
+        "src/format-currency.mjs"
+      ],
+      [
+        "src/format-currency.mjs"
+      ]
+    ],
+    "adaptiveFinalCheckCommands": [
+      2,
+      3
+    ]
+  },
+  "interpretation": "Exact verification commands removed package metadata rereads and reduced inspected scope. End-to-end time was approximately neutral across the two pairs, while final-check splitting still added calls and reported-token savings were not demonstrated."
+}

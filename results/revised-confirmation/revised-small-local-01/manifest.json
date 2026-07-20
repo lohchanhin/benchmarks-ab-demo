@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 5,
+  "protocolVersion": "3.0.0",
+  "id": "revised-small-local-01",
+  "createdAt": "2026-07-20T19:12:29.641Z",
+  "seed": "revised-small-local-seed-01",
+  "scenario": "small-local-bug",
+  "scenarioTitle": "Small single-file negative-zero formatting bug",
+  "task": "Fix currency formatting so negative zero is rendered as $0.00 while genuinely negative cent values keep their minus sign. Keep the public API stable and make the complete test suite pass without changing tests.",
+  "primaryComparison": "adaptive-vs-control",
+  "primaryEfficiencyMetric": "reportedTokens",
+  "cacheState": "warm",
+  "repositoryTree": "fad1a951a27bbbd076b37711cb458ec3cd157fae",
+  "baseline": {
+    "publicExpectedToFail": true,
+    "oracleExpectedToFail": true,
+    "testExitCode": 1,
+    "testDurationMs": 190,
+    "oracleExitCode": 1,
+    "oracleDurationMs": 87
+  },
+  "palaceSeed": {
+    "cli": "vertex-palace (local package)",
+    "routeOnly": {
+      "routeId": null,
+      "memorySeeded": false
+    },
+    "fullPalace": {
+      "routeId": null,
+      "memorySeeded": false
+    },
+    "adaptivePalace": {
+      "routeId": null,
+      "memorySeeded": false
+    }
+  },
+  "paths": {
+    "run": ".",
+    "controlWorkspace": "arms/control",
+    "routeOnlyWorkspace": "arms/route-only",
+    "fullPalaceWorkspace": "arms/full-palace",
+    "controlPrompt": "prompts/control.txt",
+    "routeOnlyPrompt": "prompts/route-only.txt",
+    "fullPalacePrompt": "prompts/full-palace.txt",
+    "adaptivePalaceWorkspace": "arms/adaptive-palace",
+    "adaptivePalacePrompt": "prompts/adaptive-palace.txt"
+  },
+  "arms": {
+    "control": {
+      "commit": "100a8b1d11272176f4c8f7178509fa7cdded4e80",
+      "tree": "fad1a951a27bbbd076b37711cb458ec3cd157fae"
+    },
+    "route-only": {
+      "commit": "100a8b1d11272176f4c8f7178509fa7cdded4e80",
+      "tree": "fad1a951a27bbbd076b37711cb458ec3cd157fae"
+    },
+    "full-palace": {
+      "commit": "100a8b1d11272176f4c8f7178509fa7cdded4e80",
+      "tree": "fad1a951a27bbbd076b37711cb458ec3cd157fae"
+    },
+    "adaptive-palace": {
+      "commit": "100a8b1d11272176f4c8f7178509fa7cdded4e80",
+      "tree": "fad1a951a27bbbd076b37711cb458ec3cd157fae"
+    }
+  },
+  "generatedFileCount": 11,
+  "publishedFrom": ".benchmark-runs/<reviewed-local-run>",
+  "publication": {
+    "rawTranscriptsIncluded": false,
+    "sessionIdentifiersIncluded": false,
+    "localPathsIncluded": false
+  }
+}

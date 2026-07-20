@@ -7,7 +7,7 @@ A public, preregistered, reproducible experiment comparing Codex repository
 work with no Palace, structural routing only, always-on Full Palace, and
 Adaptive Palace.
 
-[Simplified Chinese](README.zh-CN.md) | [0.3.0 candidate result](docs/research/CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [Validation coverage](docs/research/VALIDATION_COVERAGE_MATRIX.md) | [Candidate protocol](docs/research/CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) | [中文辅助文档](docs/zh-CN/README.md) | [中文快速验证](docs/zh-CN/QUICKSTART.md) | [中文结果解读](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 draft](docs/research/PROTOCOL_V3.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
+[Simplified Chinese](README.zh-CN.md) | [Revised bypass confirmation](docs/research/REVISED_BYPASS_CONFIRMATION.md) | [0.3.0 candidate result](docs/research/CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [Validation coverage](docs/research/VALIDATION_COVERAGE_MATRIX.md) | [Candidate protocol](docs/research/CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) | [中文辅助文档](docs/zh-CN/README.md) | [中文快速验证](docs/zh-CN/QUICKSTART.md) | [中文结果解读](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 draft](docs/research/PROTOCOL_V3.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
 
 ## Falsifiable Claims
 
@@ -133,6 +133,15 @@ and +2.5 tool calls versus Control. The [final candidate report](docs/research/C
 therefore holds stable npm publication while bypass and repeated-inspection
 overhead are revised. This is a safety and auditability result, not a speedup
 claim.
+
+The first [post-candidate engineering confirmation](docs/research/REVISED_BYPASS_CONFIRMATION.md)
+now publishes three fresh exploratory trials and 12/12 valid, successful arms.
+In two exact-command pairs, Adaptive stopped reopening `package.json`, used one
+fewer inspection command, and referenced a paired median three fewer repository
+paths. The paired median wall-time difference was effectively zero (-0.086 s),
+while Adaptive still used +1.5 calls and +6,670.5 reported tokens. This narrows
+the remaining overhead to split final checks; it does not establish a Token or
+speed advantage.
 
 The next independent protocol now asks the product-facing question directly:
 Adaptive Palace versus normal Codex. Its primary efficiency metric is paired

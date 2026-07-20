@@ -4,7 +4,7 @@
 `benchmarks-ab-demo`。它们是导航与解释层，不是新的研究协议，也不会改变已
 冻结的任务、版本、随机 seed、分析方法或结果。
 
-[项目中文首页](../../README.zh-CN.md) | [0.3.0 候选最终结果](./CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [验证覆盖矩阵](./VALIDATION_COVERAGE_MATRIX.md) | [候选研究协议](./CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) | [快速验证指南](./QUICKSTART.md) | [结果阅读指南](./RESULTS_GUIDE.md) | [Control-first v3 协议](./PROTOCOL_V3.md) | [v3 Agent 预跑](./CONTROL_FIRST_V3_AGENT_PREFLIGHT.md) | [v2.2 英文最终报告](../research/ADAPTIVE_V2_2_FINAL.md)
+[项目中文首页](../../README.zh-CN.md) | [修订版 Bypass 工程确认](./REVISED_BYPASS_CONFIRMATION.md) | [0.3.0 候选最终结果](./CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [验证覆盖矩阵](./VALIDATION_COVERAGE_MATRIX.md) | [候选研究协议](./CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) | [快速验证指南](./QUICKSTART.md) | [结果阅读指南](./RESULTS_GUIDE.md) | [Control-first v3 协议](./PROTOCOL_V3.md) | [v3 Agent 预跑](./CONTROL_FIRST_V3_AGENT_PREFLIGHT.md) | [v2.2 英文最终报告](../research/ADAPTIVE_V2_2_FINAL.md)
 
 ## 按目的阅读
 
@@ -12,6 +12,7 @@
 | --- | --- | --- |
 | 快速判断研究结论 | [结果阅读指南](./RESULTS_GUIDE.md) | 否 |
 | 查看 0.3.0 候选是否适合发布 | [候选验证最终报告](./CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | 否 |
+| 查看修订版是否减少重复检查 | [修订版 Bypass 工程确认](./REVISED_BYPASS_CONFIRMATION.md) | 否 |
 | 区分已验证、预跑、旧版证据与空白 | [验证覆盖矩阵](./VALIDATION_COVERAGE_MATRIX.md) | 否 |
 | 验证代码、fixture、冻结计划和公开 evidence | [快速验证指南](./QUICKSTART.md#快速验证不执行-agent) | 否 |
 | 重算已发表的聚合分析 | [快速验证指南](./QUICKSTART.md#重新生成聚合分析) | 否 |
