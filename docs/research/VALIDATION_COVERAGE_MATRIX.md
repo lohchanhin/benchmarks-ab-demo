@@ -58,10 +58,12 @@ guardrails, not a universal speed or Token advantage.
 
 The negative findings drove true bypass, explicit memory telemetry, scoped
 guardrails, execution boundaries, confidence calibration, and exact package
-provenance in 0.3.0. The next protocol makes Adaptive versus Control primary,
-uses a hidden tenant owner selected with a secret commitment, and blocks any
-formal Arm until public npm metadata, clean installation, freeze commit, and
-Git tag agree. It remains `frozen:false` at 0/16 trials and 0/64 Arms.
+provenance in 0.3.0. A separate non-formal candidate study has now exercised
+the exact tarball across 16 trials and 64 arms. It found one memory-dependent
+scope correction and safe stale-memory behavior, but also systematic Adaptive
+overhead versus Control. Stable npm publication is held while that overhead is
+revised. The formal protocol remains `frozen:false` at 0/16 trials and 0/64
+Arms.
 
 ## Coverage
 
@@ -74,10 +76,10 @@ Git tag agree. It remains `frozen:false` at 0/16 trials and 0/64 Arms.
 | Real-repository issue-style tasks | **Validated product gate** | Zod and Requests retrieval only | Routing is supported for two fixed tasks; end-to-end Agent repair is not tested. |
 | Real-repository history-dependent task | **Not tested** | None | Memory value on a real project remains unknown. |
 | Real-repository architecture/refactor task | **Not tested** | None | Cross-module architecture coverage remains unknown. |
-| True adaptive bypass contract | **Validated product gate** | Four repeated 3-field, 200-byte bypass outputs | The router can bypass packed source. The Agent may still explore afterward. |
-| Memory-dependent tenant fixture | **Engineering preflight** | One sequential run: Route-only failed; Full, Adaptive, and Control passed | Memory beat structure-only routing once, but did not beat Control on correctness. |
-| Stale-memory resistance | **Historical exploratory evidence** | v2.2 stale-memory block: 4 trials, 16 valid successful Arms, no wrong-memory adoption | Guardrails were safe in this synthetic block for 0.2.1; 0.3.0 v3 replication is pending. |
-| Adaptive versus Control efficiency | **Historical exploratory evidence** | v2.2: 16 mutual successes; Adaptive +30,147 reported tokens, +10.919 s, +4.5 tool calls | Token and time intervals crossed zero; tool-call overhead did not. No general efficiency win was shown. |
+| True adaptive bypass contract | **Candidate evidence** | 0.3.0 candidate: Adaptive selected bypass in 3/3 valid small-local runs; 177-byte payload | Palace payload shrank, but Agent cost still increased by +14,029 tokens and +2 calls versus Control. |
+| Memory-dependent tenant fixture | **Candidate exploratory evidence** | 4 trials: Adaptive and Full 4/4, Control 3/4, Route-only 1/4 | One Control scope violation was prevented; exact paired p=1.0, so the correctness effect is not established. |
+| Stale-memory resistance | **Candidate exploratory evidence** | 0.3.0 candidate: 4 trials, 16/16 successful Arms, zero wrong-memory adoption | Guardrails were safe, but Adaptive carried two stale memories as warnings instead of excluding them. |
+| Adaptive versus Control efficiency | **Candidate negative evidence** | 14 mutual successes: Adaptive +19,922.5 tokens, +10.135 s, +2.5 calls; all 95% CIs above zero | The tested 0.3.0 candidate did not improve end-to-end efficiency and should not be marketed as a speedup. |
 | Control-first v3 formal study | **Blocked, not run** | `frozen:false`; 0/16 trials; 0/64 Arms | No 0.3.0 formal outcome exists yet. |
 | Public npm installation | **Blocked** | Registry latest remains 0.2.3; browser authorization expired | Local 0.3.0 evidence cannot substitute for immutable public registry metadata. |
 
@@ -87,11 +89,13 @@ Git tag agree. It remains `frozen:false` at 0/16 trials and 0/64 Arms.
   and focused tests for the pinned Zod and Requests tasks.
 - The candidate has a compact true-bypass contract and auditable memory
   inclusion/exclusion telemetry.
+- In the completed non-formal candidate study, Adaptive prevented one Control
+  tenant-scope error and never adopted stale memory.
+- The same candidate study found higher end-to-end Token, time, and tool-call
+  cost than Control across mutually successful pairs.
 - In the retained v2.2 study, Adaptive reduced Palace's own payload relative to
   Full Palace, but did not demonstrate lower end-to-end Token use or wall time
   than Control.
-- One engineered memory-dependent preflight produced a Route-only failure and
-  an Adaptive success, while Control also succeeded.
 
 ## Claims We Cannot Make Yet
 
@@ -103,10 +107,12 @@ Git tag agree. It remains `frozen:false` at 0/16 trials and 0/64 Arms.
 
 ## Next Evidence
 
-1. Publish and read back immutable npm 0.3.0 metadata.
-2. Install exact 0.3.0 from a clean clone, pass the release gate, freeze the v3
-   plan, and create `protocol-v3.0.0`.
-3. Run the 16 preregistered Control-first trials sequentially.
-4. In a separate future protocol, define a small-OSS size threshold before
+1. Remove explicit-call and repeated-inspection overhead for bypass and bounded
+   cross-stack tasks; exclude clear stale scope mismatches.
+2. Build an immutable revised candidate and rerun a fresh preregistered
+   confirmation before stable npm publication.
+3. After npm and clean-install gates pass, freeze and tag the formal v3 plan.
+4. Run the 16 formal Control-first trials sequentially.
+5. In a separate future protocol, define a small-OSS size threshold before
    selecting a repository and add real-repository history and architecture
    tasks with hidden, objective oracles.

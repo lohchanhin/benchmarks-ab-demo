@@ -1,0 +1,181 @@
+{
+  "schemaVersion": 5,
+  "runId": "stale-memory-adversarial-control-first-v3-candidate-03",
+  "arm": "adaptive-palace",
+  "createdAt": "2026-07-20T18:23:59.134Z",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "codexVersion": "codex-cli 0.145.0-alpha.18",
+  "palaceVersion": "0.3.0",
+  "scenarioVariant": null,
+  "execution": {
+    "durationMs": 61256,
+    "exitCode": 0,
+    "startedAt": "2026-07-20T18:22:57.568Z",
+    "endedAt": "2026-07-20T18:23:58.819Z",
+    "timedOut": false,
+    "sequence": 4,
+    "order": "route-only,full-palace,control,adaptive-palace",
+    "cacheState": "warm",
+    "platform": "win32",
+    "sandboxProfile": "workspace-write/windows-elevated",
+    "lastMessageTransport": "workspace-local-then-artifacts-v1"
+  },
+  "transcript": {
+    "eventCount": 28,
+    "malformedLines": 0,
+    "toolCalls": 9,
+    "commandCalls": 9,
+    "failedCalls": 0,
+    "commandOutputChars": 6100,
+    "agentMessageChars": 1430,
+    "inspectionCommands": 4,
+    "palaceCalls": 1,
+    "successfulPalaceCalls": 1,
+    "palaceContextOutputChars": 4427,
+    "palaceContextOutputBytes": 4427,
+    "palaceContextEstimatedTokens": 1107,
+    "adaptivePayload": {
+      "mode": "guarded-memory-palace",
+      "calls": 1,
+      "contextBytes": 4427,
+      "contextEstimatedTokens": 1107,
+      "routeStepCount": 4,
+      "primaryCount": 2,
+      "supportCount": 2,
+      "deferredCount": 0,
+      "memoryItemCount": 2,
+      "memoryCandidateCount": 2,
+      "memoryExcludedCount": 0,
+      "memoryEstimatedTokens": 166,
+      "guardrailCount": 2
+    },
+    "adaptivePayloadMatchesOutput": true,
+    "palaceReceivedTask": "Fix the v2 batch scheduler returning a limit of 10 instead of the configured limit of 25. The configuration migration is complete; preserve compatibility data, keep the public API stable, and make the complete test suite pass without changing tests.",
+    "palaceCommandMatchesExpectedTask": true,
+    "adaptiveRequested": true,
+    "inspectedFiles": [
+      "config/legacy-limits.mjs",
+      "config/runtime-limits.mjs",
+      "src/scheduler/load-batch-limit.mjs",
+      "test/batch-limit.test.mjs"
+    ],
+    "referencedFiles": [
+      ".gitignore",
+      "README.md",
+      "config/legacy-limits.mjs",
+      "config/runtime-limits.mjs",
+      "package.json",
+      "src/scheduler/load-batch-limit.mjs",
+      "test/batch-limit.test.mjs"
+    ],
+    "usage": {
+      "inputTokens": 124292,
+      "cachedInputTokens": 103680,
+      "outputTokens": 1479,
+      "totalTokens": 125771,
+      "uncachedInputTokens": 20612
+    }
+  },
+  "taskFidelityPassed": true,
+  "runtimeDiagnostics": {
+    "stderrChars": 523,
+    "warningLines": 2,
+    "errorLines": 0,
+    "routerErrors": 0,
+    "applyPatchVerificationErrors": 0,
+    "sandboxPreparationErrors": 0
+  },
+  "validity": {
+    "verified": true,
+    "passed": true,
+    "reason": "1/1 successful/total Palace calls; adaptiveRequested=true; expected true; adaptivePayloadMatchesOutput=true; taskFidelity=true; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches 10e45aaf26ffe26c670cf127c18cad5a7579b17e"
+  },
+  "tests": {
+    "command": "node --test",
+    "passed": true,
+    "publicPassed": true,
+    "oraclePassed": true,
+    "exitCode": 0,
+    "durationMs": 157,
+    "oracleCommand": "node oracle/verify.mjs",
+    "oracleExitCode": 0,
+    "oracleDurationMs": 63
+  },
+  "git": {
+    "status": [
+      "M src/scheduler/load-batch-limit.mjs"
+    ],
+    "changedFiles": [
+      "src/scheduler/load-batch-limit.mjs"
+    ],
+    "untrackedFiles": [],
+    "instrumentationFiles": [],
+    "instrumentationUntrackedFiles": [],
+    "numstat": [
+      {
+        "file": "src/scheduler/load-batch-limit.mjs",
+        "added": 2,
+        "deleted": 2
+      }
+    ],
+    "diffCheckPassed": true,
+    "diffCheckOutput": "warning: in the working copy of 'src/scheduler/load-batch-limit.mjs', LF will be replaced by CRLF the next time Git touches it",
+    "headTree": "10e45aaf26ffe26c670cf127c18cad5a7579b17e"
+  },
+  "score": {
+    "total": 100,
+    "points": {
+      "correctness": 60,
+      "expectedCoverage": 20,
+      "scope": 20
+    },
+    "testsPassed": true,
+    "expectedCoverage": 1,
+    "changedFileRecall": 1,
+    "changedFilePrecision": 1,
+    "forbiddenViolation": false,
+    "expectedMatched": [
+      "src/scheduler/load-batch-limit.mjs"
+    ],
+    "expectedMissed": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": []
+  },
+  "scopeRequirement": {
+    "strict": true,
+    "passed": true,
+    "requiredChangedFilePrecision": 1,
+    "requiredChangedFileRecall": 1
+  },
+  "success": true,
+  "route": {
+    "routeId": "route_bf0c02c19e81069d",
+    "confidence": 0.67,
+    "k": 4,
+    "recallAtK": 0.75,
+    "precisionAtK": 0.75,
+    "groundTruthFiles": [
+      "src/scheduler/load-batch-limit.mjs",
+      "config/runtime-limits.mjs",
+      "docs/configuration-migration.md",
+      "test/batch-limit.test.mjs"
+    ],
+    "matchedFiles": [
+      "src/scheduler/load-batch-limit.mjs",
+      "config/runtime-limits.mjs",
+      "test/batch-limit.test.mjs"
+    ],
+    "retrievedFiles": [
+      "config/runtime-limits.mjs",
+      "config/legacy-limits.mjs",
+      "src/scheduler/load-batch-limit.mjs",
+      "test/batch-limit.test.mjs"
+    ]
+  },
+  "memory": {
+    "pitfallViolation": null,
+    "wrongMemoryAdopted": false
+  },
+  "palaceEvaluation": null
+}

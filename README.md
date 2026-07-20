@@ -7,7 +7,7 @@ A public, preregistered, reproducible experiment comparing Codex repository
 work with no Palace, structural routing only, always-on Full Palace, and
 Adaptive Palace.
 
-[Simplified Chinese](README.zh-CN.md) | [Validation coverage](docs/research/VALIDATION_COVERAGE_MATRIX.md) | [Prepublication 0.3.0 candidate validation](docs/research/CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) | [中文辅助文档](docs/zh-CN/README.md) | [中文快速验证](docs/zh-CN/QUICKSTART.md) | [中文结果解读](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 draft](docs/research/PROTOCOL_V3.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [v1 protocol](docs/research/PROTOCOL.md) | [Adaptive v2.2 protocol](docs/research/PROTOCOL_V2_2.md) | [Amendments](docs/research/PROTOCOL_AMENDMENTS.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
+[Simplified Chinese](README.zh-CN.md) | [0.3.0 candidate result](docs/research/CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [Validation coverage](docs/research/VALIDATION_COVERAGE_MATRIX.md) | [Candidate protocol](docs/research/CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) | [中文辅助文档](docs/zh-CN/README.md) | [中文快速验证](docs/zh-CN/QUICKSTART.md) | [中文结果解读](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 draft](docs/research/PROTOCOL_V3.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
 
 ## Falsifiable Claims
 
@@ -124,6 +124,15 @@ validation](docs/research/CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) exercises th
 exact 0.3.0 tarball without changing the formal v3 0/16 baseline. Its plan,
 blinding-key commitment, package hashes, sanitized outcomes, and failures are
 public and independently auditable.
+
+That candidate study is now complete: 64 arms were attempted, 63 were valid,
+and 58 succeeded. Adaptive prevented one Control scope error in the
+decision-memory scenario and safely resisted stale memory, but across 14 mutual
+successes it used a paired median +19,922.5 reported tokens, +10.135 seconds,
+and +2.5 tool calls versus Control. The [final candidate report](docs/research/CONTROL_FIRST_V3_CANDIDATE_FINAL.md)
+therefore holds stable npm publication while bypass and repeated-inspection
+overhead are revised. This is a safety and auditability result, not a speedup
+claim.
 
 The next independent protocol now asks the product-facing question directly:
 Adaptive Palace versus normal Codex. Its primary efficiency metric is paired

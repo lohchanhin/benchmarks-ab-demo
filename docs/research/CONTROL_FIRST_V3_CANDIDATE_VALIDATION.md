@@ -1,15 +1,19 @@
 # Control-First v3 Prepublication Candidate Validation
 
-Status: **non-formal, preregistered, 0/16 trials at preregistration**.
+Status: **complete, non-formal, preregistered; 16/16 trials executed**.
 
 Plan: [`results/control-first-v3-candidate/plan.json`](../../results/control-first-v3-candidate/plan.json)
 
 Manifest: [`results/control-first-v3-candidate/manifest.json`](../../results/control-first-v3-candidate/manifest.json)
 
-Current progress: **12/16 trials complete**. See the audited
+Final result: **64 arms attempted, 63 valid, 58 successful**. Stable npm
+publication is held pending a revised candidate because Adaptive remained more
+expensive than Control end to end. See the [final candidate report](./CONTROL_FIRST_V3_CANDIDATE_FINAL.md)
+and the audited
 [small-local block report](./CONTROL_FIRST_V3_CANDIDATE_SMALL_LOCAL.md),
 [cross-stack block report](./CONTROL_FIRST_V3_CANDIDATE_CROSS_STACK.md),
-[decision-memory block report](./CONTROL_FIRST_V3_CANDIDATE_DECISION_MEMORY.md), and the
+[decision-memory block report](./CONTROL_FIRST_V3_CANDIDATE_DECISION_MEMORY.md),
+[stale-memory block report](./CONTROL_FIRST_V3_CANDIDATE_STALE_MEMORY.md), and the
 post-outcome [system-awake amendment](./CONTROL_FIRST_V3_CANDIDATE_AMENDMENT_1.md).
 
 ## Why this validation exists
@@ -64,9 +68,9 @@ npm run audit:control-first:v3:candidate
 npm run analysis:control-first:v3:candidate
 ```
 
-Evidence is committed after each four-trial scenario block. Negative, null,
-invalid, and failed outcomes are retained. A package publish decision is made
-only after all 16 trials and the candidate analysis are complete.
+Evidence was committed after each four-trial scenario block. Negative, null,
+invalid, and failed outcomes were retained. The completed analysis recommends
+revising and retesting the candidate before stable npm publication.
 ## Claim boundary
 
 This run can reject a broken release candidate or provide prepublication

@@ -1,15 +1,18 @@
 # Control-First v3 发布前候选验证
 
-状态：**非正式、已预注册；预注册时为 0/16 trial**。
+状态：**已完成、非正式、已预注册；16/16 trial 均已执行**。
 
 计划：[`results/control-first-v3-candidate/plan.json`](../../results/control-first-v3-candidate/plan.json)
 
 Manifest：[`results/control-first-v3-candidate/manifest.json`](../../results/control-first-v3-candidate/manifest.json)
 
-当前进度：**完成 12/16 trial**。审计结果见
+最终结果：**尝试 64 个 Arm、63 个有效、58 个成功**。因为 Adaptive 的端到端成本仍高于
+Control，stable npm 发布暂缓，等待修正版候选。完整结论见
+[候选验证最终报告](./CONTROL_FIRST_V3_CANDIDATE_FINAL.md)，各阶段审计结果见
 [Small Local 区块报告](./CONTROL_FIRST_V3_CANDIDATE_SMALL_LOCAL.md)、
 [Cross-Stack 区块报告](./CONTROL_FIRST_V3_CANDIDATE_CROSS_STACK.md)、
-[Decision-Memory 区块报告](./CONTROL_FIRST_V3_CANDIDATE_DECISION_MEMORY.md)，后续基础设施修订见
+[Decision-Memory 区块报告](./CONTROL_FIRST_V3_CANDIDATE_DECISION_MEMORY.md)、
+[Stale-Memory 区块报告](./CONTROL_FIRST_V3_CANDIDATE_STALE_MEMORY.md)，后续基础设施修订见
 [防休眠守卫说明](./CONTROL_FIRST_V3_CANDIDATE_AMENDMENT_1.md)。
 
 ## 为什么先做这轮验证
@@ -58,8 +61,8 @@ npm run audit:control-first:v3:candidate
 npm run analysis:control-first:v3:candidate
 ```
 
-每完成一个四-trial 场景区块就提交并推送。负面、无差异、无效和失败结果都保留；完成全部
-16 项与候选分析后，才判断是否适合发布 npm。
+每完成一个四-trial 场景区块都已提交并推送。负面、无差异、无效和失败结果全部保留；
+完整分析建议先修正并复验候选版，再发布 stable npm。
 
 ## 结论边界
 

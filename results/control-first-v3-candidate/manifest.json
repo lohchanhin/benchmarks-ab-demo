@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "protocolVersion": "3.0.0",
   "formal": false,
-  "status": "candidate-in-progress",
+  "status": "candidate-complete",
   "claimBoundary": "Non-formal prepublication Agent validation using the exact local 0.3.0 tarball. It does not replace or contribute observations to formal v3.",
   "plannedTrials": 16,
-  "completedTrials": 12,
+  "completedTrials": 16,
   "plannedScenarios": [
     "small-local-bug",
     "cross-stack-regression",
@@ -334,6 +334,110 @@
       },
       "publishedAt": "2026-07-20T18:03:54.156Z",
       "error": null
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-candidate-01",
+      "formalTrialId": "stale-memory-adversarial-control-first-v3-pilot-01",
+      "scenario": "stale-memory-adversarial",
+      "seed": "c51fb35316b03cf5b474d87968c3b7d9",
+      "order": [
+        "adaptive-palace",
+        "control",
+        "full-palace",
+        "route-only"
+      ],
+      "cacheState": "warm",
+      "status": "completed",
+      "report": "stale-memory-adversarial-control-first-v3-candidate-01/comparison.json",
+      "evidenceDirectory": "stale-memory-adversarial-control-first-v3-candidate-01",
+      "rawTranscriptsPublished": false,
+      "comparisonEligible": true,
+      "armValidity": {
+        "control": true,
+        "route-only": true,
+        "full-palace": true,
+        "adaptive-palace": true
+      },
+      "publishedAt": "2026-07-20T18:14:55.391Z",
+      "error": null
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-candidate-02",
+      "formalTrialId": "stale-memory-adversarial-control-first-v3-pilot-02",
+      "scenario": "stale-memory-adversarial",
+      "seed": "badc249514481419c59610f03f9c6dd4",
+      "order": [
+        "control",
+        "route-only",
+        "adaptive-palace",
+        "full-palace"
+      ],
+      "cacheState": "cold",
+      "status": "completed",
+      "report": "stale-memory-adversarial-control-first-v3-candidate-02/comparison.json",
+      "evidenceDirectory": "stale-memory-adversarial-control-first-v3-candidate-02",
+      "rawTranscriptsPublished": false,
+      "comparisonEligible": true,
+      "armValidity": {
+        "control": true,
+        "route-only": true,
+        "full-palace": true,
+        "adaptive-palace": true
+      },
+      "publishedAt": "2026-07-20T18:19:37.405Z",
+      "error": null
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-candidate-03",
+      "formalTrialId": "stale-memory-adversarial-control-first-v3-pilot-03",
+      "scenario": "stale-memory-adversarial",
+      "seed": "f02f172ba7e300171d094d40acd67d75",
+      "order": [
+        "route-only",
+        "full-palace",
+        "control",
+        "adaptive-palace"
+      ],
+      "cacheState": "warm",
+      "status": "completed",
+      "report": "stale-memory-adversarial-control-first-v3-candidate-03/comparison.json",
+      "evidenceDirectory": "stale-memory-adversarial-control-first-v3-candidate-03",
+      "rawTranscriptsPublished": false,
+      "comparisonEligible": true,
+      "armValidity": {
+        "control": true,
+        "route-only": true,
+        "full-palace": true,
+        "adaptive-palace": true
+      },
+      "publishedAt": "2026-07-20T18:23:59.165Z",
+      "error": null
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-candidate-04",
+      "formalTrialId": "stale-memory-adversarial-control-first-v3-pilot-04",
+      "scenario": "stale-memory-adversarial",
+      "seed": "ded18e89eb0ea64f35628eb36b164fc9",
+      "order": [
+        "full-palace",
+        "adaptive-palace",
+        "route-only",
+        "control"
+      ],
+      "cacheState": "cold",
+      "status": "completed",
+      "report": "stale-memory-adversarial-control-first-v3-candidate-04/comparison.json",
+      "evidenceDirectory": "stale-memory-adversarial-control-first-v3-candidate-04",
+      "rawTranscriptsPublished": false,
+      "comparisonEligible": true,
+      "armValidity": {
+        "control": true,
+        "route-only": true,
+        "full-palace": true,
+        "adaptive-palace": true
+      },
+      "publishedAt": "2026-07-20T18:27:50.377Z",
+      "error": null
     }
   ],
   "attempts": [
@@ -408,6 +512,30 @@
       "status": "completed",
       "attemptedAt": "2026-07-20T18:03:54.156Z",
       "error": null
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-candidate-01",
+      "status": "completed",
+      "attemptedAt": "2026-07-20T18:14:55.392Z",
+      "error": null
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-candidate-02",
+      "status": "completed",
+      "attemptedAt": "2026-07-20T18:19:37.406Z",
+      "error": null
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-candidate-03",
+      "status": "completed",
+      "attemptedAt": "2026-07-20T18:23:59.165Z",
+      "error": null
+    },
+    {
+      "trialId": "stale-memory-adversarial-control-first-v3-candidate-04",
+      "status": "completed",
+      "attemptedAt": "2026-07-20T18:27:50.378Z",
+      "error": null
     }
   ],
   "amendments": [
@@ -455,6 +583,20 @@
         "displayRequired": false
       },
       "completedAt": "2026-07-20T18:03:54.176Z",
+      "guardStopped": true,
+      "guardExitCode": 0,
+      "guardCleanExit": true,
+      "error": null
+    },
+    {
+      "scenario": "stale-memory-adversarial",
+      "startedAt": "2026-07-20T18:10:28.230Z",
+      "systemAwake": {
+        "active": true,
+        "method": "windows-set-thread-execution-state-system-required",
+        "displayRequired": false
+      },
+      "completedAt": "2026-07-20T18:27:50.397Z",
       "guardStopped": true,
       "guardExitCode": 0,
       "guardCleanExit": true,
