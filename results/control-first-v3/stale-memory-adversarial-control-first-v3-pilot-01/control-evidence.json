@@ -1,0 +1,147 @@
+{
+  "schemaVersion": 5,
+  "runId": "stale-memory-adversarial-control-first-v3-pilot-01",
+  "arm": "control",
+  "createdAt": "2026-07-20T22:27:40.969Z",
+  "model": "gpt-5.6-sol",
+  "reasoningEffort": "xhigh",
+  "codexVersion": "codex-cli 0.145.0-alpha.18",
+  "palaceVersion": null,
+  "scenarioVariant": null,
+  "execution": {
+    "durationMs": 35170,
+    "exitCode": 0,
+    "startedAt": "2026-07-20T22:27:05.481Z",
+    "endedAt": "2026-07-20T22:27:40.651Z",
+    "timedOut": false,
+    "sequence": 2,
+    "order": "adaptive-palace,control,full-palace,route-only",
+    "cacheState": "warm",
+    "platform": "win32",
+    "sandboxProfile": "workspace-write/windows-elevated",
+    "lastMessageTransport": "workspace-local-then-artifacts-v1"
+  },
+  "transcript": {
+    "eventCount": 17,
+    "malformedLines": 0,
+    "toolCalls": 4,
+    "commandCalls": 4,
+    "failedCalls": 0,
+    "commandOutputChars": 3144,
+    "agentMessageChars": 981,
+    "inspectionCommands": 2,
+    "palaceCalls": 0,
+    "successfulPalaceCalls": 0,
+    "palaceContextOutputChars": null,
+    "palaceContextOutputBytes": null,
+    "palaceContextEstimatedTokens": null,
+    "adaptivePayload": null,
+    "adaptivePayloadMatchesOutput": null,
+    "palaceReceivedTask": null,
+    "palaceCommandMatchesExpectedTask": null,
+    "adaptiveRequested": false,
+    "inspectedFiles": [
+      "config/legacy-limits.mjs",
+      "config/runtime-limits.mjs",
+      "docs/configuration-migration.md",
+      "package.json",
+      "src/scheduler/load-batch-limit.mjs",
+      "test/batch-limit.test.mjs"
+    ],
+    "referencedFiles": [
+      ".gitignore",
+      "README.md",
+      "config/legacy-limits.mjs",
+      "config/runtime-limits.mjs",
+      "docs/configuration-migration.md",
+      "package.json",
+      "src/scheduler/load-batch-limit.mjs",
+      "test/batch-limit.test.mjs"
+    ],
+    "usage": {
+      "inputTokens": 86496,
+      "cachedInputTokens": 78336,
+      "outputTokens": 1060,
+      "totalTokens": 87556,
+      "uncachedInputTokens": 8160
+    }
+  },
+  "taskFidelityPassed": null,
+  "runtimeDiagnostics": {
+    "stderrChars": 523,
+    "warningLines": 2,
+    "errorLines": 0,
+    "routerErrors": 0,
+    "applyPatchVerificationErrors": 0,
+    "sandboxPreparationErrors": 0
+  },
+  "validity": {
+    "verified": true,
+    "passed": true,
+    "reason": "0 Palace calls detected; expected 0; Codex exit code 0; timedOut=false; fixed execution settings match the run plan; sandbox preparation errors=0; expected 0; fixture tree matches c25dea63c2a0f2c93ef3214bd4302b367af6b2f3"
+  },
+  "tests": {
+    "command": "node --test",
+    "passed": true,
+    "publicPassed": true,
+    "oraclePassed": true,
+    "exitCode": 0,
+    "durationMs": 160,
+    "oracleCommand": "node oracle/verify.mjs",
+    "oracleExitCode": 0,
+    "oracleDurationMs": 68
+  },
+  "git": {
+    "status": [
+      "M src/scheduler/load-batch-limit.mjs"
+    ],
+    "changedFiles": [
+      "src/scheduler/load-batch-limit.mjs"
+    ],
+    "untrackedFiles": [],
+    "instrumentationFiles": [],
+    "instrumentationUntrackedFiles": [],
+    "numstat": [
+      {
+        "file": "src/scheduler/load-batch-limit.mjs",
+        "added": 2,
+        "deleted": 2
+      }
+    ],
+    "diffCheckPassed": true,
+    "diffCheckOutput": "warning: in the working copy of 'src/scheduler/load-batch-limit.mjs', LF will be replaced by CRLF the next time Git touches it",
+    "headTree": "c25dea63c2a0f2c93ef3214bd4302b367af6b2f3"
+  },
+  "score": {
+    "total": 100,
+    "points": {
+      "correctness": 60,
+      "expectedCoverage": 20,
+      "scope": 20
+    },
+    "testsPassed": true,
+    "expectedCoverage": 1,
+    "changedFileRecall": 1,
+    "changedFilePrecision": 1,
+    "forbiddenViolation": false,
+    "expectedMatched": [
+      "src/scheduler/load-batch-limit.mjs"
+    ],
+    "expectedMissed": [],
+    "forbiddenChanged": [],
+    "unexpectedChanged": []
+  },
+  "scopeRequirement": {
+    "strict": true,
+    "passed": true,
+    "requiredChangedFilePrecision": 1,
+    "requiredChangedFileRecall": 1
+  },
+  "success": true,
+  "route": null,
+  "memory": {
+    "pitfallViolation": null,
+    "wrongMemoryAdopted": false
+  },
+  "palaceEvaluation": null
+}
