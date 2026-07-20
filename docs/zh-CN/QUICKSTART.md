@@ -42,10 +42,14 @@ npm run audit:control-first:v3
 经过脱敏；raw transcript 不在 Git 中，因为它可能包含本机路径与 Session
 metadata。
 
-`audit:control-first:v3` 目前应显示 `0/16`。这是冻结后、正式执行前的正确状态，
-不是证据丢失：v3 计划已为 `frozen:true`，Palace 0.3.0、clean install 与
-19/19 发布闸门均已通过；任何正式 Agent trial 仍只能从精确
-`protocol-v3.0.0` tag 顺序启动。
+`audit:control-first:v3` 现在应显示 `16/16`、64 个有效 Arm、58 个成功 Arm 与
+128 份 checksum 验证通过的公开文件。v3 已从精确 `protocol-v3.0.0` tag 顺序执行，
+全部结果先锁定，私密分配键才随后公开。可独立复算揭盲：
+
+```bash
+npm run verify:reveal:control-first:v3
+npm run analysis:control-first:v3
+```
 
 ## 重新生成聚合分析
 

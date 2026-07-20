@@ -7,7 +7,7 @@ A public, preregistered, reproducible experiment comparing Codex repository
 work with no Palace, structural routing only, always-on Full Palace, and
 Adaptive Palace.
 
-[Simplified Chinese](README.zh-CN.md) | [Revised bypass confirmation](docs/research/REVISED_BYPASS_CONFIRMATION.md) | [0.3.0 candidate result](docs/research/CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [Validation coverage](docs/research/VALIDATION_COVERAGE_MATRIX.md) | [Candidate protocol](docs/research/CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) | [中文辅助文档](docs/zh-CN/README.md) | [中文快速验证](docs/zh-CN/QUICKSTART.md) | [中文结果解读](docs/zh-CN/RESULTS_GUIDE.md) | [Control-first v3 draft](docs/research/PROTOCOL_V3.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
+[Simplified Chinese](README.zh-CN.md) | [Control-first v3 final](docs/research/CONTROL_FIRST_V3_FINAL.md) | [Validation coverage](docs/research/VALIDATION_COVERAGE_MATRIX.md) | [Revised bypass confirmation](docs/research/REVISED_BYPASS_CONFIRMATION.md) | [0.3.0 candidate result](docs/research/CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [Chinese documentation](docs/zh-CN/README.md) | [Chinese quick verification](docs/zh-CN/QUICKSTART.md) | [Chinese v2.2 results guide](docs/zh-CN/RESULTS_GUIDE.md) | [v3 protocol](docs/research/PROTOCOL_V3.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
 
 ## Falsifiable Claims
 
@@ -117,11 +117,35 @@ the tool-call interval is entirely positive. The
 guarded context are useful, while universal Token or speed savings are not
 established.
 
-## Control-First v3 Design Review
+## Control-First v3 Formal Result
+
+The preregistered 0.3.0 study is complete: 16/16 trials and 64/64 valid Agent
+arms are public. Adaptive succeeded 16/16; Control succeeded 13/16. The three
+discordant outcomes were all in the hidden decision-memory scenario, where
+Control changed a plausible but forbidden tenant and Adaptive followed the
+relevant historical decision. The raw exact paired p-value is 0.25 and the
+scenario-family Holm-adjusted value is 1.00, so this is a strong mechanism
+signal in a small synthetic pilot, not a statistically established general
+correctness effect.
+
+Across the 13 pairs where both arms succeeded, Adaptive minus Control had a
+paired median of -806 reported tokens (95% CI -14,743 to +22,498), +2.963
+seconds (-6.069 to +11.865), and 0 tool calls (-1 to +3). No overall efficiency
+advantage was established. In the stale-memory block, Adaptive rejected every
+wrong memory but paid supported overhead: +36,954 reported tokens, +22.6
+seconds, and +4.5 calls at the paired median.
+
+See the [final report](docs/research/CONTROL_FIRST_V3_FINAL.md), [machine
+analysis](results/control-first-v3/analysis.json), and [post-lock blinding
+reveal](results/control-first-v3/blinding-reveal.json). The result lock is commit
+`0c81fb268ed3f4c856fd33e11612a82b769fd7b3`; the reveal reproduces the frozen
+key commitment and all four hidden assignments.
+
+## Development Trail
 
 Before npm publication, a separate [16-trial non-formal candidate
-validation](docs/research/CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) exercises the
-exact 0.3.0 tarball without changing the formal v3 0/16 baseline. Its plan,
+validation](docs/research/CONTROL_FIRST_V3_CANDIDATE_VALIDATION.md) exercised the
+exact 0.3.0 tarball without changing the then-empty formal v3 baseline. Its plan,
 blinding-key commitment, package hashes, sanitized outcomes, and failures are
 public and independently auditable.
 
@@ -150,23 +174,20 @@ SHA-1, integrity, tag, and install observations are retained in the
 [release verification record](docs/research/evidence/vertex-palace-0.3.0-public-release-2026-07-20.json).
 Distribution success does not change the benchmark claim boundary.
 
-The next independent protocol now asks the product-facing question directly:
+The formal protocol then asked the product-facing question directly:
 Adaptive Palace versus normal Codex. Its primary efficiency metric is paired
 cumulative `reportedTokens`, but correctness and exact changed-file scope are
 evaluated first. The old useful-memory fixture is replaced by a deliberately
 underdetermined ownership task whose public tests pass at baseline while an
 external oracle requires a seed-stratified, secretly permuted tenant scope.
 Aurora, Borealis, and Cedar are fictional tenants; the public plan and prompts
-do not reveal which one owns a given formal trial.
+did not reveal which one owned a formal trial during execution.
 
 The [v3 protocol](docs/research/PROTOCOL_V3.md), [frozen 16-trial
-plan](results/control-first-v3/plan.json), and empty [result
-manifest](results/control-first-v3/manifest.json) are public. The plan now has
-`frozen:true`, a public key commitment, zero Agent outcomes, and unchanged trial
-ids, seeds, and arm orders. The benchmark dependency, lockfile, installed
-package, and plan are bound to the immutable public Palace 0.3.0 package, and
-the release gate passed 19/19. The private key remains outside Git and is not
-revealed until every formal outcome is locked.
+plan](results/control-first-v3/plan.json), and completed [result
+manifest](results/control-first-v3/manifest.json) are public. The unchanged
+trial ids, seeds, arm orders, benchmark dependency, lockfile, installed package,
+and plan remain bound to the immutable public Palace 0.3.0 package.
 
 The [preflight record](docs/research/CONTROL_FIRST_V3_PREFLIGHT.md) publishes the
 failed and passing memory smokes, the product fix commit, CI evidence, and the
@@ -177,8 +198,9 @@ plus one guarded-memory run where Route-only failed but Control and Adaptive
 both succeeded. These are design inputs, not formal v3 outcomes.
 The follow-up [blinded-fixture design](docs/research/CONTROL_FIRST_V3_BLINDED_DESIGN.md)
 adds a preregistered 256-bit key commitment, all-owner regression coverage, and
-prompt-matched stop conditions without running another Agent arm. The reviewed
-commitment is now recorded in the frozen plan; the key itself remains private.
+prompt-matched stop conditions without running another Agent arm. The key stayed
+private through all formal outcomes and is now published only in the post-lock
+reveal artifact.
 The [release-provenance gate](docs/research/CONTROL_FIRST_V3_RELEASE_PROVENANCE.md)
 pins the exact candidate tarball and records the first expired npm browser
 authorization as historical pre-release evidence. The later
@@ -187,12 +209,11 @@ records the successful npm, GitHub Release, marketplace, and plugin checks.
 The 19-check pre-freeze gate and complete benchmark checks passed before the
 plan changed. `npm run freeze:control-first:v3` then passed in dry-run and write
 modes using the private key from `VERTEX_PALACE_BENCHMARK_VARIANT_KEY`. The key
-was not printed or written to the repository, and child Agent processes are
-required to receive a scrubbed environment. The exact audit is retained in the
+was not printed or written to the repository during execution, and child Agent
+processes received a scrubbed environment. The exact audit is retained in the
 [freeze evidence](docs/research/evidence/control-first-v3-freeze-2026-07-21.json).
-Initial formal execution requires a clean HEAD exactly at
-`protocol-v3.0.0`; an interrupted study may resume only from that tag or a
-descendant containing result-only changes.
+Formal execution began at `protocol-v3.0.0`; every result stage was committed
+before the key was revealed.
 The current product gate also records exact Zod and Requests routes at recall
 1.000 / strict precision 1.000 and a clean-install 50-memory ceiling test; these
 remain engineering evidence until the independent Agent arms are frozen and run.

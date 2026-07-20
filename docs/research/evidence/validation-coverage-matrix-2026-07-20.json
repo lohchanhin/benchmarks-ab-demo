@@ -1,11 +1,12 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-21T04:48:34.7432098+08:00",
+  "generatedAt": "2026-07-21T06:55:21.9920028+08:00",
   "claimBoundary": "Coverage inventory only. Product gates, engineering preflights, historical exploratory evidence, and untested claims remain distinct.",
   "statusVocabulary": {
     "validated-product-gate": "Deterministic product or packaging contract; not an Agent comparison.",
     "validated-release-gate": "Public distribution contract; not an Agent comparison.",
     "frozen-protocol": "Protocol and provenance are locked, but no formal Agent outcome exists yet.",
+    "formal-exploratory": "Completed preregistered Agent evidence with exploratory sample size and explicit claim limits.",
     "engineering-preflight": "Non-formal Agent or fixture evidence outside the frozen result manifest.",
     "historical-exploratory": "Valid retained evidence from an earlier frozen protocol and product version.",
     "blocked": "Required external or protocol gate is not complete.",
@@ -75,8 +76,8 @@
       "id": "control-first-v3",
       "protocolVersion": "3.0.0",
       "design": { "primaryComparison": "adaptive-vs-control", "plannedTrials": 16, "plannedArms": 64, "hiddenTenantOwnership": true, "exactPackageProvenance": true },
-      "status": { "frozen": true, "attemptedTrials": 0, "attemptedArms": 0 },
-      "conclusion": "Design, provenance, and the public key commitment are frozen, but no formal 0.3.0 Agent outcome exists."
+      "status": { "frozen": true, "attemptedTrials": 16, "attemptedArms": 64, "validArms": 64, "successfulArms": 58, "keyRevealedAfterResultLock": true },
+      "conclusion": "Adaptive completed all 16 tasks and prevented three hidden scope failures seen in Control, but the small synthetic pilot did not establish a general Token or speed advantage."
     }
   ],
   "coverage": [
@@ -179,17 +180,39 @@
     },
     {
       "id": "control-first-v3-formal",
-      "status": "frozen-protocol",
+      "status": "formal-exploratory",
       "evidence": [
         "results/control-first-v3/plan.json",
         "results/control-first-v3/manifest.json",
+        "results/control-first-v3/analysis.json",
+        "results/control-first-v3/blinding-reveal.json",
+        "docs/research/CONTROL_FIRST_V3_FINAL.md",
         "docs/research/evidence/control-first-v3-public-binding-2026-07-21.json",
         "docs/research/evidence/control-first-v3-freeze-2026-07-21.json"
       ],
-      "observed": { "frozen": true, "plannedTrials": 16, "attemptedTrials": 0, "plannedArms": 64, "attemptedArms": 0 },
+      "observed": {
+        "frozen": true,
+        "plannedTrials": 16,
+        "attemptedTrials": 16,
+        "plannedArms": 64,
+        "attemptedArms": 64,
+        "validArms": 64,
+        "successfulArms": 58,
+        "controlSuccessRate": 0.8125,
+        "adaptiveSuccessRate": 1,
+        "adaptiveMinusControlReportedTokens": { "estimate": -806, "confidenceInterval": [-14743, 22498], "mutualSuccessPairs": 13 },
+        "adaptiveMinusControlDurationMs": { "estimate": 2963, "confidenceInterval": [-6069, 11865], "mutualSuccessPairs": 13 },
+        "adaptiveMinusControlToolCalls": { "estimate": 0, "confidenceInterval": [-1, 3], "mutualSuccessPairs": 13 },
+        "decisionMemoryControlSuccessRate": 0.25,
+        "decisionMemoryAdaptiveSuccessRate": 1,
+        "decisionMemoryExactPValue": 0.25,
+        "decisionMemoryHolmPValue": 1,
+        "staleMemoryWrongAdoptionRate": 0,
+        "keyRevealedAfterResultLock": true
+      },
       "blocker": null,
-      "allowedClaim": "The Control-first design is bound to public 0.3.0, passed the 19-check release gate, and is frozen with an empty manifest.",
-      "forbiddenClaim": "Any v3 efficiency or correctness outcome exists."
+      "allowedClaim": "In this synthetic pilot, Adaptive prevented three hidden tenant-scope failures and never adopted stale memory; pooled efficiency differences remained inconclusive.",
+      "forbiddenClaim": "Vertex Palace is proven generally faster, cheaper, or more correct on real repositories."
     },
     {
       "id": "npm-publication-0-3-0",
@@ -212,8 +235,6 @@
     }
   ],
   "nextEvidence": [
-    "run 16 preregistered sequential v3 trials from protocol-v3.0.0",
-    "reveal the private variant key only after every formal outcome is locked",
     "preregister a separate small-OSS size threshold and repository",
     "add real-repository history-dependent and architecture/refactor tasks with hidden objective oracles"
   ]

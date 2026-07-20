@@ -26,7 +26,9 @@ test("candidate manifest evolves only inside its own preregistered trial set", a
     readFile(`${repositoryRoot}/results/control-first-v3-candidate/manifest.json`, "utf8").then(JSON.parse),
     readFile(`${repositoryRoot}/results/control-first-v3-candidate/plan.json`, "utf8").then(JSON.parse)
   ]);
-  assert.deepEqual(formal.trials, []);
+  assert.equal(formal.trials.length, formal.plannedTrials);
+  assert.ok(formal.trials.every((trial) => trial.status === "completed"));
+  const formalIds = new Set(formal.trials.map((trial) => trial.trialId));
   assert.equal(candidate.formal, false);
   assert.equal(candidate.plannedTrials, 16);
   assert.ok(candidate.trials.length <= candidate.plannedTrials);
@@ -34,6 +36,8 @@ test("candidate manifest evolves only inside its own preregistered trial set", a
   const plannedIds = new Set(plan.trials.map((trial) => trial.trialId));
   assert.ok(candidate.trials.every((trial) => plannedIds.has(trial.trialId)));
   assert.ok(candidate.attempts.every((attempt) => plannedIds.has(attempt.trialId)));
+  assert.ok(candidate.trials.every((trial) => !formalIds.has(trial.trialId)));
+  assert.ok(candidate.attempts.every((attempt) => !formalIds.has(attempt.trialId)));
   assert.equal(
     candidate.completedTrials,
     candidate.trials.filter((trial) => trial.status === "completed").length

@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "artifact": "control-first-v3-blinding-reveal",
+  "revealedAt": "2026-07-20T22:51:34.978Z",
+  "study": {
+    "id": "vertex-palace-control-first-four-scenario-pilot-v3",
+    "protocolVersion": "3.0.0",
+    "outcomesLockedAtCommit": "0c81fb268ed3f4c856fd33e11612a82b769fd7b3",
+    "manifestSha256": "c3d53aff501451cfe4702ecc0989da11ebaae3e36ceb3dc83d11915f3f5d9af2",
+    "analysisSha256": "415c11490c44d65ce20b8a6710b1b789675b5d71353287cefa7e277bb72da0e4"
+  },
+  "blinding": {
+    "variantId": "seeded-tenant-owner-v1",
+    "keyEncoding": "64-character lowercase hexadecimal",
+    "key": "bfc6d9b9b57dcc3d99299f60c479b69575226af4a4f4547056e690a6e66e15a0",
+    "keyCommitment": "6c835757dc87f59011486b17fa1adf0db07c996f92c7be0cb4e5c13129697b2c",
+    "commitmentFormula": "sha256(UTF-8 seeded-tenant-owner-v1 + NUL + UTF-8 hex key)",
+    "assignmentFormula": "hmac-sha256(hex key, UTF-8 seed + NUL + variant id + NUL + owner)",
+    "candidates": [
+      "aurora",
+      "borealis",
+      "cedar"
+    ]
+  },
+  "verification": {
+    "resultsComplete": true,
+    "plannedTrials": 16,
+    "attemptedTrials": 16,
+    "armRuns": 64,
+    "validArmRuns": 64,
+    "successfulArmRuns": 58,
+    "checksumVerifiedEvidenceFiles": 128,
+    "keyMatchesFrozenCommitment": true,
+    "allAssignmentCommitmentsMatch": true,
+    "allOwnerStrataCovered": true
+  },
+  "stratumMapping": [
+    {
+      "stratum": 0,
+      "owner": "cedar"
+    },
+    {
+      "stratum": 1,
+      "owner": "borealis"
+    },
+    {
+      "stratum": 2,
+      "owner": "aurora"
+    }
+  ],
+  "assignments": [
+    {
+      "trialId": "decision-memory-dependent-control-first-v3-pilot-01",
+      "seed": "6da403bb44e960343999637114711d77",
+      "stratum": 1,
+      "owner": "borealis",
+      "assignmentCommitment": "fa33661536e0d1ada329c46fcb323075a08cfc78341a965c07bb0f5ca0e28103",
+      "commitmentMatchesPublishedManifest": true
+    },
+    {
+      "trialId": "decision-memory-dependent-control-first-v3-pilot-02",
+      "seed": "8467a1fd15ca2b856c2264fdc90f5faa",
+      "stratum": 2,
+      "owner": "aurora",
+      "assignmentCommitment": "87337057da0433d6544734d33626c2f7dbd1bdd755ad31cd726adf898296aaaf",
+      "commitmentMatchesPublishedManifest": true
+    },
+    {
+      "trialId": "decision-memory-dependent-control-first-v3-pilot-03",
+      "seed": "fec53ebb71898490181bda46e37955bf",
+      "stratum": 0,
+      "owner": "cedar",
+      "assignmentCommitment": "da5bb9966e864dc4e95d0c40804d64e2b97ef13e9dd2c4e3857ea2f41225cb72",
+      "commitmentMatchesPublishedManifest": true
+    },
+    {
+      "trialId": "decision-memory-dependent-control-first-v3-pilot-04",
+      "seed": "11395795da3624d59145a6abca39f16e",
+      "stratum": 2,
+      "owner": "aurora",
+      "assignmentCommitment": "51fdb83926ad744b29942d211e073516ebea3a064670fd9a7b6a997ea1d01a12",
+      "commitmentMatchesPublishedManifest": true
+    }
+  ]
+}

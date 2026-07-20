@@ -54,7 +54,7 @@ more seconds, both inconclusive, plus 4.5 more tool calls with a 95% interval of
 4/4 trials. The supported value was smaller, auditable routing and stale-memory
 guardrails, not a universal speed or Token advantage.
 
-### Current direction: corrected 0.3.0 and Control-first v3
+### Third study: Control-first v3 (0.3.0)
 
 The negative findings drove true bypass, explicit memory telemetry, scoped
 guardrails, execution boundaries, confidence calibration, and exact package
@@ -63,10 +63,11 @@ candidate tarball across 16 trials and 64 arms. It found one memory-dependent
 scope correction and safe stale-memory behavior, but also systematic Adaptive
 overhead versus Control. After two fresh small-local pairs showed a narrower
 directional result, 0.3.0 was published without turning that exploratory result
-into a general speed claim. The formal protocol is now `frozen:true` at 0/16
-trials and 0/64 Arms. Its plan, dependency, lockfile, installed package, and
-registry match the public artifact; the 19/19 release gate passed, and only the
-public commitment was added before the exact freeze commit was tagged.
+into a general speed claim. The formal protocol then completed 16/16 trials and
+64/64 valid Arms. Adaptive succeeded 16/16 and Control 13/16; the three
+discordant outcomes were hidden decision-memory scope errors. Across 13 mutual
+successes, reported Tokens, time, and calls remained inconclusive. The private
+assignment key was revealed only after commit `0c81fb2` locked all outcomes.
 
 ## Coverage
 
@@ -84,7 +85,7 @@ public commitment was added before the exact freeze commit was tagged.
 | Memory-dependent tenant fixture | **Candidate exploratory evidence** | 4 trials: Adaptive and Full 4/4, Control 3/4, Route-only 1/4 | One Control scope violation was prevented; exact paired p=1.0, so the correctness effect is not established. |
 | Stale-memory resistance | **Candidate exploratory evidence** | 0.3.0 candidate: 4 trials, 16/16 successful Arms, zero wrong-memory adoption | Guardrails were safe, but Adaptive carried two stale memories as warnings instead of excluding them. |
 | Adaptive versus Control efficiency | **Candidate negative evidence** | 14 mutual successes: Adaptive +19,922.5 tokens, +10.135 s, +2.5 calls; all 95% CIs above zero | The tested 0.3.0 candidate did not improve end-to-end efficiency and should not be marketed as a speedup. |
-| Control-first v3 formal study | **Frozen, not run** | Public 0.3.0 binding gate 19/19; public key commitment; `frozen:true`; 0/16 trials; 0/64 Arms | Artifact provenance and protocol design are locked, but no formal Agent outcome exists yet. |
+| Control-first v3 formal study | **Completed exploratory evidence** | 16/16 trials; 64/64 valid Arms; Adaptive 16/16, Control 13/16; 128 checksum-verified evidence files; post-lock key reveal | Synthetic historical decisions prevented three Control scope errors, but pooled efficiency intervals crossed zero and raw exact p=0.25. |
 | Public npm and Codex plugin installation | **Validated release gate** | npm latest `0.3.0`; SHA-1 `9a04440d...`; clean registry install; GitHub Release `v0.3.0`; isolated Codex marketplace and plugin install | The public package and plugin path are installable. This verifies distribution, not an Agent efficiency effect. |
 
 ## Claims We Can Make
@@ -97,6 +98,11 @@ public commitment was added before the exact freeze commit was tagged.
   tenant-scope error and never adopted stale memory.
 - The same candidate study found higher end-to-end Token, time, and tool-call
   cost than Control across mutually successful pairs.
+- In formal v3, Adaptive completed 16/16 tasks versus Control 13/16 and avoided
+  all three forbidden tenant-scope changes observed in Control.
+- Formal v3 did not establish a general efficiency effect: across 13 mutual
+  successes, Adaptive minus Control was -806 reported tokens, +2.963 seconds,
+  and 0 calls, with all three intervals crossing zero.
 - In two fresh final-candidate small-local pairs, Adaptive inspected one file
   and used fewer reported tokens and less wall time than Control in both pairs;
   this is exploratory post-candidate evidence, not a universal result.
@@ -105,8 +111,9 @@ public commitment was added before the exact freeze commit was tagged.
   than Control.
 - `vertex-palace@0.3.0` is publicly installable, and the GitHub `v0.3.0`
   marketplace installs the 0.3.0 Codex plugin in an isolated configuration.
-- The frozen v3 plan and benchmark installation agree with the immutable public
-  0.3.0 metadata; all 19 release-binding checks passed and the manifest is 0/16.
+- The v3 plan and benchmark installation agree with immutable public 0.3.0
+  metadata; all 19 release-binding checks passed, 16 trials are published, and
+  the post-lock reveal reproduces every blinded assignment commitment.
 
 ## Claims We Cannot Make Yet
 
@@ -119,12 +126,8 @@ public commitment was added before the exact freeze commit was tagged.
 
 ## Next Evidence
 
-1. Run the 16 formal Control-first trials sequentially from the protocol tag,
-   retaining every failed, invalid, or timed-out attempt.
-2. Preregister a fresh confirmation that repeats the small-local result and
+1. Preregister a fresh confirmation that repeats the small-local result and
    tests bounded cross-stack behavior without changing treatment mid-study.
-3. Reveal the variant key only after all formal outcomes are locked, then
-   reproduce the owner assignments and primary paired analysis.
-4. In a separate future protocol, define a small-OSS size threshold before
+2. In a separate future protocol, define a small-OSS size threshold before
    selecting a repository and add real-repository history and architecture
    tasks with hidden, objective oracles.

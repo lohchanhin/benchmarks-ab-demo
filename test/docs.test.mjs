@@ -111,18 +111,21 @@ test("keeps the validation coverage matrix synchronized with published evidence"
   const freezeEvidence = JSON.parse(
     await read("docs/research/evidence/control-first-v3-freeze-2026-07-21.json")
   );
+  const reveal = JSON.parse(await read("results/control-first-v3/blinding-reveal.json"));
   const rows = new Map(matrix.coverage.map((row) => [row.id, row]));
 
   const v3 = rows.get("control-first-v3-formal");
   assert.equal(v3.observed.frozen, plan.frozen);
   assert.equal(v3.observed.plannedTrials, plan.trials.length);
   assert.equal(v3.observed.attemptedTrials, manifest.trials.length);
-  assert.equal(v3.observed.attemptedArms, 0);
-  assert.equal(v3.status, "frozen-protocol");
+  assert.equal(v3.observed.attemptedArms, manifest.trials.length * 4);
+  assert.equal(v3.observed.validArms, 64);
+  assert.equal(v3.observed.successfulArms, 58);
+  assert.equal(v3.status, "formal-exploratory");
   assert.equal(publicBinding.studyState.frozen, false);
-  assert.equal(publicBinding.studyState.attemptedTrials, manifest.trials.length);
+  assert.equal(publicBinding.studyState.attemptedTrials, 0);
   assert.equal(freezeEvidence.studyState.frozen, plan.frozen);
-  assert.equal(freezeEvidence.studyState.attemptedTrials, manifest.trials.length);
+  assert.equal(freezeEvidence.studyState.attemptedTrials, 0);
   assert.equal(
     freezeEvidence.blinding.commitment,
     plan.scenarioVariantPolicy["decision-memory-dependent"].blindingKeyCommitment
@@ -132,6 +135,9 @@ test("keeps the validation coverage matrix synchronized with published evidence"
     createHash("sha256").update(planText).digest("hex")
   );
   assert.equal(freezeEvidence.independentCommitmentAudit.correctedCheckPassed, true);
+  assert.equal(reveal.verification.resultsComplete, true);
+  assert.equal(reveal.verification.allAssignmentCommitmentsMatch, true);
+  assert.equal(reveal.blinding.keyCommitment, freezeEvidence.blinding.commitment);
   assert.equal(publicBinding.artifact.npmShasum, plan.execution.palacePackageShasum);
   assert.equal(publicBinding.artifact.npmIntegrity, plan.execution.palacePackageIntegrity);
   assert.equal(publicBinding.releaseGate.after.checksPassed, 19);
