@@ -9,8 +9,8 @@
   "frozenPlanSha256": "e811e734d3f7152c80c16044530fef27870de5663b7ad6f64ac6b088137493fb",
   "plannedTrials": 16,
   "plannedArmRuns": 32,
-  "completedTrials": 1,
-  "completedArmRuns": 2,
+  "completedTrials": 4,
+  "completedArmRuns": 8,
   "infrastructureFailures": 0,
   "mappingRevealed": false,
   "trials": [
@@ -37,8 +37,8 @@
         "arm-b",
         "arm-a"
       ],
-      "status": "planned",
-      "completedArmRuns": 0
+      "status": "completed",
+      "completedArmRuns": 2
     },
     {
       "trialId": "zod-transform-refine-4926-v4-03",
@@ -50,8 +50,8 @@
         "arm-a",
         "arm-b"
       ],
-      "status": "planned",
-      "completedArmRuns": 0
+      "status": "completed",
+      "completedArmRuns": 2
     },
     {
       "trialId": "zod-transform-refine-4926-v4-04",
@@ -63,8 +63,8 @@
         "arm-b",
         "arm-a"
       ],
-      "status": "planned",
-      "completedArmRuns": 0
+      "status": "completed",
+      "completedArmRuns": 2
     },
     {
       "trialId": "open-webui-analytics-25919-v4-01",
@@ -248,6 +248,78 @@
       "evidencePath": "results/real-repository-v4/zod-transform-refine-4926-v4-01-arm-b/evidence.json",
       "evidenceSha256": "7eda18ced415e09501ae8e4e2b28af6e8faee077d1017223d0d20470cec216ed",
       "completedAt": "2026-07-21T11:10:50.940Z"
+    },
+    {
+      "armId": "zod-transform-refine-4926-v4-02-arm-b",
+      "trialId": "zod-transform-refine-4926-v4-02",
+      "fixtureId": "zod-transform-refine-4926",
+      "blindedLabel": "arm-b",
+      "sequence": 1,
+      "status": "completed",
+      "success": false,
+      "evidencePath": "results/real-repository-v4/zod-transform-refine-4926-v4-02-arm-b/evidence.json",
+      "evidenceSha256": "a61769f245d4c4b50bad9f73e21b77a0eaa748bed4fbc1aff3b0bfd1270186e3",
+      "completedAt": "2026-07-21T11:21:10.141Z"
+    },
+    {
+      "armId": "zod-transform-refine-4926-v4-02-arm-a",
+      "trialId": "zod-transform-refine-4926-v4-02",
+      "fixtureId": "zod-transform-refine-4926",
+      "blindedLabel": "arm-a",
+      "sequence": 2,
+      "status": "completed",
+      "success": true,
+      "evidencePath": "results/real-repository-v4/zod-transform-refine-4926-v4-02-arm-a/evidence.json",
+      "evidenceSha256": "9e6fc590c9a8047a5a2d702c16c55f2abf08b93dd3ea6310a7b56759a29fd187",
+      "completedAt": "2026-07-21T11:27:08.590Z"
+    },
+    {
+      "armId": "zod-transform-refine-4926-v4-03-arm-a",
+      "trialId": "zod-transform-refine-4926-v4-03",
+      "fixtureId": "zod-transform-refine-4926",
+      "blindedLabel": "arm-a",
+      "sequence": 1,
+      "status": "completed",
+      "success": true,
+      "evidencePath": "results/real-repository-v4/zod-transform-refine-4926-v4-03-arm-a/evidence.json",
+      "evidenceSha256": "8fc466acb6a35e8005f7ab0967cec6df583c3003385e8af3b127c1d02cced4dc",
+      "completedAt": "2026-07-21T11:32:47.167Z"
+    },
+    {
+      "armId": "zod-transform-refine-4926-v4-03-arm-b",
+      "trialId": "zod-transform-refine-4926-v4-03",
+      "fixtureId": "zod-transform-refine-4926",
+      "blindedLabel": "arm-b",
+      "sequence": 2,
+      "status": "completed",
+      "success": false,
+      "evidencePath": "results/real-repository-v4/zod-transform-refine-4926-v4-03-arm-b/evidence.json",
+      "evidenceSha256": "f363516727678c092392860c14178d7dcfb51de8cfe5451f7eb11b3d3264d3b7",
+      "completedAt": "2026-07-21T11:38:14.432Z"
+    },
+    {
+      "armId": "zod-transform-refine-4926-v4-04-arm-b",
+      "trialId": "zod-transform-refine-4926-v4-04",
+      "fixtureId": "zod-transform-refine-4926",
+      "blindedLabel": "arm-b",
+      "sequence": 1,
+      "status": "completed",
+      "success": true,
+      "evidencePath": "results/real-repository-v4/zod-transform-refine-4926-v4-04-arm-b/evidence.json",
+      "evidenceSha256": "4d672908feafef7c264606626bb2f356e19802def773d7b49a95c64a92c3d862",
+      "completedAt": "2026-07-21T11:45:38.658Z"
+    },
+    {
+      "armId": "zod-transform-refine-4926-v4-04-arm-a",
+      "trialId": "zod-transform-refine-4926-v4-04",
+      "fixtureId": "zod-transform-refine-4926",
+      "blindedLabel": "arm-a",
+      "sequence": 2,
+      "status": "completed",
+      "success": true,
+      "evidencePath": "results/real-repository-v4/zod-transform-refine-4926-v4-04-arm-a/evidence.json",
+      "evidenceSha256": "445207bee2efcd0fcda19365806e1a93a57f29ad2bc2607e4a92c0a993939467",
+      "completedAt": "2026-07-21T11:52:16.513Z"
     }
   ]
 }
