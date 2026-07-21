@@ -15,6 +15,11 @@ The fourth-generation study plan and its separate execution amendment are now
 owner-approved and frozen. The execution gate passed 10/10 checks while formal
 execution remained at 0/32. The result-only execution sequence starts with an
 empty blinded ledger and a no-Agent dependency dry run before the first arm.
+The first scheduled invocation then failed closed before Agent session creation
+because of a CLI argument-position incompatibility: three infrastructure
+attempts, zero Agent events, zero completed arms, and no observed outcome. A
+single-order correction was committed and the superseding binding passed the
+same 10/10 gate before formal execution resumed.
 It preregisters four real issues across TypeScript and Python, 16 paired trials,
 an external hidden oracle, blinded arm assignments, exact-scope scoring, and a
 statistics freeze gate. The runner uses isolated real checkouts, exact runtime
@@ -27,6 +32,7 @@ third-party review.
 See the [candidate protocol](docs/research/PROTOCOL_V4_CANDIDATE.md), the
 [Agent preflight](docs/research/REAL_REPOSITORY_V4_AGENT_PREFLIGHT.md), the
 [execution freeze](docs/research/REAL_REPOSITORY_V4_EXECUTION_FREEZE.md), the
+[public pre-session incident](results/real-repository-v4/incidents/001-codex-cli-argument-order.json), the
 [public fixture manifest](protocol/v4/fixtures.candidates.json), and the
 [outcome-free frozen plan](protocol/v4/plan.frozen.json). This is research
 preparation, not new evidence that Vertex Palace is faster or cheaper.

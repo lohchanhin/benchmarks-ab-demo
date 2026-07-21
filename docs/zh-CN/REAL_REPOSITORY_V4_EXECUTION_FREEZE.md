@@ -1,7 +1,7 @@
 # 真实仓库 V4 执行冻结
 
-状态：已由专案所有者审核并冻结。执行闸门：**10/10 通过**。冻结时正式
-Agent arm：**0/32**。
+状态：取代前一版的 amendment 已由专案所有者审核并冻结。执行闸门：**10/10 通过**。
+冻结时正式 Agent arm：**0/32**。
 
 这份 amendment 补齐“研究设计已冻结、实际执行器尚未绑定”的缺口。它固定真正
 执行时必须重复核验的 runner、产品包、Agent runtime、依赖 profile、验证基线与
@@ -9,8 +9,8 @@ Agent arm：**0/32**。
 
 ## 已绑定的执行身份
 
-- Runner source commit：`54a4ea0d819088e6f1bcc47cdcc6d2d8a8c9b214`。
-- Runner source SHA-256：`3b9a8f8b01f08d1fc2f0d120f6f78ecaac638f5814f0140248532d4203fa90e1`。
+- Runner source commit：`c1ec47fb9bd14c498d2eb17dc324a33e66f0b820`。
+- Runner source SHA-256：`2b1d9c329d54339af6321bbe4f912e87e461ffa3e50fc179616f177a61adcd86`。
 - Vertex Palace source commit：`322b15ec6cbbbc9c86f0a03e54e7a13ebf050c5e`。
 - 产品 tarball SHA-256：`1b042d3816f66108825bfecd44e5f4ac05cea0dec777ea424c866b8196187b09`。
 - Execution profile SHA-256：`98a5417aae286f7fdc04951783dfb6b4ed0b789b6bcc90be8a879715bed24af6`。
@@ -29,6 +29,19 @@ key commitment、runner 身份、产品 artifact、Codex runtime、execution pro
 Oracle、arm 对应关系、私有参考解、原始 transcript 或本机路径。
 
 这份 receipt 是专案所有者在 Codex 技术审核后的授权，**不是独立第三方审核**。
+
+## 为什么需要第二份 amendment
+
+第一版 binding 启动时发现 Codex CLI 参数位置不相容。三次 fail-closed 尝试都在
+session 建立前退出：Agent JSON event 为 0、完成 arm 为 0、代码改动为 0，也没有
+可供查看的模型 outcome。公开的[事故记录](../../results/real-repository-v4/incidents/001-codex-cli-argument-order.json)
+在修正前已经先提交。
+
+修正内容只有把原本相同的全局 approval 参数移到 `exec` subcommand 前，并加入
+精确参数顺序回归测试。任务、fixture、产品、模型、reasoning effort、sandbox、
+Oracle、盲测、验证与统计全部没有改变。修正命令先通过冻结 Codex CLI 的真实 parser，
+且没有启动 Agent；之后这份 binding 再次通过全部十项冻结检查。原 binding 仍保留在
+Git 历史中。
 
 ## 复验公开资料
 

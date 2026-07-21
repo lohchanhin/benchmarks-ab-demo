@@ -13,6 +13,7 @@ real-repository v4 candidate.
 - `execution.profile.json`: exact runtimes, dependency setup, and verification baselines.
 - `execution.binding.frozen.json`: reviewed runner, product, Agent, evaluator, and result binding.
 - `execution.gate.json`: ten-check execution-freeze audit.
+- `../../results/real-repository-v4/incidents/`: outcome-free execution incidents retained before correction.
 
 Evaluator-only oracle, key, and receipt files belong outside Git. The local
 default `.benchmark-private/v4/` is ignored.
