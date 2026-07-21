@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": "4.0.0-candidate.1",
+  "armId": "zod-report-input-decision-5509-v4-01-arm-a",
+  "trialId": "zod-report-input-decision-5509-v4-01",
+  "blindedLabel": "arm-a",
+  "metrics": {
+    "success": true,
+    "correctnessPassed": true,
+    "exactScopePassed": true,
+    "forbiddenViolation": false,
+    "diffCheckPassed": true,
+    "executionPassed": true,
+    "reportedTokens": 910441,
+    "inputTokens": 904250,
+    "outputTokens": 6191,
+    "cachedInputTokens": 834304,
+    "toolCalls": 17,
+    "failedCalls": 4,
+    "wallTimeMs": 198900
+  },
+  "changedFiles": [],
+  "verification": [
+    {
+      "command": "pnpm vitest packages/zod/src/v4/classic/tests/error.test.ts",
+      "policy": "exit-zero",
+      "valid": true,
+      "passed": true,
+      "exitCode": 0,
+      "durationMs": 7329
+    }
+  ],
+  "git": {
+    "diffCheckPassed": true,
+    "numstat": []
+  },
+  "execution": {
+    "exitCode": 0,
+    "timedOut": false,
+    "durationMs": 198900,
+    "infrastructureFailure": false
+  }
+}

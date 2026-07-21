@@ -9,8 +9,8 @@
   "frozenPlanSha256": "e811e734d3f7152c80c16044530fef27870de5663b7ad6f64ac6b088137493fb",
   "plannedTrials": 16,
   "plannedArmRuns": 32,
-  "completedTrials": 8,
-  "completedArmRuns": 16,
+  "completedTrials": 12,
+  "completedArmRuns": 24,
   "infrastructureFailures": 0,
   "mappingRevealed": false,
   "trials": [
@@ -128,8 +128,8 @@
         "arm-a",
         "arm-b"
       ],
-      "status": "planned",
-      "completedArmRuns": 0
+      "status": "completed",
+      "completedArmRuns": 2
     },
     {
       "trialId": "zod-report-input-decision-5509-v4-02",
@@ -141,8 +141,8 @@
         "arm-b",
         "arm-a"
       ],
-      "status": "planned",
-      "completedArmRuns": 0
+      "status": "completed",
+      "completedArmRuns": 2
     },
     {
       "trialId": "zod-report-input-decision-5509-v4-03",
@@ -154,8 +154,8 @@
         "arm-a",
         "arm-b"
       ],
-      "status": "planned",
-      "completedArmRuns": 0
+      "status": "completed",
+      "completedArmRuns": 2
     },
     {
       "trialId": "zod-report-input-decision-5509-v4-04",
@@ -167,8 +167,8 @@
         "arm-b",
         "arm-a"
       ],
-      "status": "planned",
-      "completedArmRuns": 0
+      "status": "completed",
+      "completedArmRuns": 2
     },
     {
       "trialId": "requests-stream-regression-7432-v4-01",
@@ -416,6 +416,102 @@
       "evidencePath": "results/real-repository-v4/open-webui-analytics-25919-v4-04-arm-b/evidence.json",
       "evidenceSha256": "462031d866f2b54df8bfe29119f9f7146eeb107e8a1b07775779f93300fc1345",
       "completedAt": "2026-07-21T13:37:04.926Z"
+    },
+    {
+      "armId": "zod-report-input-decision-5509-v4-01-arm-a",
+      "trialId": "zod-report-input-decision-5509-v4-01",
+      "fixtureId": "zod-report-input-decision-5509",
+      "blindedLabel": "arm-a",
+      "sequence": 1,
+      "status": "completed",
+      "success": true,
+      "evidencePath": "results/real-repository-v4/zod-report-input-decision-5509-v4-01-arm-a/evidence.json",
+      "evidenceSha256": "e07843070a4fc84b049e81cadb5572d626867b1176057e06bf6c15dee10f50ee",
+      "completedAt": "2026-07-21T13:41:43.254Z"
+    },
+    {
+      "armId": "zod-report-input-decision-5509-v4-01-arm-b",
+      "trialId": "zod-report-input-decision-5509-v4-01",
+      "fixtureId": "zod-report-input-decision-5509",
+      "blindedLabel": "arm-b",
+      "sequence": 2,
+      "status": "completed",
+      "success": true,
+      "evidencePath": "results/real-repository-v4/zod-report-input-decision-5509-v4-01-arm-b/evidence.json",
+      "evidenceSha256": "a617bebad33112414916e2404e229eb638464d21415c8f907516b8502c1243e4",
+      "completedAt": "2026-07-21T13:46:12.815Z"
+    },
+    {
+      "armId": "zod-report-input-decision-5509-v4-02-arm-b",
+      "trialId": "zod-report-input-decision-5509-v4-02",
+      "fixtureId": "zod-report-input-decision-5509",
+      "blindedLabel": "arm-b",
+      "sequence": 1,
+      "status": "completed",
+      "success": false,
+      "evidencePath": "results/real-repository-v4/zod-report-input-decision-5509-v4-02-arm-b/evidence.json",
+      "evidenceSha256": "f9fd907dd03891108694debd0d80309a2f3b15d9211747ff3bfa2c79c72a0f73",
+      "completedAt": "2026-07-21T13:51:47.670Z"
+    },
+    {
+      "armId": "zod-report-input-decision-5509-v4-02-arm-a",
+      "trialId": "zod-report-input-decision-5509-v4-02",
+      "fixtureId": "zod-report-input-decision-5509",
+      "blindedLabel": "arm-a",
+      "sequence": 2,
+      "status": "completed",
+      "success": false,
+      "evidencePath": "results/real-repository-v4/zod-report-input-decision-5509-v4-02-arm-a/evidence.json",
+      "evidenceSha256": "63bcc1df558cded860542bd2c3e9f22e7747a86f0407c09cdaaa47652ac4bf9a",
+      "completedAt": "2026-07-21T13:56:46.988Z"
+    },
+    {
+      "armId": "zod-report-input-decision-5509-v4-03-arm-a",
+      "trialId": "zod-report-input-decision-5509-v4-03",
+      "fixtureId": "zod-report-input-decision-5509",
+      "blindedLabel": "arm-a",
+      "sequence": 1,
+      "status": "completed",
+      "success": true,
+      "evidencePath": "results/real-repository-v4/zod-report-input-decision-5509-v4-03-arm-a/evidence.json",
+      "evidenceSha256": "4929a7cc7d8c6a4679a299f075353c6aff29227c88ccceeed474bdd20e4d59d6",
+      "completedAt": "2026-07-21T14:01:36.084Z"
+    },
+    {
+      "armId": "zod-report-input-decision-5509-v4-03-arm-b",
+      "trialId": "zod-report-input-decision-5509-v4-03",
+      "fixtureId": "zod-report-input-decision-5509",
+      "blindedLabel": "arm-b",
+      "sequence": 2,
+      "status": "completed",
+      "success": true,
+      "evidencePath": "results/real-repository-v4/zod-report-input-decision-5509-v4-03-arm-b/evidence.json",
+      "evidenceSha256": "d2cd78bdb3c0143c866d07dce057501e1fbcb6561294c1aeeda98d25f90f5d28",
+      "completedAt": "2026-07-21T14:05:10.755Z"
+    },
+    {
+      "armId": "zod-report-input-decision-5509-v4-04-arm-b",
+      "trialId": "zod-report-input-decision-5509-v4-04",
+      "fixtureId": "zod-report-input-decision-5509",
+      "blindedLabel": "arm-b",
+      "sequence": 1,
+      "status": "completed",
+      "success": false,
+      "evidencePath": "results/real-repository-v4/zod-report-input-decision-5509-v4-04-arm-b/evidence.json",
+      "evidenceSha256": "811f7efd7b5cac5e6aca2cb9b64b04510eb87f1834c500bba14474cec31714b6",
+      "completedAt": "2026-07-21T14:11:17.850Z"
+    },
+    {
+      "armId": "zod-report-input-decision-5509-v4-04-arm-a",
+      "trialId": "zod-report-input-decision-5509-v4-04",
+      "fixtureId": "zod-report-input-decision-5509",
+      "blindedLabel": "arm-a",
+      "sequence": 2,
+      "status": "completed",
+      "success": true,
+      "evidencePath": "results/real-repository-v4/zod-report-input-decision-5509-v4-04-arm-a/evidence.json",
+      "evidenceSha256": "095e4f52dc409f7c909da3e900136d3b1b13e737ace3177d7b319a5bda05279e",
+      "completedAt": "2026-07-21T14:16:53.394Z"
     }
   ]
 }
