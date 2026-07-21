@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": "4.0.0-candidate.1",
+  "status": "no-agent-dry-run",
+  "generatedAt": "2026-07-21T10:38:09.379Z",
+  "formalAgentArmsRun": 0,
+  "fixtures": [
+    {
+      "fixtureId": "zod-transform-refine-4926",
+      "frozenCommit": "7dd7484802b1351c8b81d3d523aadd876fcdf73e",
+      "workspaceCommitMatches": true,
+      "dependencyBundle": "reviewed-shared-bundle",
+      "verificationPolicies": [
+        "exit-zero"
+      ],
+      "trialScheduleObserved": true,
+      "agentInvoked": false
+    },
+    {
+      "fixtureId": "open-webui-analytics-25919",
+      "frozenCommit": "e473ab1231abedcb188c259b42ae7f2390739223",
+      "workspaceCommitMatches": true,
+      "dependencyBundle": "reviewed-shared-bundle",
+      "verificationPolicies": [
+        "baseline-delta",
+        "preflight-invalid"
+      ],
+      "trialScheduleObserved": true,
+      "agentInvoked": false
+    },
+    {
+      "fixtureId": "zod-report-input-decision-5509",
+      "frozenCommit": "6e968a3b49cbcb3bffc30c68634e80168e8f2a2e",
+      "workspaceCommitMatches": true,
+      "dependencyBundle": "reviewed-shared-bundle",
+      "verificationPolicies": [
+        "exit-zero"
+      ],
+      "trialScheduleObserved": true,
+      "agentInvoked": false
+    },
+    {
+      "fixtureId": "requests-stream-regression-7432",
+      "frozenCommit": "0b401c76b6e80a4eecf3c690085b2553f6e261ca",
+      "workspaceCommitMatches": true,
+      "dependencyBundle": "reviewed-shared-bundle",
+      "verificationPolicies": [
+        "exit-zero"
+      ],
+      "trialScheduleObserved": true,
+      "agentInvoked": false
+    }
+  ],
+  "passed": true
+}
