@@ -5,9 +5,10 @@
 
 [中文文档索引](./README.md) | [结果阅读指南](./RESULTS_GUIDE.md) | [项目中文首页](../../README.zh-CN.md)
 
-## 第四代 runner 预检（不执行 Agent）
+## 第四代执行冻结与预检（不执行 Agent）
 
-第四代计划已经冻结，runner 与固定执行 profile 已实现。公开克隆可检查协议和测试：
+第四代计划、runner 与固定执行 profile 已实现，独立 execution amendment 也已通过
+10/10 闸门并冻结。公开克隆可检查协议和测试：
 
 ```powershell
 npm run v4:plan
@@ -22,10 +23,12 @@ npm run prepare:real-repository:v4:profile
 npm run self-test:real-repository:v4:evaluator
 ```
 
-正式 runner 入口是 `npm run run:real-repository:v4`，但只有独立 execution
-amendment 冻结并建立空白结果 manifest 后才会放行。当前正式 Agent arm 仍为
-0/32。完整环境事实见[第四代 Agent 预检](./REAL_REPOSITORY_V4_AGENT_PREFLIGHT.md)，
-研究设计见[第四代真实仓库候选协议](./PROTOCOL_V4_CANDIDATE.md)。
+正式 runner 入口是 `npm run run:real-repository:v4`。冻结后的 commit 只允许在
+`results/real-repository-v4/` 建立空白盲测 ledger、保存 no-Agent dry run 与逐批结果；
+每次执行都会重算 binding，不一致就停止。冻结时正式 Agent arm 为 0/32。完整绑定见
+[第四代执行冻结](./REAL_REPOSITORY_V4_EXECUTION_FREEZE.md)，环境事实见
+[第四代 Agent 预检](./REAL_REPOSITORY_V4_AGENT_PREFLIGHT.md)，研究设计见
+[第四代真实仓库候选协议](./PROTOCOL_V4_CANDIDATE.md)。
 
 ## 环境要求
 

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": "4.0.0-candidate.1",
+  "status": "frozen-human-reviewed",
+  "generatedAt": "2026-07-21T10:29:41.219Z",
+  "formalAgentArmsRun": 0,
+  "runnerSourceCommit": "54a4ea0d819088e6f1bcc47cdcc6d2d8a8c9b214",
+  "runnerSourceSha256": "3b9a8f8b01f08d1fc2f0d120f6f78ecaac638f5814f0140248532d4203fa90e1",
+  "productSourceCommit": "322b15ec6cbbbc9c86f0a03e54e7a13ebf050c5e",
+  "productTarballSha256": "1b042d3816f66108825bfecd44e5f4ac05cea0dec777ea424c866b8196187b09",
+  "executionProfileSha256": "98a5417aae286f7fdc04951783dfb6b4ed0b789b6bcc90be8a879715bed24af6",
+  "evaluatorSha256": "667daedc0b47b94f121085d6ced431d03aeee6b07c5af6297eb4b3b155532788",
+  "gateSummary": {
+    "checks": 10,
+    "passed": 10,
+    "failed": 0
+  },
+  "ownerReview": true,
+  "independentThirdPartyReview": false
+}

@@ -7,14 +7,14 @@ A public, preregistered, reproducible experiment comparing Codex repository
 work with no Palace, structural routing only, always-on Full Palace, and
 Adaptive Palace.
 
-[Simplified Chinese](README.zh-CN.md) | [v4 Agent preflight](docs/research/REAL_REPOSITORY_V4_AGENT_PREFLIGHT.md) | [v4 real-repository candidate](docs/research/PROTOCOL_V4_CANDIDATE.md) | [Control-first v3 final](docs/research/CONTROL_FIRST_V3_FINAL.md) | [Post-v3 adherence telemetry](docs/research/POST_V3_AGENT_ADHERENCE_TELEMETRY.md) | [Validation coverage](docs/research/VALIDATION_COVERAGE_MATRIX.md) | [Revised bypass confirmation](docs/research/REVISED_BYPASS_CONFIRMATION.md) | [0.3.0 candidate result](docs/research/CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [Chinese documentation](docs/zh-CN/README.md) | [Chinese quick verification](docs/zh-CN/QUICKSTART.md) | [Chinese v2.2 results guide](docs/zh-CN/RESULTS_GUIDE.md) | [v3 protocol](docs/research/PROTOCOL_V3.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
+[Simplified Chinese](README.zh-CN.md) | [v4 execution freeze](docs/research/REAL_REPOSITORY_V4_EXECUTION_FREEZE.md) | [v4 Agent preflight](docs/research/REAL_REPOSITORY_V4_AGENT_PREFLIGHT.md) | [v4 real-repository candidate](docs/research/PROTOCOL_V4_CANDIDATE.md) | [Control-first v3 final](docs/research/CONTROL_FIRST_V3_FINAL.md) | [Post-v3 adherence telemetry](docs/research/POST_V3_AGENT_ADHERENCE_TELEMETRY.md) | [Validation coverage](docs/research/VALIDATION_COVERAGE_MATRIX.md) | [Revised bypass confirmation](docs/research/REVISED_BYPASS_CONFIRMATION.md) | [0.3.0 candidate result](docs/research/CONTROL_FIRST_V3_CANDIDATE_FINAL.md) | [Chinese documentation](docs/zh-CN/README.md) | [Chinese quick verification](docs/zh-CN/QUICKSTART.md) | [Chinese v2.2 results guide](docs/zh-CN/RESULTS_GUIDE.md) | [v3 protocol](docs/research/PROTOCOL_V3.md) | [v2.2 final report](docs/research/ADAPTIVE_V2_2_FINAL.md) | [Methodology](METHODOLOGY.md) | [Demo guide](DEMO.md)
 
 ## V4 Real-Repository Preparation
 
-The fourth-generation study plan is owner-approved and frozen. Its runner and
-fixed runtime profile are now implemented and have passed a no-Agent preflight,
-but formal execution remains at 0/32 until the separate execution amendment is
-committed and frozen.
+The fourth-generation study plan and its separate execution amendment are now
+owner-approved and frozen. The execution gate passed 10/10 checks while formal
+execution remained at 0/32. The result-only execution sequence starts with an
+empty blinded ledger and a no-Agent dependency dry run before the first arm.
 It preregisters four real issues across TypeScript and Python, 16 paired trials,
 an external hidden oracle, blinded arm assignments, exact-scope scoring, and a
 statistics freeze gate. The runner uses isolated real checkouts, exact runtime
@@ -26,6 +26,7 @@ third-party review.
 
 See the [candidate protocol](docs/research/PROTOCOL_V4_CANDIDATE.md), the
 [Agent preflight](docs/research/REAL_REPOSITORY_V4_AGENT_PREFLIGHT.md), the
+[execution freeze](docs/research/REAL_REPOSITORY_V4_EXECUTION_FREEZE.md), the
 [public fixture manifest](protocol/v4/fixtures.candidates.json), and the
 [outcome-free frozen plan](protocol/v4/plan.frozen.json). This is research
 preparation, not new evidence that Vertex Palace is faster or cheaper.

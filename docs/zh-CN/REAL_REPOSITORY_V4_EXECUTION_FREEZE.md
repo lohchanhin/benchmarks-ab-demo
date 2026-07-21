@@ -1,0 +1,47 @@
+# 真实仓库 V4 执行冻结
+
+状态：已由专案所有者审核并冻结。执行闸门：**10/10 通过**。冻结时正式
+Agent arm：**0/32**。
+
+这份 amendment 补齐“研究设计已冻结、实际执行器尚未绑定”的缺口。它固定真正
+执行时必须重复核验的 runner、产品包、Agent runtime、依赖 profile、验证基线与
+隐私边界。
+
+## 已绑定的执行身份
+
+- Runner source commit：`54a4ea0d819088e6f1bcc47cdcc6d2d8a8c9b214`。
+- Runner source SHA-256：`3b9a8f8b01f08d1fc2f0d120f6f78ecaac638f5814f0140248532d4203fa90e1`。
+- Vertex Palace source commit：`322b15ec6cbbbc9c86f0a03e54e7a13ebf050c5e`。
+- 产品 tarball SHA-256：`1b042d3816f66108825bfecd44e5f4ac05cea0dec777ea424c866b8196187b09`。
+- Execution profile SHA-256：`98a5417aae286f7fdc04951783dfb6b4ed0b789b6bcc90be8a879715bed24af6`。
+- 私有 evaluator source SHA-256：`667daedc0b47b94f121085d6ced431d03aeee6b07c5af6297eb4b3b155532788`。
+- Codex CLI `0.145.0-alpha.28`、模型 `gpt-5.6-sol`、`xhigh` reasoning。
+- 每个 arm 使用全新 detached workspace，忽略用户规则与 config，并关闭 Agent 网络。
+
+Node、npm、pnpm、Python、uv、上游依赖、基线与平台适配的精确事实都写在
+`protocol/v4/execution.binding.frozen.json`。
+
+## 冻结闸门
+
+十项检查全部通过：binding 结构、冻结研究身份、私有 Oracle commitment、盲测
+key commitment、runner 身份、产品 artifact、Codex runtime、execution profile、
+所有者审核，以及空白正式结果状态。公开仓库只保存 commitment 与 hash，不公开
+Oracle、arm 对应关系、私有参考解、原始 transcript 或本机路径。
+
+这份 receipt 是专案所有者在 Codex 技术审核后的授权，**不是独立第三方审核**。
+
+## 复验公开资料
+
+```powershell
+npm ci
+node --test test/v4-execution-artifacts.test.mjs
+npm run check
+```
+
+正式执行只允许在 `results/real-repository-v4/` 产生后续 commit：先建立空白盲测
+ledger，再做不启动 Agent 的依赖 dry run，之后才运行 16 组配对 trial。每次启动
+runner 都会重算冻结 binding；runner、hash、私有 commitment、环境事实或无关文件
+发生变化时会直接拒绝执行。
+
+闸门通过不代表 Vertex Palace 已经改善正确率、修改范围、时间或 Token。必须等
+正式结果全部完成、解除盲测并依冻结统计计划分析后，才能回答这些问题。

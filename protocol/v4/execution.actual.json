@@ -1,0 +1,12 @@
+{
+  "codexVersion": "codex-cli 0.145.0-alpha.28",
+  "palaceVersion": "0.3.0",
+  "runnerSourceCommit": "54a4ea0d819088e6f1bcc47cdcc6d2d8a8c9b214",
+  "runnerSourceSha256": "3b9a8f8b01f08d1fc2f0d120f6f78ecaac638f5814f0140248532d4203fa90e1",
+  "productSourceCommit": "322b15ec6cbbbc9c86f0a03e54e7a13ebf050c5e",
+  "productTarballSha1": "8845e0a050bdb96e5dacfeb5c02003b4ab158e4a",
+  "productTarballSha256": "1b042d3816f66108825bfecd44e5f4ac05cea0dec777ea424c866b8196187b09",
+  "productTarballIntegrity": "sha512-t2Yfp/CG021K4xYL/MZ5dSOdDULmeRU+appMtEG2E0qk4YkRFQ+ehxKAKmDs8q5vsKQet4sKKca8Q8r09Uok9Q==",
+  "executionProfileSha256": "98a5417aae286f7fdc04951783dfb6b4ed0b789b6bcc90be8a879715bed24af6",
+  "evaluatorSha256": "667daedc0b47b94f121085d6ced431d03aeee6b07c5af6297eb4b3b155532788"
+}

@@ -14,9 +14,11 @@ const documentationFiles = [
   "docs/zh-CN/RESULTS_GUIDE.md",
   "docs/zh-CN/PROTOCOL_V3.md",
   "docs/zh-CN/PROTOCOL_V4_CANDIDATE.md",
+  "docs/zh-CN/REAL_REPOSITORY_V4_EXECUTION_FREEZE.md",
   "docs/zh-CN/VALIDATION_COVERAGE_MATRIX.md",
   "docs/research/VALIDATION_COVERAGE_MATRIX.md",
   "docs/research/PROTOCOL_V4_CANDIDATE.md",
+  "docs/research/REAL_REPOSITORY_V4_EXECUTION_FREEZE.md",
   "protocol/v4/README.md"
 ];
 
@@ -29,6 +31,7 @@ test("publishes discoverable Simplified Chinese judge guidance", async () => {
   const protocolV3 = await read("docs/zh-CN/PROTOCOL_V3.md");
   const protocolV4 = await read("docs/zh-CN/PROTOCOL_V4_CANDIDATE.md");
   const protocolV4English = await read("docs/research/PROTOCOL_V4_CANDIDATE.md");
+  const executionFreeze = await read("docs/zh-CN/REAL_REPOSITORY_V4_EXECUTION_FREEZE.md");
   const coverageMatrix = await read("docs/zh-CN/VALIDATION_COVERAGE_MATRIX.md");
 
   for (const content of [english, chinese]) {
@@ -59,6 +62,10 @@ test("publishes discoverable Simplified Chinese judge guidance", async () => {
   assert.match(protocolV4, /代码中刻意没有 `v4-run` 命令/);
   assert.match(protocolV4English, /human-reviewed and frozen, not executed/);
   assert.match(protocolV4English, /cost_per_successful_solution/);
+  assert.match(executionFreeze, /10\/10 通过/);
+  assert.match(executionFreeze, /0\/32/);
+  assert.match(executionFreeze, /不是独立第三方审核/);
+  assert.match(executionFreeze, /不代表 Vertex Palace 已经改善/);
   assert.match(coverageMatrix, /独立 small-OSS 分层/);
   assert.match(coverageMatrix, /尚未单独测试/);
   assert.match(coverageMatrix, /Vertex Palace 普遍节省 Agent Token、时间或工具调用/);

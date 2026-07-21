@@ -10,11 +10,16 @@ real-repository v4 candidate.
 - `oracle.template.private.json`: shape only; never use it as an answer key.
 - `review.template.json`: human review receipt shape.
 - `review.receipt.json`: public hash-bound owner authorization and audit record.
+- `execution.profile.json`: exact runtimes, dependency setup, and verification baselines.
+- `execution.binding.frozen.json`: reviewed runner, product, Agent, evaluator, and result binding.
+- `execution.gate.json`: ten-check execution-freeze audit.
 
 Evaluator-only oracle, key, and receipt files belong outside Git. The local
 default `.benchmark-private/v4/` is ignored.
 
 Read the [English protocol](../../docs/research/PROTOCOL_V4_CANDIDATE.md) or the
-[Simplified Chinese guide](../../docs/zh-CN/PROTOCOL_V4_CANDIDATE.md). Run
+[execution freeze](../../docs/research/REAL_REPOSITORY_V4_EXECUTION_FREEZE.md),
+or the [Simplified Chinese guide](../../docs/zh-CN/REAL_REPOSITORY_V4_EXECUTION_FREEZE.md). Run
 `npm run check:v4-prep` to verify that the public frozen plan remains
-outcome-free. There is no formal v4 runner in this preparation phase.
+outcome-free. The formal runner is implemented, but the frozen binding records
+zero formal Agent arms and does not itself establish a product benefit.

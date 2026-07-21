@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "protocolVersion": "4.0.0-candidate.1",
+  "approved": true,
+  "reviewer": "HIN (repository owner)",
+  "reviewedAt": "2026-07-21T10:29:41.217Z",
+  "declaration": "I reviewed the exact v4 execution binding, product artifact, runner commit, network isolation, and empty result state before any formal Agent arm.",
+  "bindingSha256": "84b3ef130e8f3ea68b61123fae9972816cbac4d31b7bf2e3c2677996f259e922",
+  "studyPlanSha256": "e811e734d3f7152c80c16044530fef27870de5663b7ad6f64ac6b088137493fb",
+  "runnerSourceCommit": "54a4ea0d819088e6f1bcc47cdcc6d2d8a8c9b214",
+  "runnerSourceSha256": "3b9a8f8b01f08d1fc2f0d120f6f78ecaac638f5814f0140248532d4203fa90e1",
+  "productSourceCommit": "322b15ec6cbbbc9c86f0a03e54e7a13ebf050c5e",
+  "productTarballSha256": "1b042d3816f66108825bfecd44e5f4ac05cea0dec777ea424c866b8196187b09",
+  "productTarballIntegrity": "sha512-t2Yfp/CG021K4xYL/MZ5dSOdDULmeRU+appMtEG2E0qk4YkRFQ+ehxKAKmDs8q5vsKQet4sKKca8Q8r09Uok9Q==",
+  "executionProfileSha256": "98a5417aae286f7fdc04951783dfb6b4ed0b789b6bcc90be8a879715bed24af6",
+  "evaluatorSha256": "667daedc0b47b94f121085d6ced431d03aeee6b07c5af6297eb4b3b155532788",
+  "networkAccess": false,
+  "authorization": {
+    "source": "Explicit user authorization in Codex",
+    "scope": "Full V4 execution amendment and formal run after technical audit",
+    "technicalAuditPerformedBy": "Codex",
+    "independentThirdPartyReview": false
+  }
+}
